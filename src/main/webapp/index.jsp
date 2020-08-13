@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PKM_ERP</title>
 <link href="resources/css/index.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
@@ -63,7 +63,7 @@
 	<script type="text/javascript" src="resources/js/typeit.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			var str1 = [" 이 사이트는 3인 프로젝트로", "인사, 재고 등을", " 관리하는 ERP 사이트입니다."];
+			var str1 = [" 이 사이트는 3인 프로젝트로", "인사, 재고, 매출 등을", " 관리하는 ERP 사이트입니다."];
 			var str2 = [" 이용하시려면<br>_ 위에 있는\"Continue\"<br>_ 버튼을 클릭해주세요!<br>"];
 			
 			$('.type_text').typeIt({
