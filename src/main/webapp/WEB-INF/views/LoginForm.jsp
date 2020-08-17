@@ -7,7 +7,7 @@
 <title>Login</title>
 <link href="resources/css/LoginForm.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
+</head> 
 <body>
 	<div id="login-form">
 		<h1>LOGIN</h1>
