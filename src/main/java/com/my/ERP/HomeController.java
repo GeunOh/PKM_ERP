@@ -15,4 +15,8 @@ public class HomeController {
 		return "LoginForm";
 	}
 	
+	public String lo() {
+		return " ";
+	}
+	
 }
