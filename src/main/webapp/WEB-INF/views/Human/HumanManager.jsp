@@ -18,8 +18,8 @@
 		<div id="search-box">
 			<form>
 				<div class="buttons">
-					<input type="button" value="조회"> <input type="button"
-						value="엑셀">
+					<button type="button">조회</button>
+					<button type="button">엑셀</button>
 				</div>
 				<table>
 					<tr>
@@ -40,7 +40,7 @@
 					<tr>
 						<th><label for="dno">부서</label></th>
 						<td><input type="text" id="dno" name="dno"> <input type="button" class="searchBtn"></td>
-						<th>파트</th>
+						<th>직급</th>
 						<td><input type="text"> <input type="button" class="searchBtn"></td>
 						<th>반</th>
 						<td><input type="text"> <input type="button" class="searchBtn"></td>
@@ -53,20 +53,38 @@
 		<!-- 사원현황 -->
 		<h2>사원현황</h2>
 		<table id="result-box">
+			<colgroup>
+				<col width="7%">
+				<col>
+				<col width="7%">
+				<col>
+				<col>
+				<col>
+				<col>
+				<col>
+				<col width="30%">
+			</colgroup>
 			<tr>
-				<th>사업장</th>
-				<th>사번</th>
+				<th>사원번호</th>
 				<th>성명</th>
-				<th>부서</th>
-				<th>파트</th>
-				<th>반</th>
-				<th>직위</th>
-				<th>직책</th>
-				<th>급여구분</th>
-				<th>근무조</th>
-				<th>각사입사일</th>
-				<th>그룹입사일</th>
-				<th>재직구분</th>
+				<th>부서번호</th>
+				<th>부서명</th>
+				<th>직급</th>
+				<th>핸드폰번호</th>
+				<th>이메일</th>
+				<th>생년월일</th>
+				<th>주소</th>
+			</tr>
+			<tr class="row">
+				<td>000000</td>
+				<td>프링글스</td>
+				<td>M-001</td>
+				<td>개발부</td>
+				<td>사원</td>
+				<td>010-3925-7715</td>
+				<td>sanghoo96@naver.com</td>
+				<td>1996년4월16일</td>
+				<td>경기도 안양시 만안구 석천로197번길 52, 5동 505호</td>
 			</tr>
 			<tr class="row">
 				<td>1</td>
@@ -78,10 +96,6 @@
 				<td>7</td>
 				<td>8</td>
 				<td>9</td>
-				<td>10</td>
-				<td>11</td>
-				<td>12</td>
-				<td>13</td>
 			</tr>
 			<tr class="row">
 				<td>1</td>
@@ -93,10 +107,6 @@
 				<td>7</td>
 				<td>8</td>
 				<td>9</td>
-				<td>10</td>
-				<td>11</td>
-				<td>12</td>
-				<td>13</td>
 			</tr>
 			<tr class="row">
 				<td>1</td>
@@ -108,25 +118,6 @@
 				<td>7</td>
 				<td>8</td>
 				<td>9</td>
-				<td>10</td>
-				<td>11</td>
-				<td>12</td>
-				<td>13</td>
-			</tr>
-			<tr class="row">
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-				<td>10</td>
-				<td>11</td>
-				<td>12</td>
-				<td>13</td>
 			</tr>
 		</table>
 		<div id="count-box">
@@ -216,7 +207,7 @@
 						<!-- 피지컬 정보 -->
 						<div id="psysicalInfo-box">
 							<table>
-								<input type="submit" value="저장">
+								<button type="submit" value="저장">저장</button>
 								<tr>
 									<th>신장</th>
 									<td><input type="text" name="" id=""></td>

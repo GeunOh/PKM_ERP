@@ -10,6 +10,7 @@ h1{ margin: 0 0 20px 0;}
 #search-box tr:first-child { margin-bottom: 1%; }
 #search-box td { width: 220px; }
 #search-box .buttons { position: absolute; right: 0; top: 0;}
+.buttons button { width: 55px; height: 30px;}
 .searchBtn{width: 30px;
     height: 30px;
     border: 0;
@@ -48,7 +49,11 @@ h2{ margin: 20px 0 20px 0;}
 #detailInfo-box input#birth { width: 124px; }
 #image-box, #basicInfo-box, #psysicalInfo-box { float: left;}
 #basicInfo-box { margin: 0 10px;}
+#basicInfo-box tr { border-bottom: 1px solid #c0c0c0; }
+#basicInfo-box tr:first-child { border-top: 1px solid #c0c0c0; }
 #psysicalInfo-box tr td:last-child { width: fit-content; padding-left: 10px;}
+#psysicalInfo-box button { width: 55px;height: 35px; margin-bottom: 5px;}
+
 #age { width: 30px; height: 24px; }
 
 
