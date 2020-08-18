@@ -23,15 +23,14 @@
 				</div>
 				<table>
 					<tr>
-						<th>사업장</th>
-						<td><select name="" id="">
-								<option value="">서울</option>
-								<option value="">안양</option>
-						</select></td>
-						<th>사원</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
-						<th>사원명</th>
-						<td><input type="text"></td>
+						<th><label for="loc">사업장</label></th>
+						<td>
+							<input type="text" id="loc">
+						</td>
+						<th><label for="eno">사원번호</label></th>
+						<td><input type="text" id="eno" name="eno"> <input type="button" class="searchBtn"></td>
+						<th><label for="ename">사원명</label></th>
+						<td><input type="text" id="ename" name="ename"></td>
 						<th>재직구분</th>
 						<td><select name="" id="">
 								<option value="">재직</option>
@@ -39,8 +38,8 @@
 						</select></td>
 					</tr>
 					<tr>
-						<th>부서</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
+						<th><label for="dno">부서</label></th>
+						<td><input type="text" id="dno" name="dno"> <input type="button" class="searchBtn"></td>
 						<th>파트</th>
 						<td><input type="text"> <input type="button" class="searchBtn"></td>
 						<th>반</th>
@@ -69,7 +68,7 @@
 				<th>그룹입사일</th>
 				<th>재직구분</th>
 			</tr>
-			<tr>
+			<tr class="row">
 				<td>1</td>
 				<td>2</td>
 				<td>3</td>
@@ -84,7 +83,7 @@
 				<td>12</td>
 				<td>13</td>
 			</tr>
-			<tr>
+			<tr class="row">
 				<td>1</td>
 				<td>2</td>
 				<td>3</td>
@@ -99,7 +98,7 @@
 				<td>12</td>
 				<td>13</td>
 			</tr>
-			<tr>
+			<tr class="row">
 				<td>1</td>
 				<td>2</td>
 				<td>3</td>
@@ -114,7 +113,7 @@
 				<td>12</td>
 				<td>13</td>
 			</tr>
-			<tr>
+			<tr class="row">
 				<td>1</td>
 				<td>2</td>
 				<td>3</td>
@@ -141,21 +140,10 @@
 		<!-- // 사원현황 -->
 		<!-- 사원 상제 정보 -->
 		<div id="detail-box">
-			<!-- 유사 탭메뉴 -->
-			<ul>
-				<li><a href="#">인사기본사항</a></li>
-				<li><a href="#">가족사항</a></li>
-				<li><a href="#">자격/외국어</a></li>
-				<li><a href="#">입사전경력</a></li>
-				<li><a href="#">발령사항</a></li>
-				<li><a href="#">교육사항</a></li>
-				<li><a href="#">학력사항</a></li>
-				<li><a href="#">특기사항</a></li>
-			</ul>
 			<div id="info-box">
 				<!-- 사원 이미지 -->
 				<div id="image-box">
-					<img src="http://placehold.it/150x180" alt="">
+					<img src="http://placehold.it/200x261" alt="">
 				</div>
 				<!-- 사원 기본 정보 -->
 				<div id="detailInfo-box">
@@ -175,7 +163,7 @@
 									<th>주민번호</th>
 									<td><input type="text"></td>
 									<th>생년월일</th>
-									<td><input type="date"> <input id="age"
+									<td><input type="date" id="birth"> <input id="age"
 										type="text" value="99세" disabled></td>
 									<th>양력/음력</th>
 									<td><input type="radio">양력 <input type="radio">음력
@@ -195,6 +183,14 @@
 									<th>직급</th>
 									<td><input type="text"></td>
 									<th>입사날짜</th>
+									<td><input type="date"></td>
+								</tr>
+								<tr>
+									<th>비상연락망</th>
+									<td><input type="tel"></td>
+									<th>비상연락망</th>
+									<td><input type="tel"></td>
+									<th>퇴사날짜</th>
 									<td><input type="date"></td>
 								</tr>
 								<tr>
@@ -233,6 +229,14 @@
 								</tr>
 								<tr>
 									<th>혈액형</th>
+									<td><input type="text" name="" id=""></td>
+								</tr>
+								<tr>
+									<th>특이사항</th>
+									<td><input type="text" name="" id=""></td>
+								</tr>
+								<tr>
+									<th>비고</th>
 									<td><input type="text" name="" id=""></td>
 								</tr>
 							</table>
