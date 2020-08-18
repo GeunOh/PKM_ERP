@@ -8,5 +8,8 @@
 </head>
 <body>
 <jsp:include page="../common/MenuBar.jsp"></jsp:include>
+
+<jsp:include page="../m_management.jsp"></jsp:include>
+
 </body>
 </html>

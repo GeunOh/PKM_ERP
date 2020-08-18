@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인사기본관리</title>
 
-    <link rel="stylesheet" href="resources/css/p_m.css">
+    <link rel="stylesheet" href="/resources/css/m_management.css">
 </head>
 <body>
     
@@ -179,9 +179,9 @@
                         <div id="basicInfo-box">
                             <table>
                                 <tr>
-                                    <th>성명(한글)</th>
+                                	<th>사원번호</th>
                                     <td><input type="text"></td>
-                                    <th>성명(한자)</th>
+                                    <th>성명(한글)</th>
                                     <td><input type="text"></td>
                                     <th>성명(영문)</th>
                                     <td><input type="text"></td>
@@ -190,7 +190,10 @@
                                     <th>주민번호</th>
                                     <td><input type="text"></td>
                                     <th>생년월일</th>
-                                    <td><input type="date"></td>
+                                    <td>
+                                    	<input type="date">
+                                    	<input id="age" type="text" value="99세" disabled>
+                                    </td>
                                     <th>양력/음력</th>
                                     <td>
                                         <input type="radio">양력
@@ -198,26 +201,20 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>주민번호</th>
+                                    <th>주소</th>
                                     <td><input type="text"></td>
-                                    <th>생년월일</th>
-                                    <td><input type="date"></td>
-                                    <th>양력/음력</th>
-                                    <td>
-                                        <input type="radio">양력
-                                        <input type="radio">음력
-                                    </td>
+                                    <th>이메일</th>
+                                    <td><input type="email"></td>
+                                    <th>핸드폰번호</th>
+                                    <td><input type="tel"></td>
                                 </tr>
                                 <tr>
-                                    <th>주민번호</th>
+                                    <th>부서</th>
                                     <td><input type="text"></td>
-                                    <th>생년월일</th>
+                                    <th>직급</th>
+                                    <td><input type="text"></td>
+                                    <th>입사날짜</th>
                                     <td><input type="date"></td>
-                                    <th>양력/음력</th>
-                                    <td>
-                                        <input type="radio">양력
-                                        <input type="radio">음력
-                                    </td>
                                 </tr>
                                 <tr>
                                     <th>주민번호</th>
