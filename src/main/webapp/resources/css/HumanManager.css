@@ -7,16 +7,19 @@ a { text-decoration: none; outline: none; color: black; cursor: pointer;}
 
 /* common */
 table { border-collapse: collapse;}
-body { min-width: 1650px; background-color: lightgray; }
-
-#wrap { border: 15px solid lightgray; padding:20px; background-color: #fff; background-size: cover;}
+body { min-width: 1920px; background-color: lightgray; }
+html, body { height:98%;}
+#wrap { border: 15px solid lightgray; padding:20px; background-color: #fff; background-size: cover; height: 86%;}
 
 /* 인사기본사항 */
 h1{ margin: 0 0 20px 0;}
-#search-box { border: 3px solid #374a72; padding: 10px;}
+#search-box { border: 3px solid #374a72; padding: 10px; border-radius: 15px;}
+#search-box input { height: 26px; padding-left: 5px; }
 #search-box form { position: relative;}
-/* #search-box table { border-collapse: collapse;} */
-#search-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
+#search-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
+#search-box tr { display: flex; }
+#search-box tr:first-child { margin-bottom: 1%; }
+#search-box td { width: 220px; }
 #search-box .buttons { position: absolute; right: 0; top: 0;}
 .searchBtn{width: 30px;
     height: 30px;
@@ -33,7 +36,8 @@ h1{ margin: 0 0 20px 0;}
 /* 사원현황 */
 h2{ margin: 20px 0 20px 0;}
 #result-box { width:100%; border: 3px solid #374a72; overflow-x: hidden;}
-#result-box tr { border-bottom: 1px solid gray;}
+#result-box tr { border-bottom: 1px solid gray; height: 35px; }
+#result-box tr.row:hover { background-color: rgb(253, 226, 229); cursor: pointer;}
 #result-box tr:nth-child(even) { background-color: lightcyan;}
 #result-box tr:nth-child(odd) { background-color: lightgoldenrodyellow;}
 #result-box th { padding: 0 25px; background-color: lightgray;}
@@ -49,9 +53,13 @@ h2{ margin: 20px 0 20px 0;}
 #info-box { overflow: hidden; text-align: right;}
 #detailInfo-box table { background-color: lightyellow;}
 #detailInfo-box td, #detailInfo-box th { padding: 4px 0;}
+#detailInfo-box td { width: 190px; }
 #detailInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
+#detailInfo-box input { height: 25px; padding-left: 5px;}
+#detailInfo-box input#birth { width: 124px; }
 #image-box, #basicInfo-box, #psysicalInfo-box { float: left;}
 #basicInfo-box { margin: 0 10px;}
+#psysicalInfo-box tr td:last-child { width: fit-content; padding-left: 10px;}
 #age { width: 30px; height: 24px; }
 
 
