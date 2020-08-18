@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/* 급여기본관리 ++ 얘도 공통이라 뽑아쓸수 있을듯 */
+h1{ margin: 0 0 20px 0;}
+#search-box { border: 3px solid #374a72; padding: 10px; border-radius: 15px;}
+#search-box input { height: 26px; padding-left: 5px; }
+#search-box form { position: relative;}
+#search-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
+#search-box tr { display: flex; }
+#search-box tr:first-child { margin-bottom: 1%; }
+#search-box td { width: 220px; }
+#search-box .buttons { position: absolute; right: 0; top: 0;}
+.searchBtn{width: 30px;
+    height: 30px;
+    border: 0;
+    padding: 0;
+    background: url(../images/sch_btn.png) no-repeat 50% 50% #eee;
+    border: 1px solid #dcdcdc;
+    text-indent: -999px;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: top;
+    margin-left: 5px;}

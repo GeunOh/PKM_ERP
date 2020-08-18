@@ -4,7 +4,7 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-<title>급여 관리</title>
+<title>휴가 관리</title>
 </head>
 <body>
 	
