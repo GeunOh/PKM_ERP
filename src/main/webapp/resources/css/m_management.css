@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+/* reset */
+* { margin: 0; padding: 0; }
+ul,ol,li { list-style: none; }
+a { text-decoration: none; outline: none; color: black; cursor: pointer;}
+
+/* common */
+table { border-collapse: collapse;}
+
+
+#wrap { border: 15px solid lightgray;}
+
+/* 인사기본사항 */
+h1{ margin: 20px 0 20px 20px;}
+#search-box { border: 3px solid #374a72; padding: 10px; margin:0 20px 0 20px;}
+#search-box form { position: relative;}
+/* #search-box table { border-collapse: collapse;} */
+#search-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
+#search-box .buttons { position: absolute; right: 0; top: 0;}
+
+
+/* 사원현황 */
+h2{ margin: 20px 0 20px 20px;}
+#result-box { display:block; border: 3px solid #374a72; padding: 10px; margin:0 20px 0 20px; overflow-x: scroll;}
+#result-box tr { border-bottom: 1px solid gray;}
+#result-box tr:nth-child(even) { background-color: lightcyan;}
+#result-box tr:nth-child(odd) { background-color: lightgoldenrodyellow;}
+#result-box th { padding: 0 25px; background-color: lightgray;}
+#result-box td { text-align: center;}
+#count-box { padding: 10px; margin:0 20px 0 20px; margin-bottom: 20px;}
+#count-box > span { margin-right: 35px;}
+.number { color: red; font-weight: 550;}
+
+/* 사원 상세 정보 */
+#detail-box { border: 3px solid #374a72; padding: 10px; margin:0 20px 20px 20px;}
+ul{ overflow: hidden; margin-bottom: 10px;}
+li{ float: left; margin-right: 10px; padding: 5px; background-color: lightgray; box-shadow: 2px 2px 2px darkgrey; border-radius : 5px; }
+#info-box { overflow: hidden; text-align: right;}
+#image-box, #basicInfo-box, #psysicalInfo-box { float: left;}
+#basicInfo-box { margin: 0 10px;}
+#basicInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
