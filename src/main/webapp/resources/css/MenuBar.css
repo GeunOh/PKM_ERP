@@ -3,7 +3,7 @@
 #header-form{
 	position: relative;
 	border-top: 2px solid #000;
-	margin-top: 1%;
+	margin: 1% 0.5%;
 }
 #header-menuForm{
 	background: -webkit-linear-gradient(to right, #4CA1AF, #2C3E50);  /* Chrome 10-25, Safari 5.1-6 */
