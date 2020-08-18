@@ -15,4 +15,9 @@ public class HomeController {
 		return "LoginForm";
 	}
 	
+	@RequestMapping("Login")
+	public String Login() {
+		
+		return "QuickMenu";
+	}
 }
