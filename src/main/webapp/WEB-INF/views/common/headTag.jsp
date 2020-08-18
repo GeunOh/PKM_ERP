@@ -9,5 +9,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- 공통 CSS / Script 파일들 -->
+<link href="resources/css/common.css" rel="stylesheet">
 <link href="resources/css/MenuBar.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/4d55e1ad7a.js" crossorigin="anonymous"></script>
