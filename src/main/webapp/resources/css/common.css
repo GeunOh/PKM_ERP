@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+/* reset */
+* { margin: 0; padding: 0; }
+ul,ol,li { list-style: none; }
+a { text-decoration: none; outline: none; color: black; cursor: pointer;}
+
+/* common */
+table { border-collapse: collapse;}
+body { min-width: 1920px; background-color: lightgray; }
+html, body { height:98%;}
+#wrap { border: 15px solid lightgray; padding:20px; background-color: #fff; background-size: cover; height: 86%;}

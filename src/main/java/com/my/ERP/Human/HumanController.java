@@ -17,4 +17,10 @@ public class HumanController {
 	public String SalaryMain() {
 		return "SalaryManager";
 	}
+	
+	// 휴가관리
+	@RequestMapping("VacationManager")
+	public String VacationMain() {
+		return "VacationManager";
+	}
 }
