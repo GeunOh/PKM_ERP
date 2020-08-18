@@ -8,6 +8,6 @@ body{background-color: #374a72;}
 .circle-form:last-child{margin-left: 10%;}
 .circle-form>label{display:inline-block; color: #fff; font-weight: bold; font-size: 20px; margin-top: 5%;}
 .circle{display:inline-block; background-color: #fff; width: 200px; height: 200px; border-radius: 50%;}
-.fa-users{color: #4d6c8b; font-size: 110px; line-height: 200px;}
-.fa-boxes{color: #4d6c8b; font-size: 110px; line-height: 200px;}
-.fa-coins{color: #4d6c8b; font-size: 110px; line-height: 200px;}
+.fa-users{color: #4d6c8b; font-size: 110px; line-height: 200px!important;}
+.fa-boxes{color: #4d6c8b; font-size: 110px; line-height: 200px!important;}
+.fa-coins{color: #4d6c8b; font-size: 110px; line-height: 200px!important;}

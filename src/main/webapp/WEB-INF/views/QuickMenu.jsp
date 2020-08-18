@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Quick Menu</title>
-<link href="resources/css/QuickMenu.css">
+<link href="resources/css/QuickMenu.css" rel="stylesheet">
 <script src="https://kit.fontawesome.com/4d55e1ad7a.js" crossorigin="anonymous"></script>
 </head>
 <body>

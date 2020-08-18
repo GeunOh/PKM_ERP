@@ -11,7 +11,7 @@
 <body>
 	<div id="login-form">
 		<h1>LOGIN</h1>
-		<form action="/Human/HumanManager">
+		<form action="/Login">
 			<div class="text-area">
 				<input type="text" name="id" id="id" autocomplete="off" required>
 				<label for="id">USER NAME</label>
