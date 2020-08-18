@@ -15,14 +15,4 @@ public class HomeController {
 		return "LoginForm";
 	}
 	
-	public String lo() {
-		return " ";
-	}
-	
-
-	public String sanghoo() {
-		
-		return "LoginForm";
-	}
-
 }
