@@ -12,3 +12,8 @@ body{background-color: #374a72;}
 .fa-boxes{color: #4d6c8b; font-size: 110px; line-height: 200px!important;}
 .fa-coins{color: #4d6c8b; font-size: 110px; line-height: 200px!important;}
 
+#content-form { visibility: hidden; }
+#content-form > * { visibility: visible; }
+#content-form > * { transition: opacity 150ms linear 100ms, transform 150ms ease-in-out 100ms; }
+#content-form:hover > * { opacity: 0.4; transform: scale(0.9); }
+#content-form > *:hover { opacity: 1; transform: scale(1); transition-delay: 0ms, 0ms; }

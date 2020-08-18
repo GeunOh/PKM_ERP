@@ -7,10 +7,9 @@ a { text-decoration: none; outline: none; color: black; cursor: pointer;}
 
 /* common */
 table { border-collapse: collapse;}
-body { min-width: 1650px; }
+body { min-width: 1650px; background-color: lightgray; }
 
-html, body { height:100%; overflow:hidden }
-#wrap { border: 15px solid lightgray; padding:20px; height: 86%}
+#wrap { border: 15px solid lightgray; padding:20px; background-color: #fff; background-size: cover;}
 
 /* 인사기본사항 */
 h1{ margin: 0 0 20px 0;}
@@ -19,7 +18,17 @@ h1{ margin: 0 0 20px 0;}
 /* #search-box table { border-collapse: collapse;} */
 #search-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
 #search-box .buttons { position: absolute; right: 0; top: 0;}
-
+.searchBtn{width: 30px;
+    height: 30px;
+    border: 0;
+    padding: 0;
+    background: url(../images/sch_btn.png) no-repeat 50% 50% #eee;
+    border: 1px solid #dcdcdc;
+    text-indent: -999px;
+    overflow: hidden;
+    cursor: pointer;
+    vertical-align: top;
+    margin-left: 5px;}
 
 /* 사원현황 */
 h2{ margin: 20px 0 20px 0;}

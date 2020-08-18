@@ -3,12 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-
-<!-- HumanManager 페이지에서만 필요한 css -->
 <link rel="stylesheet" href="resources/css/HumanManager.css">
-
 <title>인사기본관리</title>
 </head>
 <body>
@@ -33,8 +29,7 @@
 								<option value="">안양</option>
 						</select></td>
 						<th>사원</th>
-						<td><input type="text"> <input type="button"
-							value="O"></td>
+						<td><input type="text"> <input type="button" class="searchBtn"></td>
 						<th>사원명</th>
 						<td><input type="text"></td>
 						<th>재직구분</th>
@@ -45,14 +40,11 @@
 					</tr>
 					<tr>
 						<th>부서</th>
-						<td><input type="text"> <input type="button"
-							value="O"></td>
+						<td><input type="text"> <input type="button" class="searchBtn"></td>
 						<th>파트</th>
-						<td><input type="text"> <input type="button"
-							value="O"></td>
+						<td><input type="text"> <input type="button" class="searchBtn"></td>
 						<th>반</th>
-						<td><input type="text"> <input type="button"
-							value="O"></td>
+						<td><input type="text"> <input type="button" class="searchBtn"></td>
 					</tr>
 
 				</table>
