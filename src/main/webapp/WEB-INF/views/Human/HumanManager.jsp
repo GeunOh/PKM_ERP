@@ -5,7 +5,7 @@
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/HumanManager.css">
-<link href="resources/css/selectbox.min.css" rel="stylesheet" >
+<link href="resources/css/selectbox.min.css" rel="stylesheet">
 <script src="resources/js/selectbox.min.js"></script>
 <title>인사기본관리</title>
 </head>
