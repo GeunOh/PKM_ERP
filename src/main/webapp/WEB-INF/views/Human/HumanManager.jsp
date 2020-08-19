@@ -5,6 +5,8 @@
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/HumanManager.css">
+<link href="resources/css/selectbox.min.css" rel="stylesheet" >
+<script src="resources/js/selectbox.min.js"></script>
 <title>인사기본관리</title>
 </head>
 <body>
@@ -18,27 +20,29 @@
 		<div id="search-box">
 			<form>
 				<div class="buttons">
-					<button type="button">조회</button>
-					<button type="button">엑셀</button>
+					<a>조회</a>
+					<a>엑셀</a>
 				</div>
 				<table>
 					<tr>
-						<th><label for="loc">사업장</label></th>
+						<th><label>사업장</label></th>
 						<td>
 							<input type="text" id="loc">
 						</td>
-						<th><label for="eno">사원번호</label></th>
+						<th><label>사원번호</label></th>
 						<td><input type="text" id="eno" name="eno"> <input type="button" class="searchBtn"></td>
-						<th><label for="ename">사원명</label></th>
+						<th><label>사원명</label></th>
 						<td><input type="text" id="ename" name="ename"></td>
 						<th>재직구분</th>
-						<td><select name="" id="">
-								<option value="">재직</option>
-								<option value="">퇴직</option>
-						</select></td>
+						<td>
+							<select class="justselect" name="searchOption" id="searchOption">
+									<option value="">재직</option>
+									<option value="">퇴직</option>
+							</select>
+						</td>
 					</tr>
 					<tr>
-						<th><label for="dno">부서</label></th>
+						<th><label>부서</label></th>
 						<td><input type="text" id="dno" name="dno"> <input type="button" class="searchBtn"></td>
 						<th>직급</th>
 						<td><input type="text"> <input type="button" class="searchBtn"></td>
@@ -206,7 +210,7 @@
 						<!-- 피지컬 정보 -->
 						<div id="psysicalInfo-box">
 							<table>
-								<button type="submit" value="저장">저장</button>
+								<button type="submit"><img src="resources/images/Save.png">저장</button>
 								<tr>
 									<th>신장</th>
 									<td><input type="text" name="" id=""></td>
