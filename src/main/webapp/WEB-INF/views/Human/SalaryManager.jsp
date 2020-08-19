@@ -135,7 +135,54 @@
 		<!-- // 인사 기본 정보  -->
 		<!-- 급여 수당 정보 -->
 		<div id="salaryInfo-box">
-		
+			<h2>급여[수당]정보</h2>
+			<form action="">
+				<table>
+					<colgroup>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col width="20%">
+						<col>
+					</colgroup>
+					<tr>
+						<th>부서</th>
+						<th>급여형태</th>
+						<th>년월</th>
+						<th>사번</th>
+						<th>성명</th>
+						<th>급여총액</th>
+						<th>세금계</th>
+						<th>공재액계</th>
+						<th>실수령액</th>
+						<th>은행</th>
+						<th>계좌번호</th>
+						<th>급여지급일</th>
+					</tr>
+					<tr>
+						<th>개발부</th>
+						<th>월급여</th>
+						<th>2020-08</th>
+						<th>000001</th>
+						<th>집가고싶다</th>
+						<th>100,000</th>
+						<th>100</th>
+						<th>500</th>
+						<th>99,400</th>
+						<th>신한은행</th>
+						<th>111-1123-13231232131</th>
+						<th>2020-09-10</th>
+					</tr>
+					
+				</table>
+			</form>
 		</div>
 		<!-- // 급여 수당 정보 -->
 	</div>

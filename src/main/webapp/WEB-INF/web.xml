@@ -29,6 +29,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<!-- 인사관리  -->
 	<servlet>
 		<servlet-name>HumanServlet</servlet-name>
