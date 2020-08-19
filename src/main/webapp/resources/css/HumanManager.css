@@ -32,19 +32,17 @@ h2{ margin: 20px 0 20px 0;}
 #result-box tr:nth-child(odd) { background-color: lightgoldenrodyellow;}
 #result-box th { padding: 0 25px; background-color: lightgray;}
 #result-box td { text-align: center;}
-#count-box { padding: 10px; margin:0 20px 0 20px; margin-bottom: 20px;}
+#count-box { padding: 10px; margin:0 20px 20px 20px;}
 #count-box > span { margin-right: 35px;}
 .number { color: red; font-weight: 550;}
 
 /* 사원 상세 정보 */
 #detail-box { border: 3px solid #374a72; padding: 10px;}
-#detail-box ul{ overflow: hidden; margin-bottom: 10px;}
-#detail-box li{ float: left; margin-right: 10px; padding: 5px; background-color: lightgray; box-shadow: 2px 2px 2px darkgrey; border-radius : 5px; }
 #info-box { overflow: hidden; text-align: right;}
 #detailInfo-box table { background-color: lightyellow;}
 #detailInfo-box td, #detailInfo-box th { padding: 4px 0;}
 #detailInfo-box td { width: 190px; }
-#detailInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right;}
+#detailInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
 #detailInfo-box input { height: 25px; padding-left: 5px;}
 #detailInfo-box input#birth { width: 124px; }
 #image-box, #basicInfo-box, #psysicalInfo-box { float: left;}
