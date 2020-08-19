@@ -83,12 +83,13 @@
 					<td>3</td>
 					<td>4</td>
 				</tr>
-				<tr class="row">
-					<td>1</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
+				
 			</table>
 			<span>총 사원수 : <span class="number">0</span> 명</span>
 		</div>

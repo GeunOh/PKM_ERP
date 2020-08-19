@@ -25,12 +25,12 @@ h1{ margin: 0 0 20px 0;}
 /* 사원정보 */
 h2{ margin: 20px 0 20px 0; }
 #result-box { width: fit-content; height: 79.5%; margin: 0 20px 0 0; float: left; }
-#result-box table { border: 3px solid #374a72; margin-bottom: 10px;}
-#result-box tr { border-bottom: 1px solid gray; height: 35px; }
+#result-box table { border: 3px solid #374a72; margin-bottom: 10px; height: 80%; }
+#result-box tr { border-bottom: 1px solid gray; height: 35px; line-height: 35px; }
 #result-box tr.row:hover { background-color: rgb(253, 226, 229); cursor: pointer;}
-/* #result-box tr:first-child { border-bottom: 1px double gray;}*/
-#result-box tr:nth-child(even) { background-color: lightcyan;}
+#result-box tr:nth-child(even) { background-color: lightcyan; }
 #result-box tr:nth-child(odd) { background-color: lightgoldenrodyellow;}
+#result-box tr:last-child {height: 100%; background-color: white; }
 #result-box th { padding: 0 25px; background-color: lightgray;}
 #result-box td { text-align: center;}
 .number { color: red; font-weight: 550;}
@@ -49,5 +49,14 @@ h2{ margin: 20px 0 20px 0; }
 #salaryInfo-box table { border: 3px solid #374a72;}
 
 
+
+
+.t-table td {
+  border: 1px solid black;
+}
+.t-table td:empty {
+  border-left: 0;
+  border-right: 0;
+}
 
 
