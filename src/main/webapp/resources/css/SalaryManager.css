@@ -38,8 +38,16 @@ h2{ margin: 20px 0 20px 0; }
 /* 인사기본정보 */
 #basicInfo-box { float: left; }
 #basicInfo-box table { border: 3px solid #374a72; margin-bottom: 10px; background-color: lightyellow; display: block; padding: 10px;}
-#basicInfo-box td, #basicInfo-box th { padding: 4px 0;}
+#basicInfo-box td, #basicInfo-box th { padding: 4px 0; }
 #basicInfo-box td { width: 190px; }
 #basicInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
 #basicInfo-box input { height: 26px; padding-left: 5px;}
 #basicInfo-box input#isRetire { width: 40px; padding: 0; text-align: center; }
+
+/* 급여 수당 정보 */
+#salaryInfo-box { float: left; }
+#salaryInfo-box table { border: 3px solid #374a72;}
+
+
+
+
