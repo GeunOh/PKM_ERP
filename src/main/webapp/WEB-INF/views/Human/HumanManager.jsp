@@ -121,12 +121,11 @@
 			</tr>
 		</table>
 		<div id="count-box">
-			<span>총 사원수 : <span class="number">0</span> 명
-			</span> <span>영업사원 : <span class="number">0</span> 명
-			</span> <span>일반사용자 : <span class="number">0</span> 명
-			</span> <span>현업관리자 : <span class="number">0</span> 명
-			</span> <span>시스템관리자 : <span class="number">0</span> 명
-			</span>
+			<span>총 사원수 : <span class="number">0</span> 명</span>
+			<span>영업사원 : <span class="number">0</span> 명</span>
+			<span>일반사용자 : <span class="number">0</span> 명</span> 
+			<span>현업관리자 : <span class="number">0</span> 명</span>
+			<span>시스템관리자 : <span class="number">0</span> 명</span>
 		</div>
 		<!-- // 사원현황 -->
 		<!-- 사원 상제 정보 -->

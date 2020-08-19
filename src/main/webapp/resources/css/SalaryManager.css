@@ -2,7 +2,7 @@
 
 /* 급여기본관리 ++ 얘도 공통이라 뽑아쓸수 있을듯 */
 h1{ margin: 0 0 20px 0;}
-#search-box { border: 3px solid #374a72; padding: 10px; border-radius: 15px;}
+#search-box { border: 3px solid #374a72; padding: 10px; border-radius: 15px; margin-bottom: 20px;}
 #search-box input { height: 26px; padding-left: 5px; }
 #search-box form { position: relative;}
 #search-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
@@ -21,3 +21,25 @@ h1{ margin: 0 0 20px 0;}
     cursor: pointer;
     vertical-align: top;
     margin-left: 5px;}
+
+/* 사원정보 */
+h2{ margin: 20px 0 20px 0; }
+#result-box { width: fit-content; height: 79.5%; margin: 0 20px 0 0; float: left; }
+#result-box table { border: 3px solid #374a72; margin-bottom: 10px;}
+#result-box tr { border-bottom: 1px solid gray; height: 35px; }
+#result-box tr.row:hover { background-color: rgb(253, 226, 229); cursor: pointer;}
+/* #result-box tr:first-child { border-bottom: 1px double gray;}*/
+#result-box tr:nth-child(even) { background-color: lightcyan;}
+#result-box tr:nth-child(odd) { background-color: lightgoldenrodyellow;}
+#result-box th { padding: 0 25px; background-color: lightgray;}
+#result-box td { text-align: center;}
+.number { color: red; font-weight: 550;}
+
+/* 인사기본정보 */
+#basicInfo-box { float: left; }
+#basicInfo-box table { border: 3px solid #374a72; margin-bottom: 10px; background-color: lightyellow; display: block; padding: 10px;}
+#basicInfo-box td, #basicInfo-box th { padding: 4px 0;}
+#basicInfo-box td { width: 190px; }
+#basicInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
+#basicInfo-box input { height: 26px; padding-left: 5px;}
+#basicInfo-box input#isRetire { width: 40px; padding: 0; text-align: center; }
