@@ -1,14 +1,5 @@
 @charset "UTF-8";
 
-@font-face {
-  font-family: NotoSans-Black;
-  src: url('../Fonts/NotoSansCJKkr-Black.otf');
-}
-
-@font-face {
-  font-family: NotoSans-Regular;
-  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
-}
 /* 인사기본사항 */
 h1{ margin: 0 0 20px 0; font-family: NotoSans-Regular;}
 #search-box { background-color: #eefbff; border: 3px solid #3b6c7c; padding: 15px 10px; border-radius: 15px; font-family: NotoSans-Regular;}
