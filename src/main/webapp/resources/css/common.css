@@ -1,4 +1,15 @@
 @charset "UTF-8";
+/* font */
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+}
+
 
 /* reset */
 * { margin: 0; padding: 0; }
@@ -10,3 +21,6 @@ table { border-collapse: collapse;}
 body { min-width: 1900px; background-color: lightgray; overflow:hidden;}
 html, body { height:98%;}
 #wrap { border: 15px solid lightgray; padding:20px; background-color: #fff; background-size: cover; height: 87%;}
+
+
+

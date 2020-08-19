@@ -24,8 +24,8 @@ public class HumanController {
 		return "VacationManager";
 	}
 	// 직급관리
-	@RequestMapping("PositionMagaer")
+	@RequestMapping("PositionManager")
 	public String PositionMain() {
-		return "PositionMagaer";
+		return "PositionManager";
 	}
 }
