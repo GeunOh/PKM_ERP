@@ -1,7 +1,16 @@
 @charset "UTF-8";
 
+#wrap{ position: relative;}
+
 /* 급여기본관리 ++ 얘도 공통이라 뽑아쓸수 있을듯 */
-h1{ margin: 0 0 20px 0; font-family: NotoSans-Regular;}
+h1{ position: relative; padding-left: 25px; margin: 0 0 20px 0; font-family: NotoSans-Regular;}
+h1:before{
+	content: "";
+	position: absolute;
+	top: 0px;left: 0px;
+	width: 10px; height: 50px;
+	background-color: #4ca0ae;
+}
 #search-box { border: 3px solid #3b6c7c; padding: 10px; border-radius: 15px; margin-bottom: 20px; background-color: #eefbff; font-family: NotoSans-Regular;}
 #search-box input[type=text] { 
 	height: 28px; 
@@ -56,7 +65,14 @@ h1{ margin: 0 0 20px 0; font-family: NotoSans-Regular;}
     margin-left: 5px;}
 
 /* 사원정보 */
-h2{ margin: 20px 0 20px 0; font-family: NotoSans-Regular; }
+h2{ position:relative; padding-left: 20px; margin: 20px 0 20px 0; font-family: NotoSans-Regular; }
+h2:before{
+	content: "";
+	position: absolute;
+	top: 12px; left: 0px;
+	width: 5px; height: 5px;
+	border: 5px solid #4ca0ae; background-color: #fff; border-radius: 50%;
+}
 #result-box { width: fit-content; height: 78.5%; margin: 0 20px 0 0; float: left; font-family: NotoSans-Regular; }
 #result-box table { border: 3px solid #374a72; margin-bottom: 10px; height: 80%; }
 #result-box tr { border-bottom: 1px solid gray; height: 35px; line-height: 35px; }
