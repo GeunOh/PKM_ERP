@@ -1,4 +1,4 @@
-package com.my.ERP.Human;
+package com.my.ERP.Human.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +22,10 @@ public class HumanController {
 	@RequestMapping("VacationManager")
 	public String VacationMain() {
 		return "VacationManager";
+	}
+	// 직급관리
+	@RequestMapping("PositionMagaer")
+	public String PositionMain() {
+		return "PositionMagaer";
 	}
 }
