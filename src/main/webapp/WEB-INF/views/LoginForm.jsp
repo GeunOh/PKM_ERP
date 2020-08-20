@@ -17,11 +17,14 @@
 				<label for="id">USER NAME</label>
 			</div>
 			<div class="text-area">
-				<input type="text" name="pwd" id="pwd" autocomplete="off" required>
+				<input type="password" name="pwd" id="pwd" autocomplete="off" required>
 				<label for="pwd">PASSWORD</label>
 			</div>
 			<div class="btn-area">
 				<button type="submit" id="btn">LOGIN</button>
+			</div>
+			<div class="check-area">
+				<input type="checkbox">아이디 저장</input>
 			</div>
 		</form>
 		<div class="caption">
