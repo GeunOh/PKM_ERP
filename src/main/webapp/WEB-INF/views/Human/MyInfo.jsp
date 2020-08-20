@@ -9,6 +9,23 @@
 <script src="resources/js/selectbox.min.js"></script>
 <script src="https://kit.fontawesome.com/4d55e1ad7a.js" crossorigin="anonymous"></script>
 <title>내 정보</title>
+
+<script type="text/javascript">
+	
+	// 휴가 신청하기 버튼 클릭 시 나타나는 창
+	function request() {
+		var requestBox = document.getElementById("request-box");
+		requestBox.style.display = "block";
+	}
+	
+	// 나가기 버튼 클릭 시 나타나는 창
+	function exit() {
+		var requestBox = document.getElementById("request-box");
+		requestBox.style.display = "none";
+	}
+	
+</script>
+
 </head>
 <body>
 
@@ -111,7 +128,7 @@
 						<td colspan="2">11</td>
 					</tr>
 				</table>
-				<a class="buttons">수정완료</a>	
+				<a class="buttons" id="modifyBtn">수정완료</a>	
 			</form>
 		</div>
 		<!-- // 기본정보수정 -->
@@ -141,8 +158,53 @@
 				<h3>잔여 휴가 일 수</h3>
 				<p>12일</p>
 			</div>
+			<a class="buttons" id="requestBtn" onclick="request();">휴가신청</a>
 		</div>
-		<!-- 휴가관리 -->
+		<!-- // 휴가관리 -->
+		<!-- 휴가신청란 -->
+		<div id="request-box">
+			<div id="dim-box"></div>
+			<div id="request-content">
+				<h2>휴가신청</h2>
+				<form action="">
+					<table>
+						<tr>
+							<th>사원번호</th>
+							<td>000001</td>
+							<th>성명</th>
+							<td>홍길동</td>
+							<th>부서</th>
+							<td>PKM Development</td>
+							<th>직급</th>
+							<td>사원</td>
+						</tr>
+						<tr>
+							<th>휴가분류</th>
+							<td>
+								<select class="justselect">
+									<option>연차</option>
+									<option>병가</option>
+									<option>공가</option>
+								</select>
+							</td>
+							<th>휴가시작일</th>
+							<td><input type="date"></td>
+							<th>휴가종료일</th>
+							<td><input type="date"></td>
+							<th>잔여일</th>
+							<td id="residual-date">12일</td>
+						</tr>
+					</table>
+					<p>휴가신청사유 & 비고</p>
+					<textarea rows="6"></textarea>
+					<div id="button-box">
+						<input class="buttons" type="submit" value="휴가신청">
+						<button class="buttons" type="button" onclick="exit();">나가기</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- // 휴가신청 -->
 	</div>
 	<!-- // wrap -->
 
