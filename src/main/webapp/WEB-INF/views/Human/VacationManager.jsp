@@ -4,7 +4,9 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-<title>휴가 관리</title>
+<link rel="stylesheet" href="resources/css/VacationManager.css">
+
+<title>휴가승인관리</title>
 </head>
 <body>
 	
@@ -12,7 +14,7 @@
 	
 	<!-- wrap -->
 	<div id="wrap">
-		<h1>휴가관리</h1>
+		<h1>휴가승인관리</h1>
 		<!-- 휴가조회 -->
 		<div id="search-box">
 			<form>
@@ -22,24 +24,25 @@
 				</div>
 				<table>
 					<tr>
-						<th><label>휴가일자</label></th>
-						<td>
-							<input type="text" id="loc">
-						</td>
-						
-						<td>
-							<input type="date"> ~ <input type="date">
-						</td>
+						<th>휴가분류</th>
+						<th>소속</th>
+						<th>직위</th>
+						<th>시작일</th>
+						<th>종료일</th>
+						<th>사용일수</th>
+						<th>상태</th>
+						<th>신청일자</th>
 					</tr>
 					<tr>
-						<th><label>부서</label></th>
-						<td><input type="text" id="dno" name="dno"> <input type="button" class="searchBtn"></td>
-						<th>직급</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
-						<th>반</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>8</td>
 					</tr>
-
 				</table>
 			</form>
 		</div>
