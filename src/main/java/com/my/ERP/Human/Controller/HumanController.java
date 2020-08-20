@@ -28,4 +28,10 @@ public class HumanController {
 	public String PositionMain() {
 		return "PositionManager";
 	}
+	
+	// 마이페이지
+	@RequestMapping("MyInfo")
+	public String MyinfoMain() {
+		return "MyInfo";
+	}
 }

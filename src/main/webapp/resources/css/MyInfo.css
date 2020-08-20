@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* 마이페이지 */
+h1{ margin: 0 0 20px 0; font-family: NotoSans-Regular; position: relative; padding-left: 25px;}
+h1:before{
+	content: "";
+	position: absolute;
+	top: 0px;left: 0px;
+	width: 10px; height: 50px;
+	background-color: #4ca0ae;
+}
+h2{ margin: 20px 0 30px 50px; font-family: NotoSans-Regular; position: relative; padding-left: 25px;}
+h2:before{
+	content: "";
+	position: absolute;
+	top: 10px; left: 0px;
+	width: 10px; height: 10px;
+	border: 5px solid #4ca0ae; background-color: #fff; border-radius: 50%;
+}
+#myInfo-wrap { margin-left: 50px; font-family: NotoSans-Regular;}
+#myInfo-wrap form { position: relative;}
+#myInfo-wrap table { width: 100%; }
+#myInfo-wrap table th { padding: 5px 0 5px 10px; text-align: left; background-color: #eefbff; }
+#myInfo-wrap table td#image-col { text-align: center; }
+#myInfo-wrap table td { padding-left: 10px; }
+#myInfo-wrap table th, #myInfo-wrap table td { border: 1px solid gray;}
+.buttons {
+	box-shadow: 0px 10px 14px -7px #276873;
+	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+	background-color:#599bb3;
+	border-radius:8px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:5px 15px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+	position: absolute;
+    right: 2px;
+    top: -60px;
+}
+.buttons:hover {
+	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+	background-color:#408c99;
+}
+.buttons:active {
+	right: 2px;
+	top:-61px;
+}
+
+/* 휴가사용현황 */
+#vacation-wrap { margin-left: 50px; font-family: NotoSans-Regular; overflow: hidden;}
+#vacation-wrap > p { margin: 15px 0; }
+.fa-plane-departure { display:block; float:left; font-size: 50px; color: gray; margin-right: 20px; }
+.day-boxs { position: relative;  width: 30%; padding: 20px 40px;float: left; border: 3px solid black; border-radius: 15px; box-sizing: border-box; }
+.day-boxs p {
+	position: absolute;
+    left: 55%;
+    top: 23%;
+    font-size: 30px;
+}
+#use-vacation { margin: 0 4%;}
+h3 { float: left; }
