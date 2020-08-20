@@ -24,7 +24,7 @@
 				<button type="submit" id="btn">LOGIN</button>
 			</div>
 			<div class="check-area">
-				<input type="checkbox">아이디 저장</input>
+				<input type="checkbox"><label>아이디 저장</label>
 			</div>
 		</form>
 		<div class="caption">
