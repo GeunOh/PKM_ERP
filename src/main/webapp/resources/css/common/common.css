@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+/* font */
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
+}
+
+/* reset */
+* { margin: 0; padding: 0; }
+ul,ol,li { list-style: none; }
+a { text-decoration: none; outline: none; color: black; cursor: pointer;}
+
+/* common */
+html, body { height: 100%; }
+table { border-collapse: collapse;}
+body { min-width: 1900px; }
+
+#search-box { 
+	background-color: #f6f6f6;
+	border: 3px solid #e4e4e4; 
+	padding: 15px 10px; 
+	border-radius: 15px; 
+	font-family: NotoSans-Regular;
+}
+
+
+
+
