@@ -40,6 +40,61 @@
 
 <!-- sideMenu -->
 <div id="sideMenu">
-	
+	<ul id="mainMenu">
+		<li>
+			<span>인사관리</span>
+			<ul class="subMenu">
+				<li>
+					<span>기본인사관리</span>
+				</li>
+				<li>
+					<span>직급관리</span>
+				</li>
+				<li>
+					<span>부서관리</span>
+				</li>
+				<li>
+					<span>급여관리</span>
+				</li>
+				<li>
+					<span>휴가관리</span>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<span>재고관리</span>
+			<ul class="subMenu">
+				<li>
+					<span>제품(?)목록</span>
+				</li>
+				<li>
+					<span>제품재고관리</span>
+				</li>
+				<li>
+					<span>제품 입/출고현황</span>
+				</li>
+				<li>
+					<span>비품(?)목록</span>
+				</li>
+				<li>
+					<span>비품관리</span>
+				</li>
+				<li>
+					<span>비품 신청현황</span>
+				</li>
+			</ul>
+		</li>
+		<li>	
+			<span>운영/매출관리</span>
+			<ul class="subMenu">
+				<li>
+					<span>거래처 목록</span>
+				</li>
+				<li>	
+					<span>매출관리</span>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </div>
 <!-- // sideMenu -->
