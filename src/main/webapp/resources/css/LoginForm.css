@@ -94,3 +94,35 @@ body::before{
 	font-size: 15px; color: #999;
 	text-decoration: none;
 }
+.check-area{margin-top: 2%;}
+.check-area label{ margin-left: 2%; color: #999; cursor: pointer;}
+#idChk{display: none;}
+#idChk + label em{
+	position:relative;
+	display: inline-block;
+	width: 15px; height: 15px;
+	margin-right: 5px;
+	background-color: #fff;
+	border-radius: 2px;
+	cursor: pointer; 
+	vertical-align: -2px;
+}
+#idChk:checked + label em{
+	background-color: #3a4c67;
+}
+#idChk:checked + label em:before {
+	content: "";
+    position: absolute;
+    top: 7px;left: 4px;
+    width: 2px; height: 6px;
+    background-color: #fff;
+    transform: rotate(135deg);
+}
+#idChk:checked + label em:after {
+	content: "";
+    position: absolute;
+    top: 3px;  left: 8px;
+    width: 2px; height: 10px;
+    background-color: #fff;
+    transform: rotate(35deg);
+}
