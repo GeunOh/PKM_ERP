@@ -11,17 +11,20 @@
 <body>
 	<div id="login-form">
 		<h1>LOGIN</h1>
-		<form action="/Login">
+		<form action="/Login" method="post">
 			<div class="text-area">
 				<input type="text" name="id" id="id" autocomplete="off" required>
 				<label for="id">USER NAME</label>
 			</div>
 			<div class="text-area">
-				<input type="text" name="pwd" id="pwd" autocomplete="off" required>
+				<input type="password" name="pwd" id="pwd" autocomplete="off" required>
 				<label for="pwd">PASSWORD</label>
 			</div>
 			<div class="btn-area">
 				<button type="submit" id="btn">LOGIN</button>
+			</div>
+			<div class="check-area">
+				<input type="checkbox" id="idChk"><label for="idChk" class="chkBox"><em></em>아이디 저장</label>
 			</div>
 		</form>
 		<div class="caption">

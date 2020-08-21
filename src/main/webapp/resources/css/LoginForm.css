@@ -2,9 +2,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+}
+
 *{margin: 0; padding: 0; box-sizing: border-box;}
 body{
-	background: url("../images/LoginForm.jpg") no-repeat center;
+	background: #282c34;
   	background-size: cover;  
   	font-family: 'Noto Sans KR', sans-serif;
   	font-weight:bold;
@@ -18,7 +28,6 @@ body::before{
 	content: "";
 	position: absolute; z-index: 1;
 	top: 0; right: 0; bottom: 0; left: 0;
-	background-color: rgba(0,0,0, 0.7);
 }
 
 #login-form{
@@ -40,6 +49,7 @@ body::before{
 	border-bottom: 1px solid #999;
 	font-size: 18px; color: #fff;
 	outline: none;
+	font-family: NotoSans-Regular;
 }
 .text-area label{
 	position: absolute; left: 10px; top: 15px;
@@ -61,20 +71,21 @@ body::before{
 .text-area input:focus + label,
 .text-area input:valid + label{
 	top: -2px;
-	font-size: 13px; color: #166cea;
+	font-size: 13px; color: #395b8e;
 }
 
-.btn-area{margin-top: 30px;}
+.btn-area{margin-top: 30px; }
 .btn-area button{
 	width: 100%; height: 50px;
-	background: #166cea;
+	background: #3a4c67;
 	color: #fff;
 	font-size: 20px;
 	border: none;
 	border-radius: 25px;
 	cursor: pointer;
+	font-family: NotoSans-Regular;
 }
-.btn-area button:hover{background-color: #165dc5;}
+.btn-area button:hover{background-color: #2f3c4e;}
 .caption{
 	margin-top: 20px;
 	text-align: center;
@@ -82,4 +93,36 @@ body::before{
 .caption a{
 	font-size: 15px; color: #999;
 	text-decoration: none;
+}
+.check-area{margin-top: 2%;}
+.check-area label{ margin-left: 2%; color: #999; cursor: pointer;}
+#idChk{display: none;}
+#idChk + label em{
+	position:relative;
+	display: inline-block;
+	width: 15px; height: 15px;
+	margin-right: 5px;
+	background-color: #fff;
+	border-radius: 2px;
+	cursor: pointer; 
+	vertical-align: -2px;
+}
+#idChk:checked + label em{
+	background-color: #3a4c67;
+}
+#idChk:checked + label em:before {
+	content: "";
+    position: absolute;
+    top: 7px;left: 4px;
+    width: 2px; height: 6px;
+    background-color: #fff;
+    transform: rotate(135deg);
+}
+#idChk:checked + label em:after {
+	content: "";
+    position: absolute;
+    top: 3px;  left: 8px;
+    width: 2px; height: 10px;
+    background-color: #fff;
+    transform: rotate(35deg);
 }
