@@ -45,7 +45,7 @@
 			<span>인사관리</span>
 			<ul class="subMenu">
 				<li>
-					<span>기본인사관리</span>
+					<span id="humanManager">기본인사관리</span>
 				</li>
 				<li>
 					<span>직급관리</span>
