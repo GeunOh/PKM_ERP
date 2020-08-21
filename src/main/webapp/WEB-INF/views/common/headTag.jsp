@@ -10,7 +10,7 @@
 <!-- 공통 CSS / Script 파일들 -->
 <link href="resources/css/common/common.css" rel="stylesheet">
 <link href="resources/css/common/template.css" rel="stylesheet">
-<script type="text/javascript" src="resources/js/common/common.js"">
+<script type="text/javascript" src="resources/js/common/common.js">
 
 </script>
 <!-- fontawesome -->
