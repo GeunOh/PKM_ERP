@@ -98,8 +98,8 @@ ul, li{list-style: none;}
     background-color: #fff;
     padding: 5px 10px;
     border: 1px solid #969696; border-radius: 0 3px 3px 0;
-    height: 21px;
-    vertical-align: top;
+    height: 31px;
+    box-sizing: border-box;
     cursor: pointer;
 }
 .date + label{margin: 0 10px; font-size: 20px;}
