@@ -19,7 +19,7 @@ a { text-decoration: none; outline: none; color: black; cursor: pointer;}
 /* common */
 html, body { height: 100%; }
 table { border-collapse: collapse;}
-body { min-width: 1900px; }
+body { width: 100%; }
 
 #search-box { 
 	background-color: #f6f6f6;
