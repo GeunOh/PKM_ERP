@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="../common/template.jsp"/>
 	<div id="wrap">
-	
+		
 	</div>
 	
 </body>
