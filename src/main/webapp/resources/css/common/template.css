@@ -77,7 +77,7 @@
 }
 #mainMenu { margin-top: 25px; }
 #mainMenu > li { position: relative;}
-#mainMenu > li > span { display:block; padding: 10px 40px 10px 20px;}
+#mainMenu > li > span { display: block; padding: 10px 40px 10px 20px;}
 #mainMenu > li > span:hover { cursor: pointer;}
 #mainMenu > li > span:after {
     position: absolute;
@@ -93,8 +93,17 @@
 }
 .subMenu { display: none; }
 .subMenu li { position: relative; }
-.subMenu li span { display:block; padding: 10px 40px 10px 35px;}
-
+.subMenu li span { position: relative; display:block; padding: 10px 40px 10px 40px;}
+.subMenu > li > span:before {
+    content: "";
+	position: absolute;
+	top: 20px;
+    left: 25px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: black;
+}
 /* wrap */
 #wrap{ 
     height: 100%;

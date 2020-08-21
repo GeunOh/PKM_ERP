@@ -114,6 +114,7 @@
 						<input type="date" id="date" class="date"> <label>~</label>
 						<input type="date" id="date2" class="date rightDate">
 					</div>
+					<button id="searchBtn">검색</button>
 				</form>
 			</div>
 		</div>
