@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
@@ -120,8 +119,5 @@
 		</div>
 	</div>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
-<script type="text/javascript">
-document.getElementById('date1').value= new Date().toISOString().slice(0, -1);
-</script>
 </body>
 </html>
