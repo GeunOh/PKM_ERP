@@ -1,5 +1,5 @@
 /**
- * 	공통 script
+ * 	공통(템플릿) script
  */
 
 // 드롭다운 메뉴 토글 기능
@@ -11,3 +11,11 @@ function showMenu(){
 		menu.style.display = "block";
 	}
 }
+
+// 사이드메뉴 슬라이드 토글 기능
+$(function(){
+	$("#mainMenu li").on("click", function() {
+		$(this).children("ul").slideToggle();
+	})
+});
+
