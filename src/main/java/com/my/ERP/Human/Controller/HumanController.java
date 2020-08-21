@@ -7,31 +7,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HumanController {
 	
 	// 인사기본관리
-	@RequestMapping("HumanManager")
+	@RequestMapping("humanManager")
 	public String HumanMain() {
-		return "HumanManager";
+		return "humanManager";
 	}
 	
 	// 급여관리
-	@RequestMapping("SalaryManager")
+	@RequestMapping("salaryManager")
 	public String SalaryMain() {
-		return "SalaryManager";
+		return "salaryManager";
 	}
 	
 	// 휴가관리
-	@RequestMapping("VacationManager")
+	@RequestMapping("vacationManager")
 	public String VacationMain() {
-		return "VacationManager";
+		return "vacationManager";
 	}
 	// 직급관리
-	@RequestMapping("PositionManager")
+	@RequestMapping("positionManager")
 	public String PositionMain() {
-		return "PositionManager";
+		return "positionManager";
 	}
 	
 	// 마이페이지
-	@RequestMapping("MyInfo")
+	@RequestMapping("myInfo")
 	public String MyinfoMain() {
-		return "MyInfo";
+		return "myInfo";
 	}
 }
