@@ -10,23 +10,35 @@
 			<h1>LOGO</h1>
 		</div>
 		<div class="menu_option">
-			<li>
-				<a>
-					<i class="fas fa-bell" aria-hidden="true" title="알람"></i>
-				</a>
-			</li>
-			<li>
-				<img class="profile" alt="" src="http://placehold.it/35x35">
-			</li>
-			<li>
-				<span>Sanghoo Moon</span>
-				<i class="fas fa-angle-down" aria-hidden="true"></i>
-			</li>
-			<li>
-				<a>
-					<i class="fas fa-power-off" aria-hidden="true" title="로그아웃"></i>
-				</a>
-			</li>
+			<ul>
+				<li>
+					<a>
+						<i class="fas fa-bell" aria-hidden="true" title="알람"></i>
+					</a>
+				</li>
+				<li>
+					<img class="profile" alt="" src="http://placehold.it/35x35">
+				</li>
+				<li>
+					<span>Sanghoo Moon</span>
+					<i class="fas fa-angle-down" aria-hidden="true">
+						<span id="dropdown-menu">
+							<ul>
+								<li>내 정보</li>
+								<li>비밀번호 변경</li>
+								<li>알림 설정</li>
+								<li>환경 설정</li>
+								<li>로그아웃</li>
+							</ul>
+						</span>
+					</i>
+				</li>
+				<li>
+					<a>
+						<i class="fas fa-power-off" aria-hidden="true" title="로그아웃"></i>
+					</a>
+				</li>
+			</ul>
 		</div>
 	</div>
 </header>

@@ -88,7 +88,7 @@
 				<td>010-3925-7715</td>
 				<td>sanghoo96@naver.com</td>
 				<td>1996년4월16일</td>
-				<td>경기도 안양시 만안구 석천로197번길 52, 5동 505호</td>
+				<td>경기도 안양시 만안구</td>
 			</tr>
 			<tr class="row">
 				<td>1</td>
