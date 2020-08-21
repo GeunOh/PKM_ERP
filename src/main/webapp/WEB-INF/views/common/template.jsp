@@ -7,7 +7,7 @@
 <header id="header">
 	<div class="header_wrap">
 		<div class="logo_area">
-			<h1>LOGO</h1>
+			<h1>WORKSPACE</h1>
 		</div>
 		<div class="menu_option">
 			<ul>
@@ -43,7 +43,7 @@
 	<ul id="mainMenu">
 		<li>
 			<span>인사관리</span>
-			<ul class="subMenu">
+			<ul id="human" class="subMenu">
 				<li>
 					<span id="humanManager">기본인사관리</span>
 				</li>

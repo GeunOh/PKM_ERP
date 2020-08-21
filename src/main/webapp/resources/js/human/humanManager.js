@@ -17,3 +17,6 @@ $('.selectBox ul').mouseleave(function(){
 	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).hide();
 })
+$(function(){
+	$('#human').css('display','block');
+});

@@ -100,7 +100,7 @@
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
 					</div>
-					<div class="search-area">
+					<div class="search-area" style="height: 31px;">
 						<span class="title">입사일</span>
 						<div class="selectBox wid_55">
 							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
@@ -117,6 +117,130 @@
 					<button id="searchBtn">검색</button>
 				</form>
 			</div>
+		</div>
+		<!-- 추가 외 버튼 -->
+		<div id="btnForm">
+			<label id="addBtn">추가</label>
+			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
+		</div>
+		<!-- 테이블 -->
+		<table id="humanTable">
+			<tr>
+				<th>상태</th>
+				<th>입사일</th>
+				<th>이름</th>
+				<th>부서</th>
+				<th>직급</th>
+				<th>부서</th>
+				<th>업무 메일</th>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+			<tr>
+				<td>상태</td>
+				<td>입사일</td>
+				<td>이름</td>
+				<td>부서</td>
+				<td>직급</td>
+				<td>부서</td>
+				<td>업무 메일</td>
+			</tr>
+		</table>
+		<!-- 페이징 버튼 -->
+		<div id="pagingForm">
+			<a class="pg_page"><i class="fas fa-backward"></i></a>
+			<a class="pg_page"><i class="fas fa-caret-left"></i></a>
+			<b class="pg_current">1</b>
+			<a class="pg_page">2</a>
+			<a class="pg_page">3</a>
+			<a class="pg_page">4</a>
+			<a class="pg_page">5</a>
+			<a class="pg_page">6</a>
+			<a class="pg_page">7</a>
+			<a class="pg_page">8</a>
+			<a class="pg_page">9</a>
+			<a class="pg_page">10</a>
+			<a class="pg_page"><i class="fas fa-caret-right"></i></a>
+			<a class="pg_page"><i class="fas fa-forward"></i></a>
 		</div>
 	</div>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
