@@ -69,7 +69,7 @@ a#requestBtn:active {
 .day-boxs { position: relative;  width: 30%; padding: 20px 40px;float: left; border: 3px solid black; border-radius: 15px; box-sizing: border-box; }
 .day-boxs p {
 	position: absolute;
-    left: 55%;
+    left: 60%;
     top: 23%;
     font-size: 30px;
 }

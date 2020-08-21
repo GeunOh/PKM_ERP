@@ -11,7 +11,6 @@ public class HomeController {
 	
 	@RequestMapping("LoginForm")
 	public String LoginForm() {
-		
 		return "LoginForm";
 	}
 	

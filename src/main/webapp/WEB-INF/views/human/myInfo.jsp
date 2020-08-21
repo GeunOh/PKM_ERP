@@ -4,10 +4,9 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-<link rel="stylesheet" href="resources/css/MyInfo.css">
-<link href="resources/css/selectbox.min.css" rel="stylesheet">
-<script src="resources/js/selectbox.min.js"></script>
-<script src="https://kit.fontawesome.com/4d55e1ad7a.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="resources/css/myInfo.css">
+<link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
+<script src="resources/js/plugin/selectbox.min.js"></script>
 <title>내 정보</title>
 
 <script type="text/javascript">
@@ -29,7 +28,7 @@
 </head>
 <body>
 
-	<jsp:include page="../common/header.jsp"></jsp:include>
+	<jsp:include page="../common/template.jsp"></jsp:include>
 	
 	<!-- wrap -->
 	<div id="wrap">
