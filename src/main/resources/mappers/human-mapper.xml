@@ -26,4 +26,17 @@
 		<result column="DNAME" property="dname"/>
 		<result column="DCOMMENT" property="dcomment"/>
 	</resultMap>
+
+	<select id="HumanListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER
+	</select>
+	
+	<select id="HumanList" resultMap="humanResult">
+		SELECT * FROM TB_USER
+	</select>
+	
+	<select id="selectDepartment" resultMap="deptResult">
+		SELECT * FROM TB_DEPT
+	</select>
+	
 </mapper>
