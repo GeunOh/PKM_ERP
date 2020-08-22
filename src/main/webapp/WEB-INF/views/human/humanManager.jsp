@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,105 +125,19 @@
 		</div>
 		<!-- 테이블 -->
 		<table id="humanTable">
-			<tr>
-				<th>상태</th>
-				<th>입사일</th>
-				<th>사번</th>
-				<th>이름</th>
-				<th>직급</th>
-				<th>부서</th>
-				<th>업무 메일</th>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>사번</td>
-				<td>이름</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>이름</td>
-				<td>부서</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>이름</td>
-				<td>부서</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
-			<tr>
-				<td>상태</td>
-				<td>입사일</td>
-				<td>이름</td>
-				<td>부서</td>
-				<td>직급</td>
-				<td>부서</td>
-				<td>업무 메일</td>
-			</tr>
+			<thead>
+				<tr>
+					<th>상태</th>
+					<th>입사일</th>
+					<th>사번</th>
+					<th>이름</th>
+					<th>직급</th>
+					<th>부서</th>
+					<th>업무 메일</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
 		</table>
 		<!-- 페이징 버튼 -->
 		<div id="pagingForm">
