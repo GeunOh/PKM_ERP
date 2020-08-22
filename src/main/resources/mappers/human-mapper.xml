@@ -28,7 +28,7 @@
 	</select>
 	
 	<select id="HumanList" resultMap="humanResult">
-		SELECT * FROM TB_USER
+		SELECT * FROM HUMANLIST
 	</select>
 	
 	<!-- 부서 조회 -->
@@ -36,4 +36,21 @@
 		SELECT * FROM TB_DEPT
 	</select>
 	
+	<select id="SearchHumanListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER
+		<where>
+			<if test="so.all != null">AND OUTYN IN('N','Y')</if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+		</where>
+	</select>
+	
+	<select id="SearchHumanList" resultMap="humanResult" parameterType="com.my.ERP.common.vo.SearchOption">
+		SELECT * FROM TB_USER
+		<where>
+			<if test="all != null">AND OUTYN IN('N','Y')</if>
+			<if test="inUser != null">AND OUTYN = 'N'</if>
+			<if test="outUser != null">AND OUTYN = 'Y'</if>
+		</where>
+	</select>
 </mapper>

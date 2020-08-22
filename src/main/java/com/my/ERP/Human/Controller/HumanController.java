@@ -13,6 +13,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.common.vo.SearchOption;
 
 @Controller
 public class HumanController {
@@ -72,6 +73,39 @@ public class HumanController {
 //		System.out.println(deptList);
 		model.addAttribute("deptList", deptList);
 		return "departmentManager";
+	}
+	
+	//사원관리 검색
+	@RequestMapping("SearchHuman")
+	public String SearchHuman(@RequestParam(value="page", required = false) Integer page, Model model,
+							  @RequestParam("selectVal") String selectVal
+			
+			) {
+		int currentPage = 1;
+		
+		if(page != null) currentPage = page;
+		
+		SearchOption so = new SearchOption();
+		
+		if(selectVal.equals("all")) {
+			so.setAll("Y");
+		}else if(selectVal.equals("in")) {
+			so.setInUser("Y");
+		}else {
+			so.setOutUser("Y");
+		}
+		
+		int listCount = hService.SearchHumanListCount(so);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Human> hList = hService.SearchHumanList(pi, so);
+		
+		model.addAttribute("pi", pi)
+	         .addAttribute("hList", hList)
+	         .addAttribute("selectVal", selectVal);
+	         
+		
+		
+		return "humanManager";
 	}
 	
 }
