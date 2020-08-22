@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="humanMapper">
 	
-	
+	<select id="selectDepartment" resultMap="deptResult">
+		SELECT * FROM TB_DEPT
+	</select>
 	
 	<resultMap type="Human" id="humanResult">
 		<id column="ENO" property="eno"/>
@@ -19,4 +21,9 @@
 		<result column="DCODE" property="dcode"/>
 	</resultMap>
 	
+	<resultMap type="Department" id="deptResult">
+		<id column="DCODE" property="dcode"/>
+		<result column="DNAME" property="dname"/>
+		<result column="DCOMMENT" property="dcomment"/>
+	</resultMap>
 </mapper>

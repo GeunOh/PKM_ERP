@@ -25,18 +25,7 @@ h1{margin-bottom: 3%;}
 	display: block;
 	padding: 10px 40px 10px 0; 
 }
-#organizationChart form > ul > li:last-child > span:after{
-position: absolute;
-    top: 15px;
-    right: 13px;
-    width: 18px;
-    height: 18px;
-    background-image: url(../../images/plus.svg);
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background-size: 100% auto;
-    content: "";
-}
+
 #branch-area { position: relative; }
 #branch-area:before {
 	content: '';

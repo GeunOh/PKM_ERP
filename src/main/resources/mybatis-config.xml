@@ -7,6 +7,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.my.ERP.Human.model.vo.Human" alias="Human"/>
+		<typeAlias type="com.my.ERP.Human.model.vo.Department" alias="Department"/>
 	</typeAliases>
 	
 	<mappers>
