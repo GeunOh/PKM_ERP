@@ -1,0 +1,87 @@
+@charset "UTF-8";
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+}
+#wrap {font-family: NotoSans-Regular;}
+h1{margin-bottom: 3%;}
+
+/* 조직도 */
+#organizationChart { 
+	width: 20%; float:left; padding: 20px; 
+	border: 1px solid #bbb; 
+	border-radius: 6px;	
+	margin-right: 5%;
+}
+#organizationChart span:hover { cursor: pointer; background-color: #bbb;}
+#organizationChart form > ul > li:first-child > span { border-bottom: 1px solid #bbb; }
+#organizationChart form > ul > li > span { 
+	position: relative;
+	display: block;
+	padding: 10px 40px 10px 0; 
+}
+#organizationChart form > ul > li:last-child > span:after{
+position: absolute;
+    top: 15px;
+    right: 13px;
+    width: 18px;
+    height: 18px;
+    background-image: url(../../images/plus.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100% auto;
+    content: "";
+}
+#branch-area { position: relative; }
+#branch-area:before {
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 33;
+    width: 1px;
+    height: calc(100% - 22px);
+    background: #767c81;
+    transition: .3s;
+}
+#branch-area li span {
+    position: relative;
+    display: block;
+    padding: 10px 40px 10px 40px;
+}
+#branch-area li span:before {
+	content: '';
+    position: absolute;
+    top: 50%;
+    left: 21px;
+    z-index: 11;
+    margin-top: -1px;
+    width: 10px;
+    height: 1px;
+    background: #767c81;
+}
+/* 버튼 */
+.buttons { margin-top: 20px; }
+.buttons button {
+    width: 100px;
+    height: 35px;
+}
+
+/* 조직정보 */
+#organizationInfo { width:70%; float:left;}
+#organizationInfo h3 { 
+	padding: 17px 0;
+	margin-bottom: 20px; 
+	border-bottom: 3px solid #bbb; 
+}
+#organizationInfo table { text-align: left; }
+#organizationInfo th, #organizationInfo td { padding: 20px; font-size: 17px;}
+
+
+#departmentManager { color: red; }
+#departmentManager:before { background-color: red; }

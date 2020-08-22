@@ -20,14 +20,8 @@ a { text-decoration: none; outline: none; color: black; cursor: pointer;}
 html, body { height: 100%; }
 table { border-collapse: collapse;}
 body { width: 100%; }
+h1 { font-family: NotoSans-Regular; }
 
-#search-box { 
-	background-color: #f6f6f6;
-	border: 3px solid #e4e4e4; 
-	padding: 15px 10px; 
-	border-radius: 15px; 
-	font-family: NotoSans-Regular;
-}
 
 
 

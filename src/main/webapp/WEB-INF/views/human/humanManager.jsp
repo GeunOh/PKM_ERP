@@ -4,8 +4,7 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"/>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>기본인사관리</title>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -128,8 +127,8 @@
 			<tr>
 				<th>상태</th>
 				<th>입사일</th>
+				<th>사번</th>
 				<th>이름</th>
-				<th>부서</th>
 				<th>직급</th>
 				<th>부서</th>
 				<th>업무 메일</th>
@@ -137,8 +136,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -146,8 +145,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -155,8 +154,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -164,8 +163,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -173,8 +172,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -182,8 +181,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>
@@ -191,8 +190,8 @@
 			<tr>
 				<td>상태</td>
 				<td>입사일</td>
+				<td>사번</td>
 				<td>이름</td>
-				<td>부서</td>
 				<td>직급</td>
 				<td>부서</td>
 				<td>업무 메일</td>

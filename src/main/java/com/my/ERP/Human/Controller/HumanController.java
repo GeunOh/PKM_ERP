@@ -8,30 +8,38 @@ public class HumanController {
 	
 	// 인사기본관리
 	@RequestMapping("humanManager")
-	public String HumanMain() {
+	public String humanMain() {
 		return "humanManager";
 	}
 	
 	// 급여관리
 	@RequestMapping("salaryManager")
-	public String SalaryMain() {
+	public String salaryMain() {
 		return "salaryManager";
 	}
 	
 	// 휴가관리
 	@RequestMapping("vacationManager")
-	public String VacationMain() {
+	public String vacationMain() {
 		return "vacationManager";
 	}
+	
 	// 직급관리
 	@RequestMapping("positionManager")
-	public String PositionMain() {
+	public String positionMain() {
 		return "positionManager";
 	}
 	
 	// 마이페이지
 	@RequestMapping("myInfo")
-	public String MyinfoMain() {
+	public String myinfoMain() {
 		return "myInfo";
 	}
+	
+	// 부서관리
+	@RequestMapping("departmentManager")
+	public String departmentMain() {
+		return "departmentManager";
+	}
+	
 }
