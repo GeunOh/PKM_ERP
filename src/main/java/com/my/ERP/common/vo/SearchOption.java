@@ -1,4 +1,4 @@
-package com.solo.PGO.Common.vo;
+package com.my.ERP.common.vo;
 
 public class SearchOption {
 	private String title;

@@ -9,6 +9,7 @@ public class HumanController {
 	// 인사기본관리
 	@RequestMapping("humanManager")
 	public String humanMain() {
+		
 		return "humanManager";
 	}
 	
