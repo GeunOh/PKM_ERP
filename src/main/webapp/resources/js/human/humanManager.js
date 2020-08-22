@@ -6,9 +6,11 @@ $('.link-selected').on('click',function(){
 $('.link-select').on('click',function(){
 	var dv = $(this).attr('data-value');
 	var dt = $(this).text();
+//	$('.link-selected').text(dt); 
+	$(this).parents('.selectBox').find('.link-selected').text(dt);
+	$(this).parents('.selectBox').find('input').attr('data-value',dv);
+	$(this).parents('.selectBox').find('input').val(dv);
 	
-	$('.link-selected').text(dt);
-	$('#selectVal').attr('data-value',dv);
 	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).parents('ul').hide();
 })
