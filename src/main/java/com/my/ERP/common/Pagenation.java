@@ -1,6 +1,6 @@
-package com.solo.PGO.Common;
+package com.my.ERP.common;
 
-import com.solo.PGO.Common.vo.PageInfo;
+import com.my.ERP.common.vo.PageInfo;
 
 public class Pagenation {
 	
