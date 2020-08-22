@@ -8,10 +8,12 @@ import com.my.ERP.common.vo.PageInfo;
 
 public interface HumanService {
 
-	ArrayList<Department> showDepartment();
+	ArrayList<Department> showDepartmentList();
 	
 	int HumanListCount();
 
 	ArrayList<Human> HumanList(PageInfo pi);
+
+	Department showDepartment(String deptName);
 
 }

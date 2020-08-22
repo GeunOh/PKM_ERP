@@ -12,10 +12,11 @@ import com.my.ERP.common.vo.PageInfo;
 
 @Repository("hDao")
 public class HumanDAO {
-
-	public ArrayList<Department> selectDepartment(SqlSessionTemplate sqlSession) {
+	
+	// 부서 목록 조회
+	public ArrayList<Department> selectDepartmentList(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
-		return (ArrayList)sqlSession.selectList("humanMapper.selectDepartment");
+		return (ArrayList)sqlSession.selectList("humanMapper.selectDepartmentList");
 	}
 	
 	public int HumanListCount(SqlSessionTemplate sqlSession) {
@@ -26,6 +27,12 @@ public class HumanDAO {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("humanMapper.HumanList", null, rowBounds);
+	}
+	
+	// 해당 부서 정보 조회
+	public Department selectDepartment(String deptName, SqlSessionTemplate sqlSession) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("humanMapper.selectDepartment", deptName);
 	}
 
 }

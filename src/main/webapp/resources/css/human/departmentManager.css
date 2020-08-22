@@ -18,7 +18,6 @@ h1{margin-bottom: 3%;}
 	border-radius: 6px;	
 	margin-right: 5%;
 }
-#organizationChart span:hover { cursor: pointer; background-color: #bbb;}
 #organizationChart form > ul > li:first-child > span { border-bottom: 1px solid #bbb; }
 #organizationChart form > ul > li > span { 
 	position: relative;
@@ -38,6 +37,7 @@ h1{margin-bottom: 3%;}
     background: #767c81;
     transition: .3s;
 }
+#branch-area span:hover { cursor: pointer; background-color: #bbb;}
 #branch-area li span {
     position: relative;
     display: block;
