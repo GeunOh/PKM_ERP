@@ -6,11 +6,11 @@
 	</settings>
 	
 	<typeAliases>
-	
+		<typeAlias type="com/my/ERP/Human/model/vo/Human" alias="Human"/>
 	</typeAliases>
 	
 	<mappers>
-	
+		<mapper resource="mappers/human-mapper.xml" />
 	</mappers>
 	
 	
