@@ -48,10 +48,10 @@
 					<span id="humanManager">기본인사관리</span>
 				</li>
 				<li>
-					<span>직급관리</span>
+					<span id="positionManager">직급관리</span>
 				</li>
 				<li>
-					<span>부서관리</span>
+					<span id="departmentManager">부서관리</span>
 				</li>
 				<li>
 					<span>급여관리</span>

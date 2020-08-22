@@ -179,7 +179,7 @@ ul, li{list-style: none;}
 #humanTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
-
+/* 페이징버튼 */
 #pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
 .pg_current {
     display: inline-block;
