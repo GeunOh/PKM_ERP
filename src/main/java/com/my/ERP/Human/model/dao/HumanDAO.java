@@ -52,4 +52,31 @@ public class HumanDAO {
 		return (ArrayList)sqlSession.selectList("humanMapper.SearchHumanList", so, rowBounds);
 	}
 
+	public int selectPositionCount(SqlSessionTemplate sqlSession, String name) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("humanMapper.selectPositionCount", name);
+	}
+
+	public ArrayList<Human> searchPosition(SqlSessionTemplate sqlSession, String name, PageInfo pi) {
+		// TODO Auto-generated method stub
+		
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("humanMapper.searchPosition", name, rowBounds);
+	}
+
+	public int postionListCount(SqlSessionTemplate sqlSession) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("humanMapper.postionListCount");
+	}
+
+	public ArrayList<Human> positionList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		// TODO Auto-generated method stub
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("humanMapper.positionList");
+	}
+
 }

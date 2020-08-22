@@ -21,4 +21,12 @@ public interface HumanService {
 
 	ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so);
 
+	int searchPositionCount(String name);
+
+	ArrayList<Human> searchPosition(String name, PageInfo pi);
+
+	int postionListCount();
+
+	ArrayList<Human> positionList(PageInfo pi);
+
 }

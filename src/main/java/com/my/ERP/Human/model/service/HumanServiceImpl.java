@@ -54,5 +54,29 @@ public class HumanServiceImpl implements HumanService {
 		// TODO Auto-generated method stub
 		return hDAO.selectDepartment(deptName, sqlSession);
 	}
+
+	@Override
+	public int searchPositionCount(String name) {
+		// TODO Auto-generated method stub
+		return hDAO.selectPositionCount(sqlSession, name);
+	}
+
+	@Override
+	public ArrayList<Human> searchPosition(String name, PageInfo pi) {
+		// TODO Auto-generated method stub
+		return hDAO.searchPosition(sqlSession, name, pi);
+	}
+
+	@Override
+	public int postionListCount() {
+		// TODO Auto-generated method stub
+		return hDAO.postionListCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Human> positionList(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return hDAO.positionList(sqlSession, pi);
+	}
 	
 }

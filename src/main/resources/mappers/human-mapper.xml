@@ -60,4 +60,23 @@
 			<if test="outUser != null">AND OUTYN = 'Y'</if>
 		</where>
 	</select>
+	
+	<select id="selectPositionCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER WHERE OUTYN = 'N'
+		<if test="name != null or name != ''">AND ename=#{name}</if>
+	</select>
+	
+	<select id="searchPosition" resultMap="humanResult">
+		SELECT * FROM TB_USER WHERE OUTYN = 'N'
+		<if test="name != null or name != ''">AND ename=#{name}</if>
+	</select>
+	
+	<select id="postionListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER WHERE OUTYN = 'N'
+	</select>
+	
+	<select id="positionList" resultMap="humanResult">
+		SELECT * FROM TB_USER WHERE OUTYN = 'N'
+	</select>
+	
 </mapper>
