@@ -1,10 +1,16 @@
 package com.my.ERP.Human.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.my.ERP.Human.model.service.HumanService;
+
 @Controller
 public class HumanController {
+	
+	@Autowired
+	private HumanService hService;
 	
 	// 인사기본관리
 	@RequestMapping("humanManager")
