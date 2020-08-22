@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="humanMapper">
 	
-	<select id="selectDepartment" resultMap="deptResult">
-		SELECT * FROM TB_DEPT
-	</select>
-	
 	<resultMap type="Human" id="humanResult">
 		<id column="ENO" property="eno"/>
 		<result column="PWD" property="pwd"/>
@@ -35,6 +31,7 @@
 		SELECT * FROM TB_USER
 	</select>
 	
+	<!-- 부서 조회 -->
 	<select id="selectDepartment" resultMap="deptResult">
 		SELECT * FROM TB_DEPT
 	</select>
