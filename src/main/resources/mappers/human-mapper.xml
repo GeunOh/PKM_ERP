@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="humanMapper">
 	
+	<select id="selectDepartment" resultMap="deptResult">
+		SELECT * FROM TB_DEPT
+	</select>
+	
 	<resultMap type="Human" id="humanResult">
 		<id column="ENO" property="eno"/>
 		<result column="PWD" property="pwd"/>
@@ -17,6 +21,12 @@
 		<result column="DCODE" property="dcode"/>
 	</resultMap>
 	
+	<resultMap type="Department" id="deptResult">
+		<id column="DCODE" property="dcode"/>
+		<result column="DNAME" property="dname"/>
+		<result column="DCOMMENT" property="dcomment"/>
+	</resultMap>
+
 	<select id="HumanListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER
 	</select>
@@ -24,4 +34,9 @@
 	<select id="HumanList" resultMap="humanResult">
 		SELECT * FROM TB_USER
 	</select>
+	
+	<select id="selectDepartment" resultMap="deptResult">
+		SELECT * FROM TB_DEPT
+	</select>
+	
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my.ERP.Human.model.service.HumanService;
+import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
@@ -64,7 +65,12 @@ public class HumanController {
 	
 	// 부서관리
 	@RequestMapping("departmentManager")
-	public String departmentMain() {
+	public String departmentMain(Model model) {
+		
+		// 부서조회
+		ArrayList<Department> deptList = hService.showDepartment();
+//		System.out.println(deptList);
+		model.addAttribute("deptList", deptList);
 		return "departmentManager";
 	}
 	
