@@ -9,12 +9,14 @@ import com.my.ERP.common.vo.SearchOption;
 
 public interface HumanService {
 
-	ArrayList<Department> showDepartment();
+	ArrayList<Department> showDepartmentList();
 	
 	int HumanListCount();
 
 	ArrayList<Human> HumanList(PageInfo pi);
 
+	Department showDepartment(String deptName);
+	
 	int SearchHumanListCount(SearchOption so);
 
 	ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so);

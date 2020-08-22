@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,10 +31,10 @@
 						<li>
 						<span>WORKSPACE Company</span>
 						<ul id="branch-area">
-							<li><span>인사부</span></li>
-							<li><span>자재부</span></li>
-							<li><span>경리부</span></li>
-							<li><span>개발부</span></li>
+							<%-- 존재하는 부서들 출력 --%>
+							<c:forEach items="${deptList}" var="dept">
+								<li><span>${dept.dname}</span></li>
+							</c:forEach>
 						</ul>
 						</li>
 					</ul>
@@ -49,28 +51,28 @@
 				<h3>조직정보</h3>
 				<table>
 					<tr>
-						<th>부서명</th>
-						<td>WORKSPACE Company</td>
+						<th>회사명</th>
+						<td id="dname">WORKSPACE COMPANY</td>
 					</tr>
 					<tr>
-						<th>부서코드</th>
-						<td>ADMKL1231231</td>
+						<th>회사코드</th>
+						<td id="dcode">C123123123</td>
 					</tr>
 					<tr>
-						<th>부서장</th>
-						<td>쿠크다스</td>
+						<th>회사대표</th>
+						<td id="dboss">쿠크다스</td>
 					</tr>
 					<tr>
 						<th>시작일</th>
-						<td>2020-08-22</td>
+						<td id="startDate">2020-11-11</td>
 					</tr>
 					<tr>
 						<th>종료일</th>
 						<td>2099-12-31</td>
 					</tr>
 					<tr>
-						<th>설명</th>
-						<td>엄청난 회사입니다.</td>
+						<th>회사소개</th>
+						<td id="dcomment">좋은 회사입니다.</td>
 					</tr>
 				</table>
 			</div>

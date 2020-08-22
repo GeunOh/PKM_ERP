@@ -21,11 +21,11 @@ public class HumanServiceImpl implements HumanService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	// 부서 조회
+	// 부서 목록 조회
 	@Override
-	public ArrayList<Department> showDepartment() {
+	public ArrayList<Department> showDepartmentList() {
 		// TODO Auto-generated method stub
-		return hDAO.selectDepartment(sqlSession);
+		return hDAO.selectDepartmentList(sqlSession);
 	}
 	
 	@Override
@@ -46,6 +46,13 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so) {
 		return hDAO.SearchHumanList(sqlSession, pi, so);
+	}
+	
+	// 해당 부서 정보 조회
+	@Override
+	public Department showDepartment(String deptName) {
+		// TODO Auto-generated method stub
+		return hDAO.selectDepartment(deptName, sqlSession);
 	}
 	
 }
