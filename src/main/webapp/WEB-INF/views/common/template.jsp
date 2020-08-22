@@ -45,13 +45,13 @@
 			<span>인사관리</span>
 			<ul id="human" class="subMenu">
 				<li>
-					<span id="humanManager">기본인사관리</span>
+					<a href="/Human/humanManager"><span id="humanManager">기본인사관리</span></a>
 				</li>
 				<li>
-					<span id="positionManager">직급관리</span>
+					<a href="/Human/positionManager"><span id="positionManager">직급관리</span></a>
 				</li>
 				<li>
-					<span id="departmentManager">부서관리</span>
+					<a href="/Human/departmentManager"><span id="departmentManager">부서관리</span></a>
 				</li>
 				<li>
 					<span>급여관리</span>

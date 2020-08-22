@@ -78,7 +78,7 @@
 #mainMenu { margin-top: 25px; }
 #mainMenu > li { position: relative;}
 #mainMenu > li > span { display: block; padding: 10px 40px 10px 20px;}
-#mainMenu > li > span:hover { cursor: pointer;}
+#mainMenu li span:hover { cursor: pointer; font-weight: bold;}
 #mainMenu > li > span:after {
     position: absolute;
     top: 11px;
@@ -94,7 +94,7 @@
 .subMenu { display: none; }
 .subMenu li { position: relative; }
 .subMenu li span { position: relative; display:block; padding: 10px 40px 10px 40px;}
-.subMenu > li > span:before {
+.subMenu li span:before {
     content: "";
 	position: absolute;
 	top: 20px;

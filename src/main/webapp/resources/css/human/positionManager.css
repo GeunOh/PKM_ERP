@@ -141,7 +141,6 @@ ul, li{list-style: none;}
 #positionTable tr td {
   border-right: 1px solid #bbb;
   border-bottom: 1px solid #bbb;
-  padding: 5px;
 }
 #positionTable tr th:first-child,
 #positionTable tr td:first-child {
@@ -199,3 +198,17 @@ ul, li{list-style: none;}
 
 #positionManager { color: red; }
 #positionManager:before { background-color: red; }
+
+.txtBox {
+	font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+	
+}

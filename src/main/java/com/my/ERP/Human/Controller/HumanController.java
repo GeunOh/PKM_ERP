@@ -55,7 +55,16 @@ public class HumanController {
 	
 	// 직급관리
 	@RequestMapping("positionManager")
-	public String positionMain() {
+	public String positionMain(@RequestParam(value="page", required=false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = hService.postionListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Human> pList = hService.positionList(pi);
+		model.addAttribute("pList",pList).addAttribute("pi",pi);
 		return "positionManager";
 	}
 	
@@ -119,6 +128,25 @@ public class HumanController {
 		
 		
 		return "humanManager";
+	}
+	
+	//
+	@RequestMapping("searchPosition")
+	public String searchPosition(@RequestParam(value="page", required = false) Integer page, Model model,
+								 @RequestParam("name") String name) {
+		
+		int currentPage = 1;
+		
+		if(page != null) currentPage = page;
+
+		int listCount = hService.searchPositionCount(name);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Human> pList = hService.searchPosition(name, pi);
+		model.addAttribute("pList", pList)
+			 .addAttribute("pi", pi);
+		
+		return "positionManager";
 	}
 	
 }
