@@ -10,6 +10,7 @@ import com.my.ERP.Human.model.dao.HumanDAO;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.common.vo.SearchOption;
 
 @Service("hService")
 public class HumanServiceImpl implements HumanService {
@@ -35,6 +36,16 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public ArrayList<Human> HumanList(PageInfo pi) {
 		return hDAO.HumanList(sqlSession, pi);
+	}
+
+	@Override
+	public int SearchHumanListCount(SearchOption so) {
+		return hDAO.SearchHumanListCount(sqlSession, so);
+	}
+
+	@Override
+	public ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so) {
+		return hDAO.SearchHumanList(sqlSession, pi, so);
 	}
 	
 	// 해당 부서 정보 조회

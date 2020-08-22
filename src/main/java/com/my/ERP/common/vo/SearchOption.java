@@ -1,40 +1,39 @@
 package com.my.ERP.common.vo;
 
 public class SearchOption {
-	private String title;
-	private String content;
-	private String writer;
+	private String all;
+	private String inUser;
+	private String outUser;
 	
 	public SearchOption() {}
 
-	public String getTitle() {
-		return title;
+	public String getAll() {
+		return all;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setAll(String all) {
+		this.all = all;
 	}
 
-	public String getContent() {
-		return content;
+	public String getInUser() {
+		return inUser;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setInUser(String inUser) {
+		this.inUser = inUser;
 	}
 
-	public String getWriter() {
-		return writer;
+	public String getOutUser() {
+		return outUser;
 	}
 
-	public void setWriter(String writer) {
-		this.writer = writer;
+	public void setOutUser(String outUser) {
+		this.outUser = outUser;
 	}
 
 	@Override
 	public String toString() {
-		return "SearchOption [title=" + title + ", content=" + content + ", writer=" + writer + "]";
+		return "SearchOption [all=" + all + ", inUser=" + inUser + ", outUser=" + outUser + "]";
 	}
-	
 	
 }

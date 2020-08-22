@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +17,11 @@
 		<h1>인사 관리</h1>
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form>
+				<form action="/Human/SearchHuman">
 					<div class="search-area">
 						<span class="title">상태</span>
 						<div class="selectBox">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
 							<a href="#none" class="link-selected">전체</a>
 							<ul>
 								<li><a href="#" class="link-select" data-value="all">전체</a></li>
@@ -34,7 +35,7 @@
 					<div class="search-area">
 						<span class="title">부서</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
@@ -48,7 +49,7 @@
 					<div class="search-area">
 						<span class="title">직급</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
@@ -62,7 +63,7 @@
 					<div class="search-area">
 						<span class="title">업무 메일</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectEmail" name="selectEmail" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
@@ -78,7 +79,7 @@
 					<div class="search-area downSearch">
 						<span class="title">사번</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectEno" name="selectEno" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
@@ -91,7 +92,7 @@
 					<div class="search-area">
 						<span class="title">사원명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectName" name="selectName" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
@@ -103,7 +104,7 @@
 					<div class="search-area" style="height: 31px;">
 						<span class="title">입사일</span>
 						<div class="selectBox wid_55">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
+							<input type="hidden" id="selectDate" name="selectDate" data-value="all">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_35" data-value="all">전체</a></li>
@@ -137,24 +138,90 @@
 				</tr>
 			</thead>
 			<tbody>
+				<c:forEach var="h" items="${hList}" >
+					<tr>
+						<c:if test="${h.outyn eq 'N'}">
+							<td>재직</td>
+						</c:if>
+						<td>${h.indate }</td>
+						<td>${h.eno }</td>
+						<td>${h.name }</td>
+						<td>${h.rcode }</td>
+						<td>${h.dcode }</td>
+						<td>${h.email }</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${10 - fn:length(hList) > 0 }">
+					<c:forEach var="h" begin="1" end="${10 - fn:length(hList)}" >
+						<tr>
+							<td>&nbsp;</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- 페이징 버튼 -->
 		<div id="pagingForm">
-			<a class="pg_page"><i class="fas fa-backward"></i></a>
-			<a class="pg_page"><i class="fas fa-caret-left"></i></a>
-			<b class="pg_current">1</b>
-			<a class="pg_page">2</a>
-			<a class="pg_page">3</a>
-			<a class="pg_page">4</a>
-			<a class="pg_page">5</a>
-			<a class="pg_page">6</a>
-			<a class="pg_page">7</a>
-			<a class="pg_page">8</a>
-			<a class="pg_page">9</a>
-			<a class="pg_page">10</a>
-			<a class="pg_page"><i class="fas fa-caret-right"></i></a>
-			<a class="pg_page"><i class="fas fa-forward"></i></a>
+				<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+					<c:if test="${ selectVal ne null }">
+						<c:param name="selectVal" value="${selectVal}"/>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${ selectVal ne null }">
+						<c:param name="selectVal" value="${selectVal}"/>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="${ loc }">
+						<c:param name="page" value="${ p }"/>
+						<c:if test="${ selectVal ne null }">
+							<c:param name="selectVal" value="${selectVal}"/>
+						</c:if>
+					</c:url>
+					<a class="pg_page" href="${ pagination }">${ p }</a>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${ selectVal ne null }">
+						<c:param name="selectVal" value="${selectVal}"/>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+					<c:if test="${ selectVal ne null }">
+						<c:param name="selectVal" value="${selectVal}"/>
+					</c:if>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
 		</div>
 	</div>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
