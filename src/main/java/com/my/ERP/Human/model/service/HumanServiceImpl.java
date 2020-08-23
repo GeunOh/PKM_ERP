@@ -1,6 +1,7 @@
 package com.my.ERP.Human.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,13 +40,13 @@ public class HumanServiceImpl implements HumanService {
 	}
 
 	@Override
-	public int SearchHumanListCount(SearchOption so) {
-		return hDAO.SearchHumanListCount(sqlSession, so);
+	public int SearchHumanListCount(HashMap<String, Object> hs) {
+		return hDAO.SearchHumanListCount(sqlSession, hs);
 	}
 
 	@Override
-	public ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so) {
-		return hDAO.SearchHumanList(sqlSession, pi, so);
+	public ArrayList<Human> SearchHumanList(PageInfo pi, HashMap<String, Object> hs) {
+		return hDAO.SearchHumanList(sqlSession, pi, hs);
 	}
 	
 	// 해당 부서 정보 조회
