@@ -79,4 +79,25 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.positionList(sqlSession, pi);
 	}
 	
+	// 부서 등록 서비스
+	@Override
+	public void addDept(Department dept) {
+		// TODO Auto-generated method stub
+		hDAO.addDept(sqlSession, dept);
+	}
+	
+	// 부서 삭제 서비스
+	@Override
+	public void delDept(String[] dnames) {
+		// TODO Auto-generated method stub
+		hDAO.delDept(sqlSession, dnames);
+	}
+	
+	// 부서 정보 수정 서비스
+	@Override
+	public void modifyDept(Department dept, String beforeDeptName) {
+		// TODO Auto-generated method stub
+		hDAO.modifyDept(sqlSession, dept, beforeDeptName);
+	}
+	
 }

@@ -76,7 +76,31 @@ public class HumanDAO {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
-		return (ArrayList)sqlSession.selectList("humanMapper.positionList");
+		return (ArrayList)sqlSession.selectList("humanMapper.positionList", null, rowBounds);
+	}
+	
+	// 부서 등록
+	public void addDept(SqlSessionTemplate sqlSession, Department dept) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("humanMapper.addDept", dept);
+	}
+
+	public void delDept(SqlSessionTemplate sqlSession, String[] dnames) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("humanMapper.delDept", dnames);
+	}
+
+	public void modifyDept(SqlSessionTemplate sqlSession, Department dept, String beforeDeptName) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("dcode", dept.getDcode());
+		hs.put("dname", dept.getDname());
+		hs.put("eno", dept.getEno());
+		hs.put("dcomment", dept.getDcomment());
+		hs.put("startDate", dept.getStartDate());
+		hs.put("beforeDeptName", beforeDeptName);
+		
+		sqlSession.update("humanMapper.modifyDept", hs);
 	}
 
 }

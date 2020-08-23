@@ -40,7 +40,10 @@
 	
 	<!-- 부서 조회 -->
 	<select id="selectDepartment" resultType="Department">
-		SELECT DCODE, DNAME, DCOMMENT, DBOSS, TO_CHAR(STARTDATE,'YYYY-MM-DD') STARTDATE FROM TB_DEPT WHERE DNAME=#{DEPTNAME}
+		SELECT * FROM ONEDEPT
+		<where>
+			DNAME=#{DEPTNAME}
+		</where>
 	</select>
 	
 	<select id="SearchHumanListCount" resultType="_int">
@@ -78,5 +81,26 @@
 	<select id="positionList" resultMap="humanResult">
 		SELECT * FROM TB_USER WHERE OUTYN = 'N'
 	</select>
+	
+	<!-- 부서 등록 -->
+	<insert id="addDept" parameterType="Department">
+		INSERT INTO tb_dept values(#{dcode}, #{dname}, #{dcomment}, (SELECT eno FROM tb_user WHERE ename=#{eno}), SYSDATE)
+	</insert>
+	
+	<!-- 부서 삭제 -->
+	<delete id="delDept">
+		DELETE FROM TB_DEPT WHERE DNAME IN
+		<foreach collection="array" open="(" close=")" separator="," item="dname">
+			#{dname}
+		</foreach>
+	</delete>
+	
+	<!-- 부서 수정 -->
+	<update id="modifyDept">
+		UPDATE TB_DEPT 
+		SET DCODE=#{dcode}, DCOMMENT=#{dcomment}, DNAME=#{dname}, STARTDATE=#{startDate}, 
+			ENO=(SELECT ENO FROM tb_user WHERE ENAME=#{eno}) 
+		WHERE DNAME=#{beforeDeptName}
+	</update>
 	
 </mapper>
