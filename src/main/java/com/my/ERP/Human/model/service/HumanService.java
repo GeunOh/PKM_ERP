@@ -30,4 +30,10 @@ public interface HumanService {
 
 	ArrayList<Human> positionList(PageInfo pi);
 
+	void addDept(Department dept);
+
+	void delDept(String[] dnames);
+
+	void modifyDept(Department dept, String beforeDeptName);
+
 }

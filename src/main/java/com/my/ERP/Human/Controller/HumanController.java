@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,7 @@ public class HumanController {
 		int listCount = hService.HumanListCount();
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
 		ArrayList<Human> hList = hService.HumanList(pi);
-
+		
 		model.addAttribute("pi", pi)
 		     .addAttribute("hList", hList);
 		
@@ -99,7 +101,7 @@ public class HumanController {
 		return dept;
 	}
 	
-	//사원관리 검색
+	// 사원관리 검색
 	@RequestMapping("SearchHuman")
 	public String SearchHuman(@RequestParam(value="page", required = false) Integer page, Model model,
 							  @RequestParam("selectVal") String selectVal, @RequestParam("selectDept") String selectDept,
@@ -155,7 +157,7 @@ public class HumanController {
 		return "humanManager";
 	}
 	
-	//
+	// 직급 검색
 	@RequestMapping("searchPosition")
 	public String searchPosition(@RequestParam(value="page", required = false) Integer page, Model model,
 								 @RequestParam("name") String name) {
@@ -171,7 +173,52 @@ public class HumanController {
 		model.addAttribute("pList", pList)
 			 .addAttribute("pi", pi);
 		
+		
+		
 		return "positionManager";
+	}
+	
+	
+	// 부서 등록 기능
+	@RequestMapping("addDept")
+	public String addDept(HttpServletRequest request) {
+		
+		Department dept = new Department();
+		dept.setDcode(request.getParameter("dcode"));
+		dept.setDname(request.getParameter("dname"));
+		dept.setDcomment(request.getParameter("dcomment"));
+		dept.setEno(request.getParameter("ename")); // eno 이지만 직원의 이름을 가지고있음
+		
+		hService.addDept(dept);
+		
+		return "redirect:/Human/departmentManager";
+	}
+	
+	// 부서 삭제 기능
+	@RequestMapping("delDept")
+	public String delDept(@RequestParam("dname") String[] dnames) {
+		
+		hService.delDept(dnames);
+		
+		return "redirect:/Human/departmentManager";
+	}
+	
+	// 부서 정보 수정 기능
+	@RequestMapping("modifyDept")
+	public String modifyDept(HttpServletRequest request) {
+		
+		String beforeDeptName = request.getParameter("beforeDept");
+		
+		Department dept = new Department();
+		dept.setDcode(request.getParameter("dcode"));
+		dept.setDname(request.getParameter("dname"));
+		dept.setDcomment(request.getParameter("dcomment"));
+		dept.setEno(request.getParameter("ename")); // eno 이지만 직원의 이름을 가지고있음
+		dept.setStartDate(request.getParameter("startDate"));
+		
+		hService.modifyDept(dept, beforeDeptName);
+		
+		return "redirect:/Human/departmentManager";
 	}
 	
 }

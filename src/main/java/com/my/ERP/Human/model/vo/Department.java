@@ -7,7 +7,7 @@ public class Department {
 	private String dcode;	
 	private String dname;	
 	private String dcomment;
-	private String dboss;
+	private String eno;
 	private String startDate;
 
 	public Department() {}	// 기본 생성자
@@ -37,12 +37,12 @@ public class Department {
 		this.dcomment = dcomment;
 	}
 
-	public String getDboss() {
-		return dboss;
+	public String getEno() {
+		return eno;
 	}
 
-	public void setDboss(String dboss) {
-		this.dboss = dboss;
+	public void setEno(String eno) {
+		this.eno = eno;
 	}
 
 	public String getStartDate() {
@@ -55,7 +55,7 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return "Department [dcode=" + dcode + ", dname=" + dname + ", dcomment=" + dcomment + ", dboss=" + dboss
+		return "Department [dcode=" + dcode + ", dname=" + dname + ", dcomment=" + dcomment + ", eno=" + eno
 				+ ", startDate=" + startDate + "]";
 	}
 
