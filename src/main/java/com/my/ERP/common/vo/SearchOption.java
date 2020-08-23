@@ -4,6 +4,8 @@ public class SearchOption {
 	private String all;
 	private String inUser;
 	private String outUser;
+	private String dateAll;
+	private String dateSelect;
 	
 	public SearchOption() {}
 
@@ -31,9 +33,26 @@ public class SearchOption {
 		this.outUser = outUser;
 	}
 
+	public String getDateAll() {
+		return dateAll;
+	}
+
+	public void setDateAll(String dateAll) {
+		this.dateAll = dateAll;
+	}
+
+	public String getDateSelect() {
+		return dateSelect;
+	}
+
+	public void setDateSelect(String dateSelect) {
+		this.dateSelect = dateSelect;
+	}
+
 	@Override
 	public String toString() {
-		return "SearchOption [all=" + all + ", inUser=" + inUser + ", outUser=" + outUser + "]";
+		return "SearchOption [all=" + all + ", inUser=" + inUser + ", outUser=" + outUser + ", dateAll=" + dateAll
+				+ ", dateSelect=" + dateSelect + "]";
 	}
 	
 }

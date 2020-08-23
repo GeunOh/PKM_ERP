@@ -1,6 +1,7 @@
 package com.my.ERP.Human.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
@@ -17,9 +18,9 @@ public interface HumanService {
 
 	Department showDepartment(String deptName);
 	
-	int SearchHumanListCount(SearchOption so);
+	int SearchHumanListCount(HashMap<String, Object> hs);
 
-	ArrayList<Human> SearchHumanList(PageInfo pi, SearchOption so);
+	ArrayList<Human> SearchHumanList(PageInfo pi, HashMap<String, Object> hs);
 
 	int searchPositionCount(String name);
 

@@ -1,6 +1,8 @@
 package com.my.ERP.Human.Controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,9 +102,14 @@ public class HumanController {
 	//사원관리 검색
 	@RequestMapping("SearchHuman")
 	public String SearchHuman(@RequestParam(value="page", required = false) Integer page, Model model,
-							  @RequestParam("selectVal") String selectVal
-			
+							  @RequestParam("selectVal") String selectVal, @RequestParam("selectDept") String selectDept,
+							  @RequestParam("selectRank") String selectRank, @RequestParam("email") String email,
+							  @RequestParam("eno") String eno, @RequestParam("name") String name,
+							  @RequestParam("selectDate") String selectDate,
+							  @RequestParam(value="date", required = false) Date date,
+							  @RequestParam(value="date2", required = false) Date date2
 			) {
+		System.out.println(name);
 		int currentPage = 1;
 		
 		if(page != null) currentPage = page;
@@ -110,22 +117,40 @@ public class HumanController {
 		SearchOption so = new SearchOption();
 		
 		if(selectVal.equals("all")) {
-			so.setAll("Y");
+			so.setAll("all");
 		}else if(selectVal.equals("in")) {
-			so.setInUser("Y");
-		}else {
-			so.setOutUser("Y");
+			so.setInUser("in");
+		}else if(selectVal.equals("out")){
+			so.setOutUser("out");
 		}
 		
-		int listCount = hService.SearchHumanListCount(so);
+		if(selectDate.equals("dateAll")) {
+			so.setDateAll("dateAll");
+		}else if(selectDate.equals("dateSelect")){
+			so.setDateSelect("dateSelect");
+		}
+		
+		System.out.println(so);
+		HashMap<String, Object> hs = new HashMap<>();
+		hs.put("so",so);
+		hs.put("dept",selectDept);
+		hs.put("rank",selectRank);
+		hs.put("email",email);
+		hs.put("eno",eno);
+		hs.put("name",name);
+		hs.put("date",date);
+		hs.put("date2",date2);
+		
+		
+		int listCount = hService.SearchHumanListCount(hs);
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
-		ArrayList<Human> hList = hService.SearchHumanList(pi, so);
+		ArrayList<Human> hList = hService.SearchHumanList(pi, hs);
 		
 		model.addAttribute("pi", pi)
 	         .addAttribute("hList", hList)
-	         .addAttribute("selectVal", selectVal);
-	         
-		
+	         .addAttribute("selectVal", selectVal)
+	         .addAttribute("selectDate", selectDate)
+	         .addAttribute("hs", hs);
 		
 		return "humanManager";
 	}
