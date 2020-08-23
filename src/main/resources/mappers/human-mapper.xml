@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="HumanList" resultMap="humanResult">
-		SELECT * FROM HUMANLIST
+		SELECT ENO, PWD, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME RCODE, DNAME DCODE FROM HUMANLIST
 	</select>
 	
 	<!-- 부서 목록 조회 -->
@@ -47,20 +47,34 @@
 	</select>
 	
 	<select id="SearchHumanListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_USER
+		SELECT COUNT(*) FROM HUMANLIST
 		<where>
-			<if test="so.all != null">AND OUTYN IN('N','Y')</if>
+			<if test="so.all != null"></if>
 			<if test="so.inUser != null">AND OUTYN = 'N'</if>
 			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
+			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
+			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
 		</where>
 	</select>
 	
-	<select id="SearchHumanList" resultMap="humanResult" parameterType="com.my.ERP.common.vo.SearchOption">
-		SELECT * FROM TB_USER
+	<select id="SearchHumanList" resultMap="humanResult">
+		SELECT * FROM HUMANLIST
 		<where>
-			<if test="all != null">AND OUTYN IN('N','Y')</if>
-			<if test="inUser != null">AND OUTYN = 'N'</if>
-			<if test="outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
+			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
+			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
 		</where>
 	</select>
 	

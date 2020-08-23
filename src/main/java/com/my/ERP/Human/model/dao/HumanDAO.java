@@ -37,19 +37,17 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.selectDepartment", deptName);
 	}
 
-	public int SearchHumanListCount(SqlSessionTemplate sqlSession, SearchOption so) {
-		HashMap<String, Object> hs = new HashMap<>();
-		hs.put("so",so);
+	public int SearchHumanListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
 		return sqlSession.selectOne("humanMapper.SearchHumanListCount", hs);
 	}
 
-	public ArrayList<Human> SearchHumanList(SqlSessionTemplate sqlSession, PageInfo pi, SearchOption so) {
+	public ArrayList<Human> SearchHumanList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, Object> hs) {
 		
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		
-		return (ArrayList)sqlSession.selectList("humanMapper.SearchHumanList", so, rowBounds);
+		return (ArrayList)sqlSession.selectList("humanMapper.SearchHumanList", hs, rowBounds);
 	}
 
 	public int selectPositionCount(SqlSessionTemplate sqlSession, String name) {
