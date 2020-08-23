@@ -148,6 +148,8 @@ public class HumanController {
 		model.addAttribute("pList", pList)
 			 .addAttribute("pi", pi);
 		
+		
+		
 		return "positionManager";
 	}
 	
