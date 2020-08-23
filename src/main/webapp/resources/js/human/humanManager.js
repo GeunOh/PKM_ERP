@@ -20,6 +20,9 @@ $('.link-select').on('click',function(){
 	if($('#selectDate').attr('data-value') == 'dateSelect'){
 		$('#date').attr('disabled', false);
 		$('#date2').attr('disabled', false);
+	}else{
+		$('#date').attr('disabled', true);
+		$('#date2').attr('disabled', true);
 	}
 })
 
