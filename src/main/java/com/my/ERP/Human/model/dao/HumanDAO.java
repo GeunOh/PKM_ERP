@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -55,13 +56,10 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.selectPositionCount", name);
 	}
 
-	public ArrayList<Human> searchPosition(SqlSessionTemplate sqlSession, String name, PageInfo pi) {
+	public ArrayList<Rank> searchPosition(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
 		// TODO Auto-generated method stub
 		
-		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("humanMapper.searchPosition", name, rowBounds);
+		return (ArrayList)sqlSession.selectList("humanMapper.searchPosition", hs);
 	}
 
 	public int postionListCount(SqlSessionTemplate sqlSession) {
@@ -69,12 +67,9 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.postionListCount");
 	}
 
-	public ArrayList<Human> positionList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Rank> positionList(SqlSessionTemplate sqlSession) {
 		// TODO Auto-generated method stub
-		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
-		return (ArrayList)sqlSession.selectList("humanMapper.positionList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("humanMapper.positionList");
 	}
 	
 	// 부서 등록
@@ -100,5 +95,12 @@ public class HumanDAO {
 		
 		sqlSession.update("humanMapper.modifyDept", hs);
 	}
+
+	public void addPosition(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("humanMapper.addPosition", hs);
+	}
+
+	
 
 }

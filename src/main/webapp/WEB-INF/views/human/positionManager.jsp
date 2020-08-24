@@ -8,7 +8,7 @@
 <head>
 <jsp:include page="../common/headTag.jsp"/>
 <link rel="stylesheet" href="resources/css/human/positionManager.css">
-<title>부서/직급 관리</title>
+<title>직급 관리</title>
 </head>
 <body>
 	
@@ -20,87 +20,55 @@
 		<!-- 검색영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/searchPosition">
-					<div class="search-area" style="height: 31px;">
-						<span class="title">발령일</span>
-						<div class="selectBox wid_55">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
-							<a href="#none" class="link-selected wid_55">전체</a>
-							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_35" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select wid_35" data-value="in">선택</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-						<input type="date" id="date" class="date"> <label>~</label>
-						<input type="date" id="date2" class="date rightDate">
-					</div>
-					<div class="search-area">
-						<span class="title">발령구분</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select wid_150" data-value="in">선택</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+				<form action="/Human/searchPosition" name="positionForm">
+					<div class="search-area" style="height:31px">
+						<span class="title">직급번호</span>
+						<input type="text" id="rcode" name="rcode" class="txtBox wid_150" >
 					</div>
 					<div class="search-area" style="height:31px">
-						<span class="title">사원명</span>
-						<input type="text" id="name" name="name" class="txtBox wid_150" >
+						<span class="title">직급명</span>
+						<input type="text" id="rname" name="rname" class="txtBox wid_150" >
 					</div>
 					<button id="searchBtn">검색</button>
+					<button type="button" id="addBtn" onclick="addPosition();">추가</button>
+					<button type="button" id="deleteBtn">삭제</button>
 				</form>
 			</div>
 		</div>
 		<!-- // 검색영역 -->
-		<!-- 추가 외 버튼 -->
-		<div id="btnForm">
-			<label id="addBtn">추가</label>
-			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
-		</div>
-		<!-- // 추가 외 버튼 -->
 		<!-- 테이블 -->
 		<table id="positionTable">
-			<tr>
-				<th><input type="checkbox" name="eno"></th>
-				<th>사원번호</th>
-				<th>사원명</th>
-				<th>부서명</th>
-				<th>직급</th>
-				<th>입사일</th>
-			</tr>
-			<c:forEach var="p" items="${pList}">
+			<thead>
 				<tr>
-					<td><input type="checkbox" name="test" value="${p.eno }"></td>
-					<td>${p.eno }</td>
-					<td>${p.name }</td>
-					<td>${p.dcode }</td>
-					<td>${p.rcode }</td>
-					<td>${p.indate }</td>
+					<th><input type="checkbox" name="eno"></th>
+					<th>직급번호</th>
+					<th>직급명</th>
 				</tr>
-			</c:forEach>
-			
+			</thead>
+			<tbody>
+				<c:forEach var="p" items="${pList}">
+					<tr>
+						<td><input type="checkbox" name="test" value="${p.rcode }"></td>
+						<td>${p.rcode }</td>
+						<td>${p.rname }</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty pList}">
+						<tr><td colspan="3">직급정보가 없습니다.</td></tr>
+				</c:if>
+				<c:if test="${!empty pList}">
+					<c:if test="${10 - fn:length(pList) > 0 }">
+						<c:forEach var="p" begin="1" end="${10 - fn:length(pList)}" >
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
+			</tbody>
 		</table>
-		<!-- 페이징 버튼 -->
-		<div id="pagingForm">
-			<a class="pg_page"><i class="fas fa-backward"></i></a>
-			<a class="pg_page"><i class="fas fa-caret-left"></i></a>
-			<b class="pg_current">1</b>
-			<a class="pg_page">2</a>
-			<a class="pg_page">3</a>
-			<a class="pg_page">4</a>
-			<a class="pg_page">5</a>
-			<a class="pg_page">6</a>
-			<a class="pg_page">7</a>
-			<a class="pg_page">8</a>
-			<a class="pg_page">9</a>
-			<a class="pg_page">10</a>
-			<a class="pg_page"><i class="fas fa-caret-right"></i></a>
-			<a class="pg_page"><i class="fas fa-forward"></i></a>
-		</div>
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/positionManager.js"></script>

@@ -2,18 +2,19 @@
 
 @font-face {
   font-family: NotoSans-Black;
-  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
 }
 
 @font-face {
   font-family: NotoSans-Regular;
-  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
 h1{margin-bottom: 3%;}
 #Search-back{
-	width: 80%;
+	width: 60%;
     border: 1px solid #dedede; border-radius: 5px;
     background-color: #e6e5e5;
+    margin-bottom: 50px;
 }
 #Serach-form{
 	background-color: #f7f7f7;
@@ -92,45 +93,32 @@ ul, li{list-style: none;}
 }
 .date + label{ margin: 0 10px; font-size: 20px;}
 
-#searchBtn { 
+#Serach-form button {
 	font-family: NotoSans-Regular;
 	padding: 5px 20px;
 	background-color: transparent;
 	border: 1px solid #969696;
 	border-radius: 3px;
+}
+#searchBtn { 
     position: absolute;
+    right: 175px;
+    top: 15px;
+}
+#addBtn {
+	position: absolute;
+    right: 95px;
+    top: 15px;
+}
+#deleteBtn {
+	position: absolute;
     right: 15px;
     top: 15px;
 }
 
-/* 추가 외 버튼 */
-#btnForm{
-	margin: 2% 0 1% 0; 
-	font-family: NotoSans-Regular; font-weight: bold;
-}
-#btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
-#addBtn{width: 50px; text-align: center;}
-#addBtn:before{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-}
-#addBtn:after{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-	transform: rotate(90deg);
-}
-#downBtn{position: relative;}
-#downBtn i{position: absolute; top: 15px; left: 0;}
-
 /* 테이블 */
 #positionTable{
-	width: 100%; min-height:419px; 
+	width: 60%; min-height:419px; 
 	border-collapse: separate;
     border-spacing: 0;
 }
@@ -165,6 +153,10 @@ ul, li{list-style: none;}
 #positionTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
+
+
+
+/* 삭제해야함 */
 /* 페이징버튼 */
 #pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
 .pg_current {

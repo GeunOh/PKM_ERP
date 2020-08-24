@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -24,16 +25,18 @@ public interface HumanService {
 
 	int searchPositionCount(String name);
 
-	ArrayList<Human> searchPosition(String name, PageInfo pi);
+	ArrayList<Rank> searchPosition(HashMap<String, String> hs);
 
 	int postionListCount();
 
-	ArrayList<Human> positionList(PageInfo pi);
+	ArrayList<Rank> positionList();
 
 	void addDept(Department dept);
 
 	void delDept(String[] dnames);
 
 	void modifyDept(Department dept, String beforeDeptName);
+
+	void addPosition(HashMap<String, String> hs);
 
 }
