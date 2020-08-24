@@ -50,6 +50,7 @@ ul, li{list-style: none;}
     padding: 5px 10px;
     border: 1px solid #969696; border-radius: 0 3px 3px 0;
     width: 100px;
+    cursor: pointer;
 }
 .selectBox>a{color: #000; font-size: 13px; z-index: 5; font-family: NotoSans-Regular;}
 .selectBox ul{
@@ -243,6 +244,7 @@ ul, li{list-style: none;}
 	top: 0; left: 0;
 	width:100%; height: 100%;
 	z-index: 51;
+	font-family: NotoSans-Regular;
 }
 .popupContent{
 	width:40%;
@@ -250,7 +252,6 @@ ul, li{list-style: none;}
     margin:auto;
     max-height: 100vh;
     background:white;
-    border:2px solid #666;
     border-radius: 10px;
     margin-top: 2%;
 }
@@ -260,4 +261,216 @@ ul, li{list-style: none;}
 	background: rgba(0,0,0,.5);
 	width: 100%; height: 100%;
 	z-index: -1;
+}
+
+.popupContent>h1{
+	text-align: center; border-radius: 7px 7px 0 0 ;
+	background-color: #282c34;
+	padding: 10px 0;
+	color: #fff;
+	position: relative;
+}
+h1>.fa-times{
+	color: #fff;
+	position: absolute;
+	top: 15px; right: 20px;
+	cursor: pointer;
+}
+.content-form{
+	border-top: 3px solid #eaeaea;
+	width: 96%; margin: 0 auto;
+	padding: 10px 0;
+	margin-top: 5%;
+	position: relative;
+}
+.content-form>span{
+	position: absolute;
+	top: -33px; left: 0;
+	font-family: NotoSans-Regular;
+	font-size: 18px; color: #000; font-weight: bold;
+}
+.where {
+  display: block;
+  margin: 25px 15px;
+  font-size: 11px;
+  color: #000;
+  text-decoration: none;
+  font-family: verdana;
+  font-style: italic;
+} 
+
+.filebox input[type="file"] {
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: 6px 13px;
+	line-height: normal;
+	font-size: 13px;
+	vertical-align: middle;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-left: 1%;
+}
+
+/* named upload */
+.filebox .upload-name {
+	display: inline-block;
+	vertical-align: middle;
+    -webkit-appearance: none; /* 네이티브 외형 감추기 */
+    -moz-appearance: none;
+    appearance: none;
+    cursor: auto;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+	margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap {
+	display: inline-block;
+	width: 60px;
+    height: 60px;
+	padding: 2px;
+	vertical-align: middle;
+	border-radius: 5px;
+	background-color: #fff;
+	vertical-align: top;
+}
+
+.filebox .upload-display img {
+	display: block;
+	width: 90%;
+    height: 90%;
+    border-radius: 70%;
+}
+
+.filebox.bs3-primary label {
+    color: #fff;
+    background-color: #2f3640;
+    border-color: #2f3640;
+}
+.add-image{
+	width: 96%; height: 70px;
+	line-height: 70px;
+    margin: 0 auto;
+}
+.add-textform{
+	height: 50px;
+	line-height: 50px;
+    margin: 0 auto;
+}
+
+.add-title{
+	display: inline-block;
+	font-family: NotoSans-Regular;
+	font-size: 15px; color: #000; font-weight: bold;
+	margin: 0 5% 0 3%;
+	position: relative;
+	width: 85px; 
+	
+}
+.add-title:before{
+	content: "";
+	position: absolute;
+	top: 32px; left: -12px;
+	width: 5px; height: 5px;
+	background-color: #000;
+	border-radius: 50%;
+}
+.add-title2:before{
+	content: "";
+	position: absolute;
+	top: 22px; left: -12px;
+	width: 5px; height: 5px;
+	background-color: #000;
+	border-radius: 50%;
+}
+.add-text{ 
+	font-family: NotoSans-Regular; 
+	border-radius: 3px; width: 56%;
+}
+.add-btn-form{
+	text-align: center;
+	margin-top: 2%;
+}
+.add-btn-form button{
+	padding: 7px 16px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
+.add-btn-form button:last-child {
+	margin-left: 1%;
+	font-family: NotoSans-Regular; 
+	background-color: #282c34;
+	color: #fff;
+}
+.phone{width: 90px; border-radius: 3px;}
+.phone2{width: 130px; border-radius: 3px;}
+
+.add-textform input[name=gender]{
+	display: none;
+}
+.add-textform input[name=gender] + label{
+	font-family: NotoSans-Regular; 
+	padding: 0 5px 0 30px;
+	position: relative;
+	cursor: pointer; 
+	
+}
+.add-textform input[name=gender] + label:before{
+	content: "";
+	width: 20px; height: 20px;
+	position: absolute;
+	top: 2px; left: 4px;
+	background: #fff;
+	border: 1px solid #a7a7a7; border-radius: 50%;
+	cursor: pointer;
+}
+.add-textform input[name=gender]:checked + label:before{
+	content: "";
+	width: 20px; height: 20px;
+	position: absolute;
+	top: 2px; left: 4px;
+	background: #fff;
+	border: 1px solid #282c34; border-radius: 50%;
+	cursor: pointer;
+}
+.add-textform input[name=gender]:checked + label:after{
+	content: "";
+	width: 10px; height: 10px;
+	position: absolute;
+	top: 8px; left: 10px;
+	background: #282c34;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.address-btn{
+	display: inline-block;
+	color: #fff; background-color: #282c34;
+    padding: 6px 13px;
+    line-height: normal;
+    font-size: 14px; font-weight: bold;
+    vertical-align: unset;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    margin-left: 1%;
 }

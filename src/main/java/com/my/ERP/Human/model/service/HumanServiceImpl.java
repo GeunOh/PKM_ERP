@@ -115,5 +115,10 @@ public class HumanServiceImpl implements HumanService {
 		// TODO Auto-generated method stub
 		hDAO.deletePosition(sqlSession, rcodeChk);
 	}
+
+	@Override
+	public int humanInsert(HashMap<String, Object> hs) {
+		return hDAO.humanInsert(sqlSession, hs);
+	}
 	
 }

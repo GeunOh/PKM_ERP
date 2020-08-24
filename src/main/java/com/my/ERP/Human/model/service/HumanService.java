@@ -41,4 +41,6 @@ public interface HumanService {
 
 	void deletePosition(String[] rcodeChk);
 
+	int humanInsert(HashMap<String, Object> hs);
+
 }

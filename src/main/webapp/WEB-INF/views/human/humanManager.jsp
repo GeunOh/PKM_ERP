@@ -7,9 +7,7 @@
 <head>
 <jsp:include page="../common/headTag.jsp"/>
 <title>기본인사관리</title>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../common/template.jsp"/>
@@ -245,12 +243,99 @@
 			</c:if>
 		</div>
 	</div>
+	
 	<!-- 팝업창 -->
-	<div class="popup-form">
+	<form method="post" action="/Human/humanInsert" class="popup-form" enctype="Multipart/form-data" style="display: none;">
 		<div class="popupContent">
+			<h1>사원 추가 <i class="fas fa-times"></i></h1>
+			<div class="filebox bs3-primary preview-image add-image">
+				<span class="add-title">프로필 등록</span>
+				<div class="upload-display"><div class="upload-thumb-wrap"><img src="resources/images/default-profile.jpg" class="upload-thumb"></div></div>
+				<input class="txtBox upload-name " value="파일명" disabled="disabled" style="width: 30%; border-radius: 3px;">
+				<label for="input_file">파일 선택</label> 
+			  	<input type="file" name="profile_img" id="input_file" class="upload-hidden"> 
+			</div>
+			<div class="content-form">
+				<span>기본 정보</span>
+				<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">* 필수 정보 입력란입니다.</span>
+				<div class="add-textform">
+					<span class="add-title add-title2">사번</span>
+					<input type="text" class="txtBox add-text" name="add-eno">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">이름</span>
+					<input type="text" class="txtBox add-text" name="add-name">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">부서</span>
+					<input type="text" class="txtBox add-text" name="add-dept">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">직급</span>
+					<input type="text" class="txtBox add-text" name="add-rank">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">이메일</span>
+					<input type="text" class="txtBox add-text" name="add-rank">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">입사일</span>
+					<input type="date" class="txtBox" name="add-rank">
+				</div>
+			</div>
+			<div class="content-form">
+				<span>부가 정보</span>
+				<div class="add-textform">
+					<span class="add-title add-title2">생년월일</span>
+					<input type="date" class="txtBox" name="add-date" style="border-radius: 3px;">
+					<input type="radio" id="gender-not" name="gender" value="N" checked ><label for="gender-not" >선택안함</label>
+					<input type="radio" id="gender-woman" name="gender" value="M"><label for="gender-woman">여자</label>
+					<input type="radio" id="gender-man" name="gender" value="M"><label for="gender-man">남자</label>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">주소</span>
+<!-- 					<input type="text" class="txtBox add-text"> -->
+					<input type="text" id="address1" name="address1" class="postcodify_address txtBox add-text" value="">
+					<button type="button" id="postcodify_search_button" class="address-btn">검색</button>
+							
+					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+					<script>
+						$(function(){
+							$("#postcodify_search_button").postcodifyPopUp();
+						});
+					</script>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">상세 주소</span>
+					<input type="text" name="address2" class="postcodify_extra_info txtBox add-text" value="">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">핸드폰 번호</span>
+					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="selectVal" name="phone" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+							<li><a href="#" class="link-select" data-value="010">010</a></li>
+							<li><a href="#" class="link-select" data-value="011">011</a></li>
+							<li><a href="#" class="link-select" data-value="017">017</a></li>
+							<li><a href="#" class="link-select" data-value="018">018</a></li>
+							<li><a href="#" class="link-select" data-value="019">019</a></li>
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div> - 
+					<input type="text" class="txtBox phone2" name="phone2" size="4"> - 
+					<input type="text" class="txtBox phone2" name="phone3" size="4">
+				</div>
+				<div class="add-textform add-btn-form">
+					<button type="submit"><i class="fas fa-times"></i> 취소</button>
+					<button type="button"><i class="fas fa-check"></i> 추가</button>
+				</div>
+			</div>
 		</div>
 		<div class="popupLayer"></div>
-	</div>
+	</form>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
+<script>
+</script>
 </body>
 </html>
