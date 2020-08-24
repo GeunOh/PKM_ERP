@@ -17,6 +17,17 @@ $('.selectBox ul').mouseleave(function(){
 	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).hide();
 })
+
+
+
 $(function(){
 	$('#human').css('display','block');
+
 });
+
+// 추가 버튼 클릭 시
+function addPosition(){
+	var positionForm = document.positionForm;
+	positionForm.action = "/Human/addPosition";
+	positionForm.submit();
+}
