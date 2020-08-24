@@ -43,4 +43,6 @@ public interface HumanService {
 
 	ArrayList<Human> choiceRcode(String rcode);
 
+	int humanInsert(HashMap<String, Object> hs);
+
 }

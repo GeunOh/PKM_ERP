@@ -1,17 +1,23 @@
 package com.my.ERP.Human.Controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Department;
@@ -24,6 +30,9 @@ import com.my.ERP.common.vo.SearchOption;
 @Controller
 public class HumanController {
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	@Autowired
 	private HumanService hService;
 	
@@ -236,4 +245,75 @@ public class HumanController {
 		return "redirect:/Human/departmentManager";
 	}
 	
+	//사원추가
+	@RequestMapping("humanInsert")
+	public String humanInsert(@ModelAttribute Human h, @RequestParam("profile_img") MultipartFile imgFile,
+							  HttpServletRequest request ) {
+		//주소,폰 하나의 문자열로 합침.
+		String address = request.getParameter("address1") + request.getParameter("address2");
+		String phone = request.getParameter("phone") + "-" + request.getParameter("phone2") + "-" + request.getParameter("phone3");
+		//초기 비밀번호 설정
+		String pwd = request.getParameter("add-eno") + request.getParameter("phone3");
+		String encPwd = passwordEncoder.encode(pwd);
+		//날짜
+		String date = request.getParameter("add-date");
+		
+		h.setEno(request.getParameter("add-eno"));
+		h.setPwd(encPwd);
+		h.setName(request.getParameter("add-name"));
+		h.setDcode(request.getParameter("add-dept"));
+		h.setRcode(request.getParameter("add-rank"));
+		h.setGender(request.getParameter("gender"));
+		h.setAddress(address);
+		h.setPhone(phone);
+		h.setOriginalFileName(imgFile.getOriginalFilename());
+		
+		if(imgFile != null && !imgFile.isEmpty()) {
+			String renameFileName = saveFile(imgFile, request);
+			
+			if(renameFileName != null) {
+				h.setRenameFileName(renameFileName);
+			}
+		}
+		
+		
+		HashMap<String, Object> hs = new HashMap<>();
+		hs.put("h",h);
+		hs.put("date",date);
+				
+		int result = hService.humanInsert(hs);
+	
+		return "redirect:/Human/humanManager";
+	}
+	
+	//파일 이름 변경
+		public String saveFile(MultipartFile file, HttpServletRequest request) {
+			
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			String savePath = root + "\\Profile-images";
+			
+			
+			File folder = new File(savePath);
+			
+			if(!folder.exists()) {
+				folder.mkdirs();
+			}
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String originFileName = file.getOriginalFilename();
+			String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
+									+ "."
+									+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+			
+			String renamePath = folder + "\\" + renameFileName;
+			
+			try {
+				file.transferTo(new File(renamePath));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return renameFileName;
+		}
 }

@@ -110,6 +110,10 @@ public class HumanDAO {
 		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("humanMapper.choiceRcode", rcode);
 	}
+	
+	public int humanInsert(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.insert("humanMapper.humanInsert", hs);
+	}
 
 	
 

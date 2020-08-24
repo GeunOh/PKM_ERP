@@ -52,7 +52,7 @@
 	</select>
 	
 	<select id="SearchHumanListCount" resultType="_int">
-		SELECT COUNT(*) FROM HUMANLIST
+		SELECT COUNT(*) FROM TB_USER
 		<where>
 			<if test="so.all != null"></if>
 			<if test="so.inUser != null">AND OUTYN = 'N'</if>
@@ -68,7 +68,7 @@
 	</select>
 	
 	<select id="SearchHumanList" resultMap="humanResult">
-		SELECT * FROM HUMANLIST
+		SELECT ENO, PWD, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME RCODE, DNAME DCODE FROM HUMANLIST
 		<where>
 			<if test="so.all != null"></if>
 			<if test="so.inUser != null">AND OUTYN = 'N'</if>
@@ -147,4 +147,7 @@
 		WHERE DNAME=#{beforeDeptName}
 	</update>
 	
+	<insert id="humanInsert">
+		INSERT INTO TB_USER VALUES(#{h.eno},#{h.pwd},#{h.name},#{date},#{h.address},'parkxx12@aaa.aaa',#{h.phone},#{h.gender},sysdate,null,'N','R001','D001',#{h.originalFileName},#{h.renameFileName})	
+	</insert>	
 </mapper>
