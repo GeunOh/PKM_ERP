@@ -116,4 +116,11 @@ public class HumanServiceImpl implements HumanService {
 		hDAO.deletePosition(sqlSession, rcodeChk);
 	}
 	
+	// 직급 목록 선택 시 사원 목록 조회
+	@Override
+	public ArrayList<Human> choiceRcode(String rcode) {
+		// TODO Auto-generated method stub
+		return hDAO.choiceRcode(sqlSession, rcode);
+	}
+	
 }

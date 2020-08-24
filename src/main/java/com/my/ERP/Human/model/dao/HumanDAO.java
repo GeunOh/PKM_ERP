@@ -106,6 +106,11 @@ public class HumanDAO {
 		sqlSession.delete("humanMapper.deletePosition", rcodeChk);
 	}
 
+	public ArrayList<Human> choiceRcode(SqlSessionTemplate sqlSession, String rcode) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("humanMapper.choiceRcode", rcode);
+	}
+
 	
 
 }

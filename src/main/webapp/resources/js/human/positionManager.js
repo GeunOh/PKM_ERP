@@ -44,15 +44,9 @@ function searchPosition(){
 	var rname = document.getElementById("rname");
 	
 	// 직급코드가 공백이면 alert
-	if(!blankCheck(rcode.value)){
-        alert("직급코드 입력해주세요.");
+	if(!blankCheck(rcode.value) && !blankCheck(rname.value)){
+        alert("검색하실 직급코드 또는 직급명을 입력해주세요.");
         rcode.focus();
-		return false;
-    }
-	// 직급코드가 공백이면 alert
-	if(!blankCheck(rname.value)){
-        alert("직급명을 입력해주세요.");
-        rname.focus();
 		return false;
     }
 	// 부서 검색
@@ -99,5 +93,62 @@ function deletePosition(){
 	tableForm.submit();
 }
 
+// 직급 클릭 시 사원 목록 조회
+$("#positionTable tbody tr").on("click", function() {
+	
+//	$("#humanList tbody").empty();
+	var rcode = $(this).children().eq(1).text();
+		
+	$.ajax({
+		
+		async : false,
+		url: "/Human/choiceRcode",
+		datatype: "json",
+		data: {rcode: rcode},
+		success: function(data) {
+			
+			console.log(data);
+			
+			$tbody = $("#humanList tbody");
+			$tr = $("<tr/>");
+			
+			$tbody.html("");
+			
+			if(data.length==0){
+				$td = $("<td colspan='4'>해당하는 직급의 사원정보가 없습니다. 직급을 선택해주세요.</td>");
+				$tr.append($td);
+				$tbody.append($tr);
+			} else {
+			
+				for(var i in data){
+					
+					$tr = $("<tr/>");
+					
+					$rcode = $("<td>"+data[i].rcode +"</td>");
+					$dcode = $("<td>"+data[i].dcode +"</td>");
+					$eno   = $("<td>"+data[i].eno +"</td>");
+					$name = $("<td>"+data[i].name +"</td>");
+					
+					$tr.append($rcode);
+					$tr.append($dcode);
+					$tr.append($eno);
+					$tr.append($name);
+					$tbody.append($tr);
+					
+					/*$("#humanList tbody").append(
+							"<tr>" +
+							"<td>"+data[i].rcode +"</td>" +
+							"<td>"+data[i].dcode +"</td>" +
+							"<td>"+data[i].eno +"</td>" +
+							"<td>"+data[i].ename +"</td>" +
+							"</tr>"
+					)*/
+				}
+			}
+		}
+		
+	});
+
+});
 
 
