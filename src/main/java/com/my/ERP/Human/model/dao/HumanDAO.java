@@ -101,6 +101,11 @@ public class HumanDAO {
 		sqlSession.insert("humanMapper.addPosition", hs);
 	}
 
+	public void deletePosition(SqlSessionTemplate sqlSession, String[] rcodeChk) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("humanMapper.deletePosition", rcodeChk);
+	}
+
 	
 
 }

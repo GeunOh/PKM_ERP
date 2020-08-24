@@ -111,6 +111,13 @@
 		INSERT INTO TB_RANK VALUES(#{rcode},#{rname})
 	</insert>
 	
+	<delete id="deletePosition">
+		DELETE FROM TB_RANK WHERE RCODE IN
+		<foreach collection="array" open="(" close=")" separator="," item="rcode">
+			#{rcode}
+		</foreach>
+	</delete>
+	
 	<!-- 부서 등록 -->
 	<insert id="addDept" parameterType="Department">
 		INSERT INTO tb_dept values(#{dcode}, #{dname}, #{dcomment}, (SELECT eno FROM tb_user WHERE ename=#{eno}), SYSDATE)

@@ -109,4 +109,11 @@ public class HumanServiceImpl implements HumanService {
 		hDAO.addPosition(sqlSession, hs);
 	}
 	
+	// 직급 삭제 서비스
+	@Override
+	public void deletePosition(String[] rcodeChk) {
+		// TODO Auto-generated method stub
+		hDAO.deletePosition(sqlSession, rcodeChk);
+	}
+	
 }

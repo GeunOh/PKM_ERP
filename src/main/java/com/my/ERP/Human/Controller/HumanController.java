@@ -169,7 +169,7 @@ public class HumanController {
 	
 	// 직급 추가
 	@RequestMapping("addPosition")
-	public String addPosition(@RequestParam("rcode") String rcode, Model model,
+	public String addPosition(@RequestParam("rcode") String rcode,
 							  @RequestParam("rname") String rname ) {
 		
 		HashMap<String, String> hs = new HashMap<String, String>();
@@ -180,8 +180,15 @@ public class HumanController {
 		
 		return "redirect:/Human/positionManager";
 	}
-
 	
+	// 직급 삭제
+	@RequestMapping("deletePosition")
+	public String deletePosition(@RequestParam("rcodeChk") String[] rcodeChk) {
+
+		hService.deletePosition(rcodeChk);
+		
+		return "redirect:/Human/positionManager";
+	}
 	// 부서 등록 기능
 	@RequestMapping("addDept")
 	public String addDept(HttpServletRequest request) {
