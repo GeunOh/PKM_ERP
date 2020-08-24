@@ -23,6 +23,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+Profile-images/
 
 # External tool builders
 .externalToolBuilders/

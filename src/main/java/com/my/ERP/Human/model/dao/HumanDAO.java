@@ -106,6 +106,10 @@ public class HumanDAO {
 		sqlSession.delete("humanMapper.deletePosition", rcodeChk);
 	}
 
+	public int humanInsert(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.insert("humanMapper.humanInsert", hs);
+	}
+
 	
 
 }

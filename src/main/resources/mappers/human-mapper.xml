@@ -139,4 +139,7 @@
 		WHERE DNAME=#{beforeDeptName}
 	</update>
 	
+	<insert id="humanInsert">
+		INSERT INTO TB_USER VALUES(#{h.eno},#{h.pwd},#{h.name},#{date},#{h.address},'parkxx12@aaa.aaa',#{h.phone},#{h.gender},sysdate,null,'N','R001','D001',#{h.originalFileName},#{h.renameFileName})	
+	</insert>	
 </mapper>
