@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
@@ -256,7 +259,15 @@ public class HumanController {
 		String pwd = request.getParameter("add-eno") + request.getParameter("phone3");
 		String encPwd = passwordEncoder.encode(pwd);
 		//날짜
-		String date = request.getParameter("add-date");
+		String inDate = request.getParameter("add-inDate");
+		String birthDay = request.getParameter("add-date");
+		//이메일
+		String email;
+		if(request.getParameter("email3").equals("input-text")) {
+			email = request.getParameter("email") + "@" + request.getParameter("email2");
+		}else {
+			email = request.getParameter("email") + "@" + request.getParameter("email3");
+		}
 		
 		h.setEno(request.getParameter("add-eno"));
 		h.setPwd(encPwd);
@@ -265,9 +276,10 @@ public class HumanController {
 		h.setRcode(request.getParameter("add-rank"));
 		h.setGender(request.getParameter("gender"));
 		h.setAddress(address);
+		h.setEmail(email);
 		h.setPhone(phone);
 		h.setOriginalFileName(imgFile.getOriginalFilename());
-		
+		System.out.println(h);
 		if(imgFile != null && !imgFile.isEmpty()) {
 			String renameFileName = saveFile(imgFile, request);
 			
@@ -279,7 +291,8 @@ public class HumanController {
 		
 		HashMap<String, Object> hs = new HashMap<>();
 		hs.put("h",h);
-		hs.put("date",date);
+		hs.put("inDate",inDate);
+		hs.put("birthDay",birthDay);
 				
 		int result = hService.humanInsert(hs);
 	
@@ -287,33 +300,81 @@ public class HumanController {
 	}
 	
 	//파일 이름 변경
-		public String saveFile(MultipartFile file, HttpServletRequest request) {
-			
-			String root = request.getSession().getServletContext().getRealPath("resources");
-			String savePath = root + "\\Profile-images";
-			
-			
-			File folder = new File(savePath);
-			
-			if(!folder.exists()) {
-				folder.mkdirs();
-			}
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-			String originFileName = file.getOriginalFilename();
-			String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
-									+ "."
-									+ originFileName.substring(originFileName.lastIndexOf(".")+1);
-			
-			String renamePath = folder + "\\" + renameFileName;
-			
-			try {
-				file.transferTo(new File(renamePath));
-			} catch (IllegalStateException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return renameFileName;
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\Profile-images";
+		
+		
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdirs();
 		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		String originFileName = file.getOriginalFilename();
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
+								+ "."
+								+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		
+		String renamePath = folder + "\\" + renameFileName;
+		
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return renameFileName;
+	}
+	//사번 중복검사
+	@RequestMapping("enoDupChk")
+	public void enoDupChk(@RequestParam("eno") String eno, HttpServletResponse response) {
+		
+		int result = hService.enoDupChk(eno);
+		
+		boolean chk = result>0 ? true : false;
+				
+		try {
+			response.getWriter().print(chk);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//사원추가 부서 리스트
+	@RequestMapping("humanAddDeptList")
+	@ResponseBody
+	public void humanAddDeptList(HttpServletResponse response) {
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		ArrayList<Department> dList = hService.humanAddDeptList();
+		
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(dList, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+	}
+	//사원추가 직급 리스트
+	@RequestMapping("humanAddRankList")
+	@ResponseBody
+	public void humanAddRankList(HttpServletResponse response) {
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		ArrayList<Rank> rList = hService.humanAddRankList();
+		
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(rList, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+	}
 }

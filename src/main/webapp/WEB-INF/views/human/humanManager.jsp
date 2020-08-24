@@ -36,9 +36,9 @@
 							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li>
-								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li>
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -50,9 +50,9 @@
 							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li>
-								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li>
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
+<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -79,8 +79,8 @@
 							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_35" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_35" data-value="dateSelect">선택</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateSelect">선택</a></li>
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -254,6 +254,7 @@
 				<input class="txtBox upload-name " value="파일명" disabled="disabled" style="width: 30%; border-radius: 3px;">
 				<label for="input_file">파일 선택</label> 
 			  	<input type="file" name="profile_img" id="input_file" class="upload-hidden"> 
+			  	<span id="image-ex">- 프로필로 등록할 이미지를 선택해주세요.</span>
 			</div>
 			<div class="content-form">
 				<span>기본 정보</span>
@@ -261,6 +262,8 @@
 				<div class="add-textform">
 					<span class="add-title add-title2">사번</span>
 					<input type="text" class="txtBox add-text" name="add-eno">
+					<label id="enoChk"></label>
+					<input type="hidden" id="enoChk2" value="0">
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">이름</span>
@@ -268,19 +271,53 @@
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">부서</span>
-					<input type="text" class="txtBox add-text" name="add-dept">
+					<div class="selectBox" id="add-select-dept" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="add-dept" name="add-dept" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+<!-- 							<li><a href="#" class="link-select" data-value="010">개발부</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="011">연구부</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="017">영업부</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="018">인사부</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="019">회계부</a></li> -->
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">직급</span>
-					<input type="text" class="txtBox add-text" name="add-rank">
+					<div class="selectBox" id="add-select-rank" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="add-rank" name="add-rank" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+<!-- 							<li><a href="#" class="link-select" data-value="010">010</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="011">011</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="017">017</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="018">018</a></li> -->
+<!-- 							<li><a href="#" class="link-select" data-value="019">019</a></li> -->
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">이메일</span>
-					<input type="text" class="txtBox add-text" name="add-rank">
+					<input type="text" class="txtBox" name="add-email" style="width: 155px; border-radius: 3px;"> @ 
+					<input type="text" class="txtBox" id="add-email2" name="add-email2" style="width: 155px; border-radius: 3px; cursor:auto;" disabled>
+					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: unset; border-radius: 3px;">
+						<input type="hidden" id="email3" name="add-email3" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul>
+							<li><a  class="link-select" data-value="input-text">선택 입력</a></li>
+							<li><a  class="link-select" data-value="naver.com">naver.com</a></li>
+							<li><a  class="link-select" data-value="daum.net">daum.net</a></li>
+							<li><a  class="link-select" data-value="gmail.com">gmail.com</a></li>
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">입사일</span>
-					<input type="date" class="txtBox" name="add-rank">
+					<input type="date" class="txtBox" name="add-inDate" style="border-radius: 3px;">
 				</div>
 			</div>
 			<div class="content-form">
@@ -294,7 +331,6 @@
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">주소</span>
-<!-- 					<input type="text" class="txtBox add-text"> -->
 					<input type="text" id="address1" name="address1" class="postcodify_address txtBox add-text" value="">
 					<button type="button" id="postcodify_search_button" class="address-btn">검색</button>
 							
@@ -312,7 +348,7 @@
 				<div class="add-textform">
 					<span class="add-title add-title2">핸드폰 번호</span>
 					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
-						<input type="hidden" id="selectVal" name="phone" data-value="all" value="">
+						<input type="hidden" id="phone" name="phone" data-value="all" value="">
 						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
 						<ul style="max-height: 120px; overflow-y: scroll;">
 							<li><a href="#" class="link-select" data-value="010">010</a></li>
@@ -328,14 +364,13 @@
 				</div>
 				<div class="add-textform add-btn-form">
 					<button type="button"><i class="fas fa-times"></i> 취소</button>
-					<button type="submit"><i class="fas fa-check"></i> 추가</button>
+					<button type="button" onclick="dataChk();"><i class="fas fa-check"></i> 추가</button>
 				</div>
 			</div>
 		</div>
 		<div class="popupLayer"></div>
 	</form>
+	
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
-<script>
-</script>
 </body>
 </html>

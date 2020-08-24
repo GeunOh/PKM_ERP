@@ -45,4 +45,10 @@ public interface HumanService {
 
 	int humanInsert(HashMap<String, Object> hs);
 
+	int enoDupChk(String eno);
+
+	ArrayList<Department> humanAddDeptList();
+
+	ArrayList<Rank> humanAddRankList();
+
 }

@@ -115,6 +115,18 @@ public class HumanDAO {
 		return sqlSession.insert("humanMapper.humanInsert", hs);
 	}
 
+	public int enoDupChk(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.enoDupChk", eno);
+	}
+
+	public ArrayList<Department> humanAddDeptList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.humanAddDeptList");
+	}
+
+	public ArrayList<Rank> humanAddRankList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.humanAddRankList");
+	}
+
 	
 
 }

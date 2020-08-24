@@ -1,5 +1,37 @@
-$(function(){
-	$('#human').css('display','block');
+$(document).ready(function(){
+	$.ajax({
+		url: '/Human/humanAddDeptList',
+		success: function(data){
+			$ul = $('#selectDept').siblings('ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].dcode +"'>"+data[i].dname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
+	
+	$.ajax({
+		url: '/Human/humanAddRankList',
+		success: function(data){
+			$ul = $('#selectRank').siblings('ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].rcode +"'>"+data[i].rname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
 });
 
 $('.selectBox').on('click',function(){
@@ -10,12 +42,12 @@ $('.selectBox').on('click',function(){
 $('.link-select').on('click',function(){
 	var dv = $(this).attr('data-value');
 	var dt = $(this).text();
+	
 	$(this).parents('.selectBox').find('.link-selected').text(dt);
 	$(this).parents('.selectBox').find('input').attr('data-value',dv);
 	$(this).parents('.selectBox').find('input').val(dv);
 	
 	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
-	$(this).parents('ul').hide();
 	//날씨 선택 누르면 input 활성화
 	if($('#selectDate').attr('data-value') == 'dateSelect'){
 		$('#date').attr('disabled', false);
@@ -23,6 +55,14 @@ $('.link-select').on('click',function(){
 	}else{
 		$('#date').attr('disabled', true);
 		$('#date2').attr('disabled', true);
+	}
+	//이메일 선택입력되면 입력할 수 있음.
+	if($('#email3').attr('data-value') == 'input-text'){
+		$('#add-email2').attr('disabled', false);
+		$('#add-email2').css('cursor', 'pointer');
+	}else{
+		$('#add-email2').attr('disabled', true);
+		$('#add-email2').css('cursor', 'auto');
 	}
 })
 
@@ -73,6 +113,162 @@ $('#addBtn').on('click',function(){
 $('h1 .fa-times').on('click',function(){
 	$('.popup-form').fadeOut();
 })
-$('.add-btn-form button').on('click',function(){
+$('.add-btn-form button:first-child').on('click',function(){
 	$('.popup-form').fadeOut();
 })
+
+$('#addBtn').on('click',function(){
+	$.ajax({
+		url: '/Human/humanAddDeptList',
+		success: function(data){
+			console.log(data.length);
+			$ul = $('#add-select-dept ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].dcode +"'>"+data[i].dname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
+	
+	$.ajax({
+		url: '/Human/humanAddRankList',
+		success: function(data){
+			console.log(data.length);
+			$ul = $('#add-select-rank ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].rcode +"'>"+data[i].rname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
+})
+
+$('input[name="add-eno"]').on('keyup',function(){
+	var eno = $('input[name="add-eno"]').val();
+	
+	if(eno == ''){
+		$('#enoChk').text('');
+	}else{
+		$.ajax({
+			url: '/Human/enoDupChk',
+			data: {eno:eno},
+			success: function(data){
+				if(data=='true'){
+					$('#enoChk').text('사용 불가능');
+					$('#enoChk').css('color','red');
+					$('#enoChk2').val(0);
+				}else{
+					$('#enoChk').text('사용 가능');
+					$('#enoChk').css('color','green');
+					$('#enoChk2').val(1);
+				}
+			}
+		})
+	}
+	
+})
+
+function dataChk(){
+	var eno = $('input[name="add-eno"]');
+	var name = $('input[name="add-name"]');
+	var email = $('input[name="add-email"]');
+	var email2 = $('input[name="add-email2"]');
+	var email3 = $('input[name="add-email3"]');
+	var inDate = $('input[name="add-inDate"]');
+	var birthDay = $('input[name="add-date"]');
+	var gender = $('input[name="gender-not"]');
+	var address1 = $('input[name="address1"]');
+	var address2 = $('input[name="address2"]');
+	var phone = $('input[name="phone"]');
+	var phone2 = $('input[name="phone2"]');
+	var phone3 = $('input[name="phone3"]');
+	var bool = true;
+	
+	if(eno.val() == ''){
+		alert('사원번호를 입력해주세요.');
+		eno.focus();
+		return false;
+	}
+	
+	if(name.val() == ''){
+		alert('이름을 입력해주세요.');
+		name.focus();
+		return false;
+	}
+	
+	if(email.val() == ''){
+		alert('이메일을 입력해주세요.');
+		email.focus();
+		return false;
+	}
+	
+	if(email3.val() == 'input-text'){
+		if(email2.val() == ''){
+			alert('이메일을 입력해주세요');
+			email2.focus();
+			return false;
+		}
+	}
+	if(email3.val() == ''){
+		alert('이메일을 선택해주세요');
+		return false;
+	}
+	
+	if(inDate.val() == ''){
+		alert('날짜를 선택해주세요');
+		return false;
+	}
+	
+	if(birthDay.val() == ''){
+		alert('날짜를 선택해주세요');
+		return false;
+	}
+	
+	if(gender.val() == 'N'){
+		alert('성별을 선택해주세요');
+		return false;
+	}
+	if(address1.val() == ''){
+		alert('주소를 입력해주세요');
+		address1.focus();
+		return false;
+	}
+	if(address2.val() == ''){
+		alert('상세 주소를 입력해주세요');
+		address2.focus();
+		return false;
+	}
+	if(phone.val() == ''){
+		alert('핸드폰 앞자리를 선택해주세요');
+		return false;
+	}
+	
+	if(phone2.val() == ''){
+		alert('핸드폰 번호를 입력해주세요');
+		phone2.focus();
+		return false;
+	}
+	
+	if(phone3.val() == ''){
+		alert('핸드폰 번호를 입력해주세요');
+		phone3.focus();
+		return false;
+	}
+	
+	if(bool){
+		$('.popup-form').submit();
+ 		$(".popup-form").fadeOut();
+	}
+}
