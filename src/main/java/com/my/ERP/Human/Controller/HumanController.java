@@ -263,10 +263,10 @@ public class HumanController {
 		String birthDay = request.getParameter("add-date");
 		//이메일
 		String email;
-		if(request.getParameter("email3").equals("input-text")) {
-			email = request.getParameter("email") + "@" + request.getParameter("email2");
+		if(request.getParameter("add-email3").equals("input-text")) {
+			email = request.getParameter("add-email") + "@" + request.getParameter("add-email2");
 		}else {
-			email = request.getParameter("email") + "@" + request.getParameter("email3");
+			email = request.getParameter("add-email") + "@" + request.getParameter("add-email3");
 		}
 		
 		h.setEno(request.getParameter("add-eno"));
