@@ -10,6 +10,9 @@
 <!-- 공통 CSS / Script 파일들 -->
 <link href="resources/css/common/common.css" rel="stylesheet">
 <link href="resources/css/common/template.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="resources/js/common/common.js"></script>
+
 
 <!-- fontawesome -->
 <script src="https://kit.fontawesome.com/4d55e1ad7a.js" crossorigin="anonymous"></script>

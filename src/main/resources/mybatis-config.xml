@@ -6,11 +6,13 @@
 	</settings>
 	
 	<typeAliases>
-	
+		<typeAlias type="com.my.ERP.Human.model.vo.Human" alias="Human"/>
+		<typeAlias type="com.my.ERP.Human.model.vo.Department" alias="Department"/>
+		<typeAlias type="com.my.ERP.common.vo.SearchOption" alias="SearchOption"/>
 	</typeAliases>
 	
 	<mappers>
-	
+		<mapper resource="mappers/human-mapper.xml" />
 	</mappers>
 	
 	

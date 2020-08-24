@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="humanMapper">
+	
+	<resultMap type="Human" id="humanResult">
+		<id column="ENO" property="eno"/>
+		<result column="PWD" property="pwd"/>
+		<result column="ENAME" property="name"/>
+		<result column="EBIRTHDAY" property="birthday"/>
+		<result column="EADDRESS" property="address"/>
+		<result column="EEMAIL" property="email"/>
+		<result column="EPHONE" property="phone"/>
+		<result column="INDATE" property="indate"/>
+		<result column="OUTDATE" property="outdate"/>
+		<result column="OUTYN" property="outyn"/>
+		<result column="RCODE" property="rcode"/>
+		<result column="DCODE" property="dcode"/>
+	</resultMap>
+	
+	<resultMap type="Department" id="deptResult">
+		<id column="DCODE" property="dcode"/>
+		<result column="DNAME" property="dname"/>
+		<result column="DCOMMENT" property="dcomment"/>
+		<result column="DBOSS" property="dboss"/>
+		<result column="STARTDATE" property="startDate"/>
+	</resultMap>
+
+	<select id="HumanListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER
+	</select>
+	
+	<select id="HumanList" resultMap="humanResult">
+		SELECT ENO, PWD, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME RCODE, DNAME DCODE FROM HUMANLIST
+	</select>
+	
+	<!-- 부서 목록 조회 -->
+	<select id="selectDepartmentList" resultMap="deptResult">
+		SELECT * FROM TB_DEPT
+	</select>
+	
+	<!-- 부서 조회 -->
+	<select id="selectDepartment" resultType="Department">
+		SELECT * FROM ONEDEPT
+		<where>
+			DNAME=#{DEPTNAME}
+		</where>
+	</select>
+	
+	<select id="SearchHumanListCount" resultType="_int">
+		SELECT COUNT(*) FROM HUMANLIST
+		<where>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
+			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
+			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+		</where>
+	</select>
+	
+	<select id="SearchHumanList" resultMap="humanResult">
+		SELECT * FROM HUMANLIST
+		<where>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
+			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
+			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+		</where>
+	</select>
+	
+	<select id="selectPositionCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER WHERE OUTYN = 'N'
+		<if test="name != null or name != ''">AND ename=#{name}</if>
+	</select>
+	
+	<select id="searchPosition" resultMap="humanResult">
+		SELECT * FROM TB_USER WHERE OUTYN = 'N'
+		<if test="name != null or name != ''">AND ename=#{name}</if>
+	</select>
+	
+	<select id="postionListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_USER WHERE OUTYN = 'N'
+	</select>
+	
+	<select id="positionList" resultMap="humanResult">
+		SELECT * FROM TB_USER WHERE OUTYN = 'N'
+	</select>
+	
+	<!-- 부서 등록 -->
+	<insert id="addDept" parameterType="Department">
+		INSERT INTO tb_dept values(#{dcode}, #{dname}, #{dcomment}, (SELECT eno FROM tb_user WHERE ename=#{eno}), SYSDATE)
+	</insert>
+	
+	<!-- 부서 삭제 -->
+	<delete id="delDept">
+		DELETE FROM TB_DEPT WHERE DNAME IN
+		<foreach collection="array" open="(" close=")" separator="," item="dname">
+			#{dname}
+		</foreach>
+	</delete>
+	
+	<!-- 부서 수정 -->
+	<update id="modifyDept">
+		UPDATE TB_DEPT 
+		SET DCODE=#{dcode}, DCOMMENT=#{dcomment}, DNAME=#{dname}, STARTDATE=#{startDate}, 
+			ENO=(SELECT ENO FROM tb_user WHERE ENAME=#{eno}) 
+		WHERE DNAME=#{beforeDeptName}
+	</update>
+	
+</mapper>

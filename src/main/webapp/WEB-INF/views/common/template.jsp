@@ -7,7 +7,7 @@
 <header id="header">
 	<div class="header_wrap">
 		<div class="logo_area">
-			<h1>LOGO</h1>
+			<h1>WORKSPACE</h1>
 		</div>
 		<div class="menu_option">
 			<ul>
@@ -19,24 +19,18 @@
 				<li>
 					<img class="profile" alt="" src="http://placehold.it/35x35">
 				</li>
-				<li>
+				<li onclick="showMenu();">
 					<span>Sanghoo Moon</span>
-					<i class="fas fa-angle-down" aria-hidden="true">
-						<span id="dropdown-menu">
-							<ul>
-								<li>내 정보</li>
-								<li>비밀번호 변경</li>
-								<li>알림 설정</li>
-								<li>환경 설정</li>
-								<li>로그아웃</li>
-							</ul>
-						</span>
-					</i>
-				</li>
-				<li>
-					<a>
-						<i class="fas fa-power-off" aria-hidden="true" title="로그아웃"></i>
-					</a>
+					<i class="fas fa-angle-down" aria-hidden="true"></i>
+					<div id="dropdown-menu">
+						<ul>
+							<li><i class="fas fa-user-circle"></i>내 정보</li>
+							<li><i class="fas fa-lock"></i>비밀번호변경</li>
+							<li><i class="fas fa-bell"></i>알림설정</li>
+							<li><i class="fas fa-cog"></i>환경설정</li>
+							<li><i class="fas fa-power-off"></i>로그아웃</li>
+						</ul>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -46,6 +40,61 @@
 
 <!-- sideMenu -->
 <div id="sideMenu">
-	
+	<ul id="mainMenu">
+		<li>
+			<span>인사관리</span>
+			<ul id="human" class="subMenu">
+				<li>
+					<a href="/Human/humanManager"><span id="humanManager">기본인사관리</span></a>
+				</li>
+				<li>
+					<a href="/Human/positionManager"><span id="positionManager">직급관리</span></a>
+				</li>
+				<li>
+					<a href="/Human/departmentManager"><span id="departmentManager">부서관리</span></a>
+				</li>
+				<li>
+					<span>급여관리</span>
+				</li>
+				<li>
+					<span>휴가관리</span>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<span>재고관리</span>
+			<ul class="subMenu">
+				<li>
+					<span>제품(?)목록</span>
+				</li>
+				<li>
+					<span>제품재고관리</span>
+				</li>
+				<li>
+					<span>제품 입/출고현황</span>
+				</li>
+				<li>
+					<span>비품(?)목록</span>
+				</li>
+				<li>
+					<span>비품관리</span>
+				</li>
+				<li>
+					<span>비품 신청현황</span>
+				</li>
+			</ul>
+		</li>
+		<li>	
+			<span>운영/매출관리</span>
+			<ul class="subMenu">
+				<li>
+					<span>거래처 목록</span>
+				</li>
+				<li>	
+					<span>매출관리</span>
+				</li>
+			</ul>
+		</li>
+	</ul>
 </div>
 <!-- // sideMenu -->

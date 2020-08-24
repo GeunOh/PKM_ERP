@@ -1,247 +1,256 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../common/headTag.jsp"></jsp:include>
-<link rel="stylesheet" href="resources/css/human/humanManager.css">
-<link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
-<script src="resources/js/plugin/selectbox.min.js"></script>
-<title>인사기본관리</title>
+<jsp:include page="../common/headTag.jsp"/>
+<title>기본인사관리</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link href="resources/css/human/humanManager.css" rel="styleSheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
-
-	<jsp:include page="../common/template.jsp"></jsp:include>
-
-	<!-- wrap -->
+	<jsp:include page="../common/template.jsp"/>
 	<div id="wrap">
-		<!-- 인사기본사항 -->
-		<h1>인사기본사항</h1>
-		<div id="search-box">
-			<form>
-				<div class="buttons">
-					<a>조회</a>
-					<a>엑셀</a>
-				</div>
-				<table>
-					<tr>
-						<th>상태</th>
-						<td>
-							<select class="justselect" name="searchOption" id="searchOption">
-									<option value="">재직</option>
-									<option value="">퇴직</option>
-							</select>
-						</td>
-						<th><label>사원번호</label></th>
-						<td><input type="text" id="eno" name="eno"> <input type="button" class="searchBtn"></td>
-						<th><label>사원명</label></th>
-						<td><input type="text" id="ename" name="ename"></td>
-						<th><label>직급</label></th>
-						<td>
-							<input type="text" id="" name=""> <input type="button" class="searchBtn">
-						</td>
-					</tr>
-					<tr>
-						<th><label>부서</label></th>
-						<td><input type="text" id="dno" name="dno"> <input type="button" class="searchBtn"></td>
-						<th>직급</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
-						<th>반</th>
-						<td><input type="text"> <input type="button" class="searchBtn"></td>
-					</tr>
-
-				</table>
-			</form>
-		</div>
-		<!-- // 인사기본사항 -->
-		<!-- 사원현황 -->
-		<h2>사원현황</h2>
-		<table id="result-box">
-			<colgroup>
-				<col width="7%">
-				<col>
-				<col width="7%">
-				<col>
-				<col>
-				<col>
-				<col>
-				<col>
-				<col width="30%">
-			</colgroup>
-			<tr>
-				<th>사원번호</th>
-				<th>성명</th>
-				<th>부서번호</th>
-				<th>부서명</th>
-				<th>직급</th>
-				<th>핸드폰번호</th>
-				<th>이메일</th>
-				<th>생년월일</th>
-				<th>주소</th>
-			</tr>
-			<tr class="row">
-				<td>000000</td>
-				<td>프링글스</td>
-				<td>M-001</td>
-				<td>개발부</td>
-				<td>사원</td>
-				<td>010-3925-7715</td>
-				<td>sanghoo96@naver.com</td>
-				<td>1996년4월16일</td>
-				<td>경기도 안양시 만안구</td>
-			</tr>
-			<tr class="row">
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-			</tr>
-			<tr class="row">
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-			</tr>
-			<tr class="row">
-				<td>1</td>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>8</td>
-				<td>9</td>
-			</tr>
-		</table>
-		<div id="count-box">
-			<span>총 사원수 : <span class="number">0</span> 명</span>
-			<span>영업사원 : <span class="number">0</span> 명</span>
-			<span>일반사용자 : <span class="number">0</span> 명</span> 
-			<span>현업관리자 : <span class="number">0</span> 명</span>
-			<span>시스템관리자 : <span class="number">0</span> 명</span>
-		</div>
-		<!-- // 사원현황 -->
-		<!-- 사원 상제 정보 -->
-		<div id="detail-box">
-			<div id="info-box">
-				<!-- 사원 이미지 -->
-				<div id="image-box">
-					<img src="http://placehold.it/200x261" alt="">
-				</div>
-				<!-- 사원 기본 정보 -->
-				<div id="detailInfo-box">
-					<form action="">
-						<!-- 기본 정보 -->
-						<div id="basicInfo-box">
-							<table>
-								<tr>
-									<th>사원번호</th>
-									<td><input type="text"></td>
-									<th>성명(한글)</th>
-									<td><input type="text"></td>
-									<th>성명(영문)</th>
-									<td><input type="text"></td>
-								</tr>
-								<tr>
-									<th>주민번호</th>
-									<td><input type="text"></td>
-									<th>생년월일</th>
-									<td><input type="date" id="birth"> <input id="age"
-										type="text" value="99세" disabled></td>
-									<th>양력/음력</th>
-									<td><input type="radio">양력 <input type="radio">음력
-									</td>
-								</tr>
-								<tr>
-									<th>주소</th>
-									<td><input type="text"></td>
-									<th>이메일</th>
-									<td><input type="email"></td>
-									<th>핸드폰번호</th>
-									<td><input type="tel"></td>
-								</tr>
-								<tr>
-									<th>부서</th>
-									<td><input type="text"></td>
-									<th>직급</th>
-									<td><input type="text"></td>
-									<th>입사날짜</th>
-									<td><input type="date"></td>
-								</tr>
-								<tr>
-									<th>비상연락망</th>
-									<td><input type="tel"></td>
-									<th>비상연락망</th>
-									<td><input type="tel"></td>
-									<th>퇴사날짜</th>
-									<td><input type="date"></td>
-								</tr>
-								<tr>
-									<th>주민번호</th>
-									<td><input type="text"></td>
-									<th>생년월일</th>
-									<td><input type="date"></td>
-									<th>양력/음력</th>
-									<td><input type="radio">양력 <input type="radio">음력
-									</td>
-								</tr>
-								<tr>
-									<th>주민번호</th>
-									<td><input type="text"></td>
-									<th>생년월일</th>
-									<td><input type="date"></td>
-									<th>양력/음력</th>
-									<td><input type="radio">양력 <input type="radio">음력
-									</td>
-								</tr>
-							</table>
+		<h1>인사 관리</h1>
+		<div id="Search-back">
+			<div id="Serach-form">
+				<form action="/Human/SearchHuman">
+					<div class="search-area">
+						<span class="title">상태</span>
+						<div class="selectBox">
+							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
+							<a href="#none" class="link-selected">전체</a>
+							<ul>
+								<li><a href="#" class="link-select" data-value="all">전체</a></li>
+								<li><a href="#" class="link-select" data-value="in">재직</a></li>
+								<li><a href="#" class="link-select" data-value="out">퇴직</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
-						<!-- 피지컬 정보 -->
-						<div id="psysicalInfo-box">
-							<table>
-								<button type="submit"><img src="resources/images/Save.png">저장</button>
-								<tr>
-									<th>신장</th>
-									<td><input type="text" name="" id=""></td>
-									<td>cm</td>
-								</tr>
-								<tr>
-									<th>체중</th>
-									<td><input type="text" name="" id=""></td>
-									<td>kg</td>
-								</tr>
-								<tr>
-									<th>혈액형</th>
-									<td><input type="text" name="" id=""></td>
-								</tr>
-								<tr>
-									<th>특이사항</th>
-									<td><input type="text" name="" id=""></td>
-								</tr>
-								<tr>
-									<th>비고</th>
-									<td><input type="text" name="" id=""></td>
-								</tr>
-							</table>
+					</div>
+					
+					<div class="search-area">
+						<span class="title">부서</span>
+						<div class="selectBox wid_150">
+							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
+							<a href="#none" class="link-selected wid_170">전체</a>
+							<ul class="wid_170">
+								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
+								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li>
+								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
-					</form>
-				</div>
+					</div>
+					
+					<div class="search-area">
+						<span class="title">직급</span>
+						<div class="selectBox wid_150">
+							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
+							<a href="#none" class="link-selected wid_170">전체</a>
+							<ul class="wid_170">
+								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li>
+								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li>
+								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle"></i>
+						</div>
+					</div>
+					
+					<div class="search-area">
+						<span class="title">업무 메일</span>
+						<input type="text" class="txtBox" name="email">
+					</div>
+					
+					<br>
+					
+					<div class="search-area downSearch">
+						<span class="title">사번</span>
+						<input type="text" class="txtBox" name="eno">
+					</div>
+					<div class="search-area">
+						<span class="title">사원명</span>
+						<input type="text" class="txtBox" name="name">
+					</div>
+					<div class="search-area" style="height: 31px;">
+						<span class="title">입사일</span>
+						<div class="selectBox wid_55">
+							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll">
+							<a href="#none" class="link-selected wid_55">전체</a>
+							<ul class="wid_75">
+								<li><a href="#" class="link-select wid_35" data-value="dateAll">전체</a></li>
+								<li><a href="#" class="link-select wid_35" data-value="dateSelect">선택</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle"></i>
+						</div>
+						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
+						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
+					</div>
+					<button id="searchBtn">검색</button>
+				</form>
 			</div>
 		</div>
-		<!-- // 사원 상세 정보 -->
-		
+		<!-- 추가 외 버튼 -->
+		<div id="btnForm">
+			<label id="addBtn">추가</label>
+			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
+		</div>
+		<!-- 테이블 -->
+		<table id="humanTable">
+			<thead>
+				<tr>
+					<th style="width: 3%;">상태</th>
+					<th style="width: 10%">입사일</th>
+					<th style="width: 10%">사번</th>
+					<th style="width: 7%">이름</th>
+					<th style="width: 5%">직급</th>
+					<th style="width: 5%">부서</th>
+					<th style="width: 10%">업무 메일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="h" items="${hList}" >
+					<tr>
+						<c:if test="${h.outyn eq 'N'}">
+							<td>재직</td>
+						</c:if>
+						<td>${h.indate }</td>
+						<td>${h.eno }</td>
+						<td>${h.name }</td>
+						<td>${h.rcode }</td>
+						<td>${h.dcode }</td>
+						<td>${h.email }</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty hList}">
+					<tr><td colspan="7">사원정보가 없습니다.</td></tr>
+				</c:if>
+				<c:if test="${!empty hList}">
+					<c:if test="${10 - fn:length(hList) > 0 }">
+						<c:forEach var="h" begin="1" end="${10 - fn:length(hList)}" >
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
+			</tbody>
+		</table>
+		<!-- 페이징 버튼 -->
+		<div id="pagingForm">
+				<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.dept}"/>
+						<c:param name="selectRank" value="${hs.rank}"/>
+						<c:param name="email" value="${hs.email}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.dept}"/>
+						<c:param name="selectRank" value="${hs.rank}"/>
+						<c:param name="email" value="${hs.email}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:if test="${p ne 0}">
+						<c:url var="pagination" value="${ loc }">
+							<c:param name="page" value="${ p }"/>
+							<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.dept}"/>
+						<c:param name="selectRank" value="${hs.rank}"/>
+						<c:param name="email" value="${hs.email}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+						</c:url>
+						<a class="pg_page" href="${ pagination }">${ p }</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.dept}"/>
+						<c:param name="selectRank" value="${hs.rank}"/>
+						<c:param name="email" value="${hs.email}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.dept}"/>
+						<c:param name="selectRank" value="${hs.rank}"/>
+						<c:param name="email" value="${hs.email}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
+		</div>
 	</div>
-	<!-- // wrap -->
+	<!-- 팝업창 -->
+	<div class="popup-form">
+		<div class="popupContent">
+		</div>
+		<div class="popupLayer"></div>
+	</div>
+<script type="text/javascript" src="resources/js/human/humanManager.js"></script>
 </body>
 </html>

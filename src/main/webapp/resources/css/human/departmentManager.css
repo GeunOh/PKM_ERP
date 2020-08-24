@@ -1,0 +1,155 @@
+@charset "UTF-8";
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+}
+#wrap {font-family: NotoSans-Regular;}
+h1{margin-bottom: 3%;}
+
+/* 조직도 */
+#organizationChart { 
+	width: 20%; float:left; padding: 20px; 
+	border: 1px solid #bbb; 
+	border-radius: 6px;	
+	margin-right: 5%;
+}
+#organizationChart form > ul > li:first-child > span { border-bottom: 1px solid #bbb; }
+#organizationChart form > ul > li > span { 
+	position: relative;
+	display: block;
+	padding: 10px 40px 10px 0; 
+}
+
+#branch-area { position: relative; }
+#branch-area:before {
+	content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    z-index: 33;
+    width: 1px;
+    height: calc(100% - 22px);
+    background: #767c81;
+    transition: .3s;
+}
+#branch-area span:hover { cursor: pointer; background-color: #bbb;}
+#branch-area li span {
+    position: relative;
+    display: block;
+    padding: 10px 40px 10px 40px;
+}
+#branch-area li span:before {
+	content: '';
+    position: absolute;
+    top: 50%;
+    left: 21px;
+    z-index: 11;
+    margin-top: -1px;
+    width: 10px;
+    height: 1px;
+    background: #767c81;
+}
+/* 버튼 */
+.buttons { margin-top: 20px; }
+.buttons button {
+    width: 100px;
+    height: 35px;
+}
+
+/* 조직정보 */
+#organizationInfo { width:70%; float:left;}
+#organizationInfo h3 { 
+	padding: 0 0 17px 0;
+	margin-bottom: 20px; 
+	border-bottom: 3px solid #bbb; 
+}
+#organizationInfo table { text-align: left; }
+#organizationInfo th { width: 63px; }
+#organizationInfo th, #organizationInfo td { padding: 20px; font-size: 17px;}
+
+
+#departmentManager { color: red; }
+#departmentManager:before { background-color: red; }
+
+/* 부서 등록 수정 삭제(팝업) */
+#popupBox {
+	display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 250px 0;
+}
+#dimBox{
+	position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.4;
+}
+.crud_box{
+	font-family: NotoSans-Regular;
+	width: 50%;
+    height: 100%;
+    padding: 30px;
+    position: relative;
+    margin: 0 auto;
+    background-color: white;
+    z-index:999;
+}
+/* 부서 등록 */
+#addDept { display:none; font-family: NotoSans-Regular; }
+#addDept table { margin: 0 auto;}
+#addDept th, #addDept p { padding: 15px 20px; font-size: 20px; }
+#addDept input { height: 30px; }
+#addDept textarea { width: 100%; padding:20px; box-sizing: border-box; font-size: 15px; }
+
+.button_group {
+	text-align: center;
+	margin-top: 10px;
+}
+.button_group button { width: 150px; height: 50px;}
+.button_group button:first-child { margin-right: 20px;}
+
+/* 부서 삭제  */
+#delDept { display:none; font-family: NotoSans-Regular; }
+#delDept p { margin: 10px 0; }
+
+#deptList {	
+	width: 300px; height: 320px; 
+	float: left; margin-right: 20px; 
+	overflow-y: auto;
+}
+#deptList table { width:100%; border: 1px solid #bbb; }
+#deptList th, #deptList td { padding: 20px; }
+#deptList th { text-align: left; background-color: #eee; }
+#deptList td:last-child { width: 100%; }
+#deptList td:hover { font-weight: bold; cursor: pointer; }
+
+
+#deptInfo {
+	width: 65%;
+    height: 320px;
+    float: left;
+}
+#deptInfo h3 { margin-bottom: 10px; }
+#deptInfo th { padding: 12px; width: 59px;}
+#deptInfo td { padding-left: 20px; }
+
+#delDept .button_group { float: left; width: 100%; margin-top: 19px; }
+
+/* 부서 수정 */
+#modifyDept { display: none;}
+#modifyDept p { margin: 10px 0; }
+#modifyDept #deptInfo input { width:200px; height: 33px; }
+#modifyDept #deptInfo input:last-child {
+	width: 300px;	
+}
