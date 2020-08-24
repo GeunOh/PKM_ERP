@@ -127,5 +127,20 @@ public class HumanServiceImpl implements HumanService {
 		// TODO Auto-generated method stub
 		return hDAO.choiceRcode(sqlSession, rcode);
 	}
+
+	@Override
+	public int enoDupChk(String eno) {
+		return hDAO.enoDupChk(sqlSession, eno);
+	}
+
+	@Override
+	public ArrayList<Department> humanAddDeptList() {
+		return hDAO.humanAddDeptList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Rank> humanAddRankList() {
+		return hDAO.humanAddRankList(sqlSession);
+	}
 	
 }
