@@ -327,8 +327,8 @@
 					<input type="text" class="txtBox phone2" name="phone3" size="4">
 				</div>
 				<div class="add-textform add-btn-form">
-					<button type="submit"><i class="fas fa-times"></i> 취소</button>
-					<button type="button"><i class="fas fa-check"></i> 추가</button>
+					<button type="button"><i class="fas fa-times"></i> 취소</button>
+					<button type="submit"><i class="fas fa-check"></i> 추가</button>
 				</div>
 			</div>
 		</div>
