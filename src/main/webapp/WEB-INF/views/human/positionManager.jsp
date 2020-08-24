@@ -20,7 +20,7 @@
 		<!-- 검색영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/searchPosition" name="positionForm">
+				<form name="searchForm">
 					<div class="search-area" style="height:31px">
 						<span class="title">직급번호</span>
 						<input type="text" id="rcode" name="rcode" class="txtBox wid_150" >
@@ -29,46 +29,48 @@
 						<span class="title">직급명</span>
 						<input type="text" id="rname" name="rname" class="txtBox wid_150" >
 					</div>
-					<button id="searchBtn">검색</button>
+					<button type="button" id="searchBtn" onclick="searchPosition();">검색</button>
 					<button type="button" id="addBtn" onclick="addPosition();">추가</button>
-					<button type="button" id="deleteBtn">삭제</button>
+					<button type="button" id="deleteBtn" onclick="deletePosition();">삭제</button>
 				</form>
 			</div>
 		</div>
 		<!-- // 검색영역 -->
 		<!-- 테이블 -->
-		<table id="positionTable">
-			<thead>
-				<tr>
-					<th><input type="checkbox" name="eno"></th>
-					<th>직급번호</th>
-					<th>직급명</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="p" items="${pList}">
+		<form name="tableForm">
+			<table id="positionTable">
+				<thead>
 					<tr>
-						<td><input type="checkbox" name="test" value="${p.rcode }"></td>
-						<td>${p.rcode }</td>
-						<td>${p.rname }</td>
+						<th><input type="checkbox"></th>
+						<th>직급번호</th>
+						<th>직급명</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${empty pList}">
-						<tr><td colspan="3">직급정보가 없습니다.</td></tr>
-				</c:if>
-				<c:if test="${!empty pList}">
-					<c:if test="${10 - fn:length(pList) > 0 }">
-						<c:forEach var="p" begin="1" end="${10 - fn:length(pList)}" >
-							<tr>
-								<td>&nbsp;</td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+				</thead>
+					<tbody>
+							<c:forEach var="p" items="${pList}">
+								<tr>
+									<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
+									<td>${p.rcode }</td>
+									<td>${p.rname }</td>
+								</tr>
+							</c:forEach>
+					<c:if test="${empty pList}">
+							<tr><td colspan="3">직급정보가 없습니다.</td></tr>
 					</c:if>
-				</c:if>
-			</tbody>
-		</table>
+					<c:if test="${!empty pList}">
+						<c:if test="${10 - fn:length(pList) > 0 }">
+							<c:forEach var="p" begin="1" end="${10 - fn:length(pList)}" >
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
+				</tbody>
+			</table>
+		</form>
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/positionManager.js"></script>
