@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
@@ -59,16 +60,10 @@ public class HumanController {
 	
 	// 직급관리
 	@RequestMapping("positionManager")
-	public String positionMain(@RequestParam(value="page", required=false) Integer page, Model model) {
+	public String positionMain(Model model) {
 		
-		int currentPage = 1;
-		if(page!=null) currentPage = page;
-		
-		int listCount = hService.postionListCount();
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
-		
-		ArrayList<Human> pList = hService.positionList(pi);
-		model.addAttribute("pList",pList).addAttribute("pi",pi);
+		ArrayList<Rank> pList = hService.positionList();
+		model.addAttribute("pList",pList);
 		return "positionManager";
 	}
 	
@@ -159,26 +154,41 @@ public class HumanController {
 	
 	// 직급 검색
 	@RequestMapping("searchPosition")
-	public String searchPosition(@RequestParam(value="page", required = false) Integer page, Model model,
-								 @RequestParam("name") String name) {
+	public String searchPosition (@RequestParam("rcode") String rcode, Model model,
+								  @RequestParam("rname") String rname ) {
 		
-		int currentPage = 1;
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("rcode", rcode);
+		hs.put("rname", rname);
 		
-		if(page != null) currentPage = page;
+		ArrayList<Rank> pList = hService.searchPosition(hs);
+		model.addAttribute("pList", pList);
 
-		int listCount = hService.searchPositionCount(name);
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
-		
-		ArrayList<Human> pList = hService.searchPosition(name, pi);
-		model.addAttribute("pList", pList)
-			 .addAttribute("pi", pi);
-		
-		
-		
 		return "positionManager";
 	}
 	
+	// 직급 추가
+	@RequestMapping("addPosition")
+	public String addPosition(@RequestParam("rcode") String rcode,
+							  @RequestParam("rname") String rname ) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("rcode", rcode);
+		hs.put("rname", rname);
+		
+		hService.addPosition(hs);
+		
+		return "redirect:/Human/positionManager";
+	}
 	
+	// 직급 삭제
+	@RequestMapping("deletePosition")
+	public String deletePosition(@RequestParam("rcodeChk") String[] rcodeChk) {
+
+		hService.deletePosition(rcodeChk);
+		
+		return "redirect:/Human/positionManager";
+	}
 	// 부서 등록 기능
 	@RequestMapping("addDept")
 	public String addDept(HttpServletRequest request) {

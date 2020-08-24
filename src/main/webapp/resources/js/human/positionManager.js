@@ -17,6 +17,87 @@ $('.selectBox ul').mouseleave(function(){
 	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).hide();
 })
+
+
+
 $(function(){
 	$('#human').css('display','block');
+
 });
+// 공백검증 메서드
+function blankCheck(inputValue){
+	if(inputValue == "") return false;
+    return true;
+}
+// 체크박스 1개이상 체크확인 메서드
+function checkboxOne(chkList){
+	var count = 0;
+	for(var i=0; i<chkList.length; i++){
+		if(chkList[i].checked) count++;
+	}
+	return count;
+}
+
+// 검색 버튼 클릭 시
+function searchPosition(){
+	var rcode = document.getElementById("rcode");
+	var rname = document.getElementById("rname");
+	
+	// 직급코드가 공백이면 alert
+	if(!blankCheck(rcode.value)){
+        alert("직급코드 입력해주세요.");
+        rcode.focus();
+		return false;
+    }
+	// 직급코드가 공백이면 alert
+	if(!blankCheck(rname.value)){
+        alert("직급명을 입력해주세요.");
+        rname.focus();
+		return false;
+    }
+	// 부서 검색
+	var searchForm = document.searchForm;
+	searchForm.action = "/Human/searchPosition";
+	searchForm.submit();
+}
+
+// 추가 버튼 클릭 시
+function addPosition(){
+	var rcode = document.getElementById("rcode");
+	var rname = document.getElementById("rname");
+	
+	// 직급코드가 공백이면 alert
+	if(!blankCheck(rcode.value)){
+        alert("직급코드 입력해주세요.");
+        rcode.focus();
+		return false;
+    }
+	// 직급코드가 공백이면 alert
+	if(!blankCheck(rname.value)){
+        alert("직급명을 입력해주세요.");
+        rname.focus();
+		return false;
+    }
+	// 부서 추가
+	var searchForm = document.searchForm;
+	searchForm.action = "/Human/addPosition";
+	searchForm.submit();
+}
+
+// 삭제 버튼 클릭 시
+function deletePosition(){
+	var rcodeChk = document.getElementsByName("rcodeChk");
+	
+	// 체크박스가 1개도 체크가 안되어있다면
+	if(checkboxOne(rcodeChk)<1){
+		alert("삭제하실 직급을 선택해주세요.");
+		return;
+	}
+	// 부서 삭제
+	var tableForm = document.tableForm;
+	tableForm.action = "/Human/deletePosition";
+	tableForm.submit();
+}
+
+
+

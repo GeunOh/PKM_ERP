@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias type="com.my.ERP.Human.model.vo.Human" alias="Human"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.Department" alias="Department"/>
+		<typeAlias type="com.my.ERP.Human.model.vo.Rank" alias="Rank"/>
 		<typeAlias type="com.my.ERP.common.vo.SearchOption" alias="SearchOption"/>
 	</typeAliases>
 	

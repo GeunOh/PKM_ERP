@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.my.ERP.Human.model.dao.HumanDAO;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -63,9 +64,9 @@ public class HumanServiceImpl implements HumanService {
 	}
 
 	@Override
-	public ArrayList<Human> searchPosition(String name, PageInfo pi) {
+	public ArrayList<Rank> searchPosition(HashMap<String, String> hs) {
 		// TODO Auto-generated method stub
-		return hDAO.searchPosition(sqlSession, name, pi);
+		return hDAO.searchPosition(sqlSession, hs);
 	}
 
 	@Override
@@ -75,9 +76,9 @@ public class HumanServiceImpl implements HumanService {
 	}
 
 	@Override
-	public ArrayList<Human> positionList(PageInfo pi) {
+	public ArrayList<Rank> positionList() {
 		// TODO Auto-generated method stub
-		return hDAO.positionList(sqlSession, pi);
+		return hDAO.positionList(sqlSession);
 	}
 	
 	// 부서 등록 서비스
@@ -99,6 +100,20 @@ public class HumanServiceImpl implements HumanService {
 	public void modifyDept(Department dept, String beforeDeptName) {
 		// TODO Auto-generated method stub
 		hDAO.modifyDept(sqlSession, dept, beforeDeptName);
+	}
+	
+	// 직급 추가 서비스
+	@Override
+	public void addPosition(HashMap<String, String> hs) {
+		// TODO Auto-generated method stub
+		hDAO.addPosition(sqlSession, hs);
+	}
+	
+	// 직급 삭제 서비스
+	@Override
+	public void deletePosition(String[] rcodeChk) {
+		// TODO Auto-generated method stub
+		hDAO.deletePosition(sqlSession, rcodeChk);
 	}
 	
 }

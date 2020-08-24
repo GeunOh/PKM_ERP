@@ -4,7 +4,7 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-<link rel="stylesheet" href="resources/css/myInfo.css">
+<link rel="stylesheet" href="resources/css/human/myInfo.css">
 <link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
 <script src="resources/js/plugin/selectbox.min.js"></script>
 <title>내 정보</title>

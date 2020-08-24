@@ -24,6 +24,11 @@
 		<result column="DBOSS" property="dboss"/>
 		<result column="STARTDATE" property="startDate"/>
 	</resultMap>
+	
+	<resultMap type="Rank" id="rankResult">
+		<id column="RCODE" property="rcode"/>
+		<result column="RNAME" property="rname"/>
+	</resultMap>
 
 	<select id="HumanListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER
@@ -83,18 +88,35 @@
 		<if test="name != null or name != ''">AND ename=#{name}</if>
 	</select>
 	
-	<select id="searchPosition" resultMap="humanResult">
-		SELECT * FROM TB_USER WHERE OUTYN = 'N'
-		<if test="name != null or name != ''">AND ename=#{name}</if>
+	<!-- 직급 검색 -->
+	<select id="searchPosition" resultMap="rankResult">
+		SELECT * FROM TB_RANK
+		<where>
+			<if test="rcode != null and rcode != ''">AND rcode=#{rcode}</if>
+			<if test="rname != null and rname != ''">AND rname=#{rname}</if>
+		</where>
 	</select>
 	
 	<select id="postionListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER WHERE OUTYN = 'N'
 	</select>
 	
-	<select id="positionList" resultMap="humanResult">
-		SELECT * FROM TB_USER WHERE OUTYN = 'N'
+	<!-- 직급 목록 -->
+	<select id="positionList" resultMap="rankResult">
+		SELECT * FROM TB_RANK
 	</select>
+	
+	<!-- 직급 등록 -->
+	<insert id="addPosition">
+		INSERT INTO TB_RANK VALUES(#{rcode},#{rname})
+	</insert>
+	
+	<delete id="deletePosition">
+		DELETE FROM TB_RANK WHERE RCODE IN
+		<foreach collection="array" open="(" close=")" separator="," item="rcode">
+			#{rcode}
+		</foreach>
+	</delete>
 	
 	<!-- 부서 등록 -->
 	<insert id="addDept" parameterType="Department">
