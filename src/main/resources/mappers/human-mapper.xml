@@ -111,6 +111,14 @@
 		INSERT INTO TB_RANK VALUES(#{rcode},#{rname})
 	</insert>
 	
+	<!-- 직급 선택 시 사원목록 조회 -->
+	<select id="choiceRcode" resultMap="humanResult">
+		SELECT R.RCODE, RNAME DCODE, ENO, ENAME 
+		FROM TB_USER U, TB_RANK R
+		WHERE U.RCODE = R.RCODE
+		AND R.RCODE=#{rcode}
+	</select>
+	
 	<delete id="deletePosition">
 		DELETE FROM TB_RANK WHERE RCODE IN
 		<foreach collection="array" open="(" close=")" separator="," item="rcode">

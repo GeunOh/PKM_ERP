@@ -47,13 +47,13 @@
 					</tr>
 				</thead>
 					<tbody>
-							<c:forEach var="p" items="${pList}">
-								<tr>
-									<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
-									<td>${p.rcode }</td>
-									<td>${p.rname }</td>
-								</tr>
-							</c:forEach>
+						<c:forEach var="p" items="${pList}">
+							<tr>
+								<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
+								<td>${p.rcode }</td>
+								<td>${p.rname }</td>
+							</tr>
+						</c:forEach>
 					<c:if test="${empty pList}">
 							<tr><td colspan="3">직급정보가 없습니다.</td></tr>
 					</c:if>
@@ -71,6 +71,47 @@
 				</tbody>
 			</table>
 		</form>
+		<!-- // 테이블 -->
+		<div class="notice_box">
+            <ul>
+	            <li>1. 검색/추가/삭제 시 직급코드와 직급명을 입력해주세요.</li>
+                <li>2. 직급을 선택하시면 해당 직급의 사원목록을 확인하실 수 있습니다.</li>
+            </ul>
+        </div>
+		<!-- 사원목록 -->
+		<div id="humanList">
+			<h2>사원목록</h2>
+			<div id="tableDiv">
+				<table>
+					<thead>
+						<tr>
+							<th>직급코드</th>
+							<th>직급명</th>
+							<th>사원번호</th>
+							<th>사원명</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:if test="${empty hList}">
+								<tr><td colspan="4">해당하는 직급의 사원정보가 없습니다. 직급을 선택해주세요.</td></tr>
+						</c:if>
+						<c:if test="${!empty hList}">
+							<c:if test="${10 - fn:length(hList) > 0 }">
+								<c:forEach var="l" begin="1" end="${10 - fn:length(hList)}" >
+									<tr>
+										<td>&nbsp;</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</c:if>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- // 사원목록 -->
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/positionManager.js"></script>

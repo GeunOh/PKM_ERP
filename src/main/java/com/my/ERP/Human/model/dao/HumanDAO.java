@@ -106,6 +106,11 @@ public class HumanDAO {
 		sqlSession.delete("humanMapper.deletePosition", rcodeChk);
 	}
 
+	public ArrayList<Human> choiceRcode(SqlSessionTemplate sqlSession, String rcode) {
+		// TODO Auto-generated method stub
+		return (ArrayList)sqlSession.selectList("humanMapper.choiceRcode", rcode);
+	}
+	
 	public int humanInsert(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
 		return sqlSession.insert("humanMapper.humanInsert", hs);
 	}

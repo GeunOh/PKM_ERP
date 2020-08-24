@@ -41,6 +41,8 @@ public interface HumanService {
 
 	void deletePosition(String[] rcodeChk);
 
+	ArrayList<Human> choiceRcode(String rcode);
+
 	int humanInsert(HashMap<String, Object> hs);
 
 }

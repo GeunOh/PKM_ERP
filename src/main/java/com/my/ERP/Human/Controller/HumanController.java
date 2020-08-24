@@ -97,11 +97,8 @@ public class HumanController {
 	@RequestMapping("departmentShow")
 	@ResponseBody
 	public Department departmentShow(@RequestParam("deptName") String deptName, Model model) {
-		System.out.println(deptName);
-		
 		// 해당 부서 조회
 		Department dept = hService.showDepartment(deptName);
-		System.out.println(dept);
 		return dept;
 	}
 	
@@ -198,6 +195,14 @@ public class HumanController {
 		
 		return "redirect:/Human/positionManager";
 	}
+	
+	// 직급 목록 선택 시 사원 목록 조회
+	@RequestMapping("choiceRcode")
+	@ResponseBody
+	public ArrayList<Human> choiceRcode(@RequestParam("rcode") String rcode) {
+		return hService.choiceRcode(rcode);
+	}
+	
 	// 부서 등록 기능
 	@RequestMapping("addDept")
 	public String addDept(HttpServletRequest request) {
