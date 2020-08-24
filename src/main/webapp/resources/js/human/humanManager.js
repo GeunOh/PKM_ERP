@@ -39,7 +39,7 @@ $('.selectBox').on('click',function(){
 	$(this).children('.fa-angle-down').toggleClass('rotate-angle');
 })
 
-$('.link-select').on('click',function(){
+$(document).on('click', '.link-select', function(){
 	var dv = $(this).attr('data-value');
 	var dt = $(this).text();
 	
