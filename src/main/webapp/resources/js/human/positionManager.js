@@ -134,17 +134,27 @@ $("#positionTable tbody tr").on("click", function() {
 					$tr.append($eno);
 					$tr.append($name);
 					$tbody.append($tr);
-					
-					/*$("#humanList tbody").append(
-							"<tr>" +
-							"<td>"+data[i].rcode +"</td>" +
-							"<td>"+data[i].dcode +"</td>" +
-							"<td>"+data[i].eno +"</td>" +
-							"<td>"+data[i].ename +"</td>" +
-							"</tr>"
-					)*/
+			
+				}
+				
+				// 결과가 15개 이하라면
+				if(15 - data.length > 0){
+					for(var i=0; i<15-data.length; i++){
+						$tr = $("<tr/>");
+						$td = $("<td>&nbsp;</td>");
+						
+						$tr.append($td);
+						$tr.append("<td></td>");
+						$tr.append("<td></td>");
+						$tr.append("<td></td>");
+						
+						$tbody.append($tr);
+						
+					}
 				}
 			}
+			
+			
 		}
 		
 	});
