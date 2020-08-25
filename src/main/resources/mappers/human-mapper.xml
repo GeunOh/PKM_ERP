@@ -29,6 +29,19 @@
 		<id column="RCODE" property="rcode"/>
 		<result column="RNAME" property="rname"/>
 	</resultMap>
+	
+	<resultMap type="Vacation" id="vacationResult">
+		<id column="VNO" property="vno" />
+		<result column="ENO" property="eno"/>
+		<result column="VTYPE" property="vType"/>
+		<result column="STARTDATE" property="startDate"/>
+		<result column="ENDDATE" property="endDate"/>
+		<result column="REASON" property="reason"/>
+		<result column="REQUESTDATE" property="requestDate"/>
+		<result column="STATUS" property="status"/>
+		<result column="DNAME" property="dname"/>
+		<result column="RNAME" property="rname"/>
+	</resultMap>
 
 	<select id="HumanListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER
@@ -111,11 +124,12 @@
 		INSERT INTO TB_RANK VALUES(#{rcode},#{rname})
 	</insert>
 	
-	<!-- 직급 선택 시 사원목록 조회 -->
+	<!-- 직급 선택 시 사원목록 조회(재직중인 사원만) -->
 	<select id="choiceRcode" resultMap="humanResult">
 		SELECT R.RCODE, RNAME DCODE, ENO, ENAME 
 		FROM TB_USER U, TB_RANK R
 		WHERE U.RCODE = R.RCODE
+		AND OUTYN = 'N'
 		AND R.RCODE=#{rcode}
 	</select>
 	
@@ -162,4 +176,32 @@
 	<select id="humanAddRankList" resultMap="rankResult">
 	 	SELECT * FROM TB_RANK
 	</select>
+	
+	<!-- 부서 중복되는지 조회  -->
+	<select id="dcodeDupChk" resultType="_int">
+		SELECT COUNT(*) FROM TB_DEPT WHERE dcode = #{dcode}
+	</select>
+	
+	<!-- 휴가 신청 목록 조회  -->
+	<select id="vacationList" resultMap="vacationResult">
+		SELECT * FROM VACATIONLIST
+	</select>
+	
+	<!-- 휴가 신청 승인 -->
+	<update id="approvalVacation">
+		UPDATE TB_VACATION SET STATUS='Y' WHERE VNO IN
+		<foreach collection="array" item="vno" open="(" close=")" separator=",">
+			#{vno}
+		</foreach>
+	</update>
+	
+	<!-- 휴가 신청 거절 -->
+	<update id="refuseVacation">
+		UPDATE TB_VACATION SET STATUS='F' WHERE VNO IN
+		<foreach collection="array" item="vno" open="(" close=")" separator=",">
+			#{vno}
+		</foreach>
+	</update>
+	
+	
 </mapper>

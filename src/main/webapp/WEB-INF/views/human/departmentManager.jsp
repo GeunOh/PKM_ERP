@@ -95,7 +95,9 @@
 						<tr>
 							<th>부서코드</th>
 							<td>
-								<input type="text" name="dcode">
+								<input type="text" name="dcode" onkeyup="dcodeDupChk();">
+								<label id='dcodeChk'></label>
+								
 							</td>
 						</tr>
 						<tr>
@@ -193,7 +195,8 @@
 							</tr>
 							<tr>
 								<th>부서코드</th>
-								<td id="m_dcode"></td>
+								<td id="m_dcode">
+								</td>
 							</tr>
 							<tr>
 								<th>부서장</th>

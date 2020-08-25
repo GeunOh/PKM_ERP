@@ -26,6 +26,7 @@ import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
@@ -66,8 +67,32 @@ public class HumanController {
 	
 	// 휴가관리
 	@RequestMapping("vacationManager")
-	public String vacationMain() {
+	public String vacationMain(Model model) {
+		
+		ArrayList<Vacation> vList = hService.vacationList();
+		model.addAttribute("vList", vList);
+		
 		return "vacationManager";
+	}
+	
+	// 휴가 승인
+	@RequestMapping("approvalVacation")
+	public String approvalVacation(@RequestParam("vno") String[] vnoList) {
+		
+		int result = hService.approvalVacation(vnoList);
+		System.out.println(result);
+		
+		return "redirect:/Human/vacationManager";
+	}
+	
+	// 휴가 거절
+	@RequestMapping("refuseVacation")
+	public String refuseVacation(@RequestParam("vno") String[] vnoList) {
+		
+		int result = hService.refuseVacation(vnoList);
+		System.out.println(result);
+		
+		return "redirect:/Human/vacationManager";
 	}
 	
 	// 직급관리
@@ -247,6 +272,22 @@ public class HumanController {
 		
 		return "redirect:/Human/departmentManager";
 	}
+	
+	// 부서코드 중복 체크
+	@RequestMapping("dcodeDupChk")
+	public void dcodeDupChk(@RequestParam("dcode") String dcode, HttpServletResponse response) {
+		
+		int result = hService.dcodeDupChk(dcode);
+		boolean chk = result>0 ? true : false;	// 부서가 중복되면 true, 아니면 false
+	
+		try {
+			response.getWriter().print(chk);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	
 	//사원추가
 	@RequestMapping("humanInsert")
