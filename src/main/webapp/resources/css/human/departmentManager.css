@@ -1,13 +1,17 @@
 @charset "UTF-8";
 @font-face {
   font-family: NotoSans-Black;
-  src: url('../Fonts/NotoSansCJKkr-Black.otf');
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
 }
 
 @font-face {
   font-family: NotoSans-Regular;
-  src: url('../Fonts/NotoSansCJKkr-Regular.otf');
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
+
+#departmentManager { color: red; }
+#departmentManager:before { background-color: red; }
+
 #wrap {font-family: NotoSans-Regular;}
 h1{margin-bottom: 3%;}
 
@@ -72,10 +76,6 @@ h1{margin-bottom: 3%;}
 #organizationInfo th { width: 63px; }
 #organizationInfo th, #organizationInfo td { padding: 20px; font-size: 17px;}
 
-
-#departmentManager { color: red; }
-#departmentManager:before { background-color: red; }
-
 /* 부서 등록 수정 삭제(팝업) */
 #popupBox {
 	display: none;
@@ -107,9 +107,9 @@ h1{margin-bottom: 3%;}
 }
 /* 부서 등록 */
 #addDept { display:none; font-family: NotoSans-Regular; }
-#addDept table { margin: 0 auto;}
+#addDept table { margin: 5px 50px;}
 #addDept th, #addDept p { padding: 15px 20px; font-size: 20px; }
-#addDept input { height: 30px; }
+#addDept input { width:210px; height: 30px; margin-right: 10px; }
 #addDept textarea { width: 100%; padding:20px; box-sizing: border-box; font-size: 15px; }
 
 .button_group {

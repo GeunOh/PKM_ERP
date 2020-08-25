@@ -112,6 +112,9 @@
 						<c:if test="${h.outyn eq 'N'}">
 							<td>재직</td>
 						</c:if>
+						<c:if test="${h.outyn eq 'Y'}">
+							<td>퇴직</td>
+						</c:if>
 						<td>${h.indate }</td>
 						<td>${h.eno }</td>
 						<td>${h.name }</td>
