@@ -1,5 +1,7 @@
 $(function(){
-	$('#human').css('display','block');	// 사이드메뉴 해당 카테고리 펼쳐놓기
+	// 사이드메뉴 해당 카테고리 펼쳐놓기
+	$('#human').css('display','block');	
+	
 });
 
 $('.selectBox').on('click',function(){

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -77,10 +78,12 @@ public class HumanController {
 	
 	// 휴가 승인
 	@RequestMapping("approvalVacation")
-	public String approvalVacation(@RequestParam("vno") String[] vnoList) {
+	public String approvalVacation(@RequestParam("vno") String[] vnoList, RedirectAttributes ra) {
 		
 		int result = hService.approvalVacation(vnoList);
-		System.out.println(result);
+		
+		String success = "승인되었습니다.";
+		ra.addFlashAttribute("success", success);
 		
 		return "redirect:/Human/vacationManager";
 	}

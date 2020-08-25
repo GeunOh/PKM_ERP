@@ -82,7 +82,7 @@
 		</div>
 		<!-- // 검색 영역 -->
 		<h2>제출한 휴가 문서</h2>
-		<form name="vacationForm" onsubmit="test();">
+		<form name="vacationForm">
 			<!-- 휴가제출 목록 테이블 -->
 			<table id="vacationTable">
 				<thead>
@@ -167,6 +167,21 @@
 				<button type="button" onclick="refuseVacation();">거절</button>
 			</div>
 		</form>
+		<div id="alertBox">
+			<p></p>
+		</div>
+		<script type="text/javascript">
+			var success = "${success}";
+			
+			if(success!='') {
+				$("#alertBox p").text(success);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+				
+			}
+		</script>
 	</div>
 	<!-- // wrap  -->
 	<script type="text/javascript" src="resources/js/human/vacationManager.js"></script>

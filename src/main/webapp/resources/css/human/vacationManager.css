@@ -184,5 +184,18 @@ h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}
 .buttons button:first-child {
 	margin-right: 10px;
 }
+/*  */
+#alertBox {
+	display:none;
+ 	font-family: NotoSans-Regular;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: absolute;
+    background-color: #282c34;
+    color: #fff;
+    top: 9%;
+    right: 43%;
+    border-radius: 3px;
+}
 
 
