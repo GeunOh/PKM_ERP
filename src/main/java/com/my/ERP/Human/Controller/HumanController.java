@@ -335,7 +335,7 @@ public class HumanController {
 		hs.put("inDate",inDate);
 		hs.put("birthDay",birthDay);
 				
-		int result = hService.humanInsert(hs);
+		hService.humanInsert(hs);
 	
 		return "redirect:/Human/humanManager";
 	}

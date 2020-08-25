@@ -177,6 +177,10 @@
 	 	SELECT * FROM TB_RANK
 	</select>
 	
+	<select id="Login" resultMap="humanResult">
+		SELECT * FROM SOLOUSER WHERE ENO = #{id} AND OUTYN = 'N'
+	</select>
+	
 	<!-- 부서 중복되는지 조회  -->
 	<select id="dcodeDupChk" resultType="_int">
 		SELECT COUNT(*) FROM TB_DEPT WHERE dcode = #{dcode}
@@ -202,6 +206,5 @@
 			#{vno}
 		</foreach>
 	</update>
-	
 	
 </mapper>

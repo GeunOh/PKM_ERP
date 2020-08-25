@@ -52,6 +52,8 @@ public interface HumanService {
 
 	ArrayList<Rank> humanAddRankList();
 
+	Human Login(String id);
+	
 	int dcodeDupChk(String dcode);
 
 	ArrayList<Vacation> vacationList();

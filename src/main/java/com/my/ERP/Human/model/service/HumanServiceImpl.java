@@ -143,6 +143,11 @@ public class HumanServiceImpl implements HumanService {
 	public ArrayList<Rank> humanAddRankList() {
 		return hDAO.humanAddRankList(sqlSession);
 	}
+
+	@Override
+	public Human Login(String id) {
+		return hDAO.Login(sqlSession, id);
+	}
 	
 	// 부서 수정시 부서번호 중복체크
 	@Override
