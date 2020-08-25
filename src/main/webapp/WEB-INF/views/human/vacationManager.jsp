@@ -82,7 +82,7 @@
 		</div>
 		<!-- // 검색 영역 -->
 		<h2>제출한 휴가 문서</h2>
-		<form name="vacationForm">
+		<form name="vacationForm" onsubmit="test();">
 			<!-- 휴가제출 목록 테이블 -->
 			<table id="vacationTable">
 				<thead>

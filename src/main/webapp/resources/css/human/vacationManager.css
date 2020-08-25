@@ -9,6 +9,9 @@
   font-family: NotoSans-Regular;
   src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
+#vacationManager { color: red; }
+#vacationManager:before { background-color: red; }
+
 /* 휴가관리 */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

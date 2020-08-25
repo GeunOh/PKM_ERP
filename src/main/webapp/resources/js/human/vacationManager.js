@@ -1,3 +1,7 @@
+$(function(){
+	$('#human').css('display','block');	// 사이드메뉴 해당 카테고리 펼쳐놓기
+});
+
 $('.selectBox').on('click',function(){
 	$(this).children('ul').toggle();
 	$(this).children('.fa-angle-down').toggleClass('rotate-angle');
@@ -35,9 +39,25 @@ $('.selectBox ul').mouseleave(function(){
 	$(this).hide();
 })
 
+// 체크박스 1개이상 체크확인 메서드
+function checkboxOne(chkList){
+	var count = 0;
+	for(var i=0; i<chkList.length; i++){
+		if(chkList[i].checked) count++;
+	}
+	return count;
+}
 
 // 휴가 승인
 function approvalVacation(){
+	
+	var chkList = document.getElementsByName("vno");
+	
+	// 체크박스가 하나도 체크 안되있을 시
+	if(checkboxOne(chkList)<1){
+		alert("변경할 휴가를 선택해주세요.");
+		return;
+	}
 	
 	var vacationForm = document.vacationForm;
 	vacationForm.action = "/Human/approvalVacation";
@@ -48,9 +68,22 @@ function approvalVacation(){
 
 // 휴가 거절
 function refuseVacation(){
+	
+	var chkList = document.getElementsByName("vno");
+	
+	// 체크박스가 하나도 체크 안되있을 시
+	if(checkboxOne(chkList)<1){
+		alert("변경할 휴가를 선택해주세요.");
+		return;
+	}
+		
 	var vacationForm = document.vacationForm;
 	vacationForm.action = "/Human/refuseVacation";
 	vacationForm.submit();
-	
+}
+
+
+function test() {
+	alert("Test");
 	
 }

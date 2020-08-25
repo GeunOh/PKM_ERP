@@ -8,6 +8,10 @@
   font-family: NotoSans-Regular;
   src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
+
+#departmentManager { color: red; }
+#departmentManager:before { background-color: red; }
+
 #wrap {font-family: NotoSans-Regular;}
 h1{margin-bottom: 3%;}
 
@@ -71,10 +75,6 @@ h1{margin-bottom: 3%;}
 #organizationInfo table { text-align: left; }
 #organizationInfo th { width: 63px; }
 #organizationInfo th, #organizationInfo td { padding: 20px; font-size: 17px;}
-
-
-#departmentManager { color: red; }
-#departmentManager:before { background-color: red; }
 
 /* 부서 등록 수정 삭제(팝업) */
 #popupBox {
