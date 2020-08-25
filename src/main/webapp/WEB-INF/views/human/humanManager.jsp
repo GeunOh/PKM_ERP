@@ -7,9 +7,12 @@
 <head>
 <jsp:include page="../common/headTag.jsp"/>
 <title>기본인사관리</title>
+<link rel="stylesheet" href="resources/css/plugin/fakeLoader.min.css">
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
+<script src="resources/js/plugin/fakeLoader.min.js"></script>
 </head>
 <body>
+	<div class="fakeLoader"></div>
 	<jsp:include page="../common/template.jsp"/>
 	<div id="wrap">
 		<h1>인사 관리</h1>
@@ -36,9 +39,6 @@
 							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -50,9 +50,6 @@
 							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -278,11 +275,6 @@
 						<input type="hidden" id="add-dept" name="add-dept" data-value="all" value="">
 						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
 						<ul style="max-height: 120px; overflow-y: scroll;">
-<!-- 							<li><a href="#" class="link-select" data-value="010">개발부</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="011">연구부</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="017">영업부</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="018">인사부</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="019">회계부</a></li> -->
 						</ul>
 						<i class="fas fa-angle-down searchAngle"></i>
 					</div>
@@ -293,11 +285,6 @@
 						<input type="hidden" id="add-rank" name="add-rank" data-value="all" value="">
 						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
 						<ul style="max-height: 120px; overflow-y: scroll;">
-<!-- 							<li><a href="#" class="link-select" data-value="010">010</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="011">011</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="017">017</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="018">018</a></li> -->
-<!-- 							<li><a href="#" class="link-select" data-value="019">019</a></li> -->
 						</ul>
 						<i class="fas fa-angle-down searchAngle"></i>
 					</div>
@@ -374,6 +361,18 @@
 		<div class="popupLayer"></div>
 	</form>
 	
+<script>
+$(document).ready(function () {
+	$.fakeLoader(
+	        {
+	          timeToHide:1200, //로딩중에 걸리는 시간, 1000 = 1초
+	          zIndex:999, // 순서
+	          spinner:"spinner3",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+	          bgColor:"#374258", //Hex, RGB or RGBA colors 배경색깔
+	        }
+	    );
+});
+</script>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
 </body>
 </html>
