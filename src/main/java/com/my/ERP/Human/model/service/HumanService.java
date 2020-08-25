@@ -56,4 +56,8 @@ public interface HumanService {
 
 	ArrayList<Vacation> vacationList();
 
+	int approvalVacation(String[] vnoList);
+
+	int refuseVacation(String[] vnoList);
+
 }

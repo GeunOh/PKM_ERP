@@ -103,7 +103,14 @@
 				<tbody>
 					<c:forEach items="${vList }" var="v">
 						<tr>
-							<td><input type="checkbox"></td>
+							<c:choose>
+								<c:when test="${v.status eq 'Y' or v.status eq 'F'}">
+									<td><input type="checkbox" name="vno" value=${v.vno } disabled></td>
+								</c:when>
+								<c:otherwise>
+									<td><input type="checkbox" name="vno" value=${v.vno }></td>
+								</c:otherwise>
+							</c:choose>
 							<td>${v.vType }</td>
 							<td>${v.dname }</td>
 							<td>${v.rname }</td>
@@ -120,7 +127,10 @@
 								<td>승인대기중</td>
 							</c:if>
 							<c:if test="${v.status eq 'Y'}">
-								<td>승인완료</td>
+								<td style="color:green">승인완료</td>
+							</c:if>
+							<c:if test="${v.status eq 'F'}">
+								<td style="color:red">승인거절</td>
 							</c:if>
 							
 							<td>${v.requestDate }</td>
@@ -153,8 +163,8 @@
 			</table>
 			<!-- // 휴가제출 목록 테이블 -->
 			<div class="buttons">
-				<button type="button">승인</button>
-				<button type="button">거절</button>
+				<button type="button" onclick="approvalVacation();">승인</button>
+				<button type="button" onclick="refuseVacation();">거절</button>
 			</div>
 		</form>
 	</div>

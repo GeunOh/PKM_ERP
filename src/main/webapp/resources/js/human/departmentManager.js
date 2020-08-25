@@ -50,9 +50,6 @@ $(".cancleBtn").on("click", function() {
 	$("#popupBox").hide();
 });
 
-//$('input[name="dcode"]').on('keyup',function(){
-//	alert("test");
-//});
 
 // 부서 정보 보여주기 기능
 function showDeptInfo(deptName) {

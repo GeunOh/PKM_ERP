@@ -75,6 +75,26 @@ public class HumanController {
 		return "vacationManager";
 	}
 	
+	// 휴가 승인
+	@RequestMapping("approvalVacation")
+	public String approvalVacation(@RequestParam("vno") String[] vnoList) {
+		
+		int result = hService.approvalVacation(vnoList);
+		System.out.println(result);
+		
+		return "redirect:/Human/vacationManager";
+	}
+	
+	// 휴가 거절
+	@RequestMapping("refuseVacation")
+	public String refuseVacation(@RequestParam("vno") String[] vnoList) {
+		
+		int result = hService.refuseVacation(vnoList);
+		System.out.println(result);
+		
+		return "redirect:/Human/vacationManager";
+	}
+	
 	// 직급관리
 	@RequestMapping("positionManager")
 	public String positionMain(Model model) {

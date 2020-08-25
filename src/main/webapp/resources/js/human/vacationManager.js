@@ -34,3 +34,23 @@ $('.selectBox ul').mouseleave(function(){
 	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).hide();
 })
+
+
+// 휴가 승인
+function approvalVacation(){
+	
+	var vacationForm = document.vacationForm;
+	vacationForm.action = "/Human/approvalVacation";
+	vacationForm.submit();
+	
+	
+}
+
+// 휴가 거절
+function refuseVacation(){
+	var vacationForm = document.vacationForm;
+	vacationForm.action = "/Human/refuseVacation";
+	vacationForm.submit();
+	
+	
+}

@@ -123,6 +123,14 @@ public class HumanDAO {
 		return (ArrayList)sqlSession.selectList("humanMapper.vacationList");
 	}
 
+	public int approvalVacation(SqlSessionTemplate sqlSession, String[] vnoList) {
+		return sqlSession.update("humanMapper.approvalVacation", vnoList);
+	}
+
+	public int refuseVacation(SqlSessionTemplate sqlSession, String[] vnoList) {
+		return sqlSession.update("humanMapper.refuseVacation", vnoList);
+	}
+
 	
 
 }

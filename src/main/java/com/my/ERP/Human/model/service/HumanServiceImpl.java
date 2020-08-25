@@ -155,5 +155,17 @@ public class HumanServiceImpl implements HumanService {
 	public ArrayList<Vacation> vacationList() {
 		return hDAO.vacationList(sqlSession);
 	}
+
+	// 휴가신청 승인
+	@Override
+	public int approvalVacation(String[] vnoList) {
+		return hDAO.approvalVacation(sqlSession, vnoList);
+	}
+	
+	// 휴가신청 거절
+	@Override
+	public int refuseVacation(String[] vnoList) {
+		return hDAO.refuseVacation(sqlSession, vnoList);
+	}
 	
 }
