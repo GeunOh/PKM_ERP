@@ -162,4 +162,8 @@
 	<select id="humanAddRankList" resultMap="rankResult">
 	 	SELECT * FROM TB_RANK
 	</select>
+	
+	<select id="Login" resultMap="humanResult">
+		SELECT * FROM SOLOUSER WHERE ENO = #{id} AND OUTYN = 'N'
+	</select>
 </mapper>

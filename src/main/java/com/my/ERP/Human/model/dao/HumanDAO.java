@@ -127,6 +127,10 @@ public class HumanDAO {
 		return (ArrayList)sqlSession.selectList("humanMapper.humanAddRankList");
 	}
 
+	public Human Login(SqlSessionTemplate sqlSession, String id) {
+		return sqlSession.selectOne("humanMapper.Login", id);
+	}
+
 	
 
 }

@@ -142,5 +142,10 @@ public class HumanServiceImpl implements HumanService {
 	public ArrayList<Rank> humanAddRankList() {
 		return hDAO.humanAddRankList(sqlSession);
 	}
+
+	@Override
+	public Human Login(String id) {
+		return hDAO.Login(sqlSession, id);
+	}
 	
 }

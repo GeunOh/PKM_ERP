@@ -51,4 +51,6 @@ public interface HumanService {
 
 	ArrayList<Rank> humanAddRankList();
 
+	Human Login(String id);
+
 }
