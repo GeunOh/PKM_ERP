@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -116,6 +117,10 @@ public class HumanDAO {
 
 	public int dcodeDupChk(SqlSessionTemplate sqlSession, String dcode) {
 		return sqlSession.selectOne("humanMapper.dcodeDupChk", dcode);
+	}
+
+	public ArrayList<Vacation> vacationList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.vacationList");
 	}
 
 	

@@ -29,6 +29,18 @@
 		<id column="RCODE" property="rcode"/>
 		<result column="RNAME" property="rname"/>
 	</resultMap>
+	
+	<resultMap type="Vacation" id="vacationResult">
+		<id column="ENO" property="eno" />
+		<result column="VTYPE" property="vType"/>
+		<result column="STARTDATE" property="startDate"/>
+		<result column="ENDDATE" property="endDate"/>
+		<result column="REASON" property="reason"/>
+		<result column="REQUESTDATE" property="requestDate"/>
+		<result column="STATUS" property="status"/>
+		<result column="DNAME" property="dname"/>
+		<result column="RNAME" property="rname"/>
+	</resultMap>
 
 	<select id="HumanListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER
@@ -167,5 +179,14 @@
 	<!-- 부서 중복되는지 조회  -->
 	<select id="dcodeDupChk" resultType="_int">
 		SELECT COUNT(*) FROM TB_DEPT WHERE dcode = #{dcode}
+	</select>
+	
+	<!-- 휴가 신청 목록 조회  -->
+	<select id="vacationList" resultMap="vacationResult">
+		SELECT U.ENAME ENO, VTYPE, V.STARTDATE, ENDDATE, REASON, REQUESTDATE, STATUS, D.DNAME, R.RNAME 
+		FROM TB_VACATION V, TB_USER U, TB_DEPT D, TB_RANK R
+		WHERE V.ENO = U.ENO
+		AND U.RCODE = R.RCODE
+		AND U.DCODE = D.DCODE
 	</select>
 </mapper>

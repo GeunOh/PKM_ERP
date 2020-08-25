@@ -11,6 +11,7 @@ import com.my.ERP.Human.model.dao.HumanDAO;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -146,8 +147,13 @@ public class HumanServiceImpl implements HumanService {
 	// 부서 수정시 부서번호 중복체크
 	@Override
 	public int dcodeDupChk(String dcode) {
-		// TODO Auto-generated method stub
 		return hDAO.dcodeDupChk(sqlSession, dcode);
+	}
+	
+	// 휴가신청목록 조회
+	@Override
+	public ArrayList<Vacation> vacationList() {
+		return hDAO.vacationList(sqlSession);
 	}
 	
 }
