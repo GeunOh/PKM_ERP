@@ -18,7 +18,6 @@ public class HumanDAO {
 	
 	// 부서 목록 조회
 	public ArrayList<Department> selectDepartmentList(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("humanMapper.selectDepartmentList");
 	}
 	
@@ -34,7 +33,6 @@ public class HumanDAO {
 	
 	// 해당 부서 정보 조회
 	public Department selectDepartment(String deptName, SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("humanMapper.selectDepartment", deptName);
 	}
 
@@ -52,39 +50,31 @@ public class HumanDAO {
 	}
 
 	public int selectPositionCount(SqlSessionTemplate sqlSession, String name) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("humanMapper.selectPositionCount", name);
 	}
 
 	public ArrayList<Rank> searchPosition(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
-		// TODO Auto-generated method stub
-		
 		return (ArrayList)sqlSession.selectList("humanMapper.searchPosition", hs);
 	}
 
 	public int postionListCount(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("humanMapper.postionListCount");
 	}
 
 	public ArrayList<Rank> positionList(SqlSessionTemplate sqlSession) {
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("humanMapper.positionList");
 	}
 	
 	// 부서 등록
 	public void addDept(SqlSessionTemplate sqlSession, Department dept) {
-		// TODO Auto-generated method stub
 		sqlSession.insert("humanMapper.addDept", dept);
 	}
 
 	public void delDept(SqlSessionTemplate sqlSession, String[] dnames) {
-		// TODO Auto-generated method stub
 		sqlSession.delete("humanMapper.delDept", dnames);
 	}
 
 	public void modifyDept(SqlSessionTemplate sqlSession, Department dept, String beforeDeptName) {
-		// TODO Auto-generated method stub
 		HashMap<String, String> hs = new HashMap<String, String>();
 		hs.put("dcode", dept.getDcode());
 		hs.put("dname", dept.getDname());
@@ -97,17 +87,14 @@ public class HumanDAO {
 	}
 
 	public void addPosition(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
-		// TODO Auto-generated method stub
 		sqlSession.insert("humanMapper.addPosition", hs);
 	}
 
 	public void deletePosition(SqlSessionTemplate sqlSession, String[] rcodeChk) {
-		// TODO Auto-generated method stub
 		sqlSession.delete("humanMapper.deletePosition", rcodeChk);
 	}
 
 	public ArrayList<Human> choiceRcode(SqlSessionTemplate sqlSession, String rcode) {
-		// TODO Auto-generated method stub
 		return (ArrayList)sqlSession.selectList("humanMapper.choiceRcode", rcode);
 	}
 	
@@ -125,6 +112,10 @@ public class HumanDAO {
 
 	public ArrayList<Rank> humanAddRankList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("humanMapper.humanAddRankList");
+	}
+
+	public int dcodeDupChk(SqlSessionTemplate sqlSession, String dcode) {
+		return sqlSession.selectOne("humanMapper.dcodeDupChk", dcode);
 	}
 
 	

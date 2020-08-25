@@ -54,10 +54,10 @@
 					<a href="/Human/departmentManager"><span id="departmentManager">부서관리</span></a>
 				</li>
 				<li>
-					<span>급여관리</span>
+					<a href="/Human/salaryManager"><span id="salaryManager">급여관리</span></a>
 				</li>
 				<li>
-					<span>휴가관리</span>
+					<a href="/Human/vacationManager"><span id="vacationManager">휴가관리</span></a>
 				</li>
 			</ul>
 		</li>

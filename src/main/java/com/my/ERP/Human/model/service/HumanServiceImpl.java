@@ -143,4 +143,11 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.humanAddRankList(sqlSession);
 	}
 	
+	// 부서 수정시 부서번호 중복체크
+	@Override
+	public int dcodeDupChk(String dcode) {
+		// TODO Auto-generated method stub
+		return hDAO.dcodeDupChk(sqlSession, dcode);
+	}
+	
 }

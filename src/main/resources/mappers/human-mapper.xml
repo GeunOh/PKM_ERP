@@ -162,4 +162,9 @@
 	<select id="humanAddRankList" resultMap="rankResult">
 	 	SELECT * FROM TB_RANK
 	</select>
+	
+	<!-- 부서 중복되는지 조회  -->
+	<select id="dcodeDupChk" resultType="_int">
+		SELECT COUNT(*) FROM TB_DEPT WHERE dcode = #{dcode}
+	</select>
 </mapper>

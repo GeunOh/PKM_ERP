@@ -248,6 +248,22 @@ public class HumanController {
 		return "redirect:/Human/departmentManager";
 	}
 	
+	// 부서코드 중복 체크
+	@RequestMapping("dcodeDupChk")
+	public void dcodeDupChk(@RequestParam("dcode") String dcode, HttpServletResponse response) {
+		
+		int result = hService.dcodeDupChk(dcode);
+		boolean chk = result>0 ? true : false;	// 부서가 중복되면 true, 아니면 false
+	
+		try {
+			response.getWriter().print(chk);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	//사원추가
 	@RequestMapping("humanInsert")
 	public String humanInsert(@ModelAttribute Human h, @RequestParam("profile_img") MultipartFile imgFile,
