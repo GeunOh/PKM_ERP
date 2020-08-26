@@ -157,8 +157,8 @@ public class HumanServiceImpl implements HumanService {
 	
 	// 휴가신청목록 조회
 	@Override
-	public ArrayList<Vacation> vacationList() {
-		return hDAO.vacationList(sqlSession);
+	public ArrayList<Vacation> vacationList(PageInfo pi) {
+		return hDAO.vacationList(sqlSession, pi);
 	}
 
 	// 휴가신청 승인
@@ -171,6 +171,20 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public int refuseVacation(String[] vnoList) {
 		return hDAO.refuseVacation(sqlSession, vnoList);
+	}
+	
+	// 휴가 검색 후 목록
+	@Override
+	public ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs) {
+		// TODO Auto-generated method stub
+		return hDAO.searchVacationList(sqlSession, hs);
+	}
+	
+	// 휴가 목록 전체 행 개수
+	@Override
+	public int vacationListCount() {
+		// TODO Auto-generated method stub
+		return hDAO.vacationListCount(sqlSession);
 	}
 	
 }

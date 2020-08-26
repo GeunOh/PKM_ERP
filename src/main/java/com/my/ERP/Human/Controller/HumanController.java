@@ -66,12 +66,33 @@ public class HumanController {
 		return "salaryManager";
 	}
 	
+	
 	// 휴가관리
 	@RequestMapping("vacationManager")
-	public String vacationMain(Model model) {
+	public String vacationMain(@RequestParam(value="page", required = false) Integer page, Model model) {
 		
-		ArrayList<Vacation> vList = hService.vacationList();
-		model.addAttribute("vList", vList);
+		// 페이징 해보기.
+		// 1. 목록의 전체 행 수를 구한다.
+		// 2. 구해온 행 개수로 페이징 정보를 계산하여 객체에 담습니다.
+		// 2-1. 이 때, 계산을 위해 현재 페이지 번호와 총 행 개수 매개변수로 줘야함
+		// 3. 기본 현재 페이지는 1입니다. 하지만 page의 값이 매개변수로 넘어왔을때 현재 페이지(currentPage)를 매개변수로 넘어온 값으로 지정합니다.
+		// 4. 현재 페이지에대한 페이징정보를 가지고 뿌려줄 List를 검색합니다.
+		
+		// 3
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		// 1
+		int vListCount = hService.vacationListCount();
+		System.out.println("휴가신청목록 개수 : " + vListCount);
+		
+		// 2
+		PageInfo pi = Pagenation.getPageInfo(currentPage, vListCount);
+		
+		// 4
+		ArrayList<Vacation> vList = hService.vacationList(pi);
+		model.addAttribute("vList", vList)
+			 .addAttribute("pi", pi);
 		
 		return "vacationManager";
 	}
@@ -88,12 +109,54 @@ public class HumanController {
 		return "redirect:/Human/vacationManager";
 	}
 	
+	// 휴가 검색
+	@RequestMapping("searchVacation")
+	public String searchVacation(@RequestParam("selectDept") String selectDept,
+								 @RequestParam("selectRank") String selectRank,
+								 @RequestParam("eno") String eno, @RequestParam("name") String name,
+								 @RequestParam("selectDate") String selectDate,
+								 @RequestParam(value="date", required = false) Date date,
+								 @RequestParam(value="date2", required = false) Date date2,
+								 Model model) {
+		
+		// 객체타입(Date)는 null, String은 공백으로 들어옴
+		// 검색옵션 객체 생성
+		SearchOption so = new SearchOption();
+		
+		System.out.println(selectDate);
+		if(selectDate.equals("dateAll")) {
+			so.setDateAll(selectDate);
+		} else if (selectDate.equals("dateSelect")) {
+			so.setDateSelect(selectDate);
+		} else {
+			System.out.println("===============selectDate ERROR===============");
+		}
+		
+		// 검색 조건들 hashMap에 저장
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("so",so);
+		hs.put("selectDept",selectDept);
+		hs.put("selectRank",selectRank);
+		hs.put("eno",eno);
+		hs.put("name",name);
+		hs.put("date",date);
+		hs.put("date2",date2);
+		
+		ArrayList<Vacation> vList = hService.searchVacationList(hs);
+		model.addAttribute("vList", vList);
+		
+		System.out.println(so);
+		return "vacationManager";
+	}
+	
 	// 휴가 거절
 	@RequestMapping("refuseVacation")
-	public String refuseVacation(@RequestParam("vno") String[] vnoList) {
+	public String refuseVacation(@RequestParam("vno") String[] vnoList, RedirectAttributes ra) {
 		
 		int result = hService.refuseVacation(vnoList);
-		System.out.println(result);
+		
+		String fail = "거절되었습니다.";
+		ra.addFlashAttribute("fail", fail);
 		
 		return "redirect:/Human/vacationManager";
 	}
