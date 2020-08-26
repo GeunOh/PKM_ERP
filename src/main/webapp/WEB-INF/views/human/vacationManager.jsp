@@ -157,6 +157,22 @@
 		</form>
 		<!-- 페이징 폼 -->
 		<div id="pagingForm">
+			<!-- 첫 페이지로 -->
+			<c:if test="${pi.currentPage > 1}">
+				<c:url var="start" value="${loc}">
+					<c:param name="page" value="1"/>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			
+			<!-- 10개씩 전 페이징 -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			
 			<!-- 기본 페이지-->
 			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
 				<c:if test="${ p eq pi.currentPage }">
@@ -169,6 +185,22 @@
 					<a class="pg_page" href="${pagination}">${p}</a>
 				</c:if>
 			</c:forEach>
+			
+			<!-- 10개 씩 다음 페이지로 -->
+			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 }">
+				<c:url var="next" value="${loc }">
+					<c:param name="page" value="${pi.endPage + 1}" />
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			
+			<!-- 마지막 페이지로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${loc}">
+					<c:param name="page" value="${pi.maxPage }" />
+				</c:url>
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
 		</div>
 		<!-- 알림창 -->
 		<div id="alertBox">
