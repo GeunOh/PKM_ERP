@@ -7,12 +7,12 @@
 <head>
 <jsp:include page="../common/headTag.jsp"/>
 <title>기본인사관리</title>
-<link rel="stylesheet" href="resources/css/plugin/fakeLoader.min.css">
+<!-- <link rel="stylesheet" href="resources/css/plugin/fakeLoader.min.css"> -->
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
-<script src="resources/js/plugin/fakeLoader.min.js"></script>
+<!-- <script src="resources/js/plugin/fakeLoader.min.js"></script> -->
 </head>
 <body>
-	<div class="fakeLoader"></div>
+<!-- 	<div class="fakeLoader"></div> -->
 	<jsp:include page="../common/template.jsp"/>
 	<div id="wrap">
 		<h1>인사 관리</h1>
@@ -362,16 +362,16 @@
 	</form>
 	
 <script>
-$(document).ready(function () {
-	$.fakeLoader(
-	        {
-	          timeToHide:1200, //로딩중에 걸리는 시간, 1000 = 1초
-	          zIndex:999, // 순서
-	          spinner:"spinner3",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
-	          bgColor:"#374258", //Hex, RGB or RGBA colors 배경색깔
-	        }
-	    );
-});
+// $(document).ready(function () {
+// 	$.fakeLoader(
+// 	        {
+// 	          timeToHide:1200, //로딩중에 걸리는 시간, 1000 = 1초
+// 	          zIndex:999, // 순서
+// 	          spinner:"spinner3",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
+// 	          bgColor:"#374258", //Hex, RGB or RGBA colors 배경색깔
+// 	        }
+// 	    );
+// });
 </script>
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
 </body>

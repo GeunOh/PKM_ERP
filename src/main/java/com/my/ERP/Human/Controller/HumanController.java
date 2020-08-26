@@ -175,6 +175,8 @@ public class HumanController {
 		hs.put("date",date);
 		hs.put("date2",date2);
 		
+		System.out.println(selectRank);
+		System.out.println(selectDept);
 		
 		int listCount = hService.SearchHumanListCount(hs);
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);

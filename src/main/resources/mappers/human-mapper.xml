@@ -15,6 +15,8 @@
 		<result column="OUTYN" property="outyn"/>
 		<result column="RCODE" property="rcode"/>
 		<result column="DCODE" property="dcode"/>
+		<result column="ORIGINALNAME_FILE" property="originalFileName"/>
+		<result column="RENAME_FILE" property="renameFileName"/>
 	</resultMap>
 	
 	<resultMap type="Department" id="deptResult">
@@ -65,15 +67,15 @@
 	</select>
 	
 	<select id="SearchHumanListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_USER
+		SELECT COUNT(*) FROM HUMANLIST
 		<where>
 			<if test="so.all != null"></if>
 			<if test="so.inUser != null">AND OUTYN = 'N'</if>
 			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
-			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
-			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="dept != null and dept != ''">AND DCODE = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RCODE = #{rank}</if>
 			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
 			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
 			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
@@ -88,8 +90,8 @@
 			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
-			<if test="dept != null and dept != ''">AND DNAME = #{dept}</if>
-			<if test="rank != null and rank != ''">AND RNAME = #{rank}</if>
+			<if test="dept != null and dept != ''">AND DCODE = #{dept}</if>
+			<if test="rank != null and rank != ''">AND RCODE = #{rank}</if>
 			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
 			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
 			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
