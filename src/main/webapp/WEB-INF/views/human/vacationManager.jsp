@@ -187,7 +187,7 @@
 			</c:forEach>
 			
 			<!-- 10개 씩 다음 페이지로 -->
-			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 }">
+			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 and pi.maxPage ne pi.endPage }">
 				<c:url var="next" value="${loc }">
 					<c:param name="page" value="${pi.endPage + 1}" />
 				</c:url>
