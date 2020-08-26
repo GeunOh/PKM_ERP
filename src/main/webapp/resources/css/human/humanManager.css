@@ -19,7 +19,7 @@ input:-webkit-autofill:active {
      -webkit-box-shadow: 0 0 0px 1000px white inset !important;
      -webkit-text-fill-color: #000 !important;
 }
-
+#human{display: block;}
 h1{margin-bottom: 3%;}
 #Search-back{
 	width: 80%; height: 100px;
