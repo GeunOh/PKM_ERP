@@ -17,10 +17,10 @@
 					</a>
 				</li>
 				<li>
-					<img class="profile" alt="" src="http://placehold.it/35x35">
+					<img class="profile" alt="" src="resources/Profile-images/${loginUser.renameFileName}">
 				</li>
 				<li onclick="showMenu();">
-					<span>Sanghoo Moon</span>
+					<span>${loginUser.name}님</span>
 					<i class="fas fa-angle-down" aria-hidden="true"></i>
 					<div id="dropdown-menu">
 						<ul>

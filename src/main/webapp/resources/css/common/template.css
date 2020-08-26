@@ -28,7 +28,7 @@
 .fa-power-off { font-size: 20px; }
 .profile { border-radius: 50%; width: 35px; height: 35px; vertical-align: middle; }
 
-.menu_option li:nth-child(3) { position: relative; }
+.menu_option li:nth-child(3) { position: relative; cursor: pointer; }
 .menu_option li:nth-child(3) span, .menu_option li:nth-child(3) i { cursor: pointer; }
 
 /* 상단헤더 드롭다운 메뉴 */
