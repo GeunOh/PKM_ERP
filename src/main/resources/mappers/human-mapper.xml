@@ -39,6 +39,7 @@
 		<result column="REASON" property="reason"/>
 		<result column="REQUESTDATE" property="requestDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="USEDAY" property="useDay"/>
 		<result column="DNAME" property="dname"/>
 		<result column="RNAME" property="rname"/>
 	</resultMap>

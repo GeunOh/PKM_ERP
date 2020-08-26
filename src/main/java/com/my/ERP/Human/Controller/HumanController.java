@@ -90,10 +90,12 @@ public class HumanController {
 	
 	// 휴가 거절
 	@RequestMapping("refuseVacation")
-	public String refuseVacation(@RequestParam("vno") String[] vnoList) {
+	public String refuseVacation(@RequestParam("vno") String[] vnoList, RedirectAttributes ra) {
 		
 		int result = hService.refuseVacation(vnoList);
-		System.out.println(result);
+		
+		String fail = "거절되었습니다.";
+		ra.addFlashAttribute("fail", fail);
 		
 		return "redirect:/Human/vacationManager";
 	}

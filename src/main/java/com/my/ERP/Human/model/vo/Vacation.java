@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Vacation {
 	
 	// 필드
-	private String vno;
+	private int vno;			 // 시퀀스
     private String eno;    		 // 사원 번호    
     private String vType;        // 휴가 종류
     private Date startDate;		 // 시작일
@@ -13,21 +13,23 @@ public class Vacation {
     private String reason;		 // 휴가 사유
     private Date requestDate;	 // 신청일
     private String status;		 // 휴가 처리 상태
-    
+    private String useDay;		 // 휴가 사용일수
+   
     private String dname;	// 부서명
     private String rname;	// 직급명
     
 	// 생성자
 	public Vacation() {}
-
+	
 	// get, set()
-	public String getVno() {
+    public int getVno() {
 		return vno;
 	}
 
-	public void setVno(String vno) {
+	public void setVno(int vno) {
 		this.vno = vno;
 	}
+
 	public String getEno() {
 		return eno;
 	}
@@ -84,6 +86,14 @@ public class Vacation {
 		this.status = status;
 	}
 
+	public String getUseDay() {
+		return useDay;
+	}
+
+	public void setUseDay(String useDay) {
+		this.useDay = useDay;
+	}
+
 	public String getDname() {
 		return dname;
 	}
@@ -103,9 +113,13 @@ public class Vacation {
 	@Override
 	public String toString() {
 		return "Vacation [vno=" + vno + ", eno=" + eno + ", vType=" + vType + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", reason=" + reason + ", requestDate=" + requestDate + ", status=" + status + ", dname="
-				+ dname + ", rname=" + rname + "]";
+				+ endDate + ", reason=" + reason + ", requestDate=" + requestDate + ", status=" + status + ", useDay="
+				+ useDay + ", dname=" + dname + ", rname=" + rname + "]";
 	}
+
+	
+
+	
 
 	
 }

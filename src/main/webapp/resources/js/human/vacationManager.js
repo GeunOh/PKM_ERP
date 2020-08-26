@@ -83,9 +83,3 @@ function refuseVacation(){
 	vacationForm.action = "/Human/refuseVacation";
 	vacationForm.submit();
 }
-
-
-function test() {
-	alert("Test");
-	
-}

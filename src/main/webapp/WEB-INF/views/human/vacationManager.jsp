@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,11 +116,7 @@
 							<td>${v.eno }</td>
 							<td>${v.startDate }</td>
 							<td>${v.endDate }</td>
-							<td>
-						        <fmt:parseNumber value="${v.startDate.time / (1000*60*60*24)}" integerOnly="true" var="startDate" scope="request" />
-						        <fmt:parseNumber value="${v.endDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate" scope="request" />
-								${endDate - startDate +1}
-							</td>
+							<td>${v.useDay}</td>
 							
 							<c:if test="${v.status eq 'N'}">
 								<td>승인대기중</td>
@@ -172,6 +167,7 @@
 		</div>
 		<script type="text/javascript">
 			var success = "${success}";
+			var fail = "${fail}";
 			
 			if(success!='') {
 				$("#alertBox p").text(success);
@@ -179,8 +175,16 @@
 				setTimeout(function(){
 					$("#alertBox").fadeOut();
 				}, 3000);
-				
 			}
+			
+			if(fail!=''){
+				$("#alertBox p").text(fail);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+			}
+			
 		</script>
 	</div>
 	<!-- // wrap  -->
