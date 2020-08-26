@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,16 +19,13 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/SearchHuman">
+				<form action="/Human/searchVacation">
 					<div class="search-area">
 						<span class="title">부서</span>
 						<div class="selectBox wid_150">
 							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -41,9 +37,6 @@
 							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -60,12 +53,11 @@
 					</div>
 					
 					<br>
-					
 			
 					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">조회일자</span>
 						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll">
+							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
@@ -117,11 +109,7 @@
 							<td>${v.eno }</td>
 							<td>${v.startDate }</td>
 							<td>${v.endDate }</td>
-							<td>
-						        <fmt:parseNumber value="${v.startDate.time / (1000*60*60*24)}" integerOnly="true" var="startDate" scope="request" />
-						        <fmt:parseNumber value="${v.endDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate" scope="request" />
-								${endDate - startDate +1}
-							</td>
+							<td>${v.useDay}</td>
 							
 							<c:if test="${v.status eq 'N'}">
 								<td>승인대기중</td>
@@ -167,11 +155,28 @@
 				<button type="button" onclick="refuseVacation();">거절</button>
 			</div>
 		</form>
+		<!-- 페이징 폼 -->
+		<div id="pagingForm">
+			<!-- 기본 페이지-->
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="${loc}">
+						<c:param name="page" value="${p}"/>
+					</c:url>
+					<a class="pg_page" href="${pagination}">${p}</a>
+				</c:if>
+			</c:forEach>
+		</div>
+		<!-- 알림창 -->
 		<div id="alertBox">
 			<p></p>
 		</div>
 		<script type="text/javascript">
 			var success = "${success}";
+			var fail = "${fail}";
 			
 			if(success!='') {
 				$("#alertBox p").text(success);
@@ -179,7 +184,14 @@
 				setTimeout(function(){
 					$("#alertBox").fadeOut();
 				}, 3000);
-				
+			}
+			
+			if(fail!=''){
+				$("#alertBox p").text(fail);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
 			}
 		</script>
 	</div>
