@@ -173,4 +173,11 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.refuseVacation(sqlSession, vnoList);
 	}
 	
+	// 휴가 검색 후 목록
+	@Override
+	public ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs) {
+		// TODO Auto-generated method stub
+		return hDAO.searchVacationList(sqlSession, hs);
+	}
+	
 }

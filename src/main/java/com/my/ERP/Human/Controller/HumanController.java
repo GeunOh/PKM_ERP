@@ -88,6 +88,46 @@ public class HumanController {
 		return "redirect:/Human/vacationManager";
 	}
 	
+	// 휴가 검색
+	@RequestMapping("searchVacation")
+	public String searchVacation(@RequestParam("selectDept") String selectDept,
+								 @RequestParam("selectRank") String selectRank,
+								 @RequestParam("eno") String eno, @RequestParam("name") String name,
+								 @RequestParam("selectDate") String selectDate,
+								 @RequestParam(value="date", required = false) Date date,
+								 @RequestParam(value="date2", required = false) Date date2,
+								 Model model) {
+		
+		// 객체타입(Date)는 null, String은 공백으로 들어옴
+		// 검색옵션 객체 생성
+		SearchOption so = new SearchOption();
+		
+		System.out.println(selectDate);
+		if(selectDate.equals("dateAll")) {
+			so.setDateAll(selectDate);
+		} else if (selectDate.equals("dateSelect")) {
+			so.setDateSelect(selectDate);
+		} else {
+			System.out.println("===============selectDate ERROR===============");
+		}
+		
+		// 검색 조건들 hashMap에 저장
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("so",so);
+		hs.put("selectDept",selectDept);
+		hs.put("selectRank",selectRank);
+		hs.put("eno",eno);
+		hs.put("name",name);
+		hs.put("date",date);
+		hs.put("date2",date2);
+		
+		ArrayList<Vacation> vList = hService.searchVacationList(hs);
+		model.addAttribute("vList", vList);
+		
+		System.out.println(so);
+		return "vacationManager";
+	}
+	
 	// 휴가 거절
 	@RequestMapping("refuseVacation")
 	public String refuseVacation(@RequestParam("vno") String[] vnoList, RedirectAttributes ra) {

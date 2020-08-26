@@ -135,6 +135,11 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.refuseVacation", vnoList);
 	}
 
+	public ArrayList<Vacation> searchVacationList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		System.out.println(hs.get("selectDept"));
+		return (ArrayList)sqlSession.selectList("humanMapper.searchVacationList", hs);
+	}
+
 	
 
 }

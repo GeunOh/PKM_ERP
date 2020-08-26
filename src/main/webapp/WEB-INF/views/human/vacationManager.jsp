@@ -19,16 +19,13 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/SearchHuman">
+				<form action="/Human/searchVacation">
 					<div class="search-area">
 						<span class="title">부서</span>
 						<div class="selectBox wid_150">
 							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -40,9 +37,6 @@
 							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="all">전체</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="in">재직</a></li> -->
-<!-- 								<li><a href="#" class="link-select wid_150" data-value="out">퇴직</a></li> -->
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -59,12 +53,11 @@
 					</div>
 					
 					<br>
-					
 			
 					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">조회일자</span>
 						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll">
+							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
