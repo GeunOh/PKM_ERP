@@ -184,7 +184,7 @@ h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}
 .buttons button:first-child {
 	margin-right: 10px;
 }
-/*  */
+/* 알림창 */
 #alertBox {
 	display:none;
  	font-family: NotoSans-Regular;
@@ -197,5 +197,34 @@ h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}
     right: 43%;
     border-radius: 3px;
 }
-
+/* 페이징버튼 */
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+.pg_current {
+    display: inline-block;
+    background: #282c34;
+    border: 1px solid #282c34;
+    color: #fff;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.pg_page {
+	display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #959595;
+    font-size: 1.083em;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.pg_page:hover {
+	background-color: #dadada;
+}
 
