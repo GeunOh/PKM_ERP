@@ -37,9 +37,6 @@ public class HomeController {
 	@RequestMapping("LoginForm")
 	public String LoginForm(@CookieValue(value="saveId", required=false) Cookie saveId, Model model, HttpServletRequest request) {
 		model.addAttribute("saveId", saveId);
-		HttpSession session = request.getSession();
-		Human h = (Human)session.getAttribute("loginUser");
-		System.out.println(h);
 		return "LoginForm";
 	}
 	

@@ -27,7 +27,6 @@ public class HumanServiceImpl implements HumanService {
 	// 부서 목록 조회
 	@Override
 	public ArrayList<Department> showDepartmentList() {
-		// TODO Auto-generated method stub
 		return hDAO.selectDepartmentList(sqlSession);
 	}
 	
@@ -54,66 +53,56 @@ public class HumanServiceImpl implements HumanService {
 	// 해당 부서 정보 조회
 	@Override
 	public Department showDepartment(String deptName) {
-		// TODO Auto-generated method stub
 		return hDAO.selectDepartment(deptName, sqlSession);
 	}
 
 	@Override
 	public int searchPositionCount(String name) {
-		// TODO Auto-generated method stub
 		return hDAO.selectPositionCount(sqlSession, name);
 	}
 
 	@Override
 	public ArrayList<Rank> searchPosition(HashMap<String, String> hs) {
-		// TODO Auto-generated method stub
 		return hDAO.searchPosition(sqlSession, hs);
 	}
 
 	@Override
 	public int postionListCount() {
-		// TODO Auto-generated method stub
 		return hDAO.postionListCount(sqlSession);
 	}
 
 	@Override
 	public ArrayList<Rank> positionList() {
-		// TODO Auto-generated method stub
 		return hDAO.positionList(sqlSession);
 	}
 	
 	// 부서 등록 서비스
 	@Override
 	public void addDept(Department dept) {
-		// TODO Auto-generated method stub
 		hDAO.addDept(sqlSession, dept);
 	}
 	
 	// 부서 삭제 서비스
 	@Override
 	public void delDept(String[] dnames) {
-		// TODO Auto-generated method stub
 		hDAO.delDept(sqlSession, dnames);
 	}
 	
 	// 부서 정보 수정 서비스
 	@Override
 	public void modifyDept(Department dept, String beforeDeptName) {
-		// TODO Auto-generated method stub
 		hDAO.modifyDept(sqlSession, dept, beforeDeptName);
 	}
 	
 	// 직급 추가 서비스
 	@Override
 	public void addPosition(HashMap<String, String> hs) {
-		// TODO Auto-generated method stub
 		hDAO.addPosition(sqlSession, hs);
 	}
 	
 	// 직급 삭제 서비스
 	@Override
 	public void deletePosition(String[] rcodeChk) {
-		// TODO Auto-generated method stub
 		hDAO.deletePosition(sqlSession, rcodeChk);
 	}
 
@@ -125,7 +114,6 @@ public class HumanServiceImpl implements HumanService {
 	// 직급 목록 선택 시 사원 목록 조회
 	@Override
 	public ArrayList<Human> choiceRcode(String rcode) {
-		// TODO Auto-generated method stub
 		return hDAO.choiceRcode(sqlSession, rcode);
 	}
 
@@ -176,14 +164,12 @@ public class HumanServiceImpl implements HumanService {
 	// 휴가 검색 후 목록
 	@Override
 	public ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs) {
-		// TODO Auto-generated method stub
 		return hDAO.searchVacationList(sqlSession, hs);
 	}
 	
 	// 휴가 목록 전체 행 개수
 	@Override
 	public int vacationListCount() {
-		// TODO Auto-generated method stub
 		return hDAO.vacationListCount(sqlSession);
 	}
 	
