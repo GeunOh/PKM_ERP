@@ -3,6 +3,7 @@ package com.my.ERP;
 import java.io.PrintWriter;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Human.model.service.HumanService;
@@ -33,8 +35,11 @@ public class HomeController {
 	private PasswordEncoder passwordEncoder;
 	
 	@RequestMapping("LoginForm")
-	public String LoginForm(@CookieValue(value="saveId", required=false) Cookie saveId, Model model) {
+	public String LoginForm(@CookieValue(value="saveId", required=false) Cookie saveId, Model model, HttpServletRequest request) {
 		model.addAttribute("saveId", saveId);
+		HttpSession session = request.getSession();
+		Human h = (Human)session.getAttribute("loginUser");
+		System.out.println(h);
 		return "LoginForm";
 	}
 	
@@ -74,8 +79,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping("Logout")
-	public String Logout(HttpSession session) {
-		session.invalidate();
+	public String Logout(SessionStatus status) {
+		status.setComplete();
 		return "redirect:/LoginForm";
 	}
 }

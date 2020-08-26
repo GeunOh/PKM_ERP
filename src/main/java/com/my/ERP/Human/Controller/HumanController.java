@@ -84,7 +84,6 @@ public class HumanController {
 		
 		// 1
 		int vListCount = hService.vacationListCount();
-		System.out.println("휴가신청목록 개수 : " + vListCount);
 		
 		// 2
 		PageInfo pi = Pagenation.getPageInfo(currentPage, vListCount);
@@ -206,7 +205,6 @@ public class HumanController {
 							  @RequestParam(value="date", required = false) Date date,
 							  @RequestParam(value="date2", required = false) Date date2
 			) {
-		System.out.println(name);
 		int currentPage = 1;
 		
 		if(page != null) currentPage = page;
@@ -237,9 +235,6 @@ public class HumanController {
 		hs.put("name",name);
 		hs.put("date",date);
 		hs.put("date2",date2);
-		
-		System.out.println(selectRank);
-		System.out.println(selectDept);
 		
 		int listCount = hService.SearchHumanListCount(hs);
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
