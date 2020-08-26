@@ -225,4 +225,9 @@
 		</where>
 	</select>
 	
+	<!-- 휴가 신청 목록 전체 행 개수  -->
+	<select id="vacationListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_VACATION
+	</select>
+	
 </mapper>

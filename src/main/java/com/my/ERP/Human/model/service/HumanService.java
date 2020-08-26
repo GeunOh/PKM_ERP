@@ -56,12 +56,14 @@ public interface HumanService {
 	
 	int dcodeDupChk(String dcode);
 
-	ArrayList<Vacation> vacationList();
+	ArrayList<Vacation> vacationList(PageInfo pi);
 
 	int approvalVacation(String[] vnoList);
 
 	int refuseVacation(String[] vnoList);
 
 	ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs);
+
+	int vacationListCount();
 
 }

@@ -66,12 +66,33 @@ public class HumanController {
 		return "salaryManager";
 	}
 	
+	
 	// 휴가관리
 	@RequestMapping("vacationManager")
-	public String vacationMain(Model model) {
+	public String vacationMain(@RequestParam(value="page", required = false) Integer page, Model model) {
 		
-		ArrayList<Vacation> vList = hService.vacationList();
-		model.addAttribute("vList", vList);
+		// 페이징 해보기.
+		// 1. 목록의 전체 행 수를 구한다.
+		// 2. 구해온 행 개수로 페이징 정보를 계산하여 객체에 담습니다.
+		// 2-1. 이 때, 계산을 위해 현재 페이지 번호와 총 행 개수 매개변수로 줘야함
+		// 3. 기본 현재 페이지는 1입니다. 하지만 page의 값이 매개변수로 넘어왔을때 현재 페이지(currentPage)를 매개변수로 넘어온 값으로 지정합니다.
+		// 4. 현재 페이지에대한 페이징정보를 가지고 뿌려줄 List를 검색합니다.
+		
+		// 3
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		// 1
+		int vListCount = hService.vacationListCount();
+		System.out.println("휴가신청목록 개수 : " + vListCount);
+		
+		// 2
+		PageInfo pi = Pagenation.getPageInfo(currentPage, vListCount);
+		
+		// 4
+		ArrayList<Vacation> vList = hService.vacationList(pi);
+		model.addAttribute("vList", vList)
+			 .addAttribute("pi", pi);
 		
 		return "vacationManager";
 	}

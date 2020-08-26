@@ -29,6 +29,8 @@ public class HumanDAO {
 	public ArrayList<Human> HumanList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		System.out.println("offset : " + offset);
+		System.out.println("pi.getBoardLimit() : " + pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("humanMapper.HumanList", null, rowBounds);
 	}
 	
@@ -123,8 +125,14 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.dcodeDupChk", dcode);
 	}
 
-	public ArrayList<Vacation> vacationList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("humanMapper.vacationList");
+	public ArrayList<Vacation> vacationList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		
+		// 마이바티스에서 제공하는 RowBounds 객체를 사용합니다. 파라미터로 가져오고싶은 구간을 설정합니다.
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		System.out.println("offset : " + offset);
+		System.out.println("pi.getBoardLimit() : " + pi.getBoardLimit());
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("humanMapper.vacationList", null, rowBounds);
 	}
 
 	public int approvalVacation(SqlSessionTemplate sqlSession, String[] vnoList) {
@@ -136,8 +144,11 @@ public class HumanDAO {
 	}
 
 	public ArrayList<Vacation> searchVacationList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
-		System.out.println(hs.get("selectDept"));
 		return (ArrayList)sqlSession.selectList("humanMapper.searchVacationList", hs);
+	}
+
+	public int vacationListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("humanMapper.vacationListCount");
 	}
 
 	

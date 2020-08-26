@@ -155,6 +155,22 @@
 				<button type="button" onclick="refuseVacation();">거절</button>
 			</div>
 		</form>
+		<!-- 페이징 폼 -->
+		<div id="pagingForm">
+			<!-- 기본 페이지-->
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="${loc}">
+						<c:param name="page" value="${p}"/>
+					</c:url>
+					<a class="pg_page" href="${pagination}">${p}</a>
+				</c:if>
+			</c:forEach>
+		</div>
+		<!-- 알림창 -->
 		<div id="alertBox">
 			<p></p>
 		</div>
@@ -177,7 +193,6 @@
 					$("#alertBox").fadeOut();
 				}, 3000);
 			}
-			
 		</script>
 	</div>
 	<!-- // wrap  -->
