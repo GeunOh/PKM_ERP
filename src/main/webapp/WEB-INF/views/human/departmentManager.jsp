@@ -16,7 +16,7 @@
 	
 	<!-- wrap -->
 	<div id="wrap">
-		<h1>부서관리</h1>
+		<h1>부서 관리</h1>
 		<div id="department-wrap">
 			<!-- 조직도 -->
 			<div id="organizationChart">

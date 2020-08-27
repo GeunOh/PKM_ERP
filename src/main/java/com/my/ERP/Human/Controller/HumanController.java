@@ -391,6 +391,14 @@ public class HumanController {
 		return "salaryManager";
 	}
 	
+	/**
+	 * 	[ ========== 근 태 관 리 ========== ]
+	 */	
+	// 근태관리
+	@RequestMapping("workInOutManager")
+	public String workInOut() {
+		return "workInOutManager";
+	}
 	
 	/**
 	 * 	[ ========== 휴 가 관 리 ========== ]

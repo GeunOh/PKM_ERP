@@ -57,6 +57,9 @@
 					<a href="/Human/salaryManager"><span id="salaryManager">급여관리</span></a>
 				</li>
 				<li>
+					<a href="/Human/workInOutManager"><span id="workInOutManager">근태관리</span></a>
+				</li>
+				<li>
 					<a href="/Human/vacationManager"><span id="vacationManager">휴가관리</span></a>
 				</li>
 			</ul>
