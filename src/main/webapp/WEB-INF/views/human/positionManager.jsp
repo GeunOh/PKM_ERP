@@ -16,7 +16,7 @@
 	
 	<!-- wrap  -->
 	<div id="wrap">
-		<h1>직급관리</h1>
+		<h1>직급 관리</h1>
 		<!-- 검색영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
