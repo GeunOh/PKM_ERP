@@ -32,134 +32,112 @@
 	
 	<!-- wrap -->
 	<div id="wrap">
-		<h1>마이페이지</h1>
-		<!-- 기본정보수정 -->
-		<h2>기본정보수정</h2>
-		<div id="myInfo-wrap">
-			<form action="">
-				<table>
-					<colgroup>
-						<col width="10%">
-						<col width="7%">
-						<col>
-						<col width="7%">
-						<col>
-						<col width="7%">
-						<col>
-					</colgroup>
+		<h1>내 공간</h1>
+		<div id="leftBox">
+			<!-- 프로필 -->
+			<div id="profileBox" class="content_Box">
+				<h2>내 정보</h2>
+				<table id="profileTable">
 					<tr>
-						<td rowspan="11" id="image-col">
-							<img src="http://placehold.it/120x150">
-							<p>120 * 150</p>
-							<a>사진변경</a>
+						<td rowspan="3">
+							<img width="200px" height="230px" src="resources/Profile-images/${loginUser.renameFileName }">
 						</td>
-						<th>사번</th>
-						<td>000001</td>
+						<th>사원번호</th>
+						<td>2</td>
+						<th>사원명</th>
+						<td>4</td>
 						<th>이메일</th>
-						<td colspan="4">spring@naver.com</td>
+						<td>6</td>
 					</tr>
 					<tr>
-						<th>성명</th>
-						<td>스프링</td>
-						<th>주민번호</th>
-						<td colspan="4">960416 - ●●●●●●●</td>
-					</tr>
-					<tr>
-						<th>영문성명</th>
-						<td>Spring</td>
-						<th>표준시각</th>
-						<td colspan="4">한국/서울</td>
-					</tr>
-					<tr>
-						<th>소속법인</th>
-						<td>PKM company</td>
-						<th>소속</th>
-						<td>PKM Development</td>
-						<th>직위</th>
-						<td>사원</td>
-					</tr>
-					<tr>
-						<th>직무</th>
-						<td>웹 개발</td>
-						<th>재직여부</th>
-						<td>재직</td>
-						<th>언어</th>
-						<td>한국어</td>
-					</tr>
-					<tr>
-						<th>성별</th>
-						<td>남자</td>
-						<th>양/음력</th>
-						<td>양력</td>
-						<th>생년월일</th>
-						<td>1996-04-16</td>
-					</tr>   
-					<tr>
-						<th>계좌번호</th>
-						<td colspan="5">111-111-51415</td>
-					</tr>
-					<tr>
+						<th>부서명</th>
+						<td>2</td>
+						<th>직급</th>
+						<td>4</td>
 						<th>입사일</th>
-						<td>2020-08-20</td>
-						<th>전화번호</th>
-						<td>02-111-2222</td>
-						<th>휴대전화</th>
-						<td>010-444-7777</td>
-					</tr>   
-					<tr>
-						<th>호봉</th>
-						<td>1</td>
-						<th>타메일</th>
-						<td colspan="4">9</td>
+						<td>6</td>
 					</tr>
 					<tr>
-						<th>결혼여부</th>
-						<td>미혼</td>
-						<th>결혼기념일</th>
-						<td>~</td>
-						<th>우편번호</th>
-						<td>1</td>
-					</tr>
-					<tr>
+						<th>핸드폰번호</th>
+						<td>2</td>
 						<th>주소</th>
-						<td colspan="2">1</td>
-						<th>상세주소</th>
-						<td colspan="2">11</td>
+						<td>4</td>
+						<th>생년월일</th>
+						<td>6</td>
 					</tr>
 				</table>
-				<a class="buttons" id="modifyBtn">수정완료</a>	
-			</form>
+			</div>
+			<!-- 공지사항  -->
+			<div id="noticeBox" class="content_Box">
+				<h2>공지사항</h2>
+				<!-- 테이블 -->
+				<table id="noticeTable">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>게시날짜</th>
+							<th>조회수</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td>test 제목</td>
+							<td>2020-08-27</td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>test 제목</td>
+							<td>2020-08-27</td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td>test 제목</td>
+							<td>2020-08-27</td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td>test 제목</td>
+							<td>2020-08-27</td>
+							<td>5</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<!-- // 기본정보수정 -->
-		<!-- 휴가관리-->
-		<h2>휴가관리</h2>
-		<div id="vacation-wrap">
-			<select class="justselect">
-				<option>2020</option>
-				<option>2019</option>
-			</select>
-			<p>&nbsp;연도별 휴가 사용내역을 확인합니다.</p>
-			<!-- 총 휴가 일수 -->
-			<div id="total-vacation" class="day-boxs">
-				<i class="fas fa-plane-departure"></i>
-				<h3>총 휴가 일 수</h3><br>
-				<p>15일</p>
+		<div id="rightBox">
+			<!-- 출퇴근 -->
+			<div id="commuteBox" class="content_Box">
+				<h2>출퇴근</h2>
+				<div id="sysdateBox">
+					<span>현재시간 10:42 2020-08-27 TUE</span>
+				</div>
+				<div id="buttons">
+					<button>ON</button>
+					<button>OFF</button>
+				</div>
 			</div>
-			<!-- 사용 휴가 일수 -->
-			<div id="use-vacation" class="day-boxs">
-				<i class="fas fa-plane-departure"></i>
-				<h3>사용 휴가 일 수</h3>
-				<p>3일</p>
+			<!-- 남은 휴가 일수 -->
+			<div id="vacationDayBox" class="content_Box">
+				<h2>연차 정보</h2>
+				<div>
+					<p>10일</p>
+					<span>남은 연차</span>
+				</div>
 			</div>
-			<!-- 잔여 휴가 일수 -->
-			<div id="residual-vacation" class="day-boxs">
-				<i class="fas fa-plane-departure"></i>
-				<h3>잔여 휴가 일 수</h3>
-				<p>12일</p>
+			<!-- 휴가 신청 -->
+			<div id="vacationUseBox" class="content_Box">
+				<h2>연차 신청</h2>
+				<div>
+					<i class="fas fa-plane"></i>
+				</div>
 			</div>
-			<a class="buttons" id="requestBtn" onclick="request();">휴가신청</a>
 		</div>
-		<!-- // 휴가관리 -->
+		
 		<!-- 휴가신청란 -->
 		<div id="request-box">
 			<div id="dim-box"></div>

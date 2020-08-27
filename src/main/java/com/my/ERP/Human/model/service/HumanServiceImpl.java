@@ -163,14 +163,21 @@ public class HumanServiceImpl implements HumanService {
 	
 	// 휴가 검색 후 목록
 	@Override
-	public ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs) {
-		return hDAO.searchVacationList(sqlSession, hs);
+	public ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs, PageInfo pi) {
+		return hDAO.searchVacationList(sqlSession, hs, pi);
 	}
 	
 	// 휴가 목록 전체 행 개수
 	@Override
 	public int vacationListCount() {
 		return hDAO.vacationListCount(sqlSession);
+	}
+	
+	// 휴가 검색 결과 행 개수
+	@Override
+	public int searchVacationListCount(HashMap<String, Object> hs) {
+		// TODO Auto-generated method stub
+		return hDAO.searchVacationListCount(sqlSession, hs);
 	}
 	
 }

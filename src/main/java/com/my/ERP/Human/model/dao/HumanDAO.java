@@ -142,12 +142,19 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.refuseVacation", vnoList);
 	}
 
-	public ArrayList<Vacation> searchVacationList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
-		return (ArrayList)sqlSession.selectList("humanMapper.searchVacationList", hs);
+	public ArrayList<Vacation> searchVacationList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("humanMapper.searchVacationList", hs, rowBounds);
 	}
 
 	public int vacationListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("humanMapper.vacationListCount");
+	}
+
+	public int searchVacationListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("humanMapper.searchVacationListCount",hs);
 	}
 
 	

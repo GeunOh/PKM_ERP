@@ -232,4 +232,16 @@
 		SELECT COUNT(*) FROM TB_VACATION
 	</select>
 	
+	<select id="searchVacationListCount" resultType="_int">
+		SELECT COUNT(*) FROM VACATIONLIST
+		<where>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>
+			<if test="selectRank != ''">AND RCODE=#{selectRank}</if>
+			<if test="eno != ''">AND ENO=#{eno}</if>
+			<if test="name != ''">AND ENAME=#{name}</if>
+		</where>
+	</select>
+	
 </mapper>
