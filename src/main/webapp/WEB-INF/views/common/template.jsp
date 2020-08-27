@@ -24,7 +24,7 @@
 					<i class="fas fa-angle-down" aria-hidden="true"></i>
 					<div id="dropdown-menu">
 						<ul>
-							<li><i class="fas fa-user-circle"></i>내 정보</li>
+							<li onclick="location.href='/Human/myInfo'"><i class="fas fa-user-circle"></i>내 정보</li>
 							<li><i class="fas fa-lock"></i>비밀번호변경</li>
 							<li><i class="fas fa-bell"></i>알림설정</li>
 							<li><i class="fas fa-cog"></i>환경설정</li>
