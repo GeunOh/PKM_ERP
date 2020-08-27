@@ -58,6 +58,9 @@
 	box-sizing: border-box;
 	line-height: 30px;
 }
+#dropdown-menu li:hover {
+	font-weight: bold;
+}
 #dropdown-menu i {
 	font-size: 15px; margin-right: 10px;
 }
