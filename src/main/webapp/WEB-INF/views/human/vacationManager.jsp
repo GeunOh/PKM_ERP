@@ -166,10 +166,14 @@
 						<c:param name="selectRank" value="${hs.selectRank}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
 					</c:if>
-					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
 			</c:if>
@@ -187,6 +191,10 @@
 					</c:if>
 					<c:if test="${selectDate ne null }">
 						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
 					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
@@ -205,10 +213,14 @@
 							<c:param name="selectRank" value="${hs.selectRank}"/>
 							<c:param name="eno" value="${hs.eno}"/>
 							<c:param name="name" value="${hs.name}"/>
-							<c:param name="date" value="${hs.date}"/>
-							<c:param name="date2" value="${hs.date2}"/>
 						</c:if>
-						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+						<c:if test="${selectDate ne null }">
+							<c:param name="selectDate" value="${selectDate}"/>
+							<c:if test="${selectDate eq 'dateSelect'}">
+								<c:param name="date" value="${hs.date}"/>
+								<c:param name="date2" value="${hs.date2}"/>
+							</c:if>
+						</c:if>
 					</c:url>
 					<a class="pg_page" href="${pagination}">${p}</a>
 				</c:if>
@@ -223,10 +235,14 @@
 						<c:param name="selectRank" value="${hs.selectRank}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
 					</c:if>
-					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
 			</c:if>
@@ -240,10 +256,14 @@
 							<c:param name="selectRank" value="${hs.selectRank}"/>
 							<c:param name="eno" value="${hs.eno}"/>
 							<c:param name="name" value="${hs.name}"/>
-							<c:param name="date" value="${hs.date}"/>
-							<c:param name="date2" value="${hs.date2}"/>
 						</c:if>
-						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+						<c:if test="${selectDate ne null }">
+							<c:param name="selectDate" value="${selectDate}"/>
+							<c:if test="${selectDate eq 'dateSelect'}">
+								<c:param name="date" value="${hs.date}"/>
+								<c:param name="date2" value="${hs.date2}"/>
+							</c:if>
+						</c:if>
 				</c:url>
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>
