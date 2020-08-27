@@ -1,83 +1,103 @@
 @charset "UTF-8";
-
-/* 마이페이지 */
-h1{ margin: 0 0 20px 0; font-family: NotoSans-Regular; position: relative; padding-left: 25px;}
-h1:before{
-	content: "";
-	position: absolute;
-	top: 0px;left: 0px;
-	width: 10px; height: 50px;
-	background-color: #282c34;
-}
-h2{ margin: 20px 0 30px 50px; font-family: NotoSans-Regular; position: relative; padding-left: 25px;}
-h2:before{
-	content: "";
-	position: absolute;
-	top: 10px; left: 0px;
-	width: 10px; height: 10px;
-	border: 5px solid #282c34; background-color: #fff; border-radius: 50%;
-}
-#myInfo-wrap { margin-left: 50px; font-family: NotoSans-Regular;}
-#myInfo-wrap form { position: relative;}
-#myInfo-wrap table { width: 100%; }
-#myInfo-wrap table th { padding: 5px 0 5px 10px; text-align: left; background-color: #f6f6f6; }
-#myInfo-wrap table td#image-col { text-align: center; }
-#myInfo-wrap table td { padding-left: 10px; }
-#myInfo-wrap table th, #myInfo-wrap table td { border: 1px solid gray;}
-.buttons {
-	box-shadow: 0px 10px 14px -7px #276873;
-	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-	background-color:#599bb3;
-	border-radius:8px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #3d768a;
-}
-a#modifyBtn {
-	position: absolute;
-    right: 2px;
-    top: -60px;
-}
-a#requestBtn {
-	position: absolute;
-    right: 0px;
-    top: 0px;
-}
-.buttons:hover {
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	background-color:#408c99;
-}
-a#modifyBtn:active {
-	right: 2px;
-	top:-61px;
-}
-a#requestBtn:active {
-	right: 0px;
-	top: 1px;
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
 }
 
-/* 휴가사용현황 */
-#vacation-wrap { position:relative; margin-left: 50px; font-family: NotoSans-Regular; overflow: hidden;}
-#vacation-wrap > p { margin: 15px 0; }
-.fa-plane-departure { display:block; float:left; font-size: 50px; color: white; margin-right: 20px; }
-.day-boxs { position: relative;  width: 30%; padding: 20px 40px;float: left; border: 3px solid black; border-radius: 15px; box-sizing: border-box; }
-.day-boxs p {
-	position: absolute;
-    left: 60%;
-    top: 23%;
-    font-size: 30px;
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
-#total-vacation { background-color: #49a2f3; color: white;}
-#use-vacation { background-color: #a87cf2; color: white;}
-#residual-vacation { background-color: #919ea3; color: white;}
-#use-vacation { margin: 0 4%;}
-h3 { float: left; }
+#wrap { font-family: NotoSans-Regular;}
+h1{margin-bottom: 3%;}
+h2{margin-bottom: 1%;}
+
+.content_Box {
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
+
+/* leftBox */
+#leftBox { 
+	width: 71%;
+	float: left; margin-right: 2%; 
+}
+#leftBox #profileBox {
+	height: 400px;
+	margin-bottom: 2%;
+}
+#leftBox #noticeBox {
+	height: 300px;
+}
+/*테이블*/
+#noticeTable{
+	width: 100%; min-height:213px; 
+	border-collapse: separate;
+    border-spacing: 0;
+}
+#noticeTable th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
+#noticeTable td{padding: 10px 0; font-size: 13px; text-align: center;}
+
+#noticeTable tr th,
+#noticeTable tr td {
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+#noticeTable tr th:first-child,
+#noticeTable tr td:first-child {
+  border-left: 1px solid #bbb;
+}
+#noticeTable tr th {
+  background: #eee;
+  border-top: 1px solid #bbb;
+}
+
+
+/* rightBox */
+#rightBox { width:27%; float: left;}
+#rightBox .content_Box {
+	height: 227px;
+}
+#rightBox #commuteBox {
+	position: relative;
+}
+#buttons{
+	text-align: center;
+	margin-top: 13%;
+}
+#buttons button { width: 70px; height: 40px; }
+#buttons button:first-child { margin-right: 10px;}
+#commuteBox #sysdateBox {
+	position: absolute;
+    right: 20px;
+    top: 25px;
+}
+#rightBox #vacationDayBox {
+	margin: 5% 0; 
+}
+#vacationDayBox div {
+	text-align: center;
+    margin-top: 10%;
+    font-weight: bold;
+}
+#vacationDayBox p {
+    font-size: 35px;
+}
+#vacationDayBox span { color: #8c8c8c; }
+/* 휴가 신청 */
+#rightBox #vacationUseBox {
+	cursor: pointer;
+	background-color: #f1f9ff;
+}
+#vacationUseBox div {
+	text-align: center;
+    margin-top: 10%;
+}
+.fa-plane { font-size: 70px; color: #BCE; }
+
+
 
 /* 휴가신청란 */
 #request-box {
@@ -90,6 +110,7 @@ h3 { float: left; }
     padding: 250px 0;
 }
 #dim-box{
+	display: none;
 	position: fixed;
     left: 0;
     right: 0;
@@ -99,6 +120,8 @@ h3 { float: left; }
     opacity: 0.4;
 }
 #request-content{
+	display:none; /* 임시 */
+	
 	font-family: NotoSans-Regular;
 	width: 65%;
     height: 100%;
