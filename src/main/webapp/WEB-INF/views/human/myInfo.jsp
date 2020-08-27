@@ -37,7 +37,35 @@
 			<!-- 프로필 -->
 			<div id="profileBox" class="content_Box">
 				<h2>내 정보</h2>
-				
+				<table id="profileTable">
+					<tr>
+						<td rowspan="3">
+							<img width="200px" height="230px" src="resources/Profile-images/${loginUser.renameFileName }">
+						</td>
+						<th>사원번호</th>
+						<td>2</td>
+						<th>사원명</th>
+						<td>4</td>
+						<th>이메일</th>
+						<td>6</td>
+					</tr>
+					<tr>
+						<th>부서명</th>
+						<td>2</td>
+						<th>직급</th>
+						<td>4</td>
+						<th>입사일</th>
+						<td>6</td>
+					</tr>
+					<tr>
+						<th>핸드폰번호</th>
+						<td>2</td>
+						<th>주소</th>
+						<td>4</td>
+						<th>생년월일</th>
+						<td>6</td>
+					</tr>
+				</table>
 			</div>
 			<!-- 공지사항  -->
 			<div id="noticeBox" class="content_Box">

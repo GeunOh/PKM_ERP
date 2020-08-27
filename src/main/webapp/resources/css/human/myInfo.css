@@ -28,6 +28,9 @@ h2{margin-bottom: 1%;}
 	height: 400px;
 	margin-bottom: 2%;
 }
+#profileBox #profileTable {
+	height: 87%;
+}
 #leftBox #noticeBox {
 	height: 300px;
 }
