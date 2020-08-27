@@ -224,7 +224,6 @@ public class HumanController {
 		}else if(selectDate.equals("dateSelect")){
 			so.setDateSelect("dateSelect");
 		}
-		
 		System.out.println(so);
 		HashMap<String, Object> hs = new HashMap<>();
 		hs.put("so",so);

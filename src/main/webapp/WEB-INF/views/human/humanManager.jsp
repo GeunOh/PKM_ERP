@@ -73,7 +73,7 @@
 					<div class="search-area" style="height: 31px;">
 						<span class="title">입사일</span>
 						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll">
+							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
@@ -154,8 +154,8 @@
 						<c:param name="email" value="${hs.email}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
+						<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+						<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
 					</c:if>
 					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
 					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
@@ -172,8 +172,8 @@
 						<c:param name="email" value="${hs.email}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
+						<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+						<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
 					</c:if>
 					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
 					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
@@ -190,16 +190,16 @@
 						<c:url var="pagination" value="${ loc }">
 							<c:param name="page" value="${ p }"/>
 							<c:if test="${ not empty hs }">
-						<c:param name="selectDept" value="${hs.dept}"/>
-						<c:param name="selectRank" value="${hs.rank}"/>
-						<c:param name="email" value="${hs.email}"/>
-						<c:param name="eno" value="${hs.eno}"/>
-						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
-					</c:if>
-					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
-					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+								<c:param name="selectDept" value="${hs.dept}"/>
+								<c:param name="selectRank" value="${hs.rank}"/>
+								<c:param name="email" value="${hs.email}"/>
+								<c:param name="eno" value="${hs.eno}"/>
+								<c:param name="name" value="${hs.name}"/>
+								<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+								<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
+							</c:if>
+							<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+							<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 						</c:url>
 						<a class="pg_page" href="${ pagination }">${ p }</a>
 					</c:if>
@@ -215,8 +215,8 @@
 						<c:param name="email" value="${hs.email}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
+						<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+						<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
 					</c:if>
 					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
 					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
@@ -233,8 +233,8 @@
 						<c:param name="email" value="${hs.email}"/>
 						<c:param name="eno" value="${hs.eno}"/>
 						<c:param name="name" value="${hs.name}"/>
-						<c:param name="date" value="${hs.date}"/>
-						<c:param name="date2" value="${hs.date2}"/>
+						<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+						<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
 					</c:if>
 					<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
 					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
@@ -243,7 +243,7 @@
 			</c:if>
 		</div>
 	</div>
-	
+	<div>${selectDate}</div>
 	<!-- 팝업창 -->
 	<form method="post" action="/Human/humanInsert" class="popup-form" enctype="Multipart/form-data" style="display: none;">
 		<div class="popupContent">
