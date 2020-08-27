@@ -62,8 +62,10 @@ public interface HumanService {
 
 	int refuseVacation(String[] vnoList);
 
-	ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs);
+	ArrayList<Vacation> searchVacationList(HashMap<String, Object> hs, PageInfo pi);
 
 	int vacationListCount();
+
+	int searchVacationListCount(HashMap<String, Object> hs);
 
 }

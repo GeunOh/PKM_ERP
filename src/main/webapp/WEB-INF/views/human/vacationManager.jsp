@@ -161,6 +161,15 @@
 			<c:if test="${pi.currentPage > 1}">
 				<c:url var="start" value="${loc}">
 					<c:param name="page" value="1"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="selectRank" value="${hs.selectRank}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 				</c:url>
 				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
 			</c:if>
@@ -169,6 +178,16 @@
 			<c:if test="${ pi.currentPage > 10 }">
 				<c:url var="prev" value="${ loc }">
 					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="selectRank" value="${hs.selectRank}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
 			</c:if>
@@ -181,6 +200,15 @@
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="pagination" value="${loc}">
 						<c:param name="page" value="${p}"/>
+						<c:if test="${ not empty hs }">
+							<c:param name="selectDept" value="${hs.selectDept}"/>
+							<c:param name="selectRank" value="${hs.selectRank}"/>
+							<c:param name="eno" value="${hs.eno}"/>
+							<c:param name="name" value="${hs.name}"/>
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 					</c:url>
 					<a class="pg_page" href="${pagination}">${p}</a>
 				</c:if>
@@ -190,6 +218,15 @@
 			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 and pi.maxPage ne pi.endPage }">
 				<c:url var="next" value="${loc }">
 					<c:param name="page" value="${pi.endPage + 1}" />
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="selectRank" value="${hs.selectRank}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						<c:param name="date" value="${hs.date}"/>
+						<c:param name="date2" value="${hs.date2}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 				</c:url>
 				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
 			</c:if>
@@ -198,6 +235,15 @@
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="end" value="${loc}">
 					<c:param name="page" value="${pi.maxPage }" />
+						<c:if test="${ not empty hs }">
+							<c:param name="selectDept" value="${hs.selectDept}"/>
+							<c:param name="selectRank" value="${hs.selectRank}"/>
+							<c:param name="eno" value="${hs.eno}"/>
+							<c:param name="name" value="${hs.name}"/>
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 				</c:url>
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>

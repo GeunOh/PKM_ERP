@@ -427,7 +427,8 @@ public class HumanController {
 	
 	// 휴가 검색
 	@RequestMapping("searchVacation")
-	public String searchVacation(@RequestParam("selectDept") String selectDept,
+	public String searchVacation(@RequestParam(value="page", required = false) Integer page,
+								 @RequestParam("selectDept") String selectDept,
 								 @RequestParam("selectRank") String selectRank,
 								 @RequestParam("eno") String eno, @RequestParam("name") String name,
 								 @RequestParam("selectDate") String selectDate,
@@ -456,10 +457,19 @@ public class HumanController {
 		hs.put("date",date);
 		hs.put("date2",date2);
 		
-		ArrayList<Vacation> vList = hService.searchVacationList(hs);
-		model.addAttribute("vList", vList);
+		// 페이징
+		int currentPage = 1;
+		if(page!=null) {
+			currentPage = page;
+		}
+		int listCount = hService.searchVacationListCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
 		
-		System.out.println(so);
+		ArrayList<Vacation> vList = hService.searchVacationList(hs, pi);
+		model.addAttribute("vList", vList)
+			 .addAttribute("pi", pi)
+			 .addAttribute("hs", hs)
+			 .addAttribute("selectDate", selectDate);
 		return "vacationManager";
 	}
 	
