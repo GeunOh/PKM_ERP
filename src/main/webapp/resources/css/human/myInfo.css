@@ -31,6 +31,15 @@ h2{margin-bottom: 1%;}
 #profileBox #profileTable {
 	height: 87%;
 }
+#profileTable tr:first-child td:first-child { padding-right: 25px; }
+#profileTable th{
+    font-size: 17px;
+    padding-right: 20px;
+}
+#profileTable td {
+	padding-right: 20px;
+}
+
 #leftBox #noticeBox {
 	height: 300px;
 }

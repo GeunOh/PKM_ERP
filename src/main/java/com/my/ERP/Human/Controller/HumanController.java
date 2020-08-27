@@ -42,7 +42,7 @@ public class HumanController {
 	private HumanService hService;
 	
 	/**
-	 * 	[ ========== 인 사 관 리 ==========]
+	 * 	[ ========== 인 사 관 리 ========== ]
 	 */	
 	// 인사기본관리
 	@RequestMapping("humanManager")

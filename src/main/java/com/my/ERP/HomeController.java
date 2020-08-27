@@ -1,11 +1,8 @@
 package com.my.ERP;
 
-import java.io.PrintWriter;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -48,7 +45,7 @@ public class HomeController {
 		Human loginUser = hService.Login(id);
 		
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter pw = response.getWriter();
+
 		if(loginUser != null) {
 			
 			if(passwordEncoder.matches(pwd, loginUser.getPwd())) {

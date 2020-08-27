@@ -43,27 +43,27 @@
 							<img width="200px" height="230px" src="resources/Profile-images/${loginUser.renameFileName }">
 						</td>
 						<th>사원번호</th>
-						<td>2</td>
+						<td>${loginUser.eno }</td>
 						<th>사원명</th>
-						<td>4</td>
+						<td>${loginUser.name }</td>
 						<th>이메일</th>
-						<td>6</td>
+						<td>${loginUser.email }</td>
 					</tr>
 					<tr>
 						<th>부서명</th>
-						<td>2</td>
+						<td>${loginUser.dcode }</td>
 						<th>직급</th>
-						<td>4</td>
+						<td>${loginUser.rcode }</td>
 						<th>입사일</th>
-						<td>6</td>
+						<td>${loginUser.indate }</td>
 					</tr>
 					<tr>
 						<th>핸드폰번호</th>
-						<td>2</td>
-						<th>주소</th>
-						<td>4</td>
+						<td>${loginUser.phone }</td>
 						<th>생년월일</th>
-						<td>6</td>
+						<td>${loginUser.birthday }</td>
+						<th>주소</th>
+						<td>${loginUser.address }</td>
 					</tr>
 				</table>
 			</div>
