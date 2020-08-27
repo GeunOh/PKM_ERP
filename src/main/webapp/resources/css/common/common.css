@@ -21,6 +21,7 @@ html, body { height: 100%; }
 table { border-collapse: collapse;}
 body { width: 100%; }
 h1 { font-family: NotoSans-Regular; }
+#wrap{min-width: 1900px;}
 
 
 
