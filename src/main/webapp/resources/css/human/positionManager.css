@@ -192,7 +192,7 @@ ul, li{list-style: none;}
     margin-top: 20px;
 }
 .notice_box li { padding: 5px 0; }
-
+.notice_box li:last-child { color: red; }
 /* 사원목록  */
 #humanList {
 	width: 30%;
