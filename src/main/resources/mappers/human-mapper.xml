@@ -90,7 +90,7 @@
 			<if test="so.inUser != null">AND OUTYN = 'N'</if>
 			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
 			<if test="so.dateAll != null"></if>
-			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
+			<if test="so.dateSelect != null ">AND INDATE BETWEEN #{date} AND #{date2} </if>
 			<if test="dept != null and dept != ''">AND DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND RCODE = #{rank}</if>
 			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
