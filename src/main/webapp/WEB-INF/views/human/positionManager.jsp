@@ -38,38 +38,40 @@
 		<!-- // 검색영역 -->
 		<!-- 테이블 -->
 		<form name="tableForm">
-			<table id="positionTable">
-				<thead>
-					<tr>
-						<th><input type="checkbox"></th>
-						<th>직급번호</th>
-						<th>직급명</th>
-					</tr>
-				</thead>
-					<tbody>
-						<c:forEach var="p" items="${pList}">
-							<tr>
-								<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
-								<td>${p.rcode }</td>
-								<td>${p.rname }</td>
-							</tr>
-						</c:forEach>
-					<c:if test="${empty pList}">
-							<tr><td colspan="3">직급정보가 없습니다.</td></tr>
-					</c:if>
-					<c:if test="${!empty pList}">
-						<c:if test="${10 - fn:length(pList) > 0 }">
-							<c:forEach var="p" begin="1" end="${10 - fn:length(pList)}" >
+			<div id="positionTableWrap">
+				<table id="positionTable">
+					<thead>
+						<tr>
+							<th><input type="checkbox"></th>
+							<th>직급번호</th>
+							<th>직급명</th>
+						</tr>
+					</thead>
+						<tbody>
+							<c:forEach var="p" items="${pList}">
 								<tr>
-									<td>&nbsp;</td>
-									<td></td>
-									<td></td>
+									<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
+									<td>${p.rcode }</td>
+									<td>${p.rname }</td>
 								</tr>
 							</c:forEach>
+						<c:if test="${empty pList}">
+								<tr><td colspan="3">직급정보가 없습니다.</td></tr>
 						</c:if>
-					</c:if>
-				</tbody>
-			</table>
+						<c:if test="${!empty pList}">
+							<c:if test="${10 - fn:length(pList) > 0 }">
+								<c:forEach var="p" begin="1" end="${10 - fn:length(pList)}" >
+									<tr>
+										<td>&nbsp;</td>
+										<td></td>
+										<td></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+						</c:if>
+					</tbody>
+				</table>
+			</div>
 		</form>
 		<!-- // 테이블 -->
 		<div class="notice_box">
@@ -82,7 +84,7 @@
 		<!-- 사원목록 -->
 		<div id="humanList">
 			<h2>사원목록</h2>
-			<div id="tableDiv">
+			<div id="hListTableWrap">
 				<table>
 					<thead>
 						<tr>

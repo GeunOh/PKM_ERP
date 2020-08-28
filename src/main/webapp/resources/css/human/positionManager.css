@@ -117,8 +117,9 @@ ul, li{list-style: none;}
 }
 
 /* 테이블 */
+#positionTableWrap { max-height: 419px; overflow-y: auto; width: 60%; }
 #positionTable{
-	width: 60%; min-height:419px; 
+	width: 100%; min-height:419px; 
 	border-collapse: separate;
     border-spacing: 0;
 }
@@ -200,6 +201,6 @@ ul, li{list-style: none;}
     right: 30px;
     top: 116px;
 }
-#tableDiv { max-height: 723px; overflow-y: auto;}
+#hListTableWrap { max-height: 723px; overflow-y: auto;}
 #humanList h2 { margin-bottom: 20px; }
 #humanList table { width: 100%; min-height: 700px; }
