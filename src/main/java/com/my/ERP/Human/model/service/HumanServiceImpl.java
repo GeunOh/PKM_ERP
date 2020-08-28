@@ -176,8 +176,13 @@ public class HumanServiceImpl implements HumanService {
 	// 휴가 검색 결과 행 개수
 	@Override
 	public int searchVacationListCount(HashMap<String, Object> hs) {
-		// TODO Auto-generated method stub
 		return hDAO.searchVacationListCount(sqlSession, hs);
+	}
+	
+	// 마이페이지 - 휴가 신청
+	@Override
+	public int addVacation(Vacation vacation) {
+		return hDAO.addVacation(sqlSession, vacation);
 	}
 	
 }

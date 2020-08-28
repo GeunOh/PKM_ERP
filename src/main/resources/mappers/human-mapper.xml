@@ -232,6 +232,7 @@
 		SELECT COUNT(*) FROM TB_VACATION
 	</select>
 	
+	<!-- 휴가 신청 목록 검색 결과 행 개수  -->
 	<select id="searchVacationListCount" resultType="_int">
 		SELECT COUNT(*) FROM VACATIONLIST
 		<where>
@@ -243,5 +244,12 @@
 			<if test="name != ''">AND ENAME=#{name}</if>
 		</where>
 	</select>
+	
+	<insert id="addVacation" parameterType="Vacation">
+		INSERT INTO TB_VACATION_RECORD VALUES
+		(TB_VACATION_VNO.nextval, #{eno}, #{vType}, #{startDate}, #{endDate}, #{useDay}, 
+		<if test="reason != ''">#{reason}, SYSDATE, DEFAULT)</if>
+		<if test="reason == ''">NULL, SYSDATE, DEFAULT)</if>
+	</insert>
 	
 </mapper>
