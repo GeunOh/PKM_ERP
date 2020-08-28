@@ -502,6 +502,28 @@ public class HumanController {
 		return "myInfo";
 	}
 	
+	// 휴가 신청 하기
+	@RequestMapping("addVacation")
+	public String addVacation(@ModelAttribute("vacation") Vacation vacation,
+							  @RequestParam("eno") String eno,
+							  @RequestParam("vType") String vType,
+							  @RequestParam("startDate") Date startDate,
+							  @RequestParam("endDate") Date endDate,
+							  @RequestParam("useDay") int useDay,
+							  @RequestParam(value="reason", required=false) String reason) {
+		
+		System.out.println(eno);
+		System.out.println(vType);
+		System.out.println(startDate);
+		System.out.println(endDate);
+		System.out.println(useDay);
+		System.out.println(reason);		// 없으면 공백
+		
+		System.out.println(vacation);
+		
+		return "redirect:/Human/myInfo";
+	}
+	
 	
 	
 	

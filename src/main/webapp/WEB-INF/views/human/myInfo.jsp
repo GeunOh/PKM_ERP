@@ -8,23 +8,6 @@
 <link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
 <script src="resources/js/plugin/selectbox.min.js"></script>
 <title>내 정보</title>
-
-<script type="text/javascript">
-	
-	// 휴가 신청하기 버튼 클릭 시 나타나는 창
-	function request() {
-		var requestBox = document.getElementById("request-box");
-		requestBox.style.display = "block";
-	}
-	
-	// 나가기 버튼 클릭 시 나타나는 창
-	function exit() {
-		var requestBox = document.getElementById("request-box");
-		requestBox.style.display = "none";
-	}
-	
-</script>
-
 </head>
 <body>
 
@@ -32,6 +15,7 @@
 	
 	<!-- wrap -->
 	<div id="wrap">
+		<h2>${vacation }</h2>
 		<h1>내 공간</h1>
 		<div id="leftBox">
 			<!-- 프로필 -->
@@ -131,59 +115,64 @@
 			</div>
 			<!-- 휴가 신청 -->
 			<div id="vacationUseBox" class="content_Box">
-				<h2>연차 신청</h2>
+				<h2>휴가 신청</h2>
 				<div>
 					<i class="fas fa-plane"></i>
 				</div>
 			</div>
 		</div>
 		
-		<!-- 휴가신청란 -->
-		<div id="request-box">
-			<div id="dim-box"></div>
-			<div id="request-content">
-				<h2>휴가신청</h2>
-				<form action="">
-					<table>
-						<tr>
-							<th>사원번호</th>
-							<td>000001</td>
-							<th>성명</th>
-							<td>홍길동</td>
-							<th>부서</th>
-							<td>PKM Development</td>
-							<th>직급</th>
-							<td>사원</td>
-						</tr>
-						<tr>
-							<th>휴가분류</th>
-							<td>
-								<select class="justselect">
-									<option>연차</option>
-									<option>병가</option>
-									<option>공가</option>
-								</select>
-							</td>
-							<th>휴가시작일</th>
-							<td><input type="date"></td>
-							<th>휴가종료일</th>
-							<td><input type="date"></td>
-							<th>잔여일</th>
-							<td id="residual-date">12일</td>
-						</tr>
-					</table>
-					<p>휴가신청사유 & 비고</p>
-					<textarea rows="6"></textarea>
-					<div id="button-box">
-						<input class="buttons" type="submit" value="휴가신청">
-						<button class="buttons" type="button" onclick="exit();">나가기</button>
+		<!-- 휴가신청 팝업창 -->
+		<form action="/Human/addVacation" class="popup-form">
+			<input type="hidden" name="eno" value="${loginUser.eno }">
+			<div class="popupContent">
+				<h2>휴가 신청
+				<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form">
+					<span>휴가 신청 정보</span>
+					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">* 필수 정보 입력란입니다.</span>
+					<div class="add-form">
+						<span class="add-title">휴가구분</span>
+						<div class="selectBox" id="add-select-vType" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+							<input type="hidden" id="add-vType" name="vType" value="">
+							<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+							<ul style="max-height: 120px; overflow-y: scroll;">
+								<li><a href="#" class="link-select" data-value="연차">연차</a></li>
+								<li><a href="#" class="link-select" data-value="병가">병가</a></li>
+								<li><a href="#" class="link-select" data-value="공가">공가</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle" aria-hidden="true"></i>
+						</div>
 					</div>
-				</form>
+					<div class="add-form">
+						<span class="add-title">휴가 날짜</span>
+						<input type="date" class="txtBox" name="startDate" required style="border-radius: 3px;">
+						<span>&nbsp;~&nbsp;</span>
+						<input type="date" class="txtBox" name="endDate" required style="border-radius: 3px;">
+						<input type="text" class="txtBox" id="add-useDay" disabled value="0일">
+						<input type="hidden" name="useDay" value="0">
+					</div>
+				</div>
+				<div class="content-form">
+					<span>휴가 신청 사유</span>
+					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">선택 사항입니다.</span>
+					<input type="text" class="txtBox add-text" name="reason">
+				</div>
+				<div class="content-form add-btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button" onclick="dataChk()">
+						<i class="fas fa-check" aria-hidden="true"></i> 신청
+					</button>
+				</div>
 			</div>
-		</div>
-		<!-- // 휴가신청 -->
+			<div class="popupLayer"></div>
+		</form>
+		<!-- // 휴가신청 팝업창 -->
 	</div>
 	<!-- // wrap -->
-
+	<script type="text/javascript" src="resources/js/human/myInfo.js"></script>
 </body>
 </html>
