@@ -68,4 +68,6 @@ public interface HumanService {
 
 	int searchVacationListCount(HashMap<String, Object> hs);
 
+	int addVacation(Vacation vacation);
+
 }

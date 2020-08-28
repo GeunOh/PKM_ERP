@@ -1,6 +1,27 @@
-// 휴가 신청 박스 클릭 시 팝업창
-$("#vacationUseBox").on("click", function() {
+$(document).ready(function() {
+	var today = new Date();
+	var date = today.toISOString().substring(0, 10);
 	
+	var week = ['일', '월', '화', '수', '목', '금', '토'];
+	var dayOfWeek = week[today.getDay()];
+
+	$("#yyyy-mm-dd").text(date);
+	$("#day").text(dayOfWeek);
+	
+	// 시계 작동
+	var timer = setInterval(function(){
+	  timePrint();
+	}, 1000);
+})
+// 버튼들 클릭 이벤트
+$("#vacationUseBox").on("click", function() {
+	$('.popup-form').fadeIn();
+})
+$('h2 .fa-times').on('click',function(){
+	$('.popup-form').fadeOut();
+})
+$('.add-btn-form button:first-child').on('click',function(){
+	$('.popup-form').fadeOut();
 })
 
 // 셀렉트박스 선택시
@@ -19,11 +40,11 @@ $(".link-select").on("click", function() {
 	
 	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
 })
-
-$("input[name='add-endDate']").on("change", function(){
+// 휴가 사용 일수 계산
+$("input[name='endDate']").on("change", function(){
 	
 	var $endDate = $(this);
-	var $startDate = $("input[name='add-startDate']");
+	var $startDate = $("input[name='startDate']");
 	
 	var endArr = $endDate.val().split('-');
 	var startArr = $startDate.val().split('-');
@@ -42,7 +63,7 @@ $("input[name='add-endDate']").on("change", function(){
 	}
 	
 	$("#add-useDay").val(useDay + "일");
-	$("input[name='add-useDay']").val(useDay);
+	$("input[name='useDay']").val(useDay);
 })
 
 
@@ -74,13 +95,37 @@ function dataChk() {
 	
 }
 
-// 버튼들 클릭 이벤트
-$("#vacationUseBox").on("click", function() {
-	$('.popup-form').fadeIn();
-})
-$('h2 .fa-times').on('click',function(){
-	$('.popup-form').fadeOut();
-})
-$('.add-btn-form button:first-child').on('click',function(){
-	$('.popup-form').fadeOut();
-})
+/*
+메서드 이름 : timePrint
+기능 : 현재 시간을 가져와서 화면에 출력합니다.
+       시,분,초가 10 미만이라면 예외처리합니다.
+*/
+function timePrint() {
+	
+	var $now = new Date(); // 객체변수입니다. 현재 날짜와 시간을 반환합니다.
+	var hr = $now.getHours(); // 현재 시를 가져와 hr 변수에 담습니다.
+	var min = $now.getMinutes(); // 현재 분을 가져와 min 변수에 담습니다.
+	var sec = $now.getSeconds(); // 현재 초를 가져와 sec 변수에 담습니다.
+	
+	// [공통] 시,분,초가 10 미만일때 자리수 맞춤
+	// 문자열+숫자형=문자열
+	// 시(hr)
+	if (hr < 10) {
+		$("#hh").text("0" + hr);
+	} else {
+		$("#hh").text(hr);
+	}
+	// 분(min)
+	if (min < 10) {
+		$("#mm").text("0" + min);
+	} else {
+		$("#mm").text(min);
+	}
+	// 초(sec)
+	if (sec < 10) {
+		$("#ss").text("0" + sec);
+	} else {
+		$("#ss").text(sec);
+	}
+}
+

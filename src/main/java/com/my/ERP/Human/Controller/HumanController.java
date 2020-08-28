@@ -520,6 +520,7 @@ public class HumanController {
 		System.out.println(reason);		// 없으면 공백
 		
 		System.out.println(vacation);
+		int result = hService.addVacation(vacation);
 		
 		return "redirect:/Human/myInfo";
 	}
