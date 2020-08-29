@@ -190,4 +190,10 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.addVacation(sqlSession, vacation);
 	}
 	
+	// 마이페이지 - 휴가 개수 가져오기
+	@Override
+	public int showVacationDays(String eno) {
+		return hDAO.showVacationDays(sqlSession, eno);
+	}
+	
 }

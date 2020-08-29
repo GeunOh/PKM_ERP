@@ -250,12 +250,18 @@
 	<select id="humanModifyInfo" resultMap="humanResult">
 		SELECT * FROM SOLOUSER WHERE ENO = #{eno}
 	</select>
-	
+		
+   	<!-- 휴가 신청 -->
 	<insert id="addVacation" parameterType="Vacation">
 		INSERT INTO TB_VACATION_RECORD VALUES
 		(TB_VACATION_VNO.nextval, #{eno}, #{vType}, #{startDate}, #{endDate}, #{useDay}, 
 		<if test="reason != ''">#{reason}, SYSDATE, DEFAULT)</if>
 		<if test="reason == ''">NULL, SYSDATE, DEFAULT)</if>
 	</insert>
+	
+	<!-- 휴가 잔여일수 확인 -->
+	<select id="showVacationDays" resultType="_int">
+		SELECT USEDAY FROM TB_VACATION WHERE ENO=#{eno}
+	</select>
 	
 </mapper>

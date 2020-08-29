@@ -165,6 +165,10 @@ public class HumanDAO {
 		return sqlSession.insert("humanMapper.addVacation", vacation);
 	}
 
+	public int showVacationDays(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.showVacationDays", eno);
+	}
+
 	
 
 }

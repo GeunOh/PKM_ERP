@@ -113,7 +113,7 @@
 			<div id="vacationDayBox" class="content_Box">
 				<h2>연차 정보</h2>
 				<div>
-					<p>10일</p>
+					<p>${vacationDay }일</p>
 					<span>남은 연차</span>
 				</div>
 			</div>
