@@ -148,7 +148,6 @@ public class HumanController {
 		h.setEmail(email);
 		h.setPhone(phone);
 		h.setOriginalFileName(imgFile.getOriginalFilename());
-		System.out.println(h);
 		if(imgFile != null && !imgFile.isEmpty()) {
 			String renameFileName = saveFile(imgFile, request);
 			
@@ -526,7 +525,20 @@ public class HumanController {
 		return "redirect:/Human/myInfo";
 	}
 	
-	
+	@RequestMapping("humanModifyInfo")
+	public void humanModifyInfo(HttpServletResponse res, @RequestParam("eno") String eno) {
+		
+		res.setContentType("application/json; charset=UTF-8");
+		
+		Human h = hService.humanModifyInfo(eno);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		try {
+			gson.toJson(h, res.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	
 	

@@ -68,6 +68,8 @@ public interface HumanService {
 
 	int searchVacationListCount(HashMap<String, Object> hs);
 
+	Human humanModifyInfo(String eno);
+	
 	int addVacation(Vacation vacation);
 
 	int showVacationDays(String eno);
