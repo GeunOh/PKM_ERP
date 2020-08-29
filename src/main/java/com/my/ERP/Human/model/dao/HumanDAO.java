@@ -157,6 +157,10 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.searchVacationListCount",hs);
 	}
 
+	public Human humanModifyInfo(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.humanModifyInfo", eno);
+	}
+
 	
 
 }

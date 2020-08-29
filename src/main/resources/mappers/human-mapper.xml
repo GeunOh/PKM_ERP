@@ -14,7 +14,9 @@
 		<result column="OUTDATE" property="outdate"/>
 		<result column="OUTYN" property="outyn"/>
 		<result column="RCODE" property="rcode"/>
+		<result column="RNAME" property="rname"/>
 		<result column="DCODE" property="dcode"/>
+		<result column="DNAME" property="dname"/>
 		<result column="ORIGINALNAME_FILE" property="originalFileName"/>
 		<result column="RENAME_FILE" property="renameFileName"/>
 	</resultMap>
@@ -244,4 +246,7 @@
 		</where>
 	</select>
 	
+	<select id="humanModifyInfo" resultMap="humanResult">
+		SELECT * FROM SOLOUSER WHERE ENO = #{eno}
+	</select>
 </mapper>

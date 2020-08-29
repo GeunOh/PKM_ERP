@@ -179,5 +179,10 @@ public class HumanServiceImpl implements HumanService {
 		// TODO Auto-generated method stub
 		return hDAO.searchVacationListCount(sqlSession, hs);
 	}
+
+	@Override
+	public Human humanModifyInfo(String eno) {
+		return hDAO.humanModifyInfo(sqlSession, eno);
+	}
 	
 }

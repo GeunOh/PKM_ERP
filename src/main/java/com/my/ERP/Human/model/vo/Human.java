@@ -17,7 +17,9 @@ public class Human {
 	private String outdate;
 	private String outyn;
 	private String rcode;
+	private String rname;
 	private String dcode;
+	private String dname;
 	private String originalFileName;
 	private String renameFileName;
 
@@ -121,12 +123,28 @@ public class Human {
 		this.rcode = rcode;
 	}
 
+	public String getRname() {
+		return rname;
+	}
+
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+
 	public String getDcode() {
 		return dcode;
 	}
 
 	public void setDcode(String dcode) {
 		this.dcode = dcode;
+	}
+
+	public String getDname() {
+		return dname;
+	}
+
+	public void setDname(String dname) {
+		this.dname = dname;
 	}
 
 	public String getOriginalFileName() {
@@ -149,8 +167,9 @@ public class Human {
 	public String toString() {
 		return "Human [eno=" + eno + ", pwd=" + pwd + ", name=" + name + ", birthday=" + birthday + ", address="
 				+ address + ", email=" + email + ", phone=" + phone + ", gender=" + gender + ", indate=" + indate
-				+ ", outdate=" + outdate + ", outyn=" + outyn + ", rcode=" + rcode + ", dcode=" + dcode
-				+ ", originalFileName=" + originalFileName + ", renameFileName=" + renameFileName + "]";
+				+ ", outdate=" + outdate + ", outyn=" + outyn + ", rcode=" + rcode + ", rname=" + rname + ", dcode="
+				+ dcode + ", dname=" + dname + ", originalFileName=" + originalFileName + ", renameFileName="
+				+ renameFileName + "]";
 	}
 
 }
