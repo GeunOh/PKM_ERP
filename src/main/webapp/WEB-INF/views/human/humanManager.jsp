@@ -117,7 +117,7 @@
 						</c:if>
 						<td>${h.indate }</td>
 						<td>${h.eno }</td>
-						<td>${h.name }</td>
+						<td><a class="human_name">${h.name}</a></td>
 						<td>${h.rcode }</td>
 						<td>${h.dcode }</td>
 						<td>${h.email }</td>
@@ -316,7 +316,7 @@
 					<span class="add-title add-title2">생년월일</span>
 					<input type="date" class="txtBox" name="add-date" style="border-radius: 3px;">
 					<input type="radio" id="gender-not" name="gender" value="N" checked ><label for="gender-not" >선택안함</label>
-					<input type="radio" id="gender-woman" name="gender" value="M"><label for="gender-woman">여자</label>
+					<input type="radio" id="gender-woman" name="gender" value="W"><label for="gender-woman">여자</label>
 					<input type="radio" id="gender-man" name="gender" value="M"><label for="gender-man">남자</label>
 				</div>
 				<div class="add-textform">
@@ -361,18 +361,121 @@
 		<div class="popupLayer"></div>
 	</form>
 	
-<script>
-// $(document).ready(function () {
-// 	$.fakeLoader(
-// 	        {
-// 	          timeToHide:1200, //로딩중에 걸리는 시간, 1000 = 1초
-// 	          zIndex:999, // 순서
-// 	          spinner:"spinner3",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7' 
-// 	          bgColor:"#374258", //Hex, RGB or RGBA colors 배경색깔
-// 	        }
-// 	    );
-// });
-</script>
+	<!-- 조회 팝업창 -->
+	<form method="post" action="" class="popup-form" id="popup-Modify-form" enctype="Multipart/form-data" style="display: none;">
+		<div class="popupContent">
+			<h1>사원 조회<i class="fas fa-times"></i></h1>
+			<div class="filebox bs3-primary preview-image add-image">
+				<span class="add-title">프로필 수정</span>
+				<div class="upload-display"><div class="upload-thumb-wrap"><img src="resources/images/default-profile.jpg" class="upload-thumb"></div></div>
+				<input class="txtBox upload-name " value="파일명" disabled="disabled" style="width: 30%; border-radius: 3px;">
+				<label for="input_file">파일 선택</label> 
+			  	<input type="file" name="profile_img" id="modify-input_file" class="upload-hidden"> 
+			  	<span id="image-ex">- 프로필로 수정할 이미지를 선택해주세요.</span>
+			</div>
+			<div class="content-form">
+				<span>기본 정보</span>
+				<div class="add-textform">
+					<span class="add-title add-title2">사번</span>
+					<input type="text" class="txtBox add-text" name="modify-eno">
+					<label id="modify-enoChk"></label>
+					<input type="hidden" id="modify-enoChk2" value="0">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">이름</span>
+					<input type="text" class="txtBox add-text" name="modify-name">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">부서</span>
+					<div class="selectBox" id="modify-select-dept" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="modify-dept" name="modify-dept" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">직급</span>
+					<div class="selectBox" id="modify-select-rank" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="modify-rank" name="modify-rank" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">이메일</span>
+					<input type="text" class="txtBox" name="modify-email" style="width: 155px; border-radius: 3px;"> @ 
+					<input type="text" class="txtBox" id="modify-email2" name="modify-email2" style="width: 155px; border-radius: 3px; cursor:auto;" disabled>
+					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: unset; border-radius: 3px;">
+						<input type="hidden" id="modify-email3" name="modify-email3" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul>
+							<li><a  class="link-select" data-value="input-text">선택 입력</a></li>
+							<li><a  class="link-select" data-value="naver.com">naver.com</a></li>
+							<li><a  class="link-select" data-value="daum.net">daum.net</a></li>
+							<li><a  class="link-select" data-value="gmail.com">gmail.com</a></li>
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">입사일</span>
+					<input type="date" class="txtBox" name="modify-inDate" style="border-radius: 3px;">
+				</div>
+			</div>
+			<div class="content-form">
+				<span>부가 정보</span>
+				<div class="add-textform">
+					<span class="add-title add-title2">생년월일</span>
+					<input type="date" class="txtBox" name="modify-date" style="border-radius: 3px;">
+					<input type="radio" id="modify-gender-woman" name="gender" value="W"><label for="modify-gender-woman">여자</label>
+					<input type="radio" id="modify-gender-man" name="gender" value="M"><label for="modify-gender-man">남자</label>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">주소</span>
+					<input type="text" name="address1" class="postcodify_address txtBox add-text" value="">
+					<button type="button" class="address-btn">검색</button>
+							
+					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+					<script>
+						$(function(){
+							$(".address-btn").postcodifyPopUp();
+						});
+					</script>
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">상세 주소</span>
+					<input type="text" name="address2" class="postcodify_extra_info txtBox add-text" value="">
+				</div>
+				<div class="add-textform">
+					<span class="add-title add-title2">핸드폰 번호</span>
+					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+						<input type="hidden" id="modify-phone" name="phone" data-value="all" value="">
+						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+						<ul style="max-height: 120px; overflow-y: scroll;">
+							<li><a href="#" class="link-select" data-value="010">010</a></li>
+							<li><a href="#" class="link-select" data-value="011">011</a></li>
+							<li><a href="#" class="link-select" data-value="017">017</a></li>
+							<li><a href="#" class="link-select" data-value="018">018</a></li>
+							<li><a href="#" class="link-select" data-value="019">019</a></li>
+						</ul>
+						<i class="fas fa-angle-down searchAngle"></i>
+					</div> - 
+					<input type="text" class="txtBox phone2" name="modify-phone2" size="4"> - 
+					<input type="text" class="txtBox phone2" name="modify-phone3" size="4">
+				</div>
+				<div class="add-textform add-btn-form">
+					<button type="button"><i class="fas fa-check"></i> 수정</button>
+					<button type="button"><i class="fas fa-times"></i> 삭제</button>
+				</div>
+			</div>
+		</div>
+		<div class="popupLayer"></div>
+	</form>
+
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
 </body>
 </html>

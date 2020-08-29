@@ -178,6 +178,11 @@ public class HumanServiceImpl implements HumanService {
 	public int searchVacationListCount(HashMap<String, Object> hs) {
 		return hDAO.searchVacationListCount(sqlSession, hs);
 	}
+
+	@Override
+	public Human humanModifyInfo(String eno) {
+		return hDAO.humanModifyInfo(sqlSession, eno);
+	}
 	
 	// 마이페이지 - 휴가 신청
 	@Override

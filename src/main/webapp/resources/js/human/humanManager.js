@@ -64,6 +64,15 @@ $(document).on('click', '.link-select', function(){
 		$('#add-email2').attr('disabled', true);
 		$('#add-email2').css('cursor', 'auto');
 	}
+	
+	if($('#modify-email3').attr('data-value') == 'input-text'){
+		$('#modify-email2').attr('disabled', false);
+		$('#modify-email2').css('cursor', 'pointer');
+	}else{
+		$('#modify-email2').val('');
+		$('#modify-email2').attr('disabled', true);
+		$('#modify-email2').css('cursor', 'auto');
+	}
 })
 
 $('.selectBox ul').mouseleave(function(){
@@ -177,7 +186,6 @@ $('input[name="add-eno"]').on('keyup',function(){
 			}
 		})
 	}
-	
 })
 
 function dataChk(){
@@ -272,3 +280,113 @@ function dataChk(){
  		$(".popup-form").fadeOut();
 	}
 }
+
+
+$('.human_name').on('click',function(){
+	var eno = $(this).parent().prev().text();
+	
+	$.ajax({
+		url: '/Human/humanModifyInfo',
+		data: {eno:eno},
+		success: function(data){
+			console.log(data)
+			if(data.renameFileName != null){
+				$('.upload-thumb').attr('src','resources/Profile-images/'+data.renameFileName);
+			}else{
+				$('.upload-thumb').attr('src','resources/images/default-profile.jpg');
+			}
+			
+			$('input[name="modify-eno"]').val(data.eno);
+			$('input[name="modify-name"]').val(data.name);
+			$('#modify-dept').attr('data-value', data.dcode);
+			$('#modify-dept').val(data.dcode);
+			$('#modify-select-dept .link-selected').text(data.dname);
+			$('#modify-rank').attr('data-value', data.rcode);
+			$('#modify-rank').val(data.rcode);
+			
+			var eNum = data.email.indexOf("@");
+			var emailId = data.email.substring(0,eNum);
+			var email = data.email.substring(eNum+1);
+			$('input[name="modify-email"]').val(emailId);
+			$('input[name="modify-email2"]').val(email);
+			
+			
+			$('#modify-select-rank .link-selected').text(data.rname);
+			$('input[name=modify-inDate]').val(data.indate);
+			$('input[name=modify-date]').val(data.birthday);
+			if(data.gender == 'W'){
+				$('#modify-gender-woman').prop('checked',true);
+			}else{
+				$('#modify-gender-man').prop('checked',true);
+			}
+			
+			var pArr = data.phone.split("-");	
+			$('#modify-phone').attr('data-value',pArr[0]).val(pArr[0]);
+			$('#modify-phone').next().text(pArr[0]);
+			$('input[name=modify-phone2]').val(pArr[1]);
+			$('input[name=modify-phone3]').val(pArr[2]);
+			}
+		
+	})
+	
+	$.ajax({
+		url: '/Human/humanAddDeptList',
+		success: function(data){
+			$ul = $('#modify-select-dept ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].dcode +"'>"+data[i].dname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
+	
+	$.ajax({
+		url: '/Human/humanAddRankList',
+		success: function(data){
+			$ul = $('#modify-select-rank ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].rcode +"'>"+data[i].rname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
+		}
+	})
+	
+	
+	$('#popup-Modify-form').fadeIn();
+})
+
+$('input[name="modify-eno"]').on('keyup',function(){
+	var eno = $('input[name="modify-eno"]').val();
+	
+	if(eno == ''){
+		$('#modify-enoChk').text('');
+	}else{
+		$.ajax({
+			url: '/Human/enoDupChk',
+			data: {eno:eno},
+			success: function(data){
+				if(data=='true'){
+					$('#modify-enoChk').text('사용 불가능');
+					$('#modify-enoChk').css('color','red');
+					$('#modify-enoChk2').val(0);
+				}else{
+					$('#modify-enoChk').text('사용 가능');
+					$('#modify-enoChk').css('color','green');
+					$('#modify-enoChk2').val(1);
+				}
+			}
+		})
+	}
+})
