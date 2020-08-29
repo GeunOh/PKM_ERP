@@ -70,4 +70,6 @@ public interface HumanService {
 
 	int addVacation(Vacation vacation);
 
+	int showVacationDays(String eno);
+
 }

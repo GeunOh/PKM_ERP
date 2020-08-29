@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -498,7 +499,15 @@ public class HumanController {
 	 */	
 	// 마이페이지
 	@RequestMapping("myInfo")
-	public String myinfoMain() {
+	public String myinfoMain(HttpSession session, Model model) {
+		
+		Human loginHuman = (Human)session.getAttribute("loginUser");
+		
+		String eno = loginHuman.getEno();
+		// 잔여 연차 개수 가져오기.
+		int result = hService.showVacationDays(eno);
+		model.addAttribute("vacationDay", result);
+		
 		return "myInfo";
 	}
 	
@@ -512,14 +521,6 @@ public class HumanController {
 							  @RequestParam("useDay") int useDay,
 							  @RequestParam(value="reason", required=false) String reason) {
 		
-		System.out.println(eno);
-		System.out.println(vType);
-		System.out.println(startDate);
-		System.out.println(endDate);
-		System.out.println(useDay);
-		System.out.println(reason);		// 없으면 공백
-		
-		System.out.println(vacation);
 		int result = hService.addVacation(vacation);
 		
 		return "redirect:/Human/myInfo";
