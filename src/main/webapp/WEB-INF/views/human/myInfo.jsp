@@ -98,7 +98,11 @@
 			<div id="commuteBox" class="content_Box">
 				<h2>출퇴근</h2>
 				<div id="sysdateBox">
-					<span>현재시간 10:42 2020-08-27 TUE</span>
+					<span>현재시간 
+						<span id="hh">00</span>:<span id="mm">00</span>:<span id="ss">00</span>
+						<span id="yyyy-mm-dd"></span>
+						<span id="day">TUE</span>
+					</span>
 				</div>
 				<div id="buttons">
 					<button>ON</button>
