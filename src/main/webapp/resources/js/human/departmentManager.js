@@ -21,10 +21,14 @@ $("#modifyBtn").on("click", function() {
 	$("#modifyDept").show();
 });
 
-// 각 부서 클릭시 해당 부서 내용 조회
+// 각 부서 클릭시 해당 부서 내용 조회 
+// 및 해당 부서 사원 조회
 $("#branch-area li span").on("click", function() {
 	var deptName = $(this).text();	// 해당 부서 이름
-	showDeptInfo(deptName);
+	
+	showDeptInfo(deptName);	// 부서 목록
+	showHumanList(deptName); // 해당 부서 사원목록
+	
 });
 
 // 삭제 팝업창 호버 시 각 부서 내용 조회
@@ -78,10 +82,66 @@ function showDeptInfo(deptName) {
 	})
 }
 
+// 부서 클릭 시 해당 사원 목록 조회
+function showHumanList(deptName) {
+	console.log("js")
+	$.ajax({
+		type: "post",
+		async: false,
+		url: "/Human/departHumanShow",
+		data: {deptName: deptName},
+		success: function(hList) {
+			
+			$tbody = $("#hListTableWrap tbody");
+			$tr = $("<tr/>");
+			$tbody.html("");
+
+			if(hList.length==0){
+				$td = $("<td colspan='5' style='font-size: 16px;'>해당하는 부서의 사원정보가 없습니다. 다른 부서를 선택해주세요.</td>");
+				$tr.append($td);
+				$tbody.append($tr);
+			} else {
+				for(var i in hList){
+					$tr = $("<tr/>");
+					
+					$dname = $("<td>"+hList[i].dname +"</td>");
+					$rcode = $("<td>"+hList[i].rcode +"</td>");
+					$rname = $("<td>"+hList[i].rname +"</td>");
+					$eno   = $("<td>"+hList[i].eno +"</td>");
+					$name = $("<td>"+hList[i].name +"</td>");
+					
+					$tr.append($dname);
+					$tr.append($rcode);
+					$tr.append($rname);
+					$tr.append($eno);
+					$tr.append($name);
+					$tbody.append($tr);
+				}
+				if(hList.length < 15 ){
+					for(var i=0; i<15-hList.length; i++){
+						$tr = $("<tr/>");
+						$td = $("<td>&nbsp;</td>");
+						
+						$tr.append($td);
+						$tr.append("<td></td>");
+						$tr.append("<td></td>");
+						$tr.append("<td></td>");
+						$tr.append("<td></td>");
+						$tbody.append($tr);
+					}
+					
+				}
+				
+			}
+		
+
+		}
+	})
+}
+
 // 부서기능 수정 시 해당 부서 정보 조회 기능
 function modifyDeptInfo(deptName) {
 	$.ajax({
-		type: "post",
 		async: false,
 		url: "/Human/departmentShow",
 		datatype: "text",
@@ -124,3 +184,4 @@ function dcodeDupChk() {
 	})
 	
 }
+

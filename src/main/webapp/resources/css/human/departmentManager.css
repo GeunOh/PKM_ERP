@@ -20,7 +20,6 @@ h1{margin-bottom: 3%;}
 	width: 20%; float:left; padding: 20px; 
 	border: 1px solid #bbb; 
 	border-radius: 6px;	
-	margin-right: 5%;
 }
 #organizationChart form > ul > li:first-child > span { border-bottom: 1px solid #bbb; }
 #organizationChart form > ul > li > span { 
@@ -66,7 +65,10 @@ h1{margin-bottom: 3%;}
 }
 
 /* 조직정보 */
-#organizationInfo { width:70%; float:left;}
+#organizationInfo { 
+	width:30%; float:left;
+	margin: 0 5%;
+}
 #organizationInfo h3 { 
 	padding: 0 0 17px 0;
 	margin-bottom: 20px; 
@@ -84,7 +86,7 @@ h1{margin-bottom: 3%;}
     right: 0;
     top: 0;
     bottom: 0;
-    padding: 250px 0;
+    padding: 225px 0;
 }
 #dimBox{
 	position: fixed;
@@ -94,6 +96,7 @@ h1{margin-bottom: 3%;}
     bottom: 0;
     background-color: black;
     opacity: 0.4;
+    z-index: 51;
 }
 .crud_box{
 	font-family: NotoSans-Regular;
@@ -139,6 +142,7 @@ h1{margin-bottom: 3%;}
 	width: 65%;
     height: 320px;
     float: left;
+    margin: 0 0 30px 10px;
 }
 #deptInfo h3 { margin-bottom: 10px; }
 #deptInfo th { padding: 12px; width: 59px;}
@@ -153,3 +157,39 @@ h1{margin-bottom: 3%;}
 #modifyDept #deptInfo input:last-child {
 	width: 300px;	
 }
+
+/* 사원목록  */
+#humanList {
+	width: 35%;
+	float: left;
+	font-family: NotoSans-Regular;
+}
+#hListTableWrap { max-height: 660px; overflow-y: auto;}
+#humanList h3 { 
+	padding: 0 0 17px 0;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #bbb;
+}
+#humanList table { width: 100%; min-height: 660px; }
+
+#humanList th{padding: 10px 0; font-size: 13px;}
+#humanList td{padding: 10px 0; font-size: 13px; text-align: center;}
+
+#humanList tr th,
+#humanList tr td{
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+
+#humanList tr th:first-child,
+#humanList tr td:first-child{
+  border-left: 1px solid #bbb;
+}
+
+#humanList tr th{
+  background: #eee;
+  border-top: 1px solid #bbb;
+}
+
+
+

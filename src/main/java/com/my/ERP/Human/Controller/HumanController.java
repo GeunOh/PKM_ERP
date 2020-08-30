@@ -320,12 +320,20 @@ public class HumanController {
 	// 부서관리페이지 - 각 부서 정보 조회
 	@RequestMapping("departmentShow")
 	@ResponseBody
-	public Department departmentShow(@RequestParam("deptName") String deptName, Model model) {
+	public Department departmentShow(@RequestParam("deptName") String deptName) {
 		// 해당 부서 조회
-		Department dept = hService.showDepartment(deptName);
+		Department dept = hService.departmentShow(deptName);
 		return dept;
 	}
 	
+	// 부서관리페이지 - 각 부서 선택시 사원 조회
+	@RequestMapping("departHumanShow")
+	@ResponseBody
+	public ArrayList<Human> departHumanShow(@RequestParam("deptName") String deptName){
+		ArrayList<Human> hList = hService.departHumanShow(deptName);
+		System.out.println(hList);
+		return hList;
+	}
 	// 부서 등록 기능
 	@RequestMapping("addDept")
 	public String addDept(HttpServletRequest request) {

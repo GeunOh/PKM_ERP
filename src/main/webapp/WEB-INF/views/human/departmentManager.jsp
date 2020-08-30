@@ -222,6 +222,29 @@
 			<!-- // 부서 수정 -->
 		</div>
 		<!-- // 부서 등록 수정 삭제 -->
+		<!-- 사원목록 -->
+		<div id="humanList">
+			<h3>사원목록</h3>
+			<div id="hListTableWrap">
+				<table>
+					<thead>
+						<tr>
+							<th>부서명</th>
+							<th>직급코드</th>
+							<th>직급명</th>
+							<th>사원번호</th>
+							<th>사원명</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="5" style="font-size: 16px;">해당하는 부서의 사원을 확인하시려면 부서를 선택해주세요.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- // 사원목록 -->
 		
 	</div>
 	<!-- // wrap -->
