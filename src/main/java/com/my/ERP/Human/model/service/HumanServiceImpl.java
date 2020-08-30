@@ -52,7 +52,7 @@ public class HumanServiceImpl implements HumanService {
 	
 	// 해당 부서 정보 조회
 	@Override
-	public Department showDepartment(String deptName) {
+	public Department departmentShow(String deptName) {
 		return hDAO.selectDepartment(deptName, sqlSession);
 	}
 
@@ -195,5 +195,14 @@ public class HumanServiceImpl implements HumanService {
 	public int showVacationDays(String eno) {
 		return hDAO.showVacationDays(sqlSession, eno);
 	}
+	
+	// 부서관리 - 해당 부서 사원 목록 가져오기
+	@Override
+	public ArrayList<Human> departHumanShow(String deptName) {
+		// TODO Auto-generated method stub
+		return hDAO.departHumanShow(sqlSession, deptName);
+	}
+	
+	
 	
 }

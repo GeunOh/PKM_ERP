@@ -95,21 +95,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${empty hList}">
-								<tr><td colspan="4">해당하는 직급의 사원정보가 없습니다. 직급을 선택해주세요.</td></tr>
-						</c:if>
-						<c:if test="${!empty hList}">
-							<c:if test="${10 - fn:length(hList) > 0 }">
-								<c:forEach var="l" begin="1" end="${10 - fn:length(hList)}" >
-									<tr>
-										<td>&nbsp;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</c:forEach>
-							</c:if>
-						</c:if>
+						<tr>
+							<td colspan="4" style="font-size: 16px;">해당하는 직급의 사원을 확인하시려면 직급을 선택해주세요.</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

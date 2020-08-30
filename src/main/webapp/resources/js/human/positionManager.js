@@ -111,11 +111,10 @@ $("#positionTable tbody tr").on("click", function() {
 			
 			$tbody = $("#humanList tbody");
 			$tr = $("<tr/>");
-			
 			$tbody.html("");
 			
 			if(data.length==0){
-				$td = $("<td colspan='4'>해당하는 직급의 사원정보가 없습니다. 직급을 선택해주세요.</td>");
+				$td = $("<td colspan='4' style='font-size: 16px;'>해당하는 직급의 사원정보가 없습니다. 다른 직급을 선택해주세요.</td>");
 				$tr.append($td);
 				$tbody.append($tr);
 			} else {
