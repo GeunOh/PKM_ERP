@@ -1,101 +1,241 @@
 @charset "UTF-8";
 
-/* 급여기본관리 ++ 얘도 공통이라 뽑아쓸수 있을듯 */
-h1{ position: relative; padding-left: 25px; margin: 0 0 20px 0; font-family: NotoSans-Regular;}
-h1:before{
-	content: "";
-	position: absolute;
-	top: 0px;left: 0px;
-	width: 10px; height: 50px;
-	background-color: #4ca0ae;
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
 }
-#search-box input[type=text] { 
-	height: 28px; 
-	border: 1px solid #d0d3db;
-	padding-left: 5px; outline: none; 
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
 }
-#search-box input[type=text]:focus {border-color: #448897; -webkit-box-shadow: 0 0 3px #448897; box-shadow: 0 0 3px #448897;}
-#search-box input { height: 26px; padding-left: 5px; }
-#search-box form { position: relative;}
-#search-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
-#search-box tr { display: flex; }
-#search-box tr:first-child { margin-bottom: 1%; }
-#search-box td { width: 220px; }
-#search-box .buttons { position: absolute; right: 2px; top: -60px;}
-.buttons>a {
-	box-shadow: 0px 10px 14px -7px #276873;
-	background:linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
-	background-color:#599bb3;
-	border-radius:8px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:5px 15px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #3d768a;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	 transition: background-color 5000s ease-in-out 0s;
+	 -webkit-transition: background-color 9999s ease-out;
+     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+     -webkit-text-fill-color: #000 !important;
 }
-.buttons>a:hover {
-	background:linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
-	background-color:#408c99;
+#human{display: block;}
+#salaryManager { color: red; }
+#salaryManager:before { background-color: red; }
+
+h1{margin-bottom: 3%;}
+#Search-back{
+	width: 80%; height: 100px;
+    border: 1px solid #dedede; border-radius: 5px;
+    background-color: #e6e5e5;
 }
-.buttons>a:active {
-	position:relative;
-	top:1px;
+#Serach-form{
+	background-color: #f7f7f7;
+	height: 100%;
+	margin: 0 10px;
 }
-.searchBtn{width: 30px;
-    height: 30px;
-    border: 0;
-    padding: 0;
-    background: url(../../images/sch_btn.png) no-repeat 50% 50% #eee;
-    border: 1px solid #dcdcdc;
-    text-indent: -999px;
-    overflow: hidden;
+#Serach-form>form{padding: 15px 50px 15px 5px; position: relative;}
+.search-area{display: inline-block; font-size: 0;}
+.title{
+	color: #000; font-size: 13px; font-family: NotoSans-Regular;
+    background-color: #fff;
+    margin-left:10px; padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 3px 0 0 3px; border-right: 0;
+}
+/* selectbox */
+a{color: #000; text-decoration: none;}
+ul, li{list-style: none;}
+
+.selectBox{
+	display: inline-block; position: relative;
+	color: #000; font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 0 3px 3px 0;
+    width: 100px;
     cursor: pointer;
-    vertical-align: top;
-    margin-left: 5px;}
+}
+.selectBox>a{color: #000; font-size: 13px; z-index: 5; font-family: NotoSans-Regular;}
+.selectBox ul{
+	display: none;
+	position: absolute; 
+	top: 33px; left: -1px; padding:0; 
+	background-color: #fff; border-radius: 3px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.19), 0 0px 6px rgba(0, 0, 0, 0.23);
+	width: 120px; max-height: 438px;
+	font-size: 13px;
+	z-index:99;
+}
+.selectBox ul li{padding: 5px 5px;}
+.link-selected{ display:inline-block; width: 100px;}
+.link-select{
+	display:block;
+	border-radius: 3px!important;
+	padding: 5px 5px;
+}
+.searchAngle{
+	position: absolute; 
+	top: 8px; right: 10px;
+	cursor: pointer;
+}
+.rotate-angle{ transform: rotate(180deg);}
+.selectBox ul li:hover .link-select{
+	background-color: #282c34;
+    color: #fff;
+} 
 
-/* 사원정보 */
-h2{ position:relative; padding-left: 20px; margin: 20px 0 20px 0; font-family: NotoSans-Regular; }
-h2:before{
+/* 주제별로 길이  */
+.wid_150{width: 150px!important;}
+.wid_170{width: 170px!important;}
+.wid_75{width: 75px!important;}
+.wid_55{width: 55px!important; border-radius: 0; border-right: 0;}
+.wid_35{width: 35px!important;}
+
+/*검색창 아래부분*/
+.downSearch{margin-top: 1%;}
+
+/*달력 css*/
+#schDate{
+	color: #000; font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 0 3px 3px 0;
+    width: 100px;
+    line-height: 20px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.rightDate{border-radius: 3px!important;}
+.date{
+	font-family: NotoSans-Regular;
+	color: #000; font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.date + label{ margin: 0 10px; font-size: 20px;}
+
+#searchBtn { 
+	font-family: NotoSans-Regular;
+	padding: 22px 15px;
+	background-color: transparent;
+	border: 1px solid #969696;
+	border-radius: 3px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+.txtBox {
+	font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+}
+.txtBox:focus { border: 1px solid #282c34; }
+
+/*추가 외 버튼*/
+#btnForm{
+	margin: 2% 0 1% 0; 
+	font-family: NotoSans-Regular; font-weight: bold;
+}
+#btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
+#addBtn{width: 50px; text-align: center;}
+#addBtn:before{
 	content: "";
 	position: absolute;
-	top: 12px; left: 0px;
-	width: 5px; height: 5px;
-	border: 5px solid #4ca0ae; background-color: #fff; border-radius: 50%;
+	top: 15px; left: 7px;
+	width: 3px; height: 15px;
+	background-color: #000;
 }
-#result-box { width: fit-content; height: 78.5%; margin: 0 20px 0 0; float: left; font-family: NotoSans-Regular; }
-#result-box table { border: 3px solid #374a72; margin-bottom: 10px; height: 80%; }
-#result-box tr { border-bottom: 1px solid gray; height: 35px; line-height: 35px; }
-#result-box tr.row:hover { background-color: #dfefff; cursor: pointer;}
-#result-box tr:nth-child(odd) { background-color: #f1f1f1;}
-#result-box tr:last-child {height: 100%; background-color: white; }
-#result-box th { padding: 0 25px; background-color: #c0dfff;}
-#result-box td { text-align: center;}
-.number { color: red; font-weight: 550;}
+#addBtn:after{
+	content: "";
+	position: absolute;
+	top: 15px; left: 7px;
+	width: 3px; height: 15px;
+	background-color: #000;
+	transform: rotate(90deg);
+}
+#downBtn{position: relative;}
+#downBtn i{position: absolute; top: 15px; left: 0;}
 
-/* right-box */
-#right-box { overflow: hidden; }
+/*테이블*/
+#salaryTable{
+	width: 100%; min-height:419px; 
+	border-collapse: separate;
+    border-spacing: 0;
+}
+#salaryTable th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
+#salaryTable td{padding: 10px 0; font-size: 13px; text-align: center;}
 
-/* 인사기본정보 */
-#basicInfo-box { float: left; font-family: NotoSans-Regular; width: 100%; }
-#basicInfo-box table { border: 3px solid #e4e4e4; margin-bottom: 10px; background-color: #f6f6f6; display: block; padding: 10px;}
-#basicInfo-box tr:first-child td:last-child { width: fit-content;}
-#basicInfo-box td, #basicInfo-box th { padding: 4px 0; }
-#basicInfo-box td { width: 190px; }
-#basicInfo-box th { display:block; width: 100px; margin-right: 10px; text-align: right; line-height: 30px;}
-#basicInfo-box input { height: 26px; padding-left: 5px;}
-#basicInfo-box input#isRetire { width: 40px; padding: 0; text-align: center; }
+#salaryTable tr th,
+#salaryTable tr td {
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+#salaryTable tr th:first-child,
+#salaryTable tr td:first-child {
+  border-left: 1px solid #bbb;
+}
+#salaryTable tr th {
+  background: #eee;
+  border-top: 1px solid #bbb;
+}
+#salaryTable tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
 
-/* 급여 수당 정보 */
-#salaryInfo-box { float: left; font-family: NotoSans-Regular; width: 100%;}
-#salaryInfo-box table { display: block; border: 3px solid #4ca0ae;}
-#salaryInfo-box table tr { height: 35px; }
-#salaryInfo-box table th { padding : 0 18px; background-color: #c0dfff; }
-#salaryInfo-box table td { text-align: center; }
+#salaryTable tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+#salaryTable tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+#salaryTable tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
+
+/* 페이징버튼 */
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+.pg_current {
+    display: inline-block;
+    background: #282c34;
+    border: 1px solid #282c34;
+    color: #fff;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.pg_page {
+	display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #959595;
+    font-size: 1.083em;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.pg_page:hover {
+	background-color: #dadada;
+}
