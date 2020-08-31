@@ -47,7 +47,10 @@ public class HumanController {
 	 */	
 	// 인사기본관리
 	@RequestMapping("humanManager")
-	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model) {
+	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model, HttpServletRequest req) {
+		
+		String root = req.getSession().getServletContext().getRealPath("resources");
+        System.out.println(root);
 		
 		int currentPage = 1;
 		if(page != null) {
