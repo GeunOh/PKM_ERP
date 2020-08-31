@@ -122,7 +122,7 @@ public class HumanController {
 	public String humanInsert(@ModelAttribute Human h, @RequestParam("profile_img") MultipartFile imgFile,
 							  HttpServletRequest request ) {
 		//주소,폰 하나의 문자열로 합침.
-		String address = request.getParameter("address1") + request.getParameter("address2");
+		String address = request.getParameter("address1") +"/"+ request.getParameter("address2");
 		String phone = request.getParameter("phone") + "-" + request.getParameter("phone2") + "-" + request.getParameter("phone3");
 		//초기 비밀번호 설정
 		String pwd = request.getParameter("add-eno") + request.getParameter("phone3");

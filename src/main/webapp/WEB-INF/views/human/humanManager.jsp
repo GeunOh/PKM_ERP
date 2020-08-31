@@ -98,7 +98,21 @@
 			<thead>
 				<tr>
 					<th style="width: 3%;">상태</th>
-					<th style="width: 10%">입사일</th>
+					<c:url var="start" value="${ loc }">
+						<c:param name="page" value="1"/>
+						<c:if test="${ not empty hs }">
+							<c:param name="selectDept" value="${hs.dept}"/>
+							<c:param name="selectRank" value="${hs.rank}"/>
+							<c:param name="email" value="${hs.email}"/>
+							<c:param name="eno" value="${hs.eno}"/>
+							<c:param name="name" value="${hs.name}"/>
+							<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+							<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
+						</c:if>
+						<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+					</c:url>
+					<th style="width: 10%"><a class="sort_th" href="${start}">입사일<i class="fas fa-caret-up"></i><i class="fas fa-caret-down"></i></a></th>
 					<th style="width: 10%">사번</th>
 					<th style="width: 7%">이름</th>
 					<th style="width: 5%">직급</th>
@@ -118,8 +132,8 @@
 						<td>${h.indate }</td>
 						<td>${h.eno }</td>
 						<td><a class="human_name">${h.name}</a></td>
-						<td>${h.rcode }</td>
-						<td>${h.dcode }</td>
+						<td>${h.rname }</td>
+						<td>${h.dname }</td>
 						<td>${h.email }</td>
 					</tr>
 				</c:forEach>
@@ -245,7 +259,7 @@
 	</div>
 	<div>${selectDate}</div>
 	<!-- 팝업창 -->
-	<form method="post" action="/Human/humanInsert" class="popup-form" enctype="Multipart/form-data" style="display: none;">
+	<form method="post" action="/Human/humanInsert" id="add-popup-form" class="popup-form" enctype="Multipart/form-data" style="display: none;">
 		<div class="popupContent">
 			<h1>사원 추가 <i class="fas fa-times"></i></h1>
 			<div class="filebox bs3-primary preview-image add-image">
@@ -364,7 +378,7 @@
 	<!-- 조회 팝업창 -->
 	<form method="post" action="" class="popup-form" id="popup-Modify-form" enctype="Multipart/form-data" style="display: none;">
 		<div class="popupContent">
-			<h1>사원 조회<i class="fas fa-times"></i></h1>
+			<h1>사원 수정<i class="fas fa-times"></i></h1>
 			<div class="filebox bs3-primary preview-image add-image">
 				<span class="add-title">프로필 수정</span>
 				<div class="upload-display"><div class="upload-thumb-wrap"><img src="resources/images/default-profile.jpg" class="upload-thumb"></div></div>
@@ -468,6 +482,7 @@
 					<input type="text" class="txtBox phone2" name="modify-phone3" size="4">
 				</div>
 				<div class="add-textform add-btn-form">
+					<div style='display:none; color:red'>- 현재 퇴직한 인원입니다. -</div>
 					<button type="button"><i class="fas fa-check"></i> 수정</button>
 					<button type="button"><i class="fas fa-times"></i> 삭제</button>
 				</div>

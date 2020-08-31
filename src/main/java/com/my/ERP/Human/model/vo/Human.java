@@ -22,6 +22,7 @@ public class Human {
 	private String dname;
 	private String originalFileName;
 	private String renameFileName;
+	private String adminyn;
 
 	public Human() {
 	} // 기본생성자
@@ -163,13 +164,21 @@ public class Human {
 		this.renameFileName = renameFileName;
 	}
 
+	public String getAdminyn() {
+		return adminyn;
+	}
+
+	public void setAdminyn(String adminyn) {
+		this.adminyn = adminyn;
+	}
+
 	@Override
 	public String toString() {
 		return "Human [eno=" + eno + ", pwd=" + pwd + ", name=" + name + ", birthday=" + birthday + ", address="
 				+ address + ", email=" + email + ", phone=" + phone + ", gender=" + gender + ", indate=" + indate
 				+ ", outdate=" + outdate + ", outyn=" + outyn + ", rcode=" + rcode + ", rname=" + rname + ", dcode="
 				+ dcode + ", dname=" + dname + ", originalFileName=" + originalFileName + ", renameFileName="
-				+ renameFileName + "]";
+				+ renameFileName + ", adminyn=" + adminyn + "]";
 	}
-
+	
 }
