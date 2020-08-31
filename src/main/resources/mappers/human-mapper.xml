@@ -167,7 +167,7 @@
 	</update>
 	
 	<insert id="humanInsert">
-		INSERT INTO TB_USER VALUES(#{h.eno},#{h.pwd},#{h.name},#{birthDay},#{h.address},#{h.email},#{h.phone},#{h.gender},#{inDate},null,'N',#{h.rcode},#{h.dcode},#{h.originalFileName},#{h.renameFileName})	
+		INSERT INTO TB_USER VALUES(#{h.eno},#{h.pwd},#{h.name},#{birthDay},#{h.address},#{h.email},#{h.phone},#{h.gender},#{inDate},null,'N',#{h.rcode},#{h.dcode},#{h.originalFileName},#{h.renameFileName},'N')	
 	</insert>	
 	
 	<select id="enoDupChk" resultType="_int">

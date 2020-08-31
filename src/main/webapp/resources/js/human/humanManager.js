@@ -276,7 +276,7 @@ function dataChk(){
 	}
 	
 	if(bool){
-		$('.popup-form').submit();
+		$('#add-popup-form').submit();
  		$(".popup-form").fadeOut();
 	}
 }
