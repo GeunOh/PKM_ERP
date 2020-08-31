@@ -117,7 +117,7 @@ $(document).ready(function(){
     });
 });
 $('#addBtn').on('click',function(){
-	$('.popup-form').fadeIn();
+	$('#add-popup-form').fadeIn();
 })
 $('h1 .fa-times').on('click',function(){
 	$('.popup-form').fadeOut();
@@ -290,6 +290,13 @@ $('.human_name').on('click',function(){
 		data: {eno:eno},
 		success: function(data){
 			console.log(data)
+			if(data.outyn=='Y'){
+				$('#popup-Modify-form .add-btn-form div').show();
+				$('#popup-Modify-form .add-btn-form button').hide();
+			}else{
+				$('#popup-Modify-form .add-btn-form div').hide();
+				$('#popup-Modify-form .add-btn-form button').show();
+			}
 			if(data.renameFileName != null){
 				$('.upload-thumb').attr('src','resources/Profile-images/'+data.renameFileName);
 			}else{
@@ -319,6 +326,10 @@ $('.human_name').on('click',function(){
 			}else{
 				$('#modify-gender-man').prop('checked',true);
 			}
+			var addressArr = data.address.split("/");
+			$('#popup-Modify-form input[name=address1]').val(addressArr[0]);
+			$('#popup-Modify-form input[name=address2]').val(addressArr[1]);
+			
 			
 			var pArr = data.phone.split("-");	
 			$('#modify-phone').attr('data-value',pArr[0]).val(pArr[0]);
