@@ -153,10 +153,29 @@ h1{margin-bottom: 3%;}
 /* 부서 수정 */
 #modifyDept { display: none;}
 #modifyDept p { margin: 10px 0; }
-#modifyDept #deptInfo input { width:200px; height: 33px; }
+#modifyDept #deptInfo input { width:300px; height: 33px; margin-right: 10px; }
 #modifyDept #deptInfo input:last-child {
 	width: 300px;	
 }
+
+.notice_box {
+	font-family: NotoSans-Regular;
+	width: 47%;
+	box-sizing: border-box;
+	border: 1px solid #e1e1e1;
+    background-color: #fafafa;
+    padding: 2%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.notice_box {     
+	position: absolute;
+    left: 17.7%;
+    bottom: 7%;
+}
+.notice_box li { padding: 5px 0; }
+.notice_box li:last-child { color: red; }
 
 /* 사원목록  */
 #humanList {
@@ -191,5 +210,18 @@ h1{margin-bottom: 3%;}
   border-top: 1px solid #bbb;
 }
 
+/* 알림창 */
+#alertBox {
+	display: none;
+ 	font-family: NotoSans-Regular;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: absolute;
+    background-color: #282c34;
+    color: #fff;
+    top: 9%;
+    right: 43%;
+    border-radius: 3px;
+}
 
 

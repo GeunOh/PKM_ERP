@@ -292,6 +292,7 @@
 				}, 3000);
 			}
 		</script>
+		<!-- 알림창 -->
 	</div>
 	<!-- // wrap  -->
 	<script type="text/javascript" src="resources/js/human/vacationManager.js"></script>

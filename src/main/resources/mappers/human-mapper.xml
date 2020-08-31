@@ -200,7 +200,7 @@
 	
 	<!-- 휴가 신청 승인 -->
 	<update id="approvalVacation">
-		UPDATE TB_VACATION SET STATUS='Y' WHERE VNO IN
+		UPDATE TB_VACATION_RECORD SET STATUS='Y' WHERE VNO IN
 		<foreach collection="array" item="vno" open="(" close=")" separator=",">
 			#{vno}
 		</foreach>
@@ -208,7 +208,7 @@
 	
 	<!-- 휴가 신청 거절 -->
 	<update id="refuseVacation">
-		UPDATE TB_VACATION SET STATUS='F' WHERE VNO IN
+		UPDATE TB_VACATION_RECORD SET STATUS='F' WHERE VNO IN
 		<foreach collection="array" item="vno" open="(" close=")" separator=",">
 			#{vno}
 		</foreach>
@@ -231,7 +231,7 @@
 	
 	<!-- 휴가 신청 목록 전체 행 개수  -->
 	<select id="vacationListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_VACATION
+		SELECT COUNT(*) FROM TB_VACATION_RECORD
 	</select>
 	
 	<!-- 휴가 신청 목록 검색 결과 행 개수  -->
@@ -268,6 +268,11 @@
 	<select id="departStudentShow" resultMap="humanResult">
 		SELECT DNAME, RCODE,RNAME, ENO, ENAME
 		FROM HUMANLIST WHERE DNAME = #{deptName}
+	</select>
+	
+	<!-- 직급 -->
+	<select id="rcodeDupChk" resultType="_int">
+		SELECT COUNT(*) FROM TB_RANK WHERE RCODE = #{rcode}
 	</select>
 	
 </mapper>

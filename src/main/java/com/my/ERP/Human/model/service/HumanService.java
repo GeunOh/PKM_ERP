@@ -76,5 +76,7 @@ public interface HumanService {
 
 	ArrayList<Human> departHumanShow(String deptName);
 
+	int rcodeDupChk(String rcode);
+
 
 }
