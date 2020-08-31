@@ -137,7 +137,7 @@ public class HumanController {
 		}else {
 			email = request.getParameter("add-email") + "@" + request.getParameter("add-email3");
 		}
-		
+		System.out.println(request.getParameter("add-rank"));
 		h.setEno(request.getParameter("add-eno"));
 		h.setPwd(encPwd);
 		h.setName(request.getParameter("add-name"));
@@ -172,7 +172,8 @@ public class HumanController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\Profile-images";
-		
+		System.out.println("루트 : "+root);
+		System.out.println("루트 2: "+savePath);
 		
 		File folder = new File(savePath);
 		

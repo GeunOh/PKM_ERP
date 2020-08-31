@@ -451,12 +451,12 @@
 				<div class="add-textform">
 					<span class="add-title add-title2">주소</span>
 					<input type="text" name="address1" class="postcodify_address txtBox add-text" value="">
-					<button type="button" class="address-btn">검색</button>
+					<button type="button" id="modify_address_search" class="address-btn">검색</button>
 							
 					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 					<script>
 						$(function(){
-							$(".address-btn").postcodifyPopUp();
+							$("#modify_address_search").postcodifyPopUp();
 						});
 					</script>
 				</div>
