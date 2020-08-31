@@ -84,7 +84,7 @@
 			<!-- 부서 등록 -->
 			<div id="addDept" class="crud_box">
 				<h2>부서 등록</h2>
-				<form action="/Human/addDept" name="addFrm">
+				<form name="addFrm">
 					<table>
 						<tr>
 							<th>부서명</th>
@@ -95,8 +95,8 @@
 						<tr>
 							<th>부서코드</th>
 							<td>
-								<input type="text" name="dcode" onkeyup="dcodeDupChk();">
-								<label id='dcodeChk'></label>
+								<input type="text" name="dcode" onkeyup="dcodeDupChk(event);">
+								<label class='dcodeChk'></label>
 								
 							</td>
 						</tr>
@@ -110,7 +110,7 @@
 					<p>부서 설명 및 소개</p>
 					<textarea rows="6" name="dcomment"></textarea>
 					<div class="button_group">
-						<button>등록</button>
+						<button type="button" class="addBtn">등록</button>
 						<button type="button" class="cancleBtn">취소</button>
 					</div>
 				</form>
@@ -169,9 +169,9 @@
 			</div>
 			<!-- // 부서 삭제  -->
 			<!-- 부서 수정 -->
-			<div id="modifyDept" class="crud_box">
+			<div id="modifyDept" class="crud_box" >
 				<h2>부서 수정</h2>
-				<form action="/Human/modifyDept">
+				<form name="modifyFrm">
 					<p>수정하실 부서를 선택해주세요.</p>
 					<div id="deptList">
 						<table>
@@ -197,6 +197,7 @@
 								<th>부서코드</th>
 								<td id="m_dcode">
 								</td>
+								
 							</tr>
 							<tr>
 								<th>부서장</th>
@@ -213,7 +214,7 @@
 						</table>
 					</div>
 					<div class="button_group">
-						<button>수정</button>
+						<button type="button" class="modifyBtn">수정</button>
 						<button type="button" class="cancleBtn">취소</button>
 					</div>
 					<input type="hidden" id="beforeDept" name="beforeDept">
@@ -222,7 +223,73 @@
 			<!-- // 부서 수정 -->
 		</div>
 		<!-- // 부서 등록 수정 삭제 -->
-		
+		<div class="notice_box">
+            <ul>
+	            <li>1. 부서를 변경/추가/삭제 하시려면 버튼을 클릭해주세요.</li>
+                <li>2. 조직도의 부서명을 클릭하시면 조직 정보 및 해당 부서 사원목록을 확인할 수 있습니다.</li>
+                <li>3. 부서 삭제 시 해당 부서에 사원이 있으면 해당 사원의 부서정보는 사라집니다.</li>
+            </ul>
+        </div>
+		<!-- 사원목록 -->
+		<div id="humanList">
+			<h3>사원목록</h3>
+			<div id="hListTableWrap">
+				<table>
+					<thead>
+						<tr>
+							<th>부서명</th>
+							<th>직급코드</th>
+							<th>직급명</th>
+							<th>사원번호</th>
+							<th>사원명</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="5" style="font-size: 16px;">해당하는 부서의 사원을 확인하시려면 부서를 선택해주세요.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- // 사원목록 -->
+		<!-- 알림창 -->
+		<div id="alertBox">
+			<p></p>
+		</div>
+		<script type="text/javascript">
+			var insert = "${insert}";
+			var deleteDept = "${deleteDept}";
+			var modify = "${modify}";
+			
+			if(insert!='') {
+				$("#alertBox p").text(insert);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+					return;
+				}, 3000);
+			}
+			
+			if(deleteDept!=''){
+				$("#alertBox p").text(deleteDept);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+					return;
+				}, 3000);
+			}
+			
+			if(modify!=''){
+				$("#alertBox p").text(modify);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+					return;
+				}, 3000);
+			}
+		</script>
+		<!-- 알림창 -->
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/departmentManager.js"></script>

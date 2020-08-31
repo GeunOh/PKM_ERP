@@ -169,6 +169,14 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.showVacationDays", eno);
 	}
 
+	public ArrayList<Human> departHumanShow(SqlSessionTemplate sqlSession, String deptName) {
+		return (ArrayList)sqlSession.selectList("humanMapper.departStudentShow", deptName);
+	}
+
+	public int rcodeDupChk(SqlSessionTemplate sqlSession, String rcode) {
+		return sqlSession.selectOne("humanMapper.rcodeDupChk", rcode);
+	}
+
 	
 
 }

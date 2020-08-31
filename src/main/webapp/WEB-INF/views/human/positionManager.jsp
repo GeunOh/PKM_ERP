@@ -76,7 +76,7 @@
 		<!-- // 테이블 -->
 		<div class="notice_box">
             <ul>
-	            <li>1. 검색/추가 시 직급코드와 직급명을 입력해주세요.</li>
+	            <li>1. 검색/추가 시 직급코드와 직급명을 입력하시고 해당 버튼을 클릭해 주세요.</li>
                 <li>2. 직급을 선택하시면 해당 직급의 사원목록을 확인하실 수 있습니다.</li>
                 <li>3. 직급 삭제 시 해당 직급에 사원이 있으면 해당 사원의 직급은 사라집니다.</li>
             </ul>
@@ -95,21 +95,9 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:if test="${empty hList}">
-								<tr><td colspan="4">해당하는 직급의 사원정보가 없습니다. 직급을 선택해주세요.</td></tr>
-						</c:if>
-						<c:if test="${!empty hList}">
-							<c:if test="${10 - fn:length(hList) > 0 }">
-								<c:forEach var="l" begin="1" end="${10 - fn:length(hList)}" >
-									<tr>
-										<td>&nbsp;</td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</c:forEach>
-							</c:if>
-						</c:if>
+						<tr>
+							<td colspan="4" style="font-size: 16px;">해당하는 직급의 사원을 확인하시려면 직급을 선택해주세요.</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

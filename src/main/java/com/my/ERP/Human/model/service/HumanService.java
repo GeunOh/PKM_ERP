@@ -18,7 +18,7 @@ public interface HumanService {
 
 	ArrayList<Human> HumanList(PageInfo pi);
 
-	Department showDepartment(String deptName);
+	Department departmentShow(String deptName);
 	
 	int SearchHumanListCount(HashMap<String, Object> hs);
 
@@ -73,5 +73,10 @@ public interface HumanService {
 	int addVacation(Vacation vacation);
 
 	int showVacationDays(String eno);
+
+	ArrayList<Human> departHumanShow(String deptName);
+
+	int rcodeDupChk(String rcode);
+
 
 }

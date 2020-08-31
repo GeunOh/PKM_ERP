@@ -199,7 +199,8 @@ ul, li{list-style: none;}
 	width: 30%;
     position: absolute;
     right: 30px;
-    top: 116px;
+    top: 112px;
+   	font-family: NotoSans-Regular;
 }
 #hListTableWrap { max-height: 723px; overflow-y: auto;}
 #humanList h2 { margin-bottom: 20px; }

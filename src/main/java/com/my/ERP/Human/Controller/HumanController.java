@@ -303,6 +303,17 @@ public class HumanController {
 		return hService.choiceRcode(rcode);
 	}
 	
+	// 직급 추가 시 직급코드 중복확인
+	@RequestMapping("rcodeDupChk")
+	@ResponseBody
+	public boolean rcodeDupChk(@RequestParam("rcode") String rcode) {
+		System.out.println(rcode);
+		
+		// 중복이면 true 
+		int result = hService.rcodeDupChk(rcode);
+		return result>0 ? true : false;
+	}
+	
 	/**
 	 * 	[ ========== 부 서 관 리 ========== ]
 	 */	
@@ -320,15 +331,23 @@ public class HumanController {
 	// 부서관리페이지 - 각 부서 정보 조회
 	@RequestMapping("departmentShow")
 	@ResponseBody
-	public Department departmentShow(@RequestParam("deptName") String deptName, Model model) {
+	public Department departmentShow(@RequestParam("deptName") String deptName) {
 		// 해당 부서 조회
-		Department dept = hService.showDepartment(deptName);
+		Department dept = hService.departmentShow(deptName);
 		return dept;
 	}
 	
+	// 부서관리페이지 - 각 부서 선택시 사원 조회
+	@RequestMapping("departHumanShow")
+	@ResponseBody
+	public ArrayList<Human> departHumanShow(@RequestParam("deptName") String deptName){
+		ArrayList<Human> hList = hService.departHumanShow(deptName);
+		System.out.println(hList);
+		return hList;
+	}
 	// 부서 등록 기능
 	@RequestMapping("addDept")
-	public String addDept(HttpServletRequest request) {
+	public String addDept(HttpServletRequest request, RedirectAttributes ra) {
 		
 		Department dept = new Department();
 		dept.setDcode(request.getParameter("dcode"));
@@ -338,21 +357,27 @@ public class HumanController {
 		
 		hService.addDept(dept);
 		
+		String insert = "등록되었습니다.";
+		ra.addFlashAttribute("insert", insert);
+		
 		return "redirect:/Human/departmentManager";
 	}
 	
 	// 부서 삭제 기능
 	@RequestMapping("delDept")
-	public String delDept(@RequestParam("dname") String[] dnames) {
+	public String delDept(@RequestParam("dname") String[] dnames, RedirectAttributes ra) {
 		
 		hService.delDept(dnames);
+		
+		String deleteDept = "삭제되었습니다.";
+		ra.addFlashAttribute("deleteDept", deleteDept);
 		
 		return "redirect:/Human/departmentManager";
 	}
 	
 	// 부서 정보 수정 기능
 	@RequestMapping("modifyDept")
-	public String modifyDept(HttpServletRequest request) {
+	public String modifyDept(HttpServletRequest request, RedirectAttributes ra) {
 		
 		String beforeDeptName = request.getParameter("beforeDept");
 		
@@ -364,6 +389,9 @@ public class HumanController {
 		dept.setStartDate(request.getParameter("startDate"));
 		
 		hService.modifyDept(dept, beforeDeptName);
+		
+		String modify = "수정되었습니다.";
+		ra.addFlashAttribute("modify", modify);
 		
 		return "redirect:/Human/departmentManager";
 	}
