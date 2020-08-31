@@ -91,31 +91,31 @@
 		<!-- // 검색 영역 -->
 		<!-- 추가 외 버튼 -->
 		<div id="btnForm">
-			<label id="addBtn">추가</label>
 			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 테이블 -->
 		<table id="workInOutTable">
 			<thead>
 				<tr>
-					<th style="width: 3%;">상태</th>
-					<th style="width: 10%">입사일</th>
-					<th style="width: 10%">사번</th>
-					<th style="width: 7%">이름</th>
-					<th style="width: 5%">직급</th>
-					<th style="width: 5%">부서</th>
-					<th style="width: 10%">업무 메일</th>
+					<th>정렬</th>			
+					<th>일자</th>			
+				</tr>
+				<tr>
+					<th>정렬</th>			
+					<th>요일</th>	
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
+					<th rowspan="3">가나다</th>
+					<td>출근</td>
+					<!-- 일자별 반복 -->
+				</tr>
+				<tr>
+					<td>퇴근</td>
+				</tr>
+				<tr>
+					<td>구분</td>
 				</tr>
 			</tbody>
 		</table>
@@ -129,6 +129,6 @@
 		</div>
 	</div>
 	<!-- // wrap -->
-
+<script type="text/javascript" src="resources/js/human/workInOutManager.js"></script>
 </body>
 </html>
