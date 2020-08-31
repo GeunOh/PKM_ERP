@@ -72,6 +72,17 @@ function addPosition(){
         rname.focus();
 		return false;
     }
+	
+	// 직급번호 중복 예외처리
+	var chk = rcodeDupChk(rcode.value);
+	
+	console.log(chk);
+	
+	if(chk){
+		alert("이미 사용중인 직급번호입니다.");
+		return false;
+	}
+	
 	// 부서 추가
 	var searchForm = document.searchForm;
 	searchForm.action = "/Human/addPosition";
@@ -96,17 +107,14 @@ function deletePosition(){
 // 직급 클릭 시 사원 목록 조회
 $("#positionTable tbody tr").on("click", function() {
 	
-//	$("#humanList tbody").empty();
 	var rcode = $(this).children().eq(1).text();
 		
 	$.ajax({
-		
 		async : false,
 		url: "/Human/choiceRcode",
 		datatype: "json",
 		data: {rcode: rcode},
 		success: function(data) {
-			
 			console.log(data);
 			
 			$tbody = $("#humanList tbody");
@@ -118,9 +126,7 @@ $("#positionTable tbody tr").on("click", function() {
 				$tr.append($td);
 				$tbody.append($tr);
 			} else {
-			
 				for(var i in data){
-					
 					$tr = $("<tr/>");
 					
 					$rcode = $("<td>"+data[i].rcode +"</td>");
@@ -133,9 +139,7 @@ $("#positionTable tbody tr").on("click", function() {
 					$tr.append($eno);
 					$tr.append($name);
 					$tbody.append($tr);
-			
 				}
-				
 				// 결과가 15개 이하라면
 				if(15 - data.length > 0){
 					for(var i=0; i<15-data.length; i++){
@@ -148,16 +152,29 @@ $("#positionTable tbody tr").on("click", function() {
 						$tr.append("<td></td>");
 						
 						$tbody.append($tr);
-						
 					}
 				}
 			}
-			
-			
 		}
-		
 	});
-
 });
+
+// 직급 추가 시 PK 중복확인
+function rcodeDupChk(rcode) {
+	console.log("직급 중복확인 : " + rcode);
+	var chk;
+	
+	$.ajax({
+		async: false,
+		url: "/Human/rcodeDupChk",
+		data: {rcode, rcode},
+		success: function(data) {
+			chk = data;
+		}
+	})
+	
+	return chk;
+	
+}
 
 

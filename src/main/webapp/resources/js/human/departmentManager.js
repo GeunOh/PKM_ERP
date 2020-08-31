@@ -45,6 +45,33 @@ $("#modifyDept #deptList td").on("click", function() {
 	modifyDeptInfo(deptName); // 수정할 부서 정보
 });
 
+// 부서 등록 서비스
+$(".addBtn").on("click", function() {
+	
+	if($("#addDept .dcodeChk").text() == "이미 존재하는 부서코드"){
+		alert("이미 존재하는 부서코드입니다.");
+		$("input[name='dcode']").focus();
+		return;
+	}
+	var addForm = document.addFrm;
+	addForm.action = "/Human/addDept";
+	addForm.submit();
+})
+
+// 부서 수정 서비스
+$(".modifyBtn").on("click", function() {
+	var dcode = $("#modifyDept .dcodeChk").text();
+	
+	if(dcode == "이미 존재하는 부서코드"){
+		alert("이미 존재하는 부서코드입니다.");
+		$("input[name='dcode']").focus();
+		return;
+	}
+	var modifyForm = document.modifyFrm;
+	modifyForm.action = "/Human/modifyDept";
+	modifyForm.submit();
+})
+
 // 취소 버튼시 
 $(".cancleBtn").on("click", function() {
 	var addForm = document.addFrm;
@@ -149,7 +176,8 @@ function modifyDeptInfo(deptName) {
 		success: function(data, textStatus) {
 			$("#m_dname").append("<input type='text' name='dname' value='"+data.dname+"'>");
 			
-			$("#m_dcode").append("<input type='text' name='dcode' value='"+data.dcode+"' onkeyup='dcodeDupChk();'>");
+			$("#m_dcode").append("<input type='text' name='dcode' value='"+data.dcode+"' onkeyup='dcodeDupChk(event);'>");
+			$("#m_dcode").append("<label class='dcodeChk'></label>");
 
 			
 			if(data.eno==undefined){
@@ -164,9 +192,9 @@ function modifyDeptInfo(deptName) {
 }
 
 // 부서코드 중복 체크
-function dcodeDupChk() {
+function dcodeDupChk(e) {
 	
-	var dcode = $("#addDept input[name='dcode']").val();
+	var dcode = e.target.value;
 	
 	$.ajax({
 		async: false,
@@ -174,11 +202,11 @@ function dcodeDupChk() {
 		data: {dcode, dcode},
 		success: function(data) {
 			if(data=="true"){
-				$('#dcodeChk').text('이미 존재하는 부서코드');
-				$('#dcodeChk').css('color','red');
+				$('.dcodeChk').text('이미 존재하는 부서코드');
+				$('.dcodeChk').css('color','red');
 			} else {
-				$('#dcodeChk').text('사용 가능');
-				$('#dcodeChk').css('color','green');
+				$('.dcodeChk').text('사용 가능');
+				$('.dcodeChk').css('color','green');
 			}
 		}
 	})

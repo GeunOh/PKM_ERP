@@ -173,6 +173,10 @@ public class HumanDAO {
 		return (ArrayList)sqlSession.selectList("humanMapper.departStudentShow", deptName);
 	}
 
+	public int rcodeDupChk(SqlSessionTemplate sqlSession, String rcode) {
+		return sqlSession.selectOne("humanMapper.rcodeDupChk", rcode);
+	}
+
 	
 
 }

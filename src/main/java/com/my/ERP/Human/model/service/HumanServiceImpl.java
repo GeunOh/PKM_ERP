@@ -203,6 +203,12 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.departHumanShow(sqlSession, deptName);
 	}
 	
+	// 직급관리 - 직급 추가 시 직급번호 중복확인
+	@Override
+	public int rcodeDupChk(String rcode) {
+		return hDAO.rcodeDupChk(sqlSession, rcode);
+	}
+	
 	
 	
 }
