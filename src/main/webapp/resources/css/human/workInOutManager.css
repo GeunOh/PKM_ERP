@@ -154,22 +154,6 @@ ul, li{list-style: none;}
 	font-family: NotoSans-Regular; font-weight: bold;
 }
 #btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
-#addBtn{width: 50px; text-align: center;}
-#addBtn:before{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-}
-#addBtn:after{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-	transform: rotate(90deg);
-}
 #downBtn{position: relative;}
 #downBtn i{position: absolute; top: 15px; left: 0;}
 
@@ -188,23 +172,27 @@ ul, li{list-style: none;}
   border-bottom: 1px solid #bbb;
 }
 #workInOutTable tr th:first-child,
-#workInOutTable tr td:first-child {
+#workInOutTable tr:first-child td:first-child {
   border-left: 1px solid #bbb;
 }
 #workInOutTable tr th {
   background: #eee;
   border-top: 1px solid #bbb;
 }
-#workInOutTable tr:first-child th:first-child {
+#workInOutTable tr:last-child th {
+  border-top: none;
+}
+#workInOutTable thead tr:first-child th:first-child {
   border-top-left-radius: 6px;
+}
+
+#workInOutTable tbody tr:first-child th:first-child {
+  border-bottom-left-radius: 6px;
+  border-top: none;
 }
 
 #workInOutTable tr:first-child th:last-child {
   border-top-right-radius: 6px;
-}
-
-#workInOutTable tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
 }
 
 #workInOutTable tr:last-child td:last-child {

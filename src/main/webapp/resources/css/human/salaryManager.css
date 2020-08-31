@@ -152,22 +152,6 @@ ul, li{list-style: none;}
 	font-family: NotoSans-Regular; font-weight: bold;
 }
 #btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
-#addBtn{width: 50px; text-align: center;}
-#addBtn:before{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-}
-#addBtn:after{
-	content: "";
-	position: absolute;
-	top: 15px; left: 7px;
-	width: 3px; height: 15px;
-	background-color: #000;
-	transform: rotate(90deg);
-}
 #downBtn{position: relative;}
 #downBtn i{position: absolute; top: 15px; left: 0;}
 
