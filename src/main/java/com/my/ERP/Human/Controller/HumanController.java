@@ -96,7 +96,6 @@ public class HumanController {
 		}else if(selectDate.equals("dateSelect")){
 			so.setDateSelect("dateSelect");
 		}
-		System.out.println(so);
 		HashMap<String, Object> hs = new HashMap<>();
 		hs.put("so",so);
 		hs.put("dept",selectDept);
@@ -140,7 +139,6 @@ public class HumanController {
 		}else {
 			email = request.getParameter("add-email") + "@" + request.getParameter("add-email3");
 		}
-		System.out.println(request.getParameter("add-rank"));
 		h.setEno(request.getParameter("add-eno"));
 		h.setPwd(encPwd);
 		h.setName(request.getParameter("add-name"));
@@ -175,8 +173,6 @@ public class HumanController {
 		
 		String root = request.getSession().getServletContext().getRealPath("resources");
 		String savePath = root + "\\Profile-images";
-		System.out.println("루트 : "+root);
-		System.out.println("루트 2: "+savePath);
 		
 		File folder = new File(savePath);
 		
@@ -311,7 +307,6 @@ public class HumanController {
 	@RequestMapping("rcodeDupChk")
 	@ResponseBody
 	public boolean rcodeDupChk(@RequestParam("rcode") String rcode) {
-		System.out.println(rcode);
 		
 		// 중복이면 true 
 		int result = hService.rcodeDupChk(rcode);
@@ -346,7 +341,6 @@ public class HumanController {
 	@ResponseBody
 	public ArrayList<Human> departHumanShow(@RequestParam("deptName") String deptName){
 		ArrayList<Human> hList = hService.departHumanShow(deptName);
-		System.out.println(hList);
 		return hList;
 	}
 	// 부서 등록 기능
@@ -477,13 +471,11 @@ public class HumanController {
 		
 		SearchOption so = new SearchOption();
 		
-		System.out.println(selectDate);
 		if(selectDate.equals("dateAll")) {
 			so.setDateAll(selectDate);
 		} else if (selectDate.equals("dateSelect")) {
 			so.setDateSelect(selectDate);
 		} else {
-			System.out.println("===============selectDate ERROR===============");
 		}
 		
 		// 검색 조건들 hashMap에 저장
