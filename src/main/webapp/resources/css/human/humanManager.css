@@ -485,3 +485,14 @@ h1>.fa-times{
     font-weight: bold;
 }
 .human_name{color: #359cff;}
+.sort_th{position: relative;}
+.sort_th > .fa-caret-up{
+	position: absolute;
+	top: -1px; right: -10px;
+	color: #949494;
+}
+.sort_th > .fa-caret-down{
+	position: absolute;
+	top: 5px; right: -10px;
+	color: #949494;
+}

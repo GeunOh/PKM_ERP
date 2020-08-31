@@ -98,7 +98,21 @@
 			<thead>
 				<tr>
 					<th style="width: 3%;">상태</th>
-					<th style="width: 10%">입사일</th>
+					<c:url var="start" value="${ loc }">
+						<c:param name="page" value="1"/>
+						<c:if test="${ not empty hs }">
+							<c:param name="selectDept" value="${hs.dept}"/>
+							<c:param name="selectRank" value="${hs.rank}"/>
+							<c:param name="email" value="${hs.email}"/>
+							<c:param name="eno" value="${hs.eno}"/>
+							<c:param name="name" value="${hs.name}"/>
+							<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
+							<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
+						</c:if>
+						<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
+						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
+					</c:url>
+					<th style="width: 10%"><a class="sort_th" href="${start}">입사일<i class="fas fa-caret-up"></i><i class="fas fa-caret-down"></i></a></th>
 					<th style="width: 10%">사번</th>
 					<th style="width: 7%">이름</th>
 					<th style="width: 5%">직급</th>
