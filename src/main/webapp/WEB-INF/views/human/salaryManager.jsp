@@ -93,7 +93,6 @@
 		<!-- // 검색 영역 -->
 		<!-- 추가 외 버튼 -->
 		<div id="btnForm">
-			<label id="addBtn">추가</label>
 			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 테이블 -->
