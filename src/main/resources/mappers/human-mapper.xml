@@ -228,6 +228,10 @@
 			   REASON, REQUESTDATE, STATUS, DNAME, RNAME 
 		FROM VACATIONLIST
 		<where>
+			<if test="so.all != null"></if>
+			<if test="so.wait != null">AND STATUS = 'N'</if>
+			<if test="so.ok != null">AND STATUS = 'Y'</if>
+			<if test="so.no != null">AND STATUS = 'F'</if>
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>
@@ -278,12 +282,22 @@
 		FROM HUMANLIST WHERE DNAME = #{deptName}
 	</select>
 	
-	<!-- 직급 -->
+	<!-- 직급 중복 체크-->
 	<select id="rcodeDupChk" resultType="_int">
 		SELECT COUNT(*) FROM TB_RANK WHERE RCODE = #{rcode}
 	</select>
 	
 	<insert id="WorkTimeIn">
 		INSERT INTO TB_WORKINOUT VALUES(#{eno}, sysdate, sysdate, null, #{type})
-	</insert>		
+	</insert>	
+		
+	<!-- 변경할 직급 정보 조회 -->
+	<select id="positonModifyInfo" resultType="Rank">
+		SELECT * FROM TB_RANK WHERE RCODE = #{rcode}
+	</select>
+	
+	<update id="modifyPositon">
+		UPDATE TB_RANK SET RCODE=#{rcode}, RNAME=#{rname} WHERE RCODE=#{beforeRcode}
+	</update>
+	
 </mapper>

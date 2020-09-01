@@ -96,23 +96,32 @@ ul, li{list-style: none;}
 #Serach-form button {
 	font-family: NotoSans-Regular;
 	padding: 5px 20px;
-	background-color: transparent;
 	border: 1px solid #969696;
 	border-radius: 3px;
 }
 #searchBtn { 
     position: absolute;
+    right: 255px;
+    top: 15px;
+    background-color: #282c34;
+    color: #fff;
+}
+#addBtn {
+	background-color: transparent;
+	position: absolute;
     right: 175px;
     top: 15px;
 }
-#addBtn {
-	position: absolute;
-    right: 95px;
-    top: 15px;
-}
 #deleteBtn {
+	background-color: transparent;
 	position: absolute;
     right: 15px;
+    top: 15px;
+}
+#modifyBtn {
+	background-color: transparent;
+	position: absolute;
+    right: 95px;
     top: 15px;
 }
 
@@ -205,3 +214,125 @@ ul, li{list-style: none;}
 #hListTableWrap { max-height: 723px; overflow-y: auto;}
 #humanList h2 { margin-bottom: 20px; }
 #humanList table { width: 100%; min-height: 700px; }
+
+/* 직급 수정 팝업창 */
+.popup-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 51;
+    font-family: NotoSans-Regular;
+    display: none;
+}
+.popupContent {
+    width: 40%;
+    height: 33%;
+    margin: auto;
+    max-height: 100vh;
+    background: white;
+    border-radius: 10px;
+    margin-top: 10%;
+}
+.popupLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.popupContent > h2 {
+    text-align: center;
+    border-radius: 7px 7px 0 0;
+    background-color: #282c34;
+    padding: 10px 0;
+    color: #fff;
+    position: relative;
+    margin-bottom: 3%;
+}
+h2>.fa-times {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.content-form {
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0;
+    margin-top: 5%;
+    position: relative;
+}
+.content-form>span {
+    position: absolute;
+    top: -33px;
+    left: 0;
+    font-family: NotoSans-Regular;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+.modify-form {
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+}
+.modify-title {
+    display: inline-block;
+    font-family: NotoSans-Regular;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    margin: 0 5% 0 3%;
+    position: relative;
+    width: 85px;
+}
+.modify-title:before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    left: -12px;
+    width: 5px;
+    height: 5px;
+    background-color: #000;
+    border-radius: 50%;
+}
+.modify-text {
+    font-family: NotoSans-Regular;
+    border-radius: 3px;
+}
+.modify-btn-form {
+    text-align: center;
+    margin-top: 1%;
+    border: none;
+}
+.modify-btn-form button {
+    padding: 7px 16px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+.modify-btn-form button:last-child {
+    margin-left: 1%;
+    font-family: NotoSans-Regular;
+    background-color: #282c34;
+    color: #fff;
+}
+/* 알림창 */
+#alertBox {
+	display:none;
+ 	font-family: NotoSans-Regular;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: absolute;
+    background-color: #282c34;
+    color: #fff;
+    top: 9%;
+    right: 43%;
+    border-radius: 3px;
+}
+/*

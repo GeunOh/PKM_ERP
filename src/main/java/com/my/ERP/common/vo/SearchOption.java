@@ -7,6 +7,10 @@ public class SearchOption {
 	private String dateAll;
 	private String dateSelect;
 	
+	private String wait;
+	private String no;
+	private String ok;
+	
 	public SearchOption() {}
 
 	public String getAll() {
@@ -49,10 +53,35 @@ public class SearchOption {
 		this.dateSelect = dateSelect;
 	}
 
+	public String getWait() {
+		return wait;
+	}
+
+	public void setWait(String wait) {
+		this.wait = wait;
+	}
+
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public String getOk() {
+		return ok;
+	}
+
+	public void setOk(String ok) {
+		this.ok = ok;
+	}
+
 	@Override
 	public String toString() {
 		return "SearchOption [all=" + all + ", inUser=" + inUser + ", outUser=" + outUser + ", dateAll=" + dateAll
-				+ ", dateSelect=" + dateSelect + "]";
+				+ ", dateSelect=" + dateSelect + ", wait=" + wait + ", no=" + no + ", ok=" + ok + "]";
 	}
+
 	
 }

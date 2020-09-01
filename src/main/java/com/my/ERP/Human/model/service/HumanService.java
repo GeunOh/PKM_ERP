@@ -81,5 +81,8 @@ public interface HumanService {
 
 	int WorkTimeIn(String eno, String type);
 
+	Rank positonModifyInfo(String rcode);
+
+	int modifyPositon(HashMap<String, String> hs);
 
 }

@@ -119,7 +119,7 @@
 			<!-- 부서 삭제 -->
 			<div id="delDept" class="crud_box">
 				<h2>부서 삭제</h2>
-				<form action="/Human/delDept">
+				<form name="delForm">
 					<p>삭제하실 부서를 선택해주세요.</p>
 					<div id="deptList">
 						<table>
@@ -162,7 +162,7 @@
 						</table>
 					</div>
 					<div class="button_group">
-						<button>삭제</button>
+						<button type="button" class="deleteBtn">삭제</button>
 						<button type="button" class="cancleBtn">취소</button>
 					</div>
 				</form>

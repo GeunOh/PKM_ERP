@@ -200,7 +200,6 @@ public class HumanServiceImpl implements HumanService {
 	// 부서관리 - 해당 부서 사원 목록 가져오기
 	@Override
 	public ArrayList<Human> departHumanShow(String deptName) {
-		// TODO Auto-generated method stub
 		return hDAO.departHumanShow(sqlSession, deptName);
 	}
 	
@@ -214,6 +213,19 @@ public class HumanServiceImpl implements HumanService {
 	public int WorkTimeIn(String eno, String type) {
 		return hDAO.WorkTimeIn(sqlSession, eno, type);
 	}
+	
+	// 직급관리 - 직급 수정시 해당 직급정보 가져오기
+	@Override
+	public Rank positonModifyInfo(String rcode) {
+		return hDAO.positonModifyInfo(sqlSession, rcode);
+	}
+	
+	// 직급 수정하기(서비스)
+	@Override
+	public int modifyPositon(HashMap<String, String> hs) {
+		return hDAO.modifyPositon(sqlSession, hs);
+	}
+
 	
 	
 	
