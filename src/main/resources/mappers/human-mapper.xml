@@ -270,9 +270,18 @@
 		FROM HUMANLIST WHERE DNAME = #{deptName}
 	</select>
 	
-	<!-- 직급 -->
+	<!-- 직급 중복 체크-->
 	<select id="rcodeDupChk" resultType="_int">
 		SELECT COUNT(*) FROM TB_RANK WHERE RCODE = #{rcode}
 	</select>
+	
+	<!-- 변경할 직급 정보 조회 -->
+	<select id="positonModifyInfo" resultType="Rank">
+		SELECT * FROM TB_RANK WHERE RCODE = #{rcode}
+	</select>
+	
+	<update id="modifyPositon">
+		UPDATE TB_RANK SET RCODE=#{rcode}, RNAME=#{rname} WHERE RCODE=#{beforeRcode}
+	</update>
 	
 </mapper>

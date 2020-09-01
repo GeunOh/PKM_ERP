@@ -73,7 +73,10 @@
 			</div>
 		</div>
 		<!-- // 검색 영역 -->
-		<h2>제출한 휴가 문서</h2>
+		<!-- 추가 외 버튼 -->
+		<div id="btnForm">
+			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
+		</div>
 		<form name="vacationForm">
 			<!-- 휴가제출 목록 테이블 -->
 			<table id="vacationTable">

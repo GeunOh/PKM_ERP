@@ -313,6 +313,29 @@ public class HumanController {
 		return result>0 ? true : false;
 	}
 	
+	// 직급 수정시 해당 부서 정보 가져오기
+	@RequestMapping("positonModifyInfo")
+	@ResponseBody
+	public Rank positonModifyInfo(@RequestParam("rcode") String rcode) {
+		return hService.positonModifyInfo(rcode);
+	}
+	
+	// 직급 수정하기
+	@RequestMapping("modifyPositon")
+	public String modifyPositon(@RequestParam("before-rcode") String beforeRcode,
+								@RequestParam("modify-rcode") String rcode,
+								@RequestParam("modify-rname") String rname) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("beforeRcode", beforeRcode);
+		hs.put("rcode", rcode);
+		hs.put("rname", rname);
+		
+		int result = hService.modifyPositon(hs);
+		
+		
+		return "redirect:/Human/positionManager";
+	}
 	/**
 	 * 	[ ========== 부 서 관 리 ========== ]
 	 */	

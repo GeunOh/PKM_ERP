@@ -75,9 +75,6 @@ function addPosition(){
 	
 	// 직급번호 중복 예외처리
 	var chk = rcodeDupChk(rcode.value);
-	
-	console.log(chk);
-	
 	if(chk){
 		alert("이미 사용중인 직급번호입니다.");
 		return false;
@@ -98,11 +95,82 @@ function deletePosition(){
 		alert("삭제하실 직급을 선택해주세요.");
 		return;
 	}
-	// 부서 삭제
-	var tableForm = document.tableForm;
-	tableForm.action = "/Human/deletePosition";
-	tableForm.submit();
+	
+	if(confirm("정말로 삭제하시겠습니까?")){
+		// 부서 삭제
+		var tableForm = document.tableForm;
+		tableForm.action = "/Human/deletePosition";
+		tableForm.submit();
+	} else {
+		return;
+	}
 }
+
+// 직급 수정 클릭 시 (화면)
+function modifyPosition() {
+	var rcodeChk = document.getElementsByName("rcodeChk");
+	
+	// 체크박스가  체크가 안되어있다면
+	if(checkboxOne(rcodeChk)<1){
+		alert("수정하실 직급을 선택해주세요.");
+		return;
+	}
+	if(checkboxOne(rcodeChk)>1){
+		alert("수정하실 직급을 1개만 선택해주세요.");
+		return;
+	}
+	
+	$(".popup-form").fadeIn();
+	
+	// 체크된 체크박스의 value 가져오기
+	var rcode;
+	$('input[name="rcodeChk"]:checked').each(function() {
+        rcode = $(this).val();
+	});
+
+	// 수정할 직급 정보 가져오기
+	$.ajax({
+		url: '/Human/positonModifyInfo',
+		data: {rcode:rcode},
+		success : function(data) {
+			$("input[name='modify-rcode']").val(data.rcode);
+			$("input[name='before-rcode']").val(data.rcode);
+			$("input[name='modify-rname']").val(data.rname);
+			
+		}
+	})
+}
+
+// 직급 수정 서비스
+$('.modify-btn-form button:last').on('click',function(){
+	
+	var beforeRcode;
+	$('input[name="rcodeChk"]:checked').each(function() {
+		beforeRcode = $(this).val();
+	});
+	console.log(beforeRcode);
+	
+	var modifyForm = document.modifyForm;
+	var $rcode = $("input[name='modify-rcode']");
+
+	if(rcodeDupChk($rcode.val())){
+		alert("이미 사용중인 부서코드입니다.");
+		$rcode.focus();
+		return;
+	}
+	
+	modifyForm.action = "/Human/modifyPositon";
+	modifyForm.submit();
+	
+	
+})
+
+$('h2 .fa-times').on('click',function(){
+	$('.popup-form').fadeOut();
+})
+$('.modify-btn-form button:first-child').on('click',function(){
+	$('.popup-form').fadeOut();
+})
 
 // 직급 클릭 시 사원 목록 조회
 $("#positionTable tbody tr").on("click", function() {
@@ -115,7 +183,6 @@ $("#positionTable tbody tr").on("click", function() {
 		datatype: "json",
 		data: {rcode: rcode},
 		success: function(data) {
-			console.log(data);
 			
 			$tbody = $("#humanList tbody");
 			$tr = $("<tr/>");
@@ -172,9 +239,7 @@ function rcodeDupChk(rcode) {
 			chk = data;
 		}
 	})
-	
 	return chk;
-	
 }
 
 
