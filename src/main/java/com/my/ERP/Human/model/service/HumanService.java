@@ -1,5 +1,6 @@
 package com.my.ERP.Human.model.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -77,6 +78,8 @@ public interface HumanService {
 	ArrayList<Human> departHumanShow(String deptName);
 
 	int rcodeDupChk(String rcode);
+
+	int WorkTimeIn(String eno, String type);
 
 
 }

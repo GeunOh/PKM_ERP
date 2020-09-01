@@ -2,7 +2,8 @@ package com.my.ERP.Human.Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,9 +49,6 @@ public class HumanController {
 	// 인사기본관리
 	@RequestMapping("humanManager")
 	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model, HttpServletRequest req) {
-		
-		String root = req.getSession().getServletContext().getRealPath("resources");
-        System.out.println(root);
 		
 		int currentPage = 1;
 		if(page != null) {
@@ -564,7 +562,26 @@ public class HumanController {
 		}
 	}
 	
-	
+	@RequestMapping("WorkTimeIn")
+	public String WorkTimeIn(HttpSession session) throws ParseException {
+		
+	    Human h = (Human)session.getAttribute("loginUser");
+		String eno = h.getEno();
+		String type = null;
+		
+		SimpleDateFormat sf = new SimpleDateFormat("HH:mm:ss");
+		String date = sf.format(new Date());
+		Date t1 = sf.parse(date);
+		Date t2 = sf.parse("09:00:00");
+		
+		if(t1.getTime()-t2.getTime()>0) type = "지각"; 
+		else type = "정상 출근"; 
+		
+		int result = hService.WorkTimeIn(eno, type);
+		
+		
+		return "myInfo";
+	}
 	
 	
 }

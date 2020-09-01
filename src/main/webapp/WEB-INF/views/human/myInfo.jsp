@@ -24,7 +24,8 @@
 				<table id="profileTable">
 					<tr>
 						<td rowspan="3">
-							<img width="200px" height="230px" src="resources/Profile-images/${loginUser.renameFileName }">
+							<div style="text-align: center;"><img width="70px" height="70px" src="resources/Profile-images/${loginUser.renameFileName }"></div>
+							<div><label>${loginUser.name}</label> ${loginUser.rcode}님 환영합니다.</div>
 						</td>
 						<th>사원번호</th>
 						<td>${loginUser.eno }</td>
@@ -98,15 +99,20 @@
 			<div id="commuteBox" class="content_Box">
 				<h2>출퇴근</h2>
 				<div id="sysdateBox">
-					<span>현재시간 
-						<span id="hh">00</span>:<span id="mm">00</span>:<span id="ss">00</span>
-						<span id="yyyy-mm-dd"></span>
-						<span id="day">TUE</span>
+					<span>
+						<span id="yyyy-mm-dd" class="date"></span>
+						<span id="hh" class="time"></span><span id="mm" class="time"></span><span id="ss" class="time"></span>
 					</span>
 				</div>
 				<div id="buttons">
-					<button>ON</button>
-					<button>OFF</button>
+					<dl>
+						<dt><a href="javascript:workInOut(1);">출근</a></dt>
+						<dd><strong></strong></dd>
+					</dl>
+					<dl>
+						<dt><a href="" >퇴근</a></dt>
+						<dd><strong></strong></dd>
+					</dl>
 				</div>
 			</div>
 			<!-- 남은 휴가 일수 -->

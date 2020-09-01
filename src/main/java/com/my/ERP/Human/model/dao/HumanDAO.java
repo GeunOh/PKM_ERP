@@ -1,5 +1,6 @@
 package com.my.ERP.Human.model.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -128,8 +129,6 @@ public class HumanDAO {
 		
 		// 마이바티스에서 제공하는 RowBounds 객체를 사용합니다. 파라미터로 가져오고싶은 구간을 설정합니다.
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		System.out.println("offset : " + offset);
-		System.out.println("pi.getBoardLimit() : " + pi.getBoardLimit());
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("humanMapper.vacationList", null, rowBounds);
 	}
@@ -175,6 +174,15 @@ public class HumanDAO {
 
 	public int rcodeDupChk(SqlSessionTemplate sqlSession, String rcode) {
 		return sqlSession.selectOne("humanMapper.rcodeDupChk", rcode);
+	}
+
+	public int WorkTimeIn(SqlSessionTemplate sqlSession, String eno, String type) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("eno", eno);
+		hs.put("type", type);
+		
+		return sqlSession.insert("humanMapper.WorkTimeIn", hs);
 	}
 
 	

@@ -48,6 +48,14 @@
 		<result column="RNAME" property="rname"/>
 	</resultMap>
 
+	<resultMap type="WorkTime" id="worktimeResult">
+		<id column="ENO" property="eno"/>
+		<result column="WORKIN_DATE" property="date"/>
+		<result column="WORKIN_TIME" property="intime"/>
+		<result column="WORKOUT_TIME" property="outtime"/>
+		<result column="WORK_TYPE" property="type"/>
+	</resultMap>
+	
 	<select id="HumanListCount" resultType="_int">
 		SELECT COUNT(*) FROM TB_USER
 	</select>
@@ -275,4 +283,7 @@
 		SELECT COUNT(*) FROM TB_RANK WHERE RCODE = #{rcode}
 	</select>
 	
+	<insert id="WorkTimeIn">
+		INSERT INTO TB_WORKINOUT VALUES(#{eno}, sysdate, sysdate, null, #{type})
+	</insert>		
 </mapper>
