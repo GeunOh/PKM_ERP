@@ -4,10 +4,10 @@ $(document).ready(function() {
 	
 	var week = ['일', '월', '화', '수', '목', '금', '토'];
 	var dayOfWeek = week[today.getDay()];
-
-	$("#yyyy-mm-dd").text(date);
-	$("#day").text(dayOfWeek);
-	
+	var dateText = date+" ("+dayOfWeek+")";
+	$("#yyyy-mm-dd").text(dateText);
+//	$("#day").text(dayOfWeek);
+	timePrint();
 	// 시계 작동
 	var timer = setInterval(function(){
 	  timePrint();
@@ -129,3 +129,11 @@ function timePrint() {
 	}
 }
 
+//출,퇴근 시간 찍기
+function workInOut(e){
+	if(e == 1){
+		location.href = "/Human/WorkTimeIn";
+	}else{
+		
+	}
+}

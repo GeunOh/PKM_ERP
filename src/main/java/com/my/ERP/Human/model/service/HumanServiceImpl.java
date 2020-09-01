@@ -1,5 +1,6 @@
 package com.my.ERP.Human.model.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -206,6 +207,11 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public int rcodeDupChk(String rcode) {
 		return hDAO.rcodeDupChk(sqlSession, rcode);
+	}
+
+	@Override
+	public int WorkTimeIn(String eno, String type) {
+		return hDAO.WorkTimeIn(sqlSession, eno, type);
 	}
 	
 	// 직급관리 - 직급 수정시 해당 직급정보 가져오기

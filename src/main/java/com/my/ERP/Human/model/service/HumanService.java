@@ -1,5 +1,6 @@
 package com.my.ERP.Human.model.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -78,10 +79,10 @@ public interface HumanService {
 
 	int rcodeDupChk(String rcode);
 
+	int WorkTimeIn(String eno, String type);
+
 	Rank positonModifyInfo(String rcode);
 
 	int modifyPositon(HashMap<String, String> hs);
-
-
 
 }

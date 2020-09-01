@@ -1,5 +1,6 @@
 package com.my.ERP.Human.model.dao;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,8 +30,6 @@ public class HumanDAO {
 	public ArrayList<Human> HumanList(SqlSessionTemplate sqlSession, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		System.out.println("offset : " + offset);
-		System.out.println("pi.getBoardLimit() : " + pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("humanMapper.HumanList", null, rowBounds);
 	}
 	
@@ -173,6 +172,15 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.rcodeDupChk", rcode);
 	}
 
+	public int WorkTimeIn(SqlSessionTemplate sqlSession, String eno, String type) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("eno", eno);
+		hs.put("type", type);
+		
+		return sqlSession.insert("humanMapper.WorkTimeIn", hs);
+	}
+	
 	public Rank positonModifyInfo(SqlSessionTemplate sqlSession, String rcode) {
 		return sqlSession.selectOne("humanMapper.positonModifyInfo", rcode);
 	}
@@ -181,7 +189,5 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.modifyPositon", hs);
 	}
 
-
-	
 
 }
