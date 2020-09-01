@@ -276,7 +276,8 @@ public class HumanController {
 	// 직급 추가
 	@RequestMapping("addPosition")
 	public String addPosition(@RequestParam("rcode") String rcode,
-							  @RequestParam("rname") String rname ) {
+							  @RequestParam("rname") String rname,
+							  RedirectAttributes ra) {
 		
 		HashMap<String, String> hs = new HashMap<String, String>();
 		hs.put("rcode", rcode);
@@ -284,14 +285,21 @@ public class HumanController {
 		
 		hService.addPosition(hs);
 		
+		String addMsg = "추가되었습니다.";
+		ra.addFlashAttribute("addMsg", addMsg);
+		
 		return "redirect:/Human/positionManager";
 	}
 	
 	// 직급 삭제
 	@RequestMapping("deletePosition")
-	public String deletePosition(@RequestParam("rcodeChk") String[] rcodeChk) {
+	public String deletePosition(@RequestParam("rcodeChk") String[] rcodeChk,
+								 RedirectAttributes ra) {
 
 		hService.deletePosition(rcodeChk);
+		
+		String deleteMsg = "삭제되었습니다.";
+		ra.addFlashAttribute("deleteMsg", deleteMsg);
 		
 		return "redirect:/Human/positionManager";
 	}
@@ -324,7 +332,8 @@ public class HumanController {
 	@RequestMapping("modifyPositon")
 	public String modifyPositon(@RequestParam("before-rcode") String beforeRcode,
 								@RequestParam("modify-rcode") String rcode,
-								@RequestParam("modify-rname") String rname) {
+								@RequestParam("modify-rname") String rname,
+								RedirectAttributes ra) {
 		
 		HashMap<String, String> hs = new HashMap<String, String>();
 		hs.put("beforeRcode", beforeRcode);
@@ -332,7 +341,8 @@ public class HumanController {
 		hs.put("rname", rname);
 		
 		int result = hService.modifyPositon(hs);
-		
+		String modifyMsg = "수정되었습니다.";
+		ra.addFlashAttribute("modifyMsg", modifyMsg);
 		
 		return "redirect:/Human/positionManager";
 	}
@@ -490,16 +500,27 @@ public class HumanController {
 								 @RequestParam("selectDate") String selectDate,
 								 @RequestParam(value="date", required = false) Date date,
 								 @RequestParam(value="date2", required = false) Date date2,
+								 @RequestParam("selectVal") String selectVal,
 								 Model model) {
 		
 		SearchOption so = new SearchOption();
+		// 구분
+		if(selectVal.equals("all")) {
+			so.setAll(selectVal);
+		} else if(selectVal.equals("wait")) {
+			so.setWait(selectVal);
+		} else if(selectVal.equals("ok")) {
+			so.setOk(selectVal);
+		} else if(selectVal.equals("no")) {
+			so.setNo(selectVal);
+		}
 		
+		// 날짜
 		if(selectDate.equals("dateAll")) {
 			so.setDateAll(selectDate);
 		} else if (selectDate.equals("dateSelect")) {
 			so.setDateSelect(selectDate);
-		} else {
-		}
+		} 
 		
 		// 검색 조건들 hashMap에 저장
 		HashMap<String, Object> hs = new HashMap<String, Object>();
@@ -511,6 +532,7 @@ public class HumanController {
 		hs.put("date",date);
 		hs.put("date2",date2);
 		
+		System.out.println(hs);
 		// 페이징
 		int currentPage = 1;
 		if(page!=null) {

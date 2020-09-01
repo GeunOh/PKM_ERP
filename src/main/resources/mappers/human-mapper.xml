@@ -220,6 +220,10 @@
 			   REASON, REQUESTDATE, STATUS, DNAME, RNAME 
 		FROM VACATIONLIST
 		<where>
+			<if test="so.all != null"></if>
+			<if test="so.wait != null">AND STATUS = 'N'</if>
+			<if test="so.ok != null">AND STATUS = 'Y'</if>
+			<if test="so.no != null">AND STATUS = 'F'</if>
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>

@@ -53,8 +53,23 @@
 					</div>
 					
 					<br>
+					
+					<div class="search-area downSearch">
+						<span class="title">상태</span>
+						<div class="selectBox">
+							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
+							<a href="#none" class="link-selected">전체</a>
+							<ul>
+								<li><a href="#" class="link-select" data-value="all">전체</a></li>
+								<li><a href="#" class="link-select" data-value="wait">대기</a></li>
+								<li><a href="#" class="link-select" data-value="ok">승인</a></li>
+								<li><a href="#" class="link-select" data-value="no">거절</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle" aria-hidden="true"></i>
+						</div>
+					</div>
 			
-					<div class="search-area downSearch" style="height: 31px;">
+					<div class="search-area" style="height: 31px;">
 						<span class="title">조회일자</span>
 						<div class="selectBox wid_55">
 							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">

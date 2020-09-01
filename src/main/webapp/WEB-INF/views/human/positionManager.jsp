@@ -133,6 +133,40 @@
 			<div class="popupLayer"></div>
 		</form>
 		<!-- // 휴가신청 팝업창 -->
+		<!-- 알림창 -->
+		<div id="alertBox">
+			<p></p>
+		</div>
+		<script type="text/javascript">
+			var addMsg = "${addMsg}";
+			var deleteMsg = "${deleteMsg}";
+			var modifyMsg = "${modifyMsg}";
+			
+			if(addMsg!='') {
+				$("#alertBox p").text(addMsg);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+			}
+			
+			if(deleteMsg!='') {
+				$("#alertBox p").text(deleteMsg);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+			}
+			
+			if(modifyMsg!=''){
+				$("#alertBox p").text(modifyMsg);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+			}
+		</script>
+		<!-- 알림창 -->
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/positionManager.js"></script>
