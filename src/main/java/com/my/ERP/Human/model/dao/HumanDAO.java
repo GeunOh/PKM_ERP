@@ -125,11 +125,8 @@ public class HumanDAO {
 	}
 
 	public ArrayList<Vacation> vacationList(SqlSessionTemplate sqlSession, PageInfo pi) {
-		
 		// 마이바티스에서 제공하는 RowBounds 객체를 사용합니다. 파라미터로 가져오고싶은 구간을 설정합니다.
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
-		System.out.println("offset : " + offset);
-		System.out.println("pi.getBoardLimit() : " + pi.getBoardLimit());
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("humanMapper.vacationList", null, rowBounds);
 	}
@@ -145,7 +142,6 @@ public class HumanDAO {
 	public ArrayList<Vacation> searchVacationList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		
 		return (ArrayList)sqlSession.selectList("humanMapper.searchVacationList", hs, rowBounds);
 	}
 
@@ -176,6 +172,15 @@ public class HumanDAO {
 	public int rcodeDupChk(SqlSessionTemplate sqlSession, String rcode) {
 		return sqlSession.selectOne("humanMapper.rcodeDupChk", rcode);
 	}
+
+	public Rank positonModifyInfo(SqlSessionTemplate sqlSession, String rcode) {
+		return sqlSession.selectOne("humanMapper.positonModifyInfo", rcode);
+	}
+
+	public int modifyPositon(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.update("humanMapper.modifyPositon", hs);
+	}
+
 
 	
 

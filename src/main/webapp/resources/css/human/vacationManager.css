@@ -109,6 +109,16 @@ ul, li{list-style: none;}
 .wid_55{width: 55px!important; border-radius: 0; border-right: 0;}
 .wid_35{width: 35px!important;}
 
+/*추가 외 버튼*/
+#btnForm{
+	margin: 2% 0 1% 0; 
+	font-family: NotoSans-Regular; font-weight: bold;
+}
+#btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
+#downBtn{position: relative;}
+#downBtn i{position: absolute; top: 15px; left: 0;}
+
+
 /*검색창 아래부분*/
 .downSearch{margin-top: 1%;}
 

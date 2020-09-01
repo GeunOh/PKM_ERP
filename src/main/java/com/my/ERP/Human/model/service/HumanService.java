@@ -78,5 +78,10 @@ public interface HumanService {
 
 	int rcodeDupChk(String rcode);
 
+	Rank positonModifyInfo(String rcode);
+
+	int modifyPositon(HashMap<String, String> hs);
+
+
 
 }

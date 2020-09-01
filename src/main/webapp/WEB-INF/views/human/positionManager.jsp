@@ -31,6 +31,7 @@
 					</div>
 					<button type="button" id="searchBtn" onclick="searchPosition();">검색</button>
 					<button type="button" id="addBtn" onclick="addPosition();">추가</button>
+					<button type="button" id="modifyBtn" onclick="modifyPosition();">수정</button>
 					<button type="button" id="deleteBtn" onclick="deletePosition();">삭제</button>
 				</form>
 			</div>
@@ -47,14 +48,14 @@
 							<th>직급명</th>
 						</tr>
 					</thead>
-						<tbody>
-							<c:forEach var="p" items="${pList}">
-								<tr>
-									<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
-									<td>${p.rcode }</td>
-									<td>${p.rname }</td>
-								</tr>
-							</c:forEach>
+					<tbody>
+						<c:forEach var="p" items="${pList}">
+							<tr>
+								<td><input type="checkbox" name="rcodeChk" value="${p.rcode }"></td>
+								<td>${p.rcode }</td>
+								<td>${p.rname }</td>
+							</tr>
+						</c:forEach>
 						<c:if test="${empty pList}">
 								<tr><td colspan="3">직급정보가 없습니다.</td></tr>
 						</c:if>
@@ -103,6 +104,35 @@
 			</div>
 		</div>
 		<!-- // 사원목록 -->
+		<!-- 직급수정 팝업창 -->
+		<form name="modifyForm" class="popup-form">
+			<div class="popupContent">
+				<h2>직급 수정
+				<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form">
+					<div class="modify-form">
+						<span class="modify-title">직급번호</span>
+						<input type="text" class="txtBox modify-text" name="modify-rcode">
+						<input type="hidden" name="before-rcode">
+					</div>
+					<div class="modify-form">
+						<span class="modify-title">직급이름</span>
+						<input type="text" class="txtBox modify-text" name="modify-rname">
+					</div>
+				</div>
+				<div class="content-form modify-btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button">
+						<i class="fas fa-check" aria-hidden="true"></i> 수정
+					</button>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- // 휴가신청 팝업창 -->
 	</div>
 	<!-- // wrap -->
 <script type="text/javascript" src="resources/js/human/positionManager.js"></script>

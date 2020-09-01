@@ -48,14 +48,37 @@ $("#modifyDept #deptList td").on("click", function() {
 // 부서 등록 서비스
 $(".addBtn").on("click", function() {
 	
+	if($("#addDept input[name='dname']").val() == ''){
+		alert("부서명을 입력해주세요.");
+		$("#addDept input[name='dname']").focus();
+		return;
+	}
+	if($("#addDept input[name='dcode']").val() == ''){
+		alert("부서코드를 입력해주세요.");
+		$("#addDept input[name='dcode']").focus();
+		return;
+	}
+	
 	if($("#addDept .dcodeChk").text() == "이미 존재하는 부서코드"){
 		alert("이미 존재하는 부서코드입니다.");
 		$("input[name='dcode']").focus();
 		return;
 	}
+	
+	
 	var addForm = document.addFrm;
 	addForm.action = "/Human/addDept";
 	addForm.submit();
+})
+// 부서 삭제 서비스
+$(".deleteBtn").on("click", function() {
+	if(confirm("정말로 삭제하시겠습니까?")){
+		var delForm = document.delForm;
+		delForm.action = "/Human/delDept";
+		delForm.submit();
+	} else {
+		return;
+	}
 })
 
 // 부서 수정 서비스
