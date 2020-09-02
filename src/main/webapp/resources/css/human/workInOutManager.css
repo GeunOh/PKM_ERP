@@ -162,6 +162,7 @@ ul, li{list-style: none;}
 	width: 100%;
 	border-collapse: separate;
     border-spacing: 0;
+    font-family: NotoSans-Regular;
 }
 #workInOutTable th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
 #workInOutTable td{font-size: 13px; text-align: center;}
@@ -184,14 +185,15 @@ ul, li{list-style: none;}
 }
 #workInOutTable thead tr th{
 	padding: 8px; 
-	width: 48px;
 	box-sizing: border-box;
 }
 #workInOutTable thead tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }
-
-#workInOutTable tbody tr:first-child th:first-child {
+#workInOutTable tbody tr th{
+  border-top: none;
+}
+#workInOutTable tbody tr:nth-last-child(3) th{
   border-bottom-left-radius: 6px;
   border-top: none;
 }
@@ -241,4 +243,7 @@ ul, li{list-style: none;}
 .pg_page:hover {
 	background-color: #dadada;
 }
-
+.overtext{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;}

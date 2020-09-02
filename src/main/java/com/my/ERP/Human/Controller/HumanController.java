@@ -2,7 +2,7 @@ package com.my.ERP.Human.Controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -627,9 +627,9 @@ public class HumanController {
 		String type = null;
 		
 		SimpleDateFormat sf = new SimpleDateFormat("HH:mm:ss");
-		String date = sf.format(new Date());
-		Date t1 = sf.parse(date);
-		Date t2 = sf.parse("09:00:00");
+		String date = sf.format(new java.util.Date());
+		java.util.Date t1 = sf.parse(date);
+		java.util.Date t2 = sf.parse("09:00:00");
 		
 		if(t1.getTime()-t2.getTime()>0) type = "지각"; 
 		else type = "정상 출근"; 

@@ -95,7 +95,11 @@
 			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 테이블 -->
-		<table id="workInOutTable" cellspacing="0" cellpadding="0">
+		<table id="workInOutTable" style="table-layout: fixed; max-width: 1601px;">
+			<colgroup>
+				<col style="width:100px;">
+				<col>
+			</colgroup>
 			<thead>
 				<tr>
 					<th rowspan="2">9월</th>			
@@ -110,32 +114,28 @@
 				<c:set var="e" value="${size-1}"/>
 				<c:forEach var="m" items="${mlist}" varStatus="stat1">
 					<tr>
-						<th rowspan="3">${m.eno}</th>
+						<th rowspan="3" style="width: 100px;">${m.eno}</th>
 						<td style="padding: 4px;">출근</td>
 						<c:forEach var="w" items="${wlist}" varStatus="stat2" begin="${s}" end="${e}"> 
 <!-- 							일자별 반복 -->
-							<c:if test="${w.intime eq null}"><td style="padding: 4px;">-</td></c:if>
-							<c:if test="${w.intime ne null}"><td style="padding: 4px;">${w.intime}</td></c:if>
+							<c:if test="${w.intime eq null}"><td style="padding: 0 2px;">-</td></c:if>
+							<c:if test="${w.intime ne null}"><td style="padding: 0 2px;">${w.intime}</td></c:if>
 						</c:forEach>
 					</tr>
 					<tr>
 						<td style="padding: 4px;">퇴근</td>
 						<c:forEach var="w" items="${wlist}" begin="${s}" end="${e}"> 
 <!-- 							일자별 반복 -->
-							<c:if test="${w.outtime eq null}"><td style="padding: 4px;">-</td></c:if>
-							<c:if test="${w.outtime ne null}"><td style="padding: 4px;">${w.outtime}</td></c:if>
+							<c:if test="${w.outtime eq null}"><td style="padding: 0 2px;">-</td></c:if>
+							<c:if test="${w.outtime ne null}"><td style="padding: 0 2px;">${w.outtime}</td></c:if>
 						</c:forEach>
 					</tr>
 					<tr>
 						<td style="padding: 4px;">구분</td>
 						<c:forEach var="w" items="${wlist}" begin="${s}" end="${e}"> 
 <!-- 							일자별 반복 -->
-							<c:if test="${w.type eq null}"><td style="padding: 4px; overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;">-</td></c:if>
-							<c:if test="${w.type ne null}"><td style="padding: 4px; overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;">${w.type}</td></c:if>
+							<c:if test="${w.type eq null}"><td style="padding: 0 2px;">-</td></c:if>
+							<c:if test="${w.type ne null}"><td class="overtext" style="padding: 0 2px;">${w.type}</td></c:if>
 						</c:forEach>
 					</tr>
 					<c:set var="s" value="${s+size}"/>
