@@ -13,6 +13,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -224,6 +225,16 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public int modifyPositon(HashMap<String, String> hs) {
 		return hDAO.modifyPositon(sqlSession, hs);
+	}
+
+	@Override
+	public ArrayList<WorkInOut> workList() {
+		return hDAO.workList(sqlSession);
+	}
+
+	@Override
+	public ArrayList<WorkInOut> enoWorkList() {
+		return hDAO.enoWorkList(sqlSession);
 	}
 
 	
