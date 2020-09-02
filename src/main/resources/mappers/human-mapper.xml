@@ -50,9 +50,9 @@
 
 	<resultMap type="WorkTime" id="worktimeResult">
 		<id column="ENO" property="eno"/>
-		<result column="WORKIN_DATE" property="date"/>
-		<result column="WORKIN_TIME" property="intime"/>
-		<result column="WORKOUT_TIME" property="outtime"/>
+		<result column="HIRDATE" property="date"/>
+		<result column="INTIME" property="intime"/>
+		<result column="OUTTIME" property="outtime"/>
 		<result column="WORK_TYPE" property="type"/>
 	</resultMap>
 	
@@ -299,5 +299,13 @@
 	<update id="modifyPositon">
 		UPDATE TB_RANK SET RCODE=#{rcode}, RNAME=#{rname} WHERE RCODE=#{beforeRcode}
 	</update>
+	
+	<select id="workList" resultMap="worktimeResult">
+		SELECT * FROM WORKLIST
+	</select>
+	
+	<select id="enoWorkList" resultMap="worktimeResult">
+		SELECT DISTINCT ENO FROM WORKLIST
+	</select>
 	
 </mapper>

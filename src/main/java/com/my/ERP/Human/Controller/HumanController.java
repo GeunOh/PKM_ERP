@@ -30,6 +30,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
@@ -48,7 +49,7 @@ public class HumanController {
 	 */	
 	// 인사기본관리
 	@RequestMapping("humanManager")
-	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model, HttpServletRequest req) {
+	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model) {
 		
 		int currentPage = 1;
 		if(page != null) {
@@ -453,7 +454,18 @@ public class HumanController {
 	 */	
 	// 근태관리
 	@RequestMapping("workInOutManager")
-	public String workInOut() {
+	public String workInOut(@RequestParam(value="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) currentPage = page;
+		
+		ArrayList<WorkInOut>mlist = hService.enoWorkList();
+		ArrayList<WorkInOut>wlist = hService.workList();
+		int size = wlist.size()/mlist.size();
+		model.addAttribute("wlist", wlist)
+			 .addAttribute("mlist", mlist)
+			 .addAttribute("size", size);
+		
 		return "workInOutManager";
 	}
 	

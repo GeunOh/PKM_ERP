@@ -159,12 +159,12 @@ ul, li{list-style: none;}
 
 /*테이블*/
 #workInOutTable{
-	width: 100%; min-height:419px; 
+	width: 100%;
 	border-collapse: separate;
     border-spacing: 0;
 }
 #workInOutTable th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
-#workInOutTable td{padding: 10px 0; font-size: 13px; text-align: center;}
+#workInOutTable td{font-size: 13px; text-align: center;}
 
 #workInOutTable tr th,
 #workInOutTable tr td {
@@ -182,6 +182,11 @@ ul, li{list-style: none;}
 #workInOutTable tr:last-child th {
   border-top: none;
 }
+#workInOutTable thead tr th{
+	padding: 8px; 
+	width: 48px;
+	box-sizing: border-box;
+}
 #workInOutTable thead tr:first-child th:first-child {
   border-top-left-radius: 6px;
 }
@@ -189,6 +194,13 @@ ul, li{list-style: none;}
 #workInOutTable tbody tr:first-child th:first-child {
   border-bottom-left-radius: 6px;
   border-top: none;
+}
+#workInOutTable tbody tr th{
+    padding: 8px;
+    min-height: 34px;
+    font-size: 12px;
+    line-height: 17px;
+    text-align: center;
 }
 
 #workInOutTable tr:first-child th:last-child {

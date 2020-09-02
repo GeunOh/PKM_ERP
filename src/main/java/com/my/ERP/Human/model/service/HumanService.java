@@ -8,6 +8,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -84,5 +85,9 @@ public interface HumanService {
 	Rank positonModifyInfo(String rcode);
 
 	int modifyPositon(HashMap<String, String> hs);
+
+	ArrayList<WorkInOut> workList();
+
+	ArrayList<WorkInOut> enoWorkList();
 
 }

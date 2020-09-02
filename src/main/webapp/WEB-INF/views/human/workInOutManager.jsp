@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,29 +95,63 @@
 			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 테이블 -->
-		<table id="workInOutTable">
+		<table id="workInOutTable" cellspacing="0" cellpadding="0">
 			<thead>
 				<tr>
-					<th>정렬</th>			
+					<th rowspan="2">9월</th>			
 					<th>일자</th>			
 				</tr>
 				<tr>
-					<th>정렬</th>			
-					<th>요일</th>	
+					<th style="border-top: 0; border-left: 0;">요일</th>	
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th rowspan="3">가나다</th>
-					<td>출근</td>
-					<!-- 일자별 반복 -->
-				</tr>
-				<tr>
-					<td>퇴근</td>
-				</tr>
-				<tr>
-					<td>구분</td>
-				</tr>
+				<c:set var="s" value="0"/>
+				<c:set var="e" value="${size-1}"/>
+				<c:forEach var="m" items="${mlist}" varStatus="stat1">
+					<tr>
+						<th rowspan="3">${m.eno}</th>
+						<td style="padding: 4px;">출근</td>
+						<c:forEach var="w" items="${wlist}" varStatus="stat2" begin="${s}" end="${e}"> 
+<!-- 							일자별 반복 -->
+							<c:if test="${w.intime eq null}"><td style="padding: 4px;">-</td></c:if>
+							<c:if test="${w.intime ne null}"><td style="padding: 4px;">${w.intime}</td></c:if>
+						</c:forEach>
+					</tr>
+					<tr>
+						<td style="padding: 4px;">퇴근</td>
+						<c:forEach var="w" items="${wlist}" begin="${s}" end="${e}"> 
+<!-- 							일자별 반복 -->
+							<c:if test="${w.outtime eq null}"><td style="padding: 4px;">-</td></c:if>
+							<c:if test="${w.outtime ne null}"><td style="padding: 4px;">${w.outtime}</td></c:if>
+						</c:forEach>
+					</tr>
+					<tr>
+						<td style="padding: 4px;">구분</td>
+						<c:forEach var="w" items="${wlist}" begin="${s}" end="${e}"> 
+<!-- 							일자별 반복 -->
+							<c:if test="${w.type eq null}"><td style="padding: 4px; overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;">-</td></c:if>
+							<c:if test="${w.type ne null}"><td style="padding: 4px; overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;">${w.type}</td></c:if>
+						</c:forEach>
+					</tr>
+					<c:set var="s" value="${s+size}"/>
+					<c:set var="e" value="${e+size}"/>
+				</c:forEach>
+<!-- 				<tr> -->
+<!-- 					<th rowspan="3" style="width: 100px;">인사팀<br>홍길동</th> -->
+<!-- 					<td style="padding: 4px;">출근</td> -->
+<!-- 					일자별 반복 -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td style="padding: 4px;">퇴근</td> -->
+<!-- 				</tr> -->
+<!-- 				<tr> -->
+<!-- 					<td style="padding: 4px;">구분</td> -->
+<!-- 				</tr> -->
 			</tbody>
 		</table>
 		<!-- // 테이블 -->

@@ -12,6 +12,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
@@ -187,6 +188,14 @@ public class HumanDAO {
 
 	public int modifyPositon(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
 		return sqlSession.update("humanMapper.modifyPositon", hs);
+	}
+
+	public ArrayList<WorkInOut> workList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.workList");
+	}
+
+	public ArrayList<WorkInOut> enoWorkList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.enoWorkList");
 	}
 
 
