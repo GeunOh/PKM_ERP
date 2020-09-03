@@ -122,7 +122,7 @@ function showDeptInfo(deptName) {
 			$(".dboss").text(data.eno);
 			$(".dboss").siblings().text("부서장");
 			if(data.eno==undefined){
-				$(".dboss").text("X");
+				$(".dboss").text("없음");
 			}
 			$(".startDate").text(data.startDate);
 			$(".startDate").siblings().text("시작일");
@@ -155,8 +155,18 @@ function showHumanList(deptName) {
 					$tr = $("<tr/>");
 					
 					$dname = $("<td>"+hList[i].dname +"</td>");
-					$rcode = $("<td>"+hList[i].rcode +"</td>");
-					$rname = $("<td>"+hList[i].rname +"</td>");
+					if(hList[i].rcode==undefined){
+						$rcode = $("<td>미정</td>");
+					} else {
+						$rcode = $("<td>"+hList[i].rcode +"</td>");
+					}
+					
+					if(hList[i].rname==undefined){
+						$rname = $("<td>미정</td>");
+					} else {
+						$rname = $("<td>"+hList[i].rname +"</td>");
+					}
+					
 					$eno   = $("<td>"+hList[i].eno +"</td>");
 					$name = $("<td>"+hList[i].name +"</td>");
 					

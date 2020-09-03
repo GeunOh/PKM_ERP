@@ -43,11 +43,6 @@
 					</div>
 					
 					<div class="search-area">
-						<span class="title">사번</span>
-						<input type="text" class="txtBox" name="eno">
-					</div>
-					
-					<div class="search-area">
 						<span class="title">사원명</span>
 						<input type="text" class="txtBox" name="name">
 					</div>
@@ -83,6 +78,7 @@
 						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
 						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
 					</div>
+					<button type="button" id="resetBtn" onclick="location.href='/Human/vacationManager'">초기화</button>
 					<button id="searchBtn">검색</button>
 				</form>
 			</div>
