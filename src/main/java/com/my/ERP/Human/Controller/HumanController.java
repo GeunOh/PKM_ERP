@@ -506,7 +506,7 @@ public class HumanController {
 	public String searchVacation(@RequestParam(value="page", required = false) Integer page,
 								 @RequestParam("selectDept") String selectDept,
 								 @RequestParam("selectRank") String selectRank,
-								 @RequestParam("eno") String eno, @RequestParam("name") String name,
+								 @RequestParam("name") String name,
 								 @RequestParam("selectDate") String selectDate,
 								 @RequestParam(value="date", required = false) Date date,
 								 @RequestParam(value="date2", required = false) Date date2,
@@ -537,7 +537,6 @@ public class HumanController {
 		hs.put("so",so);
 		hs.put("selectDept",selectDept);
 		hs.put("selectRank",selectRank);
-		hs.put("eno",eno);
 		hs.put("name",name);
 		hs.put("date",date);
 		hs.put("date2",date2);
@@ -599,6 +598,7 @@ public class HumanController {
 							  @RequestParam("useDay") int useDay,
 							  @RequestParam(value="reason", required=false) String reason) {
 		
+		System.out.println(vacation);
 		int result = hService.addVacation(vacation);
 		
 		return "redirect:/Human/myInfo";
