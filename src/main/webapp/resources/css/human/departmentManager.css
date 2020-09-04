@@ -20,7 +20,9 @@ h1{margin-bottom: 3%;}
 	width: 20%; float:left; padding: 20px; 
 	border: 1px solid #bbb; 
 	border-radius: 6px;	
+    margin-top: 45px;
 }
+
 #organizationChart form > ul > li:first-child > span { border-bottom: 1px solid #bbb; }
 #organizationChart form > ul > li > span { 
 	position: relative;
@@ -172,7 +174,7 @@ h1{margin-bottom: 3%;}
 .notice_box {     
 	position: absolute;
     left: 17.7%;
-    bottom: 7%;
+    bottom: 4.2%;
 }
 .notice_box li { padding: 5px 0; }
 .notice_box li:last-child { color: red; }

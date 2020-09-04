@@ -121,6 +121,7 @@
 				<div>
 					<p>${vacationDay }일</p>
 					<span>남은 연차</span>
+					<input type="hidden" name="vacationDay" value="${vacationDay }">
 				</div>
 			</div>
 			<!-- 휴가 신청 -->

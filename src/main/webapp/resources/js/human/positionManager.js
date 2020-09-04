@@ -195,14 +195,18 @@ $("#positionTable tbody tr").on("click", function() {
 			} else {
 				for(var i in data){
 					$tr = $("<tr/>");
-					
+					console.log(data[i].dcode);
+					if(data[i].dcode==undefined){
+						$dcode = $("<td>미정</td>")
+					} else {
+						$dcode = $("<td>"+data[i].dcode +"</td>");
+					}
 					$rcode = $("<td>"+data[i].rcode +"</td>");
-					$dcode = $("<td>"+data[i].dcode +"</td>");
 					$eno   = $("<td>"+data[i].eno +"</td>");
 					$name = $("<td>"+data[i].name +"</td>");
 					
-					$tr.append($rcode);
 					$tr.append($dcode);
+					$tr.append($rcode);
 					$tr.append($eno);
 					$tr.append($name);
 					$tbody.append($tr);
