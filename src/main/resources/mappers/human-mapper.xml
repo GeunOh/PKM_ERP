@@ -66,6 +66,7 @@
 		<result column="ENAME" property="ename"/>
 		<result column="INDATE" property="indate"/>
 		<result column="SALARY" property="salary"/>
+	</resultMap>
 
 	<resultMap type="PeopleCount" id="peopleCountResult">
 		<result column="peopleAll" property="peopleAll"/>
