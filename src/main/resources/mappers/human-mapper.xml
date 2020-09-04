@@ -59,6 +59,14 @@
 		<result column="WORK_TYPE" property="type"/>
 	</resultMap>
 	
+	<resultMap type="Salary" id="salaryResult">
+		<id column="ENO" property="eno"/>
+		<result column="DNAME" property="dname"/>
+		<result column="RNAME" property="rname"/>
+		<result column="ENAME" property="ename"/>
+		<result column="INDATE" property="indate"/>
+		<result column="SALARY" property="salary"/>
+
 	<resultMap type="PeopleCount" id="peopleCountResult">
 		<result column="peopleAll" property="peopleAll"/>
 		<result column="peopleIn" property="peopleIn"/>
@@ -244,7 +252,9 @@
 			<if test="so.ok != null">AND STATUS = 'Y'</if>
 			<if test="so.no != null">AND STATUS = 'F'</if>
 			<if test="so.dateAll != null"></if>
-			<if test="so.dateSelect != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateRequest != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateStart != null">AND STARTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateEnd != null">AND ENDDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>
 			<if test="selectRank != ''">AND RCODE=#{selectRank}</if>
 			<if test="name != ''">AND ENAME=#{name}</if>
@@ -371,6 +381,17 @@
 			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
 		</where>
 		ORDER BY W.ENO, W.HIRDATE
+	</select>
+	
+
+	<!-- 급여 관리 목록 -->
+	<select id="salaryList" resultMap="salaryResult">
+		SELECT * FROM SALARYLIST
+	</select>
+	
+	<!-- 급여 관리 목록 행 개수 -->
+	<select id="salaryListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_SALARY
 	</select>
 	
 	<select id="SearchWorkEnoList" resultMap="worktimeResult">

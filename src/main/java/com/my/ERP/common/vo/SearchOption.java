@@ -11,6 +11,10 @@ public class SearchOption {
 	private String no;
 	private String ok;
 	
+	private String dateRequest;
+	private String dateStart;
+	private String dateEnd;
+	
 	public SearchOption() {}
 
 	public String getAll() {
@@ -75,6 +79,30 @@ public class SearchOption {
 
 	public void setOk(String ok) {
 		this.ok = ok;
+	}
+
+	public String getDateRequest() {
+		return dateRequest;
+	}
+
+	public void setDateRequest(String dateRequest) {
+		this.dateRequest = dateRequest;
+	}
+
+	public String getDateStart() {
+		return dateStart;
+	}
+
+	public void setDateStart(String dateStart) {
+		this.dateStart = dateStart;
+	}
+
+	public String getDateEnd() {
+		return dateEnd;
+	}
+
+	public void setDateEnd(String dateEnd) {
+		this.dateEnd = dateEnd;
 	}
 
 	@Override

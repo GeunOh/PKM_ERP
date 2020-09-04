@@ -146,14 +146,14 @@ ul, li{list-style: none;}
 	background-color: #606775;
     color: #fff;
     position: absolute;
-    right: 85px;
+    right: 15px;
     top: 15px;
 }
 #searchBtn { 
 	background-color: #282c34;
     color: #fff;
     position: absolute;
-    right: 15px;
+    right: 95px;
     top: 15px;
 }
 h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}

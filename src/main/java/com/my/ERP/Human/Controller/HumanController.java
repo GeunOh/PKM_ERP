@@ -30,6 +30,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.Pagenation;
@@ -448,7 +449,20 @@ public class HumanController {
 	 */	
 	// 급여관리
 	@RequestMapping("salaryManager")
-	public String salaryMain() {
+	public String salaryMain(@RequestParam(value="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		int sListCount = hService.salaryListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, sListCount);
+		
+		ArrayList<Salary> sList = hService.salaryList(pi);
+		model.addAttribute("sList", sList)
+			 .addAttribute("pi", pi);
+		
 		return "salaryManager";
 	}
 	
@@ -582,11 +596,15 @@ public class HumanController {
 		}
 		
 		// 날짜
-		if(selectDate.equals("dateAll")) {
+		if (selectDate.equals("dateAll")) {
 			so.setDateAll(selectDate);
-		} else if (selectDate.equals("dateSelect")) {
-			so.setDateSelect(selectDate);
-		} 
+		} else if(selectDate.equals("dateRequest")) {
+			so.setDateRequest(selectDate);
+		} else if (selectDate.equals("dateStart")) {
+			so.setDateStart(selectDate);
+		} else if (selectDate.equals("dateEnd")) {
+			so.setDateEnd(selectDate);
+		}
 		
 		// 검색 조건들 hashMap에 저장
 		HashMap<String, Object> hs = new HashMap<String, Object>();

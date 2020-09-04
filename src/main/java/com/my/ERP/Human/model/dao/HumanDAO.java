@@ -12,6 +12,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
@@ -230,6 +231,16 @@ public class HumanDAO {
 
 	public PeopleCount WorkPeopleCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("humanMapper.WorkPeopleCount");
+	}
+
+	public ArrayList<Salary> salaryList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("humanMapper.salaryList", null, rowbounds);
+	}
+
+	public int salaryListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("humanMapper.salaryListCount");
 	}
 
 

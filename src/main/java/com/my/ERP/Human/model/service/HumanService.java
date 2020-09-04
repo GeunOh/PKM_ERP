@@ -8,6 +8,7 @@ import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
+import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
@@ -100,5 +101,9 @@ public interface HumanService {
 	ArrayList<WorkInOut> SearchWorkEnoList(PageInfo pi, HashMap<String, Object> hs);
 
 	PeopleCount WorkPeopleCount();
+
+	ArrayList<Salary> salaryList(PageInfo pi);
+
+	int salaryListCount();
 
 }

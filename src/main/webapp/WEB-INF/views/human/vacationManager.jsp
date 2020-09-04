@@ -71,15 +71,17 @@
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateSelect">선택</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateRequest">신청일자</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateStart">시작일</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateEnd">종료일</a></li>
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
 						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
 						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
 					</div>
-					<button type="button" id="resetBtn" onclick="location.href='/Human/vacationManager'">초기화</button>
 					<button id="searchBtn">검색</button>
+					<button type="button" id="resetBtn" onclick="location.href='/Human/vacationManager'">초기화</button>
 				</form>
 			</div>
 		</div>
