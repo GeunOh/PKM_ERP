@@ -1,6 +1,5 @@
 package com.my.ERP.Human.model.service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,12 +10,12 @@ import org.springframework.stereotype.Service;
 import com.my.ERP.Human.model.dao.HumanDAO;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
-import com.my.ERP.common.vo.SearchOption;
 
 @Service("hService")
 public class HumanServiceImpl implements HumanService {
@@ -229,13 +228,38 @@ public class HumanServiceImpl implements HumanService {
 	}
 
 	@Override
-	public ArrayList<WorkInOut> workList() {
-		return hDAO.workList(sqlSession);
+	public ArrayList<WorkInOut> workList(PageInfo pi) {
+		return hDAO.workList(sqlSession, pi);
 	}
 
 	@Override
-	public ArrayList<WorkInOut> enoWorkList() {
-		return hDAO.enoWorkList(sqlSession);
+	public ArrayList<WorkInOut> enoWorkList(PageInfo pi) {
+		return hDAO.enoWorkList(sqlSession, pi);
+	}
+
+	@Override
+	public int workListCount() {
+		return hDAO.workListCount(sqlSession);
+	}
+
+	@Override
+	public int SearchWorkCount(HashMap<String, Object> hs) {
+		return hDAO.SearchWorkCount(sqlSession, hs);
+	}
+
+	@Override
+	public ArrayList<WorkInOut> SearchWorkList(PageInfo pi, HashMap<String, Object> hs) {
+		return hDAO.SearchWorkList(sqlSession, pi, hs);
+	}
+
+	@Override
+	public ArrayList<WorkInOut> SearchWorkEnoList(PageInfo pi, HashMap<String, Object> hs) {
+		return hDAO.SearchWorkEnoList(sqlSession, pi, hs);
+	}
+
+	@Override
+	public PeopleCount WorkPeopleCount() {
+		return hDAO.WorkPeopleCount(sqlSession);
 	}
 	
 	// 급여 관리 목록

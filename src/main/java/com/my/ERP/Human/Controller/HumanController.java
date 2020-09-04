@@ -28,6 +28,7 @@ import com.google.gson.GsonBuilder;
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
@@ -59,7 +60,9 @@ public class HumanController {
 		
 		int listCount = hService.HumanListCount();
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		System.out.println(pi);
 		ArrayList<Human> hList = hService.HumanList(pi);
+		System.out.println(hList.size());
 		
 		model.addAttribute("pi", pi)
 		     .addAttribute("hList", hList);
@@ -473,12 +476,65 @@ public class HumanController {
 		int currentPage = 1;
 		if(page != null) currentPage = page;
 		
-		ArrayList<WorkInOut>mlist = hService.enoWorkList();
-		ArrayList<WorkInOut>wlist = hService.workList();
-		int size = wlist.size()/mlist.size();
+		int listCount = hService.workListCount();
+		PageInfo pi = Pagenation.getWorkPageInfo(currentPage, listCount);
+		ArrayList<WorkInOut>wlist = hService.workList(pi);    //회원 출근기록     
+		ArrayList<WorkInOut>mlist = hService.enoWorkList(pi); //회원 이름  
+		PeopleCount mCount = hService.WorkPeopleCount();
+		System.out.println(mCount);
+		System.out.println(wlist);
 		model.addAttribute("wlist", wlist)
 			 .addAttribute("mlist", mlist)
-			 .addAttribute("size", size);
+			 .addAttribute("mCount", mCount)
+			 .addAttribute("pi", pi);
+		
+		return "workInOutManager";
+	}
+	
+	@RequestMapping("SearchWork")
+	public String SearchWork(@RequestParam(value="page", required = false) Integer page, Model model,
+							 @RequestParam("selectVal") String selectVal, @RequestParam("selectDept") String selectDept,
+							 @RequestParam("selectRank") String selectRank, @RequestParam("eno") String eno, 
+							 @RequestParam("name") String name, @RequestParam("selectDate") String selectDate,
+							 @RequestParam(value="date", required = false) String date) {
+		int currentPage = 1;
+		if(page != null) currentPage = page;
+		
+		SearchOption so = new SearchOption();
+		if(selectVal.equals("all")) {
+			so.setAll("all");
+		}else if(selectVal.equals("in")) {
+			so.setInUser("in");
+		}else if(selectVal.equals("out")){
+			so.setOutUser("out");
+		}
+		
+		if(selectDate.equals("dateAll")) {
+			so.setDateAll("dateAll");
+		}else if(selectDate.equals("dateSelect")){
+			so.setDateSelect("dateSelect");
+		}
+		
+		HashMap<String, Object> hs = new HashMap<>();
+		hs.put("so",so);
+		hs.put("dept",selectDept);
+		hs.put("rank",selectRank);
+		hs.put("eno",eno);
+		hs.put("name",name);
+		hs.put("date",date);
+		int month = Integer.parseInt(date.substring(5));
+		int listCount = hService.SearchWorkCount(hs);
+		PageInfo pi = Pagenation.getWorkPageInfo(currentPage, listCount);
+		ArrayList<WorkInOut> wlist = hService.SearchWorkList(pi, hs);    //회원 출근기록
+		ArrayList<WorkInOut> mlist = hService.SearchWorkEnoList(pi, hs); //회원 이름
+		
+		model.addAttribute("pi", pi)
+	         .addAttribute("wlist", wlist)
+	         .addAttribute("mlist", mlist)
+	         .addAttribute("month", month)
+	         .addAttribute("selectVal", selectVal)
+	         .addAttribute("selectDate", selectDate)
+	         .addAttribute("hs", hs);
 		
 		return "workInOutManager";
 	}
@@ -657,6 +713,5 @@ public class HumanController {
 		
 		return "myInfo";
 	}
-	
 	
 }
