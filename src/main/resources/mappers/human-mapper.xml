@@ -340,6 +340,16 @@
 		ORDER BY W.ENO
 	</select>
 	
+	<!-- 급여 관리 목록 -->
+	<select id="salaryList" resultMap="salaryResult">
+		SELECT * FROM SALARYLIST
+	</select>
+	
+	<!-- 급여 관리 목록 행 개수 -->
+	<select id="salaryListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_SALARY
+	</select>
+	
 	<select id="workListCount" resultType="_int">
 		SELECT COUNT(*) FROM WORKLIST
 	</select>
@@ -381,17 +391,6 @@
 			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
 		</where>
 		ORDER BY W.ENO, W.HIRDATE
-	</select>
-	
-
-	<!-- 급여 관리 목록 -->
-	<select id="salaryList" resultMap="salaryResult">
-		SELECT * FROM SALARYLIST
-	</select>
-	
-	<!-- 급여 관리 목록 행 개수 -->
-	<select id="salaryListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_SALARY
 	</select>
 	
 	<select id="SearchWorkEnoList" resultMap="worktimeResult">
