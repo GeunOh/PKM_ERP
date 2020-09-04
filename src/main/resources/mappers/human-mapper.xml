@@ -50,10 +50,19 @@
 
 	<resultMap type="WorkTime" id="worktimeResult">
 		<id column="ENO" property="eno"/>
+		<result column="ENAME" property="name"/>
+		<result column="RNAME" property="rname"/>
+		<result column="DNAME" property="dname"/>
 		<result column="HIRDATE" property="date"/>
 		<result column="INTIME" property="intime"/>
 		<result column="OUTTIME" property="outtime"/>
 		<result column="WORK_TYPE" property="type"/>
+	</resultMap>
+	
+	<resultMap type="PeopleCount" id="peopleCountResult">
+		<result column="peopleAll" property="peopleAll"/>
+		<result column="peopleIn" property="peopleIn"/>
+		<result column="peopleOut" property="peopleOut"/>
 	</resultMap>
 	
 	<select id="HumanListCount" resultType="_int">
@@ -301,11 +310,97 @@
 	</update>
 	
 	<select id="workList" resultMap="worktimeResult">
-		SELECT * FROM WORKLIST
+		SELECT W.*
+		FROM WORKLIST W
+			 JOIN TB_USER U ON(W.ENO=U.ENO)
+			 JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+			 JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		WHERE TO_CHAR(TO_DATE(W.HIRDATE),'YYYY-MM')= TO_CHAR(TRUNC(SYSDATE, 'mm'), 'YYYY-MM')
+		ORDER BY W.ENO, W.HIRDATE
 	</select>
 	
 	<select id="enoWorkList" resultMap="worktimeResult">
-		SELECT DISTINCT ENO FROM WORKLIST
+		SELECT U.ENAME, D.DNAME, R.RNAME
+		FROM (SELECT DISTINCT ENO, TO_CHAR(to_date(HIRDATE), 'YYYY-MM') HIRDATE FROM WORKLIST) W
+			 JOIN TB_USER U ON(W.ENO=U.ENO)
+			 JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+			 JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		WHERE W.HIRDATE= TO_CHAR(TRUNC(SYSDATE, 'mm'), 'YYYY-MM')
+		ORDER BY W.ENO
 	</select>
 	
+	<select id="workListCount" resultType="_int">
+		SELECT COUNT(*) FROM WORKLIST
+	</select>
+	
+	<select id="SearchWorkCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM WORKLIST W
+			 JOIN TB_USER U ON(W.ENO=U.ENO)
+			 JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+			 JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		<where>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null ">AND TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') = #{date}</if>
+			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
+			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+		</where>
+	</select>
+	
+	<select id="SearchWorkList" resultMap="worktimeResult">
+		SELECT W.*
+		FROM WORKLIST W
+			 JOIN TB_USER U ON(W.ENO=U.ENO)
+			 JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+			 JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		<where>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null ">AND TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') = #{date}</if>
+			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
+			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+		</where>
+		ORDER BY W.ENO, W.HIRDATE
+	</select>
+	
+	<select id="SearchWorkEnoList" resultMap="worktimeResult">
+		SELECT U.ENAME, D.DNAME, R.RNAME
+		FROM (SELECT DISTINCT ENO, TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') HIRDATE FROM WORKLIST) W
+			 JOIN TB_USER U ON(W.ENO=U.ENO)
+			 JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+			 JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		<where>
+			<if test="so.all != null"></if>
+			<if test="so.inUser != null">AND OUTYN = 'N'</if>
+			<if test="so.outUser != null">AND OUTYN = 'Y'</if>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null ">AND HIRDATE = #{date}</if>
+			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
+			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
+			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+		</where>
+		ORDER BY W.ENO
+	</select>
+	<select id="WorkPeopleCount" resultMap="peopleCountResult">
+		SELECT COUNT(OUTYN) peopleAll,
+		       COUNT(CASE WHEN OUTYN = 'N' THEN 1 END) peopleIn,
+		       COUNT(CASE WHEN OUTYN = 'Y' THEN 1 END) peopleOut
+       
+		FROM (SELECT DISTINCT ENO, TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') HIRDATE FROM WORKLIST) W
+		         JOIN TB_USER U ON(W.ENO=U.ENO)
+		         JOIN TB_DEPT D ON (D.DCODE=U.DCODE)
+		         JOIN TB_RANK R ON (R.RCODE=U.RCODE)
+		WHERE W.HIRDATE= TO_CHAR(TRUNC(SYSDATE, 'mm'), 'YYYY-MM')
+		ORDER BY W.ENO
+	</select>
 </mapper>

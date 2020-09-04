@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
@@ -190,12 +191,45 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.modifyPositon", hs);
 	}
 
-	public ArrayList<WorkInOut> workList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("humanMapper.workList");
+	public ArrayList<WorkInOut> workList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit()  ;
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("humanMapper.workList", null, rowBounds);
 	}
 
-	public ArrayList<WorkInOut> enoWorkList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("humanMapper.enoWorkList");
+	public ArrayList<WorkInOut> enoWorkList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*5;
+		RowBounds rowBounds = new RowBounds(offset, 5);
+		return (ArrayList)sqlSession.selectList("humanMapper.enoWorkList", null, rowBounds);
+	}
+
+	public int workListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("humanMapper.workListCount");
+	}
+
+	public int SearchWorkCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("humanMapper.SearchWorkCount", hs);
+	}
+
+	public ArrayList<WorkInOut> SearchWorkList(SqlSessionTemplate sqlSession, PageInfo pi, HashMap<String, Object> hs) {
+		
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("humanMapper.SearchWorkList", hs, rowBounds);
+	}
+
+	public ArrayList<WorkInOut> SearchWorkEnoList(SqlSessionTemplate sqlSession, PageInfo pi,
+			HashMap<String, Object> hs) {
+		
+		int offset = (pi.getCurrentPage()-1)*5;
+		RowBounds rowBounds = new RowBounds(offset, 5);
+		
+		return (ArrayList)sqlSession.selectList("humanMapper.SearchWorkEnoList", hs, rowBounds);
+	}
+
+	public PeopleCount WorkPeopleCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("humanMapper.WorkPeopleCount");
 	}
 
 
