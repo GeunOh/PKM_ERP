@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import com.my.ERP.Human.model.vo.Department;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.PeopleCount;
 import com.my.ERP.Human.model.vo.Rank;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
@@ -86,8 +87,18 @@ public interface HumanService {
 
 	int modifyPositon(HashMap<String, String> hs);
 
-	ArrayList<WorkInOut> workList();
+	ArrayList<WorkInOut> workList(PageInfo pi);
 
-	ArrayList<WorkInOut> enoWorkList();
+	ArrayList<WorkInOut> enoWorkList(PageInfo pi);
+
+	int workListCount();
+
+	int SearchWorkCount(HashMap<String, Object> hs);
+
+	ArrayList<WorkInOut> SearchWorkList(PageInfo pi, HashMap<String, Object> hs);
+
+	ArrayList<WorkInOut> SearchWorkEnoList(PageInfo pi, HashMap<String, Object> hs);
+
+	PeopleCount WorkPeopleCount();
 
 }

@@ -1,55 +1,87 @@
-/**
- * 
- */
 $(function(){
-	
-	// sysdate 일때 getMonth()+1, 직접 지정한 날일땐  getMonth()
-	var today = new Date(); 
-	
-	var year = today.getFullYear();		// 현재 년도
-	var month = today.getMonth(); 		// 현재 달 가져오기 // 8
-	var day = today.getDay(); 			// 시작하는 요일 체크
-    
-    console.log(year);
-    console.log(month);
-    console.log(date);
-    console.log(day);
-    
-    // 달의 마지막날 배열 저장
-	var lastDayArr = [31,28,31,30,31,30,31,31,30,31,30,31]; 
-	var dayArr = ['일', '월', '화', '수', '목', '금', '토'];
-	
-	// 윤년 체크 후 2월에 마지막날 값 변경
-	if ((year%4==0 && year%100!=0) || (year%400==0)){ 
-	    lastDayArr[1] = 29;
-	}
-	
-	// 달의 첫째 날 및 요일 가져오기
-	var firstDate = new Date(year,month,1);		// 10 -1 > 9
-    var firstDay = firstDate.getDay(); // 시작하는 요일 체크  0 = 일
-//	console.log(firstDate);
-//	console.log(firstDay);
-	
-//    console.log("firstDay" + firstDay);
-//    console.log(lastDayArr[month-1]);
-//    console.log(dayArr.lenght);
-    
-    // 출력
-	for(var i=1; i<=lastDayArr[month]; i++){
-		$("thead tr:first").append("<th>"+ i +"</th>");
-		if(firstDay == 0) {
-			$("thead tr:last").append("<th style='color:red'>"+ dayArr[firstDay] +"</th>");
-		} else if( firstDay == 6) {
-			$("thead tr:last").append("<th style='color:blue'>"+ dayArr[firstDay] +"</th>");
-		} else {
-			$("thead tr:last").append("<th>"+ dayArr[firstDay] +"</th>");
+	$.ajax({
+		url: '/Human/humanAddDeptList',
+		success: function(data){
+			$ul = $('#selectDept').siblings('ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					console.log(data)
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].dcode +"'>"+data[i].dname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
 		}
-		firstDay++;
-		if(firstDay == 7) {
-			firstDay = 0;
+	})
+	// 검색 스크립트(selectBox)
+	$.ajax({
+		url: '/Human/humanAddRankList',
+		success: function(data){
+			$ul = $('#selectRank').siblings('ul');
+			$ul.html('');
+			if(data.length>0){
+				for(var i in data){
+					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].rcode +"'>"+data[i].rname+"</a></li>");		
+					$ul.append($li);
+				}
+			}else{
+				$li = $("<li><a href='#' class='link-select' data-value='N'>부서 없음</a></li>");		
+				$ul.append($li);
+			}
 		}
-	}
+	})
 	
-	
-
 });
+
+$(document).on('click', '.link-select', function(){
+	var dv = $(this).attr('data-value');
+	var dt = $(this).text();
+	
+	$(this).parents('.selectBox').find('.link-selected').text(dt);
+	$(this).parents('.selectBox').find('input').attr('data-value',dv);
+	$(this).parents('.selectBox').find('input').val(dv);
+	
+	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
+	//날씨 선택 누르면 input 활성화
+	if($('#selectDate').attr('data-value') == 'dateSelect'){
+		$('#date').attr('disabled', false);
+	}else{
+		$('#date').attr('disabled', true);
+	}
+	
+	if($('#modify-email3').attr('data-value') == 'input-text'){
+		$('#modify-email2').attr('disabled', false);
+		$('#modify-email2').css('cursor', 'pointer');
+	}else{
+		$('#modify-email2').val('');
+		$('#modify-email2').attr('disabled', true);
+		$('#modify-email2').css('cursor', 'auto');
+	}
+	
+	
+})
+
+$('.selectBox ul').mouseleave(function(){
+	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
+	$(this).hide();
+})
+
+$('.selectBox').on('click',function(){
+	$(this).children('ul').toggle();
+	$(this).children('.fa-angle-down').toggleClass('rotate-angle');
+})
+
+function FormChk(){
+	
+	var bool = true;
+	
+	//달력 선택 안하고 검색 시 alert
+	if($('#selectDate').val() == 'dateSelect' && $('#date').val() == ''){
+		alert('날짜를 선택해주세요.');
+		return false;
+	} 
+	
+}
