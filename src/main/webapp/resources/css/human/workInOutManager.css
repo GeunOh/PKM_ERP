@@ -25,7 +25,7 @@ input:-webkit-autofill:active {
 
 h1{margin-bottom: 3%;}
 #Search-back{
-	width: 80%; height: 100px;
+	width: 65%; height: 100px;
     border: 1px solid #dedede; border-radius: 5px;
     background-color: #e6e5e5;
 }
@@ -126,6 +126,17 @@ ul, li{list-style: none;}
 	border: 1px solid #969696;
 	border-radius: 3px;
     position: absolute;
+    right: 80px;
+    top: 15px;
+    cursor: pointer;
+}
+#resetBtn { 
+	font-family: NotoSans-Regular;
+	padding: 22px 9px;
+	background-color: transparent;
+	border: 1px solid #969696;
+	border-radius: 3px;
+    position: absolute;
     right: 15px;
     top: 15px;
     cursor: pointer;
@@ -214,7 +225,12 @@ ul, li{list-style: none;}
 }
 
 /* 페이징버튼 */
-#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold; position: relative;}
+#peopleCountForm{
+	position: absolute;
+	top: -20px; left: 0;
+	font-size: 14px;
+}
 .pg_current {
     display: inline-block;
     background: #282c34;

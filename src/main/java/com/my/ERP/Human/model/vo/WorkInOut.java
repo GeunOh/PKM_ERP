@@ -2,6 +2,9 @@ package com.my.ERP.Human.model.vo;
 
 public class WorkInOut {
 	private String eno;
+	private String name;
+	private String rname;
+	private String dname;
 	private String date;
 	private String intime;
 	private String outtime;
@@ -15,6 +18,30 @@ public class WorkInOut {
 
 	public void setEno(String eno) {
 		this.eno = eno;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getRname() {
+		return rname;
+	}
+
+	public void setRname(String rname) {
+		this.rname = rname;
+	}
+
+	public String getDname() {
+		return dname;
+	}
+
+	public void setDname(String dname) {
+		this.dname = dname;
 	}
 
 	public String getDate() {
@@ -51,9 +78,8 @@ public class WorkInOut {
 
 	@Override
 	public String toString() {
-		return "WorkInOut [eno=" + eno + ", date=" + date + ", intime=" + intime + ", outtime=" + outtime + ", type="
-				+ type + "]";
+		return "WorkInOut [eno=" + eno + ", name=" + name + ", rname=" + rname + ", dname=" + dname + ", date=" + date
+				+ ", intime=" + intime + ", outtime=" + outtime + ", type=" + type + "]";
 	}
-	
-	
+
 }

@@ -12,6 +12,7 @@
 		<typeAlias type="com.my.ERP.Human.model.vo.Vacation" alias="Vacation"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.WorkInOut" alias="WorkTime"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.Salary" alias="Salary"/>
+		<typeAlias type="com.my.ERP.Human.model.vo.PeopleCount" alias="PeopleCount"/>
 		<typeAlias type="com.my.ERP.common.vo.SearchOption" alias="SearchOption"/>
 	</typeAliases>
 	

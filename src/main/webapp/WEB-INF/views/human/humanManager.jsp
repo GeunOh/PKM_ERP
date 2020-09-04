@@ -7,9 +7,7 @@
 <head>
 <jsp:include page="../common/headTag.jsp"/>
 <title>기본인사관리</title>
-<!-- <link rel="stylesheet" href="resources/css/plugin/fakeLoader.min.css"> -->
 <link href="resources/css/human/humanManager.css" rel="styleSheet">
-<!-- <script src="resources/js/plugin/fakeLoader.min.js"></script> -->
 </head>
 <body>
 <!-- 	<div class="fakeLoader"></div> -->
