@@ -340,7 +340,6 @@
 		ORDER BY W.ENO
 	</select>
 	
-<<<<<<< HEAD
 	<!-- 급여 관리 목록 -->
 	<select id="salaryList" resultMap="salaryResult">
 		SELECT * FROM SALARYLIST
@@ -351,7 +350,6 @@
 		SELECT COUNT(*) FROM TB_SALARY
 	</select>
 	
-=======
 	<select id="workListCount" resultType="_int">
 		SELECT COUNT(*) FROM WORKLIST
 	</select>
@@ -426,5 +424,4 @@
 		WHERE W.HIRDATE= TO_CHAR(TRUNC(SYSDATE, 'mm'), 'YYYY-MM')
 		ORDER BY W.ENO
 	</select>
->>>>>>> branch 'master' of https://github.com/GeunOh/PKM_ERP.git
 </mapper>
