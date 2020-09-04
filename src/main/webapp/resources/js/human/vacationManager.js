@@ -54,7 +54,7 @@ $(document).on('click', '.link-select', function(){
 	
 	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
 	//날짜 선택 누르면 input 활성화
-	if($('#selectDate').attr('data-value') == 'dateSelect'){
+	if($('#selectDate').attr('data-value') != 'dateAll'){
 		$('#date').attr('disabled', false);
 		$('#date2').attr('disabled', false);
 	}else{

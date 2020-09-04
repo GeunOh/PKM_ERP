@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +24,6 @@
 			<div id="Serach-form">
 				<form action="/Human/SearchHuman">
 					<div class="search-area">
-						<span class="title">상태</span>
-						<div class="selectBox">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
-							<a href="#none" class="link-selected">전체</a>
-							<ul>
-								<li><a href="#" class="link-select" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select" data-value="in">재직</a></li>
-								<li><a href="#" class="link-select" data-value="out">퇴직</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
-					
-					<div class="search-area">
 						<span class="title">부서</span>
 						<div class="selectBox wid_150">
 							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
@@ -47,32 +35,18 @@
 					</div>
 					
 					<div class="search-area">
-						<span class="title">직급</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
-					
-					<div class="search-area">
-						<span class="title">업무 메일</span>
-						<input type="text" class="txtBox" name="email">
-					</div>
-					
-					<br>
-					
-					<div class="search-area downSearch">
 						<span class="title">사번</span>
 						<input type="text" class="txtBox" name="eno">
 					</div>
+					
 					<div class="search-area">
 						<span class="title">사원명</span>
 						<input type="text" class="txtBox" name="name">
 					</div>
-					<div class="search-area" style="height: 31px;">
+					
+					<br>
+				
+					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">입사일</span>
 						<div class="selectBox wid_55">
 							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
@@ -99,34 +73,75 @@
 		<table id="salaryTable">
 			<thead>
 				<tr>
-					<th style="width: 3%;">상태</th>
-					<th style="width: 10%">입사일</th>
-					<th style="width: 10%">사번</th>
-					<th style="width: 7%">이름</th>
-					<th style="width: 5%">직급</th>
-					<th style="width: 5%">부서</th>
-					<th style="width: 10%">업무 메일</th>
+					<th>사번</th>
+					<th>부서명</th>
+					<th>직급명</th>
+					<th>성명</th>
+					<th>입사일</th>
+					<th>급여</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-					<td>1</td>
-				</tr>
+				<c:forEach items="${sList }" var="s">
+					<tr>
+						<td>${s.eno }</td>
+						<td>${s.dname }</td>
+						<td>${s.rname }</td>
+						<td>${s.ename }</td>
+						<td>${s.indate }</td>
+						<td>${s.salary }</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty sList }">
+					<tr>
+						<td colspan="6">급여 목록이 없습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${!empty sList }">
+					<c:if test="${10 - fn:length(sList) > 0 }">
+						<c:forEach begin="1" end="${10 - fn:length(sList)}">
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- // 테이블 -->
 		<!-- 페이징 -->
 		<div id="pagingForm">
-			<a class="pg_page" href="#"><i class="fas fa-caret-left"></i></a>
-			<a class="pg_page" href="${ pagination }">1</a>
-			<a class="pg_page" href="${ pagination }">2</a>
-			<a class="pg_page" href="${ pagination }">3</a>
+			<!-- 첫 페이지 -->
+			<c:if test="${pi.currentPage > 1 }">
+				<c:url var="start" value="${loc }">
+					<c:param name="page" value="1" />
+				</c:url>
+				<a class="pg_page" href="${start}"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			
+			<!-- 이전 페이지 -->
+			
+			<!-- 기본 페이징 -->
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
+				<c:if test="${p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${p ne pi.currentPage }">
+					<c:url var="pagination" value="${loc }">
+						<c:param name="page" value="${p }" />
+					</c:url>
+					<a class="pg_page" href="${pagination}">${p}</a>
+				</c:if>
+				
+			</c:forEach>
+			<!-- 다름 페이지 -->
+			
+			<!-- 끝 페이지 -->
 		</div>
 	</div>
 	<!-- // wrap  -->
