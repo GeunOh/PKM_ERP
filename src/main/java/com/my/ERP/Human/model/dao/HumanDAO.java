@@ -243,5 +243,15 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.salaryListCount");
 	}
 
+	public int searchSalaryListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("humanMapper.searchSalaryListCount", hs);
+	}
+
+	public ArrayList<Salary> searchSalaryList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("humanMapper.searchSalaryList", hs, rowBounds);
+	}
+
 
 }

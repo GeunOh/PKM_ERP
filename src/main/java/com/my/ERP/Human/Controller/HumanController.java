@@ -466,6 +466,48 @@ public class HumanController {
 		return "salaryManager";
 	}
 	
+	// 급여관리 검색
+	@RequestMapping("searchSalary")
+	public String searchSalary(@RequestParam(value="page", required = false) Integer page,
+							   @RequestParam("selectDept") String selectDept,
+							   @RequestParam("eno") String eno,
+							   @RequestParam("name") String name,
+							   @RequestParam("selectDate") String selectDate,
+							   @RequestParam(value = "date", required = false) Date date,
+							   @RequestParam(value = "date2", required = false) Date date2, Model model){
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		SearchOption so = new SearchOption();
+		if(selectDate.equals("dateAll")) {
+			so.setDateAll(selectDate);
+		} else if(selectDate.equals("dateSelect")) {
+			so.setDateSelect(selectDate);
+		}
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("so", so);
+		hs.put("selectDept", selectDept);
+		hs.put("eno", eno);
+		hs.put("name", name);
+		hs.put("date", date);
+		hs.put("date2", date2);
+		
+		int sListCount = hService.searchSalaryListCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, sListCount);
+		ArrayList<Salary> sList = hService.searchSalaryList(hs,pi);
+		
+		model.addAttribute("sList", sList)
+			 .addAttribute("pi", pi)
+			 .addAttribute("hs", hs)
+			 .addAttribute("selectDate", selectDate);
+		
+		return "salaryManager";
+	}
+	
 	/**
 	 * 	[ ========== 근 태 관 리 ========== ]
 	 */	

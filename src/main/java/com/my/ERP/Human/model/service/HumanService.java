@@ -106,4 +106,8 @@ public interface HumanService {
 
 	int salaryListCount();
 
+	int searchSalaryListCount(HashMap<String, Object> hs);
+
+	ArrayList<Salary> searchSalaryList(HashMap<String, Object> hs, PageInfo pi);
+
 }
