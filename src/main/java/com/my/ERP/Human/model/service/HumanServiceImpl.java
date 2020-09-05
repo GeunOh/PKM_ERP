@@ -273,6 +273,17 @@ public class HumanServiceImpl implements HumanService {
 	public int salaryListCount() {
 		return hDAO.salaryListCount(sqlSession);
 	}
+	
+	// 급여 검색 목록 개수
+	@Override
+	public int searchSalaryListCount(HashMap<String, Object> hs) {
+		return hDAO.searchSalaryListCount(sqlSession, hs);
+	}
+
+	@Override
+	public ArrayList<Salary> searchSalaryList(HashMap<String, Object> hs, PageInfo pi) {
+		return hDAO.searchSalaryList(sqlSession, hs, pi);
+	}
 
 	
 	
