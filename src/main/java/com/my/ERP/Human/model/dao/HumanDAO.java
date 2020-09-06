@@ -280,5 +280,9 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.modifySalary", hs);
 	}
 
+	public ArrayList<Human> ExcelHumanList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.ExcelHumanList");
+	}
+
 
 }

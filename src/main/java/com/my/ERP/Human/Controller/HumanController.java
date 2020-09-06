@@ -12,6 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +29,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -792,5 +801,78 @@ public class HumanController {
 		
 		
 		return "redirect:/Human/humanManager";
+	}
+	
+	//엑셀 출력
+	@RequestMapping("excelDown")
+	public void excelDown(HttpServletResponse res) throws Exception{
+		
+		ArrayList<Human> mlist = hService.ExcelHumanList();
+		
+		Workbook wb = new HSSFWorkbook();
+		Sheet sheet = wb.createSheet("인사 목록");
+		
+		//행 생성
+		Row row = null;
+		//셀 생성
+		Cell cell = null;
+		int rowNo = 0;
+		
+
+		// 헤드 스타일
+		CellStyle headStyle = wb.createCellStyle();
+
+		headStyle.setBorderTop(BorderStyle.THIN);
+		headStyle.setBorderBottom(BorderStyle.THIN);
+		headStyle.setBorderLeft(BorderStyle.THIN);
+		headStyle.setBorderRight(BorderStyle.THIN);
+		
+		// 배경색
+		headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
+		headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+		//가운데 정렬
+		headStyle.setAlignment(HorizontalAlignment.CENTER);
+		//셀에 적용
+		
+		//바디 스타일
+		CellStyle bodyStyle = wb.createCellStyle();
+	    bodyStyle.setBorderTop(BorderStyle.THIN);
+	    bodyStyle.setBorderBottom(BorderStyle.THIN);
+	    bodyStyle.setBorderLeft(BorderStyle.THIN);
+	    bodyStyle.setBorderRight(BorderStyle.THIN);
+
+		// 헤더 생성
+	    row = sheet.createRow(rowNo++);
+	    cell = row.createCell(0);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("번호");
+	    cell = row.createCell(1);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("이름");
+	    cell = row.createCell(2);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("제목");
+	    
+	    //데이터 생성
+	    for(Human vo : mlist) {
+	        row = sheet.createRow(rowNo++);
+	        cell = row.createCell(0);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getEno());
+	        cell = row.createCell(1);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getName());
+	        cell = row.createCell(2);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getAddress());
+	    }
+
+		res.setContentType("application/vnd.ms-excel");
+		res.setHeader("Content-Disposition", "attachment;filename=test.xls");
+
+		wb.write(res.getOutputStream());
+		wb.close();
+
+
 	}
 }

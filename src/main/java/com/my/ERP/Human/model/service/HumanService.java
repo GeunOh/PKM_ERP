@@ -122,4 +122,6 @@ public interface HumanService {
 
 	int modifySalary(String salary, String eno);
 
+	ArrayList<Human> ExcelHumanList();
+
 }
