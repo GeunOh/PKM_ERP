@@ -334,3 +334,17 @@ h2>.fa-times {
     background-color: #282c34;
     color: #fff;
 }
+
+/* 알림창 */
+#alertBox {
+	display:none;
+ 	font-family: NotoSans-Regular;
+    font-weight: bold;
+    padding: 10px 20px;
+    position: absolute;
+    background-color: #282c34;
+    color: #fff;
+    top: 9%;
+    right: 43%;
+    border-radius: 3px;
+}

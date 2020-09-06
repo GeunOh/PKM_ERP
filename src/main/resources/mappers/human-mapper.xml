@@ -19,6 +19,7 @@
 		<result column="DNAME" property="dname"/>
 		<result column="ORIGINALNAME_FILE" property="originalFileName"/>
 		<result column="RENAME_FILE" property="renameFileName"/>
+		<result column="ADMIN_YN" property="adminyn"/>
 	</resultMap>
 	
 	<resultMap type="Department" id="deptResult">

@@ -253,6 +253,22 @@
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>
 		</div>
+		<!-- // 페이징 -->
+		<!-- 알림창 -->
+		<div id="alertBox">
+			<p></p>
+		</div>
+		<script type="text/javascript">
+			var success = "${success}";
+			if(success!='') {
+				$("#alertBox p").text(success);
+				$("#alertBox").fadeIn();
+				setTimeout(function(){
+					$("#alertBox").fadeOut();
+				}, 3000);
+			}
+		</script>
+		<!-- 알림창 -->
 	</div>
 	<!-- // wrap  -->
 	<script type="text/javascript" src="resources/js/human/salaryManager.js"></script>

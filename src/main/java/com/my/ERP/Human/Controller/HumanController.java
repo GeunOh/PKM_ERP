@@ -529,9 +529,12 @@ public class HumanController {
 	// 수정하기
 	@RequestMapping("modifySalary")
 	public String modifySalary(@RequestParam("modify-salary") String salary,
-							   @RequestParam("modify-eno") String eno) {
+							   @RequestParam("modify-eno") String eno, RedirectAttributes ra) {
 		
 		int result = hService.modifySalary(salary, eno);
+		String success = "수정되었습니다.";
+		ra.addFlashAttribute("success", success);
+		
 		return "redirect:/Human/salaryManager";
 	}
 	

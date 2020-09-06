@@ -23,6 +23,12 @@ public class LogoutInterceptor extends HandlerInterceptorAdapter {
 			return false;
 		}
 		
+		System.out.println("관리자 권한? : " + loginUser.getAdminyn());
+		if(!loginUser.getAdminyn().equals("Y")) {
+			response.sendRedirect("/LoginForm");
+			return false;
+		}
+		
 		return super.preHandle(request, response, handler);
 	}
 
