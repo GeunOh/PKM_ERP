@@ -101,7 +101,7 @@ ul, li{list-style: none;}
 }
 #searchBtn { 
     position: absolute;
-    right: 355px;
+    right: 255px;
     top: 15px;
     background-color: #282c34;
     color: #fff;
@@ -109,23 +109,17 @@ ul, li{list-style: none;}
 #addBtn {
 	background-color: transparent;
 	position: absolute;
-    right: 275px;
+    right: 175px;
     top: 15px;
 }
 #modifyBtn {
 	background-color: transparent;
 	position: absolute;
-    right: 195px;
+    right: 95px;
     top: 15px;
 }
 #deleteBtn {
 	background-color: transparent;
-	position: absolute;
-    right: 115px;
-    top: 15px;
-}
-#resetBtn { 
-	background: #606775; color: #fff; 
 	position: absolute;
     right: 15px;
     top: 15px;

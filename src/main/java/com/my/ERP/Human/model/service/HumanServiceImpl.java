@@ -279,10 +279,23 @@ public class HumanServiceImpl implements HumanService {
 	public int searchSalaryListCount(HashMap<String, Object> hs) {
 		return hDAO.searchSalaryListCount(sqlSession, hs);
 	}
-
+	
+	// 급여 목록 검색
 	@Override
 	public ArrayList<Salary> searchSalaryList(HashMap<String, Object> hs, PageInfo pi) {
 		return hDAO.searchSalaryList(sqlSession, hs, pi);
+	}
+	
+	// 수정 할 급여 정보
+	@Override
+	public Salary salaryModifyInfo(String eno) {
+		return hDAO.salaryModifyInfo(sqlSession, eno);
+	}
+	
+	// 급여 수정
+	@Override
+	public int modifySalary(String salary, String eno) {
+		return hDAO.modifySalary(sqlSession, salary, eno);
 	}
 
 	

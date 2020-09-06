@@ -508,6 +508,22 @@ public class HumanController {
 		return "salaryManager";
 	}
 	
+	// 수정할 급여 정보
+	@RequestMapping("salaryModifyInfo")
+	@ResponseBody
+	public Salary salaryModifyInfo(@RequestParam("eno") String eno) {
+		return hService.salaryModifyInfo(eno);
+	}
+	
+	// 수정하기
+	@RequestMapping("modifySalary")
+	public String modifySalary(@RequestParam("modify-salary") String salary,
+							   @RequestParam("modify-eno") String eno) {
+		
+		int result = hService.modifySalary(salary, eno);
+		return "redirect:/Human/salaryManager";
+	}
+	
 	/**
 	 * 	[ ========== 근 태 관 리 ========== ]
 	 */	

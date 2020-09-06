@@ -87,7 +87,9 @@
 						<td>${s.eno }</td>
 						<td>${s.dname }</td>
 						<td>${s.rname }</td>
-						<td>${s.ename }</td>
+						<td>
+							<a class="human_name">${s.ename }</a>
+						</td>
 						<td>${s.indate }</td>
 						<td>${s.salary }</td>
 					</tr>
@@ -114,6 +116,39 @@
 			</tbody>
 		</table>
 		<!-- // 테이블 -->
+		<!-- 급여수정 팝업창 -->
+		<form name="modifyForm" class="popup-form">
+			<div class="popupContent">
+				<h2>급여 수정
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form">
+					<div class="modify-form">
+						<span class="modify-title">사번</span>
+						<input type="text" class="txtBox modify-text" name="modify-eno" readonly>
+					</div>
+					<div class="modify-form">
+						<span class="modify-title">이름</span>
+						<input type="text" class="txtBox modify-text" disabled>
+					</div>
+					<div class="modify-form">
+						<span class="modify-title">급여</span>
+						<input type="text" class="txtBox modify-text" name="modify-salary">
+					</div>
+				</div>
+				<div class="content-form modify-btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button">
+						<i class="fas fa-check" aria-hidden="true"></i> 수정
+					</button>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- // 급여수정 팝업창 -->
+		
 		<!-- 페이징 -->
 		<div id="pagingForm">
 			<!-- 첫 페이지 -->
