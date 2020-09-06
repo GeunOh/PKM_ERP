@@ -30,10 +30,10 @@ public class HumanDAO {
 		return sqlSession.selectOne("humanMapper.HumanListCount");
 	}
 
-	public ArrayList<Human> HumanList(SqlSessionTemplate sqlSession, PageInfo pi) {
+	public ArrayList<Human> HumanList(SqlSessionTemplate sqlSession, PageInfo pi, String order) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("humanMapper.HumanList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("humanMapper.HumanList", order, rowBounds);
 	}
 	
 	// 해당 부서 정보 조회
@@ -241,6 +241,22 @@ public class HumanDAO {
 
 	public int salaryListCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("humanMapper.salaryListCount");
+	}
+
+	public WorkInOut WorkSysdate(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.WorkSysdate", eno);
+	}
+
+	public int WorkTimeOut(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.update("humanMapper.WorkTimeOut", eno);
+	}
+
+	public int HumanManagerModify(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.update("humanMapper.HumanManagerModify", hs);
+	}
+
+	public int HumanManagerDelete(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.update("humanMapper.HumanManagerDelete", hs);
 	}
 
 	public int searchSalaryListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {

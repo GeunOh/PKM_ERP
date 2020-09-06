@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -51,7 +52,8 @@ public class HumanController {
 	 */	
 	// 인사기본관리
 	@RequestMapping("humanManager")
-	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model) {
+	public String humanMain(@RequestParam(value="page", required = false) Integer page, Model model,
+			                @RequestParam(value="order", required = false) String order) {
 		
 		int currentPage = 1;
 		if(page != null) {
@@ -60,12 +62,11 @@ public class HumanController {
 		
 		int listCount = hService.HumanListCount();
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
-		System.out.println(pi);
-		ArrayList<Human> hList = hService.HumanList(pi);
-		System.out.println(hList.size());
+		ArrayList<Human> hList = hService.HumanList(pi,order);
 		
 		model.addAttribute("pi", pi)
-		     .addAttribute("hList", hList);
+		     .addAttribute("hList", hList)
+		     .addAttribute("order", order);
 		
 		return "humanManager";
 	}
@@ -76,10 +77,11 @@ public class HumanController {
 							  @RequestParam("selectVal") String selectVal, @RequestParam("selectDept") String selectDept,
 							  @RequestParam("selectRank") String selectRank, @RequestParam("email") String email,
 							  @RequestParam("eno") String eno, @RequestParam("name") String name,
-							  @RequestParam("selectDate") String selectDate,
+							  @RequestParam("selectDate") String selectDate, @RequestParam(value="order", required = false) String order,
 							  @RequestParam(value="date", required = false) Date date,
 							  @RequestParam(value="date2", required = false) Date date2
 			) {
+		System.out.println(order);
 		int currentPage = 1;
 		
 		if(page != null) currentPage = page;
@@ -715,7 +717,10 @@ public class HumanController {
 		String eno = loginHuman.getEno();
 		// 잔여 연차 개수 가져오기.
 		int result = hService.showVacationDays(eno);
-		model.addAttribute("vacationDay", result);
+		// 출,퇴근 체크
+		WorkInOut work = hService.WorkSysdate(eno);
+		model.addAttribute("vacationDay", result)
+		     .addAttribute("work", work);
 		
 		return "myInfo";
 	}
@@ -751,8 +756,8 @@ public class HumanController {
 		}
 	}
 	
-	@RequestMapping("WorkTimeIn")
-	public String WorkTimeIn(HttpSession session) throws ParseException {
+	@RequestMapping("WorkTimeInOutAdd")
+	public String WorkTimeIn(HttpSession session, @RequestParam("num") int num) throws ParseException {
 		
 	    Human h = (Human)session.getAttribute("loginUser");
 		String eno = h.getEno();
@@ -766,10 +771,26 @@ public class HumanController {
 		if(t1.getTime()-t2.getTime()>0) type = "지각"; 
 		else type = "정상 출근"; 
 		
-		int result = hService.WorkTimeIn(eno, type);
+		if(num == 1) hService.WorkTimeIn(eno, type);
+		else hService.WorkTimeOut(eno);
 		
 		
-		return "myInfo";
+		return "redirect:/Human/myInfo";
 	}
 	
+	@RequestMapping("HumanManagerModify")
+	public String HumanManagerModify(@RequestParam("modify-eno") String eno, @RequestParam("modify-dept") String dept,
+									 @RequestParam("modify-rank") String rank, @RequestParam("type") int type) {
+		System.out.println(type);
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("eno", eno);
+		hs.put("dept", dept);
+		hs.put("rank", rank);
+		
+		if(type == 1) hService.HumanManagerModify(hs);
+		else hService.HumanManagerDelete(hs);
+		
+		
+		return "redirect:/Human/humanManager";
+	}
 }

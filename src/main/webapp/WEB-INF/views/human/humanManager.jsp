@@ -96,7 +96,7 @@
 			<thead>
 				<tr>
 					<th style="width: 3%;">상태</th>
-					<c:url var="start" value="${ loc }">
+					<c:url var="sort" value="${ loc }">
 						<c:param name="page" value="1"/>
 						<c:if test="${ not empty hs }">
 							<c:param name="selectDept" value="${hs.dept}"/>
@@ -107,10 +107,20 @@
 							<c:if test="${hs.date ne null }"><c:param name="date" value="${hs.date}"/></c:if>
 							<c:if test="${hs.date2 ne null }"><c:param name="date2" value="${hs.date2}"/></c:if>
 						</c:if>
+						<c:if test="${order eq null }"><c:param name="order" value="DESC"/></c:if>
+						<c:if test="${order ne null }">
+							<c:if test="${order eq 'DESC' }"><c:param name="order" value="ASC"/></c:if>
+							<c:if test="${order eq 'ASC' }"><c:param name="order" value="DESC"/></c:if>
+						</c:if>
 						<c:if test="${selectVal ne null }"><c:param name="selectVal" value="${selectVal}"/></c:if>
 						<c:if test="${selectDate ne null }"><c:param name="selectDate" value="${selectDate}"/></c:if>
 					</c:url>
-					<th style="width: 10%"><a class="sort_th" href="${start}">입사일<i class="fas fa-caret-up"></i><i class="fas fa-caret-down"></i></a></th>
+					<th style="width: 10%">
+						<a class="sort_th" href="${sort}">입사일
+							<i class="fas fa-caret-up"></i>
+							<i class="fas fa-caret-down"></i>
+						</a>
+					</th>
 					<th style="width: 10%">사번</th>
 					<th style="width: 7%">이름</th>
 					<th style="width: 5%">직급</th>
@@ -374,28 +384,28 @@
 	</form>
 	
 	<!-- 조회 팝업창 -->
-	<form method="post" action="" class="popup-form" id="popup-Modify-form" enctype="Multipart/form-data" style="display: none;">
+	<form method="post" action="/Human/HumanManagerModify" class="popup-form" id="popup-Modify-form" enctype="Multipart/form-data" style="display: none;" onsubmit="return Modifydelete();">
 		<div class="popupContent">
-			<h1>사원 수정<i class="fas fa-times"></i></h1>
+			<h1>상세 조회<i class="fas fa-times"></i></h1>
 			<div class="filebox bs3-primary preview-image add-image">
 				<span class="add-title">프로필 수정</span>
 				<div class="upload-display"><div class="upload-thumb-wrap"><img src="resources/images/default-profile.jpg" class="upload-thumb"></div></div>
 				<input class="txtBox upload-name " value="파일명" disabled="disabled" style="width: 30%; border-radius: 3px;">
-				<label for="input_file">파일 선택</label> 
-			  	<input type="file" name="profile_img" id="modify-input_file" class="upload-hidden"> 
-			  	<span id="image-ex">- 프로필로 수정할 이미지를 선택해주세요.</span>
+<!-- 				<label for="input_file">파일 선택</label>  -->
+<!-- 			  	<input type="file" name="profile_img" id="modify-input_file" class="upload-hidden">  -->
+<!-- 			  	<span id="image-ex">- 프로필로 수정할 이미지를 선택해주세요.</span> -->
 			</div>
 			<div class="content-form">
 				<span>기본 정보</span>
 				<div class="add-textform">
 					<span class="add-title add-title2">사번</span>
-					<input type="text" class="txtBox add-text" name="modify-eno">
+					<input type="text" class="txtBox add-text" name="modify-eno" readonly>
 					<label id="modify-enoChk"></label>
 					<input type="hidden" id="modify-enoChk2" value="0">
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">이름</span>
-					<input type="text" class="txtBox add-text" name="modify-name">
+					<input type="text" class="txtBox add-text" name="modify-name" readonly>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">부서</span>
@@ -419,23 +429,23 @@
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">이메일</span>
-					<input type="text" class="txtBox" name="modify-email" style="width: 155px; border-radius: 3px;"> @ 
-					<input type="text" class="txtBox" id="modify-email2" name="modify-email2" style="width: 155px; border-radius: 3px; cursor:auto;" disabled>
-					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: unset; border-radius: 3px;">
-						<input type="hidden" id="modify-email3" name="modify-email3" data-value="all" value="">
-						<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
-						<ul>
-							<li><a  class="link-select" data-value="input-text">선택 입력</a></li>
-							<li><a  class="link-select" data-value="naver.com">naver.com</a></li>
-							<li><a  class="link-select" data-value="daum.net">daum.net</a></li>
-							<li><a  class="link-select" data-value="gmail.com">gmail.com</a></li>
-						</ul>
-						<i class="fas fa-angle-down searchAngle"></i>
-					</div>
+					<input type="text" class="txtBox add-text" name="modify-email" style="width: 30%;" readonly> 
+<!-- 					<input type="text" class="txtBox" id="modify-email2" name="modify-email2" style="width: 155px; border-radius: 3px; cursor:auto;" disabled> -->
+<!-- 					<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: unset; border-radius: 3px;"> -->
+<!-- 						<input type="hidden" id="modify-email3" name="modify-email3" data-value="all" value=""> -->
+<!-- 						<a href="#none" class="link-selected" style="line-height: 0;">선택</a> -->
+<!-- 						<ul> -->
+<!-- 							<li><a  class="link-select" data-value="input-text">선택 입력</a></li> -->
+<!-- 							<li><a  class="link-select" data-value="naver.com">naver.com</a></li> -->
+<!-- 							<li><a  class="link-select" data-value="daum.net">daum.net</a></li> -->
+<!-- 							<li><a  class="link-select" data-value="gmail.com">gmail.com</a></li> -->
+<!-- 						</ul> -->
+<!-- 						<i class="fas fa-angle-down searchAngle"></i> -->
+<!-- 					</div> -->
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">입사일</span>
-					<input type="date" class="txtBox" name="modify-inDate" style="border-radius: 3px;">
+					<input type="date" class="txtBox" name="modify-inDate" style="width: 30%; border-radius: 3px;" required>
 				</div>
 			</div>
 			<div class="content-form">
@@ -443,13 +453,13 @@
 				<div class="add-textform">
 					<span class="add-title add-title2">생년월일</span>
 					<input type="date" class="txtBox" name="modify-date" style="border-radius: 3px;">
-					<input type="radio" id="modify-gender-woman" name="gender" value="W"><label for="modify-gender-woman">여자</label>
-					<input type="radio" id="modify-gender-man" name="gender" value="M"><label for="modify-gender-man">남자</label>
+					<input type="radio" id="modify-gender-woman" name="gender" value="W"  onclick="return(false);"><label for="modify-gender-woman">여자</label>
+					<input type="radio" id="modify-gender-man" name="gender" value="M"  onclick="return(false);"><label for="modify-gender-man">남자</label>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">주소</span>
-					<input type="text" name="address1" class="postcodify_address txtBox add-text" value="">
-					<button type="button" id="modify_address_search" class="address-btn">검색</button>
+					<input type="text" name="address1" class="postcodify_address txtBox add-text" value="" readonly>
+<!-- 					<button type="button" id="modify_address_search" class="address-btn">검색</button> -->
 							
 					<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 					<script>
@@ -460,7 +470,7 @@
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">상세 주소</span>
-					<input type="text" name="address2" class="postcodify_extra_info txtBox add-text" value="">
+					<input type="text" name="address2" class="postcodify_extra_info txtBox add-text" value="" readonly>
 				</div>
 				<div class="add-textform">
 					<span class="add-title add-title2">핸드폰 번호</span>
@@ -476,13 +486,13 @@
 						</ul>
 						<i class="fas fa-angle-down searchAngle"></i>
 					</div> - 
-					<input type="text" class="txtBox phone2" name="modify-phone2" size="4"> - 
-					<input type="text" class="txtBox phone2" name="modify-phone3" size="4">
+					<input type="text" class="txtBox phone2" name="modify-phone2" size="4" readonly> - 
+					<input type="text" class="txtBox phone2" name="modify-phone3" size="4" readonly>
 				</div>
 				<div class="add-textform add-btn-form">
 					<div style='display:none; color:red'>- 현재 퇴직한 인원입니다. -</div>
-					<button type="button"><i class="fas fa-check"></i> 수정</button>
-					<button type="button"><i class="fas fa-times"></i> 삭제</button>
+					<button type="submit" name="type" value="1" onclick="javascript: document.pressed=this.value"><i class="fas fa-check"></i> 수정</button>
+					<button type="submit" name="type" value="2" onclick="javascript: document.pressed=this.value" style="width: 75.5px;"><i class="fas fa-times"></i> 삭제</button>
 				</div>
 			</div>
 		</div>
@@ -490,5 +500,18 @@
 	</form>
 
 <script type="text/javascript" src="resources/js/human/humanManager.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var order = '${order}';
+	
+	if(order == 'ASC'){
+		$('.fa-caret-up').css('color','#212121');
+	}else if(order == 'DESC'){
+		$('.fa-caret-down').css('color','#212121');
+	}
+})
+
+</script>
+
 </body>
 </html>

@@ -17,6 +17,7 @@ h2{margin-bottom: 1%;}
     box-sizing: border-box;
     border: 1px solid #bbb;
     border-radius: 5px;
+    position: relative;
 }
 
 /* leftBox */
@@ -26,7 +27,7 @@ h2{margin-bottom: 1%;}
 }
 #leftBox #profileBox {
 	height: 400px;
-	margin-bottom: 2%;
+	margin-bottom: 4.4%;
 }
 #profileBox #profileTable {
 	height: 87%;
@@ -45,7 +46,7 @@ h2{margin-bottom: 1%;}
 }
 
 #leftBox #noticeBox {
-	height: 300px;
+	padding-top: 40px;
 }
 /*테이블*/
 #noticeTable{
@@ -137,7 +138,9 @@ h2{margin-bottom: 1%;}
 #rightBox { width:27%; float: left;}
 #rightBox .content_Box {
 	height: 227px;
+	position: relative;
 }
+
 #rightBox #commuteBox {
 	position: relative;
 }
@@ -199,6 +202,7 @@ h2{margin-bottom: 1%;}
 #buttons button:first-child { margin-right: 10px;}
 #commuteBox #sysdateBox {
 	text-align: center;
+	margin-top: 7%;
 }
 #commuteBox #sysdateBox>span {
 	display: inline-block;
@@ -414,3 +418,22 @@ h2>.fa-times {
     color: #fff;
 }
 #add-useDay { width: 6.5%; background-color: #eee; text-align: center;}
+.content_Box>h2{
+	position: absolute;
+	top: -3px; left: -5px;
+	padding: 0 15px;
+    min-width: 77px;
+    border-radius: 2px; box-sizing: border-box;
+    background: #304b82;
+    font-weight: bold; font-size: 15px; color: #fff;
+    line-height: 32px;
+    text-align: center;
+}
+.content_Box>h2:after{
+	content: "";
+	position: absolute;
+	bottom: -4px; left: 0;
+	width: 0px; height: 0px;
+	border-top: 5px solid #19366f;
+	border-left: 5px solid transparent;
+}

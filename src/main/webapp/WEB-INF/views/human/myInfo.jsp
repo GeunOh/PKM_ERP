@@ -107,14 +107,31 @@
 				<div id="buttons">
 					<dl>
 						<dt><a href="javascript:workInOut(1);">출근</a></dt>
-						<dd><strong></strong></dd>
+						<dd><strong>${work.intime}</strong>${work.type}</dd>
 					</dl>
 					<dl>
-						<dt><a href="" >퇴근</a></dt>
-						<dd><strong></strong></dd>
+						<dt><a href="javascript:workInOut(2);" >퇴근</a></dt>
+						<dd><strong>${work.outtime}</strong></dd>
 					</dl>
 				</div>
 			</div>
+			<script>
+				//출,퇴근 시간 찍기
+				var work = '${work}';
+				var workIn = '${work.intime}';
+				var workOut = '${work.outtime}';
+				function workInOut(e){
+					
+					if(e==1){
+						if(workIn != '') alert('이미 출근체크를 하셨습니다.')
+						else location.href = '/Human/WorkTimeInOutAdd?num=1';
+					}else{
+						if(workIn == '') alert('출근체크가 되지 않았습니다. \n출근체크부터 해주시길 바랍니다.')
+						else if(workOut != '') alert('이미 퇴근체크를 하셨습니다.')
+						else location.href = '/Human/WorkTimeInOutAdd?num=2';
+					}
+				}
+			</script>
 			<!-- 남은 휴가 일수 -->
 			<div id="vacationDayBox" class="content_Box">
 				<h2>연차 정보</h2>

@@ -80,6 +80,10 @@
 	
 	<select id="HumanList" resultMap="humanResult">
 		SELECT ENO, PWD, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME, DNAME FROM HUMANLIST
+		<if test="order != '' and order != null">
+			<if test="order == 'DESC'">ORDER BY INDATE DESC</if>
+			<if test="order == 'ASC'">ORDER BY INDATE ASC</if>
+		</if>
 	</select>
 	
 	<!-- 부서 목록 조회 -->
@@ -413,6 +417,7 @@
 		</where>
 		ORDER BY W.ENO
 	</select>
+	
 	<select id="WorkPeopleCount" resultMap="peopleCountResult">
 		SELECT COUNT(OUTYN) peopleAll,
 		       COUNT(CASE WHEN OUTYN = 'N' THEN 1 END) peopleIn,
@@ -426,6 +431,22 @@
 		ORDER BY W.ENO
 	</select>
 	
+	<select id="WorkSysdate" resultMap="worktimeResult">
+		SELECT TO_CHAR(WORKIN_DATE,'HH24:MI') INTIME, TO_CHAR(WORKOUT_TIME,'HH24:MI') OUTTIME, WORK_TYPE FROM TB_WORKINOUT
+		WHERE ENO = #{eno} AND TO_CHAR(WORKIN_DATE,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	</select>
+	
+	<update id="WorkTimeOut">
+		UPDATE TB_WORKINOUT SET WORKOUT_TIME = SYSDATE WHERE ENO = #{eno} AND TO_CHAR(WORKIN_DATE,'YYYY-MM-DD') = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	</update>
+	
+	<update id="HumanManagerModify">
+		UPDATE TB_USER SET RCODE = #{rank}, DCODE = #{dept} WHERE ENO = #{eno}
+	</update>
+	<update id="HumanManagerDelete">
+		UPDATE TB_USER SET OUTYN = 'Y' WHERE ENO = #{eno}
+	</update>
+
 	<!-- 급여 검색 행 개수  -->
 	<select id="searchSalaryListCount" resultType="_int">
 		SELECT COUNT(*) FROM SALARYLIST

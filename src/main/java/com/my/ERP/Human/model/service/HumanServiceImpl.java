@@ -38,8 +38,8 @@ public class HumanServiceImpl implements HumanService {
 	}
 
 	@Override
-	public ArrayList<Human> HumanList(PageInfo pi) {
-		return hDAO.HumanList(sqlSession, pi);
+	public ArrayList<Human> HumanList(PageInfo pi, String order) {
+		return hDAO.HumanList(sqlSession, pi, order);
 	}
 
 	@Override
@@ -296,6 +296,26 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public int modifySalary(String salary, String eno) {
 		return hDAO.modifySalary(sqlSession, salary, eno);
+	}
+
+	@Override
+	public WorkInOut WorkSysdate(String eno) {
+		return hDAO.WorkSysdate(sqlSession, eno);
+	}
+
+	@Override
+	public int WorkTimeOut(String eno) {
+		return hDAO.WorkTimeOut(sqlSession, eno);
+	}
+
+	@Override
+	public int HumanManagerModify(HashMap<String, String> hs) {
+		return hDAO.HumanManagerModify(sqlSession, hs);
+	}
+
+	@Override
+	public int HumanManagerDelete(HashMap<String, String> hs) {
+		return hDAO.HumanManagerDelete(sqlSession, hs);
 	}
 
 	
