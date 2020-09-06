@@ -89,7 +89,7 @@
 		<!-- 추가 외 버튼 -->
 		<div id="btnForm">
 			<label id="addBtn">추가</label>
-			<label id="downBtn"><i class="fas fa-download"></i>다운로드</label>
+			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 테이블 -->
 		<table id="humanTable">

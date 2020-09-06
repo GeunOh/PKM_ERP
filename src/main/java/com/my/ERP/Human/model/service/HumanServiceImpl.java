@@ -318,6 +318,11 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.HumanManagerDelete(sqlSession, hs);
 	}
 
+	@Override
+	public ArrayList<Human> ExcelHumanList() {
+		return hDAO.ExcelHumanList(sqlSession);
+	}
+
 	
 	
 }

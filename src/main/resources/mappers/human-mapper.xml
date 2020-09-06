@@ -445,7 +445,7 @@
 		UPDATE TB_USER SET RCODE = #{rank}, DCODE = #{dept} WHERE ENO = #{eno}
 	</update>
 	<update id="HumanManagerDelete">
-		UPDATE TB_USER SET OUTYN = 'Y' WHERE ENO = #{eno}
+		UPDATE TB_USER SET OUTYN = 'Y', OUTDATE = SYSDATE WHERE ENO = #{eno}
 	</update>
 
 	<!-- 급여 검색 행 개수  -->
@@ -480,5 +480,9 @@
 	<update id="modifySalary">
 		UPDATE TB_SALARY SET SALARY=#{salary} WHERE ENO = #{eno}
 	</update>
+	
+	<select id="ExcelHumanList" resultMap="humanResult">
+		SELECT ENO, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME, DNAME FROM HUMANLIST
+	</select>
 	
 </mapper>
