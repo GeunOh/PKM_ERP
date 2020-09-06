@@ -114,4 +114,12 @@ public interface HumanService {
 
 	int HumanManagerDelete(HashMap<String, String> hs);
 
+	int searchSalaryListCount(HashMap<String, Object> hs);
+
+	ArrayList<Salary> searchSalaryList(HashMap<String, Object> hs, PageInfo pi);
+
+	Salary salaryModifyInfo(String eno);
+
+	int modifySalary(String salary, String eno);
+
 }

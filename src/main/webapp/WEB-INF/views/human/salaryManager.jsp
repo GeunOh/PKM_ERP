@@ -22,7 +22,7 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/SearchHuman">
+				<form action="/Human/searchSalary">
 					<div class="search-area">
 						<span class="title">부서</span>
 						<div class="selectBox wid_150">
@@ -87,7 +87,9 @@
 						<td>${s.eno }</td>
 						<td>${s.dname }</td>
 						<td>${s.rname }</td>
-						<td>${s.ename }</td>
+						<td>
+							<a class="human_name">${s.ename }</a>
+						</td>
 						<td>${s.indate }</td>
 						<td>${s.salary }</td>
 					</tr>
@@ -114,18 +116,80 @@
 			</tbody>
 		</table>
 		<!-- // 테이블 -->
+		<!-- 급여수정 팝업창 -->
+		<form name="modifyForm" class="popup-form">
+			<div class="popupContent">
+				<h2>급여 수정
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form">
+					<div class="modify-form">
+						<span class="modify-title">사번</span>
+						<input type="text" class="txtBox modify-text" name="modify-eno" readonly>
+					</div>
+					<div class="modify-form">
+						<span class="modify-title">이름</span>
+						<input type="text" class="txtBox modify-text" disabled>
+					</div>
+					<div class="modify-form">
+						<span class="modify-title">급여</span>
+						<input type="text" class="txtBox modify-text" name="modify-salary">
+					</div>
+				</div>
+				<div class="content-form modify-btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button">
+						<i class="fas fa-check" aria-hidden="true"></i> 수정
+					</button>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- // 급여수정 팝업창 -->
+		
 		<!-- 페이징 -->
 		<div id="pagingForm">
 			<!-- 첫 페이지 -->
 			<c:if test="${pi.currentPage > 1 }">
 				<c:url var="start" value="${loc }">
 					<c:param name="page" value="1" />
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 				</c:url>
-				<a class="pg_page" href="${start}"><i class="fas fa-caret-left"></i></a>
+				<a class="pg_page" href="${start}"><i class="fas fa-backward"></i></a>
 			</c:if>
 			
 			<!-- 이전 페이지 -->
-			
+			<c:if test="${pi.currentPage > 10 }">
+				<c:url var="prev" value="${loc }">
+					<c:param name="page" value="${pi.startPage - 10 }"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
 			<!-- 기본 페이징 -->
 			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }" >
 				<c:if test="${p eq pi.currentPage }">
@@ -134,16 +198,63 @@
 				<c:if test="${p ne pi.currentPage }">
 					<c:url var="pagination" value="${loc }">
 						<c:param name="page" value="${p }" />
+						<c:if test="${ not empty hs }">
+							<c:param name="selectDept" value="${hs.selectDept}"/>
+							<c:param name="eno" value="${hs.eno}"/>
+							<c:param name="name" value="${hs.name}"/>
+						</c:if>
+						<c:if test="${selectDate ne null }">
+							<c:param name="selectDate" value="${selectDate}"/>
+							<c:if test="${selectDate eq 'dateSelect'}">
+								<c:param name="date" value="${hs.date}"/>
+								<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 					</c:url>
 					<a class="pg_page" href="${pagination}">${p}</a>
 				</c:if>
-				
 			</c:forEach>
-			<!-- 다름 페이지 -->
-			
+			<!-- 다음 페이지 -->
+			<c:if test="${ pi.maxPage > 10 and pi.currentPage }">
+				<c:url var="next" value="${loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
 			<!-- 끝 페이지 -->
+			<c:if test="${pi.currentPage < pi.endPage }">
+				<c:url var="end" value="${loc }">
+					<c:param name="page" value="${pi.endPage }" />
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
 		</div>
 	</div>
 	<!-- // wrap  -->
+	<script type="text/javascript" src="resources/js/human/salaryManager.js"></script>
 </body>
 </html>

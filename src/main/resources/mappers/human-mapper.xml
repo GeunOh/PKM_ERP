@@ -446,4 +446,38 @@
 	<update id="HumanManagerDelete">
 		UPDATE TB_USER SET OUTYN = 'Y' WHERE ENO = #{eno}
 	</update>
+
+	<!-- 급여 검색 행 개수  -->
+	<select id="searchSalaryListCount" resultType="_int">
+		SELECT COUNT(*) FROM SALARYLIST
+		<where>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
+			<if test="eno != ''">AND ENO = #{eno}</if>
+			<if test="name != ''">AND ENAME = #{name}</if>
+		</where>
+	</select>
+	
+	<!-- 급여 검색 -->
+	<select id="searchSalaryList" resultMap="salaryResult">
+		SELECT * FROM SALARYLIST
+		<where>
+			<if test="so.dateAll != null"></if>
+			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
+			<if test="eno != ''">AND ENO = #{eno}</if>
+			<if test="name != ''">AND ENAME = #{name}</if>
+		</where>
+	</select>
+	
+	<!-- 수정할 급여정보 -->
+	<select id="salaryModifyInfo" resultMap="salaryResult">
+		SELECT ENO, ENAME, SALARY FROM SALARYLIST WHERE ENO = #{eno}
+	</select>
+	
+	<update id="modifySalary">
+		UPDATE TB_SALARY SET SALARY=#{salary} WHERE ENO = #{eno}
+	</update>
+	
 </mapper>

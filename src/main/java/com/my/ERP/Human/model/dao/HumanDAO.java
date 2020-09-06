@@ -259,5 +259,26 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.HumanManagerDelete", hs);
 	}
 
+	public int searchSalaryListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("humanMapper.searchSalaryListCount", hs);
+	}
+
+	public ArrayList<Salary> searchSalaryList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("humanMapper.searchSalaryList", hs, rowBounds);
+	}
+
+	public Salary salaryModifyInfo(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.salaryModifyInfo", eno);
+	}
+
+	public int modifySalary(SqlSessionTemplate sqlSession, String salary, String eno) {
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("salary", salary);
+		hs.put("eno", eno);
+		return sqlSession.update("humanMapper.modifySalary", hs);
+	}
+
 
 }
