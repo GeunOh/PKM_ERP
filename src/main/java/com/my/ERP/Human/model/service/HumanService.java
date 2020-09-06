@@ -20,7 +20,7 @@ public interface HumanService {
 	
 	int HumanListCount();
 
-	ArrayList<Human> HumanList(PageInfo pi);
+	ArrayList<Human> HumanList(PageInfo pi, String order);
 
 	Department departmentShow(String deptName);
 	
@@ -105,5 +105,13 @@ public interface HumanService {
 	ArrayList<Salary> salaryList(PageInfo pi);
 
 	int salaryListCount();
+
+	WorkInOut WorkSysdate(String eno);
+
+	int WorkTimeOut(String eno);
+
+	int HumanManagerModify(HashMap<String, String> hs);
+
+	int HumanManagerDelete(HashMap<String, String> hs);
 
 }

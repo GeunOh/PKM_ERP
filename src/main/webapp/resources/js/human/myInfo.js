@@ -148,12 +148,3 @@ function timePrint() {
 		$("#ss").text(sec);
 	}
 }
-
-//출,퇴근 시간 찍기
-function workInOut(e){
-	if(e == 1){
-		location.href = "/Human/WorkTimeIn";
-	}else{
-		
-	}
-}

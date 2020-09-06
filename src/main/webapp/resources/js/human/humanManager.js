@@ -311,11 +311,11 @@ $('.human_name').on('click',function(){
 			$('#modify-rank').attr('data-value', data.rcode);
 			$('#modify-rank').val(data.rcode);
 			
-			var eNum = data.email.indexOf("@");
-			var emailId = data.email.substring(0,eNum);
-			var email = data.email.substring(eNum+1);
-			$('input[name="modify-email"]').val(emailId);
-			$('input[name="modify-email2"]').val(email);
+//			var eNum = data.email.indexOf("@");
+//			var emailId = data.email.substring(0,eNum);
+//			var email = data.email.substring(eNum+1);
+			$('input[name="modify-email"]').val(data.email);
+//			$('input[name="modify-email2"]').val(email);
 			
 			
 			$('#modify-select-rank .link-selected').text(data.rname);
@@ -401,3 +401,11 @@ $('input[name="modify-eno"]').on('keyup',function(){
 		})
 	}
 })
+
+function Modifydelete(e){
+	if(confirm('인사정보를 정말 변경하시겠습니까?\n삭제시, 변경불가합니다.')){
+		return true;
+	}else{
+		return false;
+	}
+}
