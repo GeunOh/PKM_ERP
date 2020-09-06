@@ -450,4 +450,13 @@
 		</where>
 	</select>
 	
+	<!-- 수정할 급여정보 -->
+	<select id="salaryModifyInfo" resultMap="salaryResult">
+		SELECT ENO, ENAME, SALARY FROM SALARYLIST WHERE ENO = #{eno}
+	</select>
+	
+	<update id="modifySalary">
+		UPDATE TB_SALARY SET SALARY=#{salary} WHERE ENO = #{eno}
+	</update>
+	
 </mapper>

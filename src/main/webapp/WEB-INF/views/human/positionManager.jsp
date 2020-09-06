@@ -33,8 +33,6 @@
 					<button type="button" id="addBtn" onclick="addPosition();">추가</button>
 					<button type="button" id="modifyBtn" onclick="modifyPosition();">수정</button>
 					<button type="button" id="deleteBtn" onclick="deletePosition();">삭제</button>
-					<button type="button" id="resetBtn" onclick="location.href='/Human/positionManager'">초기화</button>
-					
 				</form>
 			</div>
 		</div>
@@ -134,7 +132,7 @@
 			</div>
 			<div class="popupLayer"></div>
 		</form>
-		<!-- // 휴가신청 팝업창 -->
+		<!-- // 직급수정 팝업창 -->
 		<!-- 알림창 -->
 		<div id="alertBox">
 			<p></p>

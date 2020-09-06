@@ -110,4 +110,8 @@ public interface HumanService {
 
 	ArrayList<Salary> searchSalaryList(HashMap<String, Object> hs, PageInfo pi);
 
+	Salary salaryModifyInfo(String eno);
+
+	int modifySalary(String salary, String eno);
+
 }
