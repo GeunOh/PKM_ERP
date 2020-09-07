@@ -284,5 +284,17 @@ public class HumanDAO {
 		return (ArrayList)sqlSession.selectList("humanMapper.ExcelHumanList");
 	}
 
+	public Human idFind(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.selectOne("humanMapper.idFind", hs);
+	}
+
+	public Human pwdFind(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.selectOne("humanMapper.pwdFind", hs);
+	}
+
+	public int tempPwd(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.update("humanMapper.tempPwd", hs);
+	}
+
 
 }

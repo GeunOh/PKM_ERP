@@ -814,6 +814,14 @@ public class HumanController {
 		
 		Workbook wb = new HSSFWorkbook();
 		Sheet sheet = wb.createSheet("인사 목록");
+		// 열 길이 지정
+		sheet.setColumnWidth(0, 2500);
+		sheet.setColumnWidth(1, 3500);
+		sheet.setColumnWidth(2, 3500);
+		sheet.setColumnWidth(3, 3500);
+		sheet.setColumnWidth(4, 2500);
+		sheet.setColumnWidth(5, 2500);
+		sheet.setColumnWidth(6, 6000);
 		
 		//행 생성
 		Row row = null;
@@ -835,7 +843,6 @@ public class HumanController {
 		headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		//가운데 정렬
 		headStyle.setAlignment(HorizontalAlignment.CENTER);
-		//셀에 적용
 		
 		//바디 스타일
 		CellStyle bodyStyle = wb.createCellStyle();
@@ -848,26 +855,56 @@ public class HumanController {
 	    row = sheet.createRow(rowNo++);
 	    cell = row.createCell(0);
 	    cell.setCellStyle(headStyle);
-	    cell.setCellValue("번호");
+	    cell.setCellValue("상태");
 	    cell = row.createCell(1);
 	    cell.setCellStyle(headStyle);
-	    cell.setCellValue("이름");
+	    cell.setCellValue("입사일");
 	    cell = row.createCell(2);
 	    cell.setCellStyle(headStyle);
-	    cell.setCellValue("제목");
+	    cell.setCellValue("사번");
+	    cell = row.createCell(3);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("이름");
+	    cell = row.createCell(4);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("직급");
+	    cell = row.createCell(5);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("부서");
+	    cell = row.createCell(6);
+	    cell.setCellStyle(headStyle);
+	    cell.setCellValue("업무메일");
 	    
 	    //데이터 생성
 	    for(Human vo : mlist) {
+	    	String indate = String.valueOf(vo.getIndate());
+	    	
 	        row = sheet.createRow(rowNo++);
 	        cell = row.createCell(0);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(vo.getEno());
+	        if(vo.getOutyn().equals("N")) {
+		        cell.setCellValue("재직");
+	        } else {
+	        	cell.setCellValue("퇴직");
+	        }
 	        cell = row.createCell(1);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(vo.getName());
+	        cell.setCellValue(indate);
 	        cell = row.createCell(2);
 	        cell.setCellStyle(bodyStyle);
-	        cell.setCellValue(vo.getAddress());
+	        cell.setCellValue(vo.getEno());  
+	        cell = row.createCell(3);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getName());  
+	        cell = row.createCell(4);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getRname());  
+	        cell = row.createCell(5);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getDname());  
+	        cell = row.createCell(6);
+	        cell.setCellStyle(bodyStyle);
+	        cell.setCellValue(vo.getEmail());  
 	    }
 
 		res.setContentType("application/vnd.ms-excel");

@@ -322,6 +322,23 @@ public class HumanServiceImpl implements HumanService {
 	public ArrayList<Human> ExcelHumanList() {
 		return hDAO.ExcelHumanList(sqlSession);
 	}
+	
+	// 아이디 찾기
+	@Override
+	public Human idFind(HashMap<String, String> hs) {
+		return hDAO.idFind(sqlSession, hs);
+	}
+	
+	// 비밀번호 찾기
+	@Override
+	public Human pwdFind(HashMap<String, String> hs) {
+		return hDAO.pwdFind(sqlSession, hs);
+	}
+
+	@Override
+	public int tempPwd(HashMap<String, String> hs) {
+		return hDAO.tempPwd(sqlSession, hs);
+	}
 
 	
 	
