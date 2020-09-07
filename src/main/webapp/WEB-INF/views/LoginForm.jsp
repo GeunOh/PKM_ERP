@@ -45,25 +45,46 @@
 		<div id="error-popup" style="display:none;"></div>
 	</div>
 	<!-- 아이디 찾기 -->
-	
 	<div class="popupContent" id="idpopup" style="display:none;">
 		<h2>아이디 찾기</h2>
 		<P>아래의 정보를 입력하시면<br> 가입하셨던 이메일로 아이디를 보내드립니다.</P>
-		<div class="btn-form">
-			<button type="button"><i class="fas fa-times"></i> 취소</button>
-			<button type="button"><i class="fas fa-check"></i> 확인</button>
-		</div>
+		<form>
+			<div class="find-area">
+				<label for="id_ename">이름&nbsp;</label>
+				<input type="text" name="ename" id="id_ename">
+			</div>
+			<div class="find-area">
+				<label for="id_eno">핸드폰번호&nbsp;</label>
+				<input type="tel" name="phone" id="id_phone" class="phoneNumber" maxlength="13">
+			</div>
+			<div class="btn-form">
+				<button type="button"><i class="fas fa-times"></i> 취소</button>
+				<button type="button" onclick="idFind();"><i class="fas fa-check"></i> 확인</button>
+			</div>
+		</form>
 	</div>	
 	<div class="popupContent" id="pwdpopup" style="display:none;">
-		<h2>비밀번호 찾기</h2>
-		<P>아래의 정보를 입력하시면<br> 가입하셨던 이메일로 새로운 비밀번호를 보내드립니다.</P>
-		<div class="btn-form">
-			<button type="button"><i class="fas fa-times"></i> 취소</button>
-			<button type="button"><i class="fas fa-check"></i> 확인</button>
-		</div>
+			<h2>비밀번호 찾기</h2>
+			<P>아래의 정보를 입력하시면<br> 가입하셨던 이메일로 새로운 비밀번호를 보내드립니다.</P>
+		<form>
+			<div class="find-area">
+				<label for="pwd_id">아이디&nbsp;</label>
+				<input type="text" name="id" id="pwd_id">
+			</div>
+			<div class="find-area" id="name-area">
+				<label for="pwd_ename">이름&nbsp;</label>
+				<input type="text" name="ename" id="pwd_id">
+			</div>
+			<div class="find-area">
+				<label for="id_eno">핸드폰번호&nbsp;</label>
+				<input type="tel" name="phone" id="pwd_phone" class="phoneNumber" maxlength="13">
+			</div>
+			<div class="btn-form">
+				<button type="button"><i class="fas fa-times"></i> 취소</button>
+				<button type="button" onclick="pwdFind();"><i class="fas fa-check"></i> 확인</button>
+			</div>
+		</form>
 	</div>	
-	
-	
 	<script type="text/javascript" src="resources/js/LoginForm.js"></script>
 	<script>
 		$(function(){

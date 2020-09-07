@@ -124,4 +124,11 @@ public interface HumanService {
 
 	ArrayList<Human> ExcelHumanList();
 
+	Human idFind(HashMap<String, String> hs);
+
+	Human pwdFind(HashMap<String, String> hs);
+
+	int tempPwd(HashMap<String, String> hs);
+
+
 }

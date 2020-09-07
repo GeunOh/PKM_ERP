@@ -485,4 +485,18 @@
 		SELECT ENO, ENAME, EBIRTHDAY, EADDRESS, EEMAIL, EPHONE, INDATE, OUTDATE, OUTYN, RNAME, DNAME FROM HUMANLIST
 	</select>
 	
+	<!-- 아이디 찾기 -->
+	<select id="idFind" resultMap="humanResult">
+		SELECT ENO, EEMAIL FROM TB_USER WHERE ENAME=#{ename} AND EPHONE=#{phone}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="pwdFind" resultMap="humanResult">
+		SELECT ENO, EEMAIL FROM TB_USER WHERE ENO=#{id} AND ENAME=#{ename} AND EPHONE=#{phone}
+	</select>
+	
+	<update id="tempPwd">
+		UPDATE TB_USER SET PWD = #{encTempPwd} WHERE ENO=#{id}
+	</update>
+	
 </mapper>
