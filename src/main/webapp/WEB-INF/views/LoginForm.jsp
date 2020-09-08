@@ -73,7 +73,7 @@
 			</div>
 			<div class="find-area" id="name-area">
 				<label for="pwd_ename">이름&nbsp;</label>
-				<input type="text" name="ename" id="pwd_id">
+				<input type="text" name="ename" id="pwd_ename">
 			</div>
 			<div class="find-area">
 				<label for="id_eno">핸드폰번호&nbsp;</label>

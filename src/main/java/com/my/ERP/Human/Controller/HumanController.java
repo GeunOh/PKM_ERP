@@ -57,6 +57,30 @@ public class HumanController {
 	private HumanService hService;
 	
 	/**
+	 *  [ ========== 공 통 ========== ]
+	 */
+	// 비밀번호 변경
+	@RequestMapping("changePwd")
+	@ResponseBody
+	public String changePwd(@RequestParam("now_pwd") String now_pwd,
+							@RequestParam("new_pwd") String new_pwd,
+							HttpSession session) {
+		
+		Human loginUser = (Human)session.getAttribute("loginUser");
+		
+		// 현재 비밀번호가 일치하다면
+		if(passwordEncoder.matches(now_pwd, loginUser.getPwd())) {
+			HashMap<String, String> hs = new HashMap<String, String>();
+			hs.put("eno", loginUser.getEno());
+			hs.put("new_pwd", passwordEncoder.encode(new_pwd));
+			int result = hService.changePwd(hs);
+			return "success";
+		} else {
+			return "fail";
+		}
+	}
+	
+	/**
 	 * 	[ ========== 인 사 관 리 ========== ]
 	 */	
 	// 인사기본관리
