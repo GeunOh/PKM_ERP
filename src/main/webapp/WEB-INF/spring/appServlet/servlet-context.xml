@@ -36,7 +36,8 @@
 	      </beans:props>
       </beans:property>
     </beans:bean>
-	
+	<beans:bean class="com.my.ERP.common.email.Email" id="email"> </beans:bean>
+	<beans:bean class="com.my.ERP.common.email.EmailSender" id="emailSender"> </beans:bean>
 	
 	<context:component-scan base-package="com.my.ERP" />
 	

@@ -130,5 +130,7 @@ public interface HumanService {
 
 	int tempPwd(HashMap<String, String> hs);
 
+	int changePwd(HashMap<String, String> hs);
+
 
 }

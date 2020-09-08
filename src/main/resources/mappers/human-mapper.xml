@@ -492,11 +492,16 @@
 	
 	<!-- 비밀번호 찾기 -->
 	<select id="pwdFind" resultMap="humanResult">
-		SELECT ENO, EEMAIL FROM TB_USER WHERE ENO=#{id} AND ENAME=#{ename} AND EPHONE=#{phone}
+		SELECT ENO, EEMAIL, EPHONE FROM TB_USER WHERE ENO=#{id} AND ENAME=#{ename} AND EPHONE=#{phone}
 	</select>
 	
+	<!-- 임시 비밀번호  -->
 	<update id="tempPwd">
 		UPDATE TB_USER SET PWD = #{encTempPwd} WHERE ENO=#{id}
 	</update>
 	
+	<!-- 비밀번호 변경 -->
+	<update id="changePwd">
+		UPDATE TB_USER SET PWD = #{new_pwd} WHERE ENO=#{eno}
+	</update>
 </mapper>

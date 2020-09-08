@@ -340,6 +340,11 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.tempPwd(sqlSession, hs);
 	}
 
+	@Override
+	public int changePwd(HashMap<String, String> hs) {
+		return hDAO.changePwd(sqlSession, hs);
+	}
+
 	
 	
 }
