@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
+}
+
+#stock { display: block; }
+#stockInOut { color: red; }
+#stockInOut:before { background-color: red; }

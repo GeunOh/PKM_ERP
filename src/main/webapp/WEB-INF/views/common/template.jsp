@@ -66,24 +66,24 @@
 		</li>
 		<li>
 			<span>재고관리</span>
-			<ul class="subMenu">
+			<ul id="stock" class="subMenu">
 				<li>
-					<span>제품(?)목록</span>
+					<a href="/Stock/productList"><span id="productList">제품 목록</span></a>
 				</li>
 				<li>
-					<span>제품재고관리</span>
+					<a href="/Stock/productManager"><span id="productManager">제품 재고관리</span></a>
 				</li>
 				<li>
-					<span>제품 입/출고현황</span>
+					<a href="/Stock/stockInOut"><span id="stockInOut">제품 입/출고현황</span></a>
 				</li>
 				<li>
-					<span>비품(?)목록</span>
+					<a href="/Stock/supplyList"><span id="supplyList">비품 목록</span></a>
 				</li>
 				<li>
-					<span>비품관리</span>
+					<a href="/Stock/supplyManager"><span id="supplyManager">비품 재고관리</span></a>
 				</li>
 				<li>
-					<span>비품 신청현황</span>
+					<a href="/Stock/applicationList"><span id="applicationList">비품 신청현황</span></a>
 				</li>
 			</ul>
 		</li>
