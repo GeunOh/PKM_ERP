@@ -60,7 +60,7 @@ function idFind() {
 function pwdFind() {
 	 
 	var id = $("#pwd_id");
-	var ename = $("#pwd_id");
+	var ename = $("#pwd_ename");
 	var phone = $("#pwd_phone");
 	
 	if(id.val() == ''){

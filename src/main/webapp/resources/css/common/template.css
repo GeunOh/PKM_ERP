@@ -115,3 +115,38 @@
     padding: 74px 45px 0 310px;
     box-sizing: border-box;
 }
+/* 비밀번호 변경 */
+#changePwdContent {
+	width: 30%;
+    height: 36%;
+    margin-top: 12%;
+}
+#changePwdContent>h1{
+	text-align: center; border-radius: 7px 7px 0 0 ;
+	background-color: #282c34;
+	padding: 10px 0;
+	color: #fff;
+	position: relative;
+}
+#changePwdContent>p{text-align: center; margin: 5% 0;}
+.btn-form{
+	height: 50px;
+	line-height: 50px;
+    margin: 10px auto 0 auto;
+    text-align: center;
+}
+.btn-form button{
+	padding: 7px 16px;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
+}
+.btn-form button:last-child {
+	margin-left: 1%;
+	font-family: NotoSans-Regular; 
+	background-color: #282c34;
+	color: #fff;
+}
+.change-area { text-align: right; padding-right: 26%; }
+.change-area:nth-child(2) { margin: 10px 0; }
+.change-area input { height: 24px; vertical-align: bottom;}

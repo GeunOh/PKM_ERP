@@ -296,5 +296,9 @@ public class HumanDAO {
 		return sqlSession.update("humanMapper.tempPwd", hs);
 	}
 
+	public int changePwd(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.update("humanMapper.changePwd", hs);
+	}
+
 
 }

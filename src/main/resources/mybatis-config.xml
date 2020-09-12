@@ -18,6 +18,7 @@
 	
 	<mappers>
 		<mapper resource="mappers/human-mapper.xml" />
+		<mapper resource="mappers/stock-mapper.xml" />
 	</mappers>
 	
 	

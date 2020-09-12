@@ -68,24 +68,24 @@
 		</li>
 		<li>
 			<span>재고관리</span>
-			<ul class="subMenu">
+			<ul id="stock" class="subMenu">
 				<li>
-					<span>제품(?)목록</span>
+					<a href="/Stock/productList"><span id="productList">제품 목록</span></a>
 				</li>
 				<li>
-					<span>제품재고관리</span>
+					<a href="/Stock/productManager"><span id="productManager">제품 재고관리</span></a>
 				</li>
 				<li>
-					<span>제품 입/출고현황</span>
+					<a href="/Stock/stockInOut"><span id="stockInOut">제품 입/출고현황</span></a>
 				</li>
 				<li>
-					<span>비품(?)목록</span>
+					<a href="/Stock/supplyList"><span id="supplyList">비품 목록</span></a>
 				</li>
 				<li>
-					<span>비품관리</span>
+					<a href="/Stock/supplyManager"><span id="supplyManager">비품 재고관리</span></a>
 				</li>
 				<li>
-					<span>비품 신청현황</span>
+					<a href="/Stock/applicationList"><span id="applicationList">비품 신청현황</span></a>
 				</li>
 			</ul>
 		</li>
@@ -103,5 +103,32 @@
 	</ul>
 </div>
 <!-- // sideMenu -->
+<!-- 비밀번호 변경 팝업 -->
+<div id="changePwdPopUp" class="popup-form" style="display: none;">
+	<div id="changePwdContent" class="popupContent">
+		<h1>비밀번호 변경</h1>
+		<p>현재 비밀번호와 변경하실 비밀번호를 입력해주세요.</p>
+		<form>
+			<div class="change-area">
+				<label for="now_pwd">현재 비밀번호&nbsp;</label>
+				<input type="password" name="now_pwd" id="now_pwd">
+			</div>
+			<div class="change-area">
+				<label for="new_pwd">변경하실 비밀번호&nbsp;</label>
+				<input type="password" name="new_pwd" id="new_pwd">
+			</div>
+			<div class="change-area">
+				<label for="re_pwd">비밀번호 확인&nbsp;</label>
+				<input type="password" name="re_pwd" id="re_pwd">
+			</div>
+			<div class="btn-form">
+				<button type="button"><i class="fas fa-times"></i> 취소</button>
+				<button type="button" onclick="changePwd();"><i class="fas fa-check"></i> 확인</button>
+			</div>
+		</form>
+	</div>
+	<div class="popupLayer"></div>
+</div>
+<!-- 비밀번호 변경 팝업 -->
 
 
