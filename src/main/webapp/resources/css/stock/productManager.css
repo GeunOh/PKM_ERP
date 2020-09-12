@@ -13,3 +13,176 @@
 #stock { display: block; }
 #productManager { color: red; }
 #productManager:before { background-color: red; }
+
+h1{margin-bottom: 3%;}
+/* 검색영역 */
+#Search-back{
+	width: 55%; height: 100px;
+    border: 1px solid #dedede; border-radius: 5px;
+    background-color: #e6e5e5;
+}
+#Serach-form{
+	background-color: #f7f7f7;
+	height: 100%;
+	margin: 0 10px;
+}
+#Serach-form>form{padding: 15px 50px 15px 5px; position: relative;}
+.search-area{display: inline-block; font-size: 0;}
+.title{
+	color: #000; font-size: 13px; font-family: NotoSans-Regular;
+    background-color: #fff;
+    margin-left:10px; padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 3px 0 0 3px; border-right: 0;
+}
+/* selectbox */
+a{color: #000; text-decoration: none;}
+ul, li{list-style: none;}
+
+.selectBox{
+	display: inline-block; position: relative;
+	color: #000; font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 0 3px 3px 0;
+    width: 100px;
+    cursor: pointer;
+}
+.selectBox>a{color: #000; font-size: 13px; z-index: 5; font-family: NotoSans-Regular;}
+.selectBox ul{
+	display: none;
+	position: absolute; 
+	top: 33px; left: -1px; padding:0; 
+	background-color: #fff; border-radius: 3px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.19), 0 0px 6px rgba(0, 0, 0, 0.23);
+	width: 120px; max-height: 438px;
+	font-size: 13px;
+	z-index:99;
+}
+.selectBox ul li{padding: 5px 5px;}
+.link-selected{ display:inline-block; width: 100px;}
+.link-select{
+	display:block;
+	border-radius: 3px!important;
+	padding: 5px 5px;
+}
+.searchAngle{
+	position: absolute; 
+	top: 8px; right: 10px;
+	cursor: pointer;
+}
+.rotate-angle{ transform: rotate(180deg);}
+.selectBox ul li:hover .link-select{
+	background-color: #282c34;
+    color: #fff;
+} 
+.txtBox {
+	font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+}
+.txtBox:focus {
+	border: 1px solid #282c34;
+}
+
+.rightDate{border-radius: 3px!important;}
+.date{
+	font-family: NotoSans-Regular;
+	color: #000; font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.date + label{ margin: 0 10px; font-size: 20px;}
+
+#searchBtn { 
+	font-family: NotoSans-Regular;
+	padding: 22px 15px;
+	background-color: transparent;
+	border: 1px solid #969696;
+	border-radius: 3px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
+/* 주제별로 길이  */
+.wid_150{width: 150px!important;}
+.wid_170{width: 170px!important;}
+.wid_75{width: 75px!important;}
+.wid_55{width: 55px!important; border-radius: 0; border-right: 0;}
+.wid_35{width: 35px!important;}
+
+/*검색창 아래부분*/
+.downSearch{margin-top: 1%;}
+/* 추가 외 버튼 폼*/
+#btnForm{
+	margin: 2% 0 1% 0; 
+	font-family: NotoSans-Regular; font-weight: bold;
+}
+#btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
+#addBtn{width: 50px; text-align: center;}
+#addBtn:before{
+	content: "";
+	position: absolute;
+	top: 15px; left: 7px;
+	width: 3px; height: 15px;
+	background-color: #000;
+}
+#addBtn:after{
+	content: "";
+	position: absolute;
+	top: 15px; left: 7px;
+	width: 3px; height: 15px;
+	background-color: #000;
+	transform: rotate(90deg);
+}
+#downBtn{position: relative;}
+#downBtn i{position: absolute; top: 15px; left: 0;}
+
+/*테이블*/
+#productManagerTable{
+	width: 100%; min-height:419px; 
+	border-collapse: separate;
+    border-spacing: 0;
+}
+#productManagerTable th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
+#productManagerTable td{padding: 10px 0; font-size: 13px; text-align: center;}
+
+#productManagerTable tr th,
+#productManagerTable tr td {
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
+}
+#productManagerTable tr th:first-child,
+#productManagerTable tr td:first-child {
+  border-left: 1px solid #bbb;
+}
+#productManagerTable tr th {
+  background: #eee;
+  border-top: 1px solid #bbb;
+}
+#productManagerTable tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+#productManagerTable tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+#productManagerTable tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+#productManagerTable tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
