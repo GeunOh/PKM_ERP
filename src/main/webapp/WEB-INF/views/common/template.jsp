@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- 템플릿 마크업 html 영역 --%>
 
 <!-- header -->
@@ -17,7 +17,9 @@
 					</a>
 				</li>
 				<li>
-					<img class="profile" alt="" src="resources/Profile-images/${loginUser.renameFileName}">
+					<c:if test="${loginUser.renameFileName eq null}"><img class="profile" src="resources/images/default-profile.jpg"></c:if> 
+					<c:if test="${loginUser.renameFileName ne null}"><img class="profile" src="resources/Profile-images/${loginUser.renameFileName }"></c:if> 
+					
 				</li>
 				<li onclick="showMenu();">
 					<span>${loginUser.name}님</span>

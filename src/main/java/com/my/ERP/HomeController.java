@@ -63,15 +63,22 @@ public class HomeController {
 				
 				Cookie c = new Cookie("saveId", id);
 				if(saveId != null){
-					c.setMaxAge(60 * 60 * 24 * 30);
+					c.setMaxAge(60 * 60 * 24 * 7);
 					response.addCookie(c);
 				}else {
 					c.setMaxAge(0);
 					response.addCookie(c);
 				}
 				
-				model.addAttribute("loginUser", loginUser);
-				return "QuickMenu";
+				//로그인 정보가 있을 시, 관리자는 퀵메뉴, 일반사용자는 개인페이지로
+				if(loginUser.getAdminyn().equals("N")) {
+					model.addAttribute("loginUser", loginUser);
+					return "human/myInfo";
+				}else {
+					model.addAttribute("loginUser", loginUser);
+					return "QuickMenu";
+				}
+				
 			}else {
 				ra.addFlashAttribute("pwdFalse", "pwdFalse");
 			}

@@ -24,9 +24,11 @@ h2{margin-bottom: 1%;}
 #leftBox { 
 	width: 71%;
 	float: left; margin-right: 2%; 
+	font-family: NotoSans-Regular;
 }
 #leftBox #profileBox {
-	height: 400px;
+    float: left;
+	width: 305px; height: 400px;
 	margin-bottom: 4.4%;
 }
 #profileBox #profileTable {
@@ -37,16 +39,39 @@ h2{margin-bottom: 1%;}
     font-size: 17px;
     padding-right: 20px;
 }
-#profileTable td {
-	padding-right: 20px;
+#userText{
+	margin-top: 20px;
+	text-align: center;
 }
-
-#profileTable td img {
+#userText>strong{
+	color:#426fca;
+}
+#userInfo img {
 	border-radius: 50%;
 }
-
+#leftBox #weatherBox {
+	float: left;
+	width: 33%; height: 400px;
+	margin-left: 3%; margin-bottom: 4.4%;
+}	
+#leftBox #chartBox {
+	float: left;
+	width: 33%; height: 400px;
+	margin-left: 3%; margin-bottom: 4.4%;
+}	
+	
+	
 #leftBox #noticeBox {
+	display: inline-block;
+	width: 48%; 
 	padding-top: 40px;
+}
+#leftBox #messaeBox{
+	display: inline-block;
+	width: 48%; 
+	padding-top: 40px;
+	margin-left: 3%;
+	height: 275px;
 }
 /*테이블*/
 #noticeTable{
@@ -222,7 +247,7 @@ h2{margin-bottom: 1%;}
 }
 #vacationDayBox div {
 	text-align: center;
-    margin-top: 10%;
+    margin-top: 14%;
     font-weight: bold;
 }
 #vacationDayBox p {
@@ -437,3 +462,19 @@ h2>.fa-times {
 	border-top: 5px solid #19366f;
 	border-left: 5px solid transparent;
 }
+#currentWeatherForm{
+	margin-top: 5%;
+	text-align: center;
+	height: 55%;
+}
+#currentWeatherForm>span{
+	font-family: NotoSans-Regular;
+	color: #000; font-size: 15px; font-weight: bold;
+}
+#forecastForm{height: 40%;}
+.forecast{width: 20%; height: 100%; display: inline-block;}
+.dateForm{text-align: center;}
+.iconForm{text-align: center;}
+.tempForm{text-align: center;}
+.currenticon{height: 140px;}
+.currentTemp{height: 30px;}
