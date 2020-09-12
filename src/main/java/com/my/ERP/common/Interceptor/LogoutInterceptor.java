@@ -16,15 +16,15 @@ public class LogoutInterceptor extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		Human loginUser = (Human)session.getAttribute("loginUser");
-		System.out.println("로그인유저가 있나요  : " + loginUser);
+//		System.out.println("로그인유저가 있나요  : " + loginUser);
 		
 		if(loginUser == null) {
 			response.sendRedirect("/LoginForm");
 			return false;
 		}
 		
-		System.out.println("관리자 권한? : " + loginUser.getAdminyn());
-		if(!loginUser.getAdminyn().equals("Y")) {
+//		System.out.println("관리자 권한? : " + loginUser.getAdminyn());
+		if(loginUser.getAdminyn().equals("N")) {
 			response.sendRedirect("/LoginForm");
 			return false;
 		}

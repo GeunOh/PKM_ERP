@@ -731,6 +731,7 @@ public class HumanController {
 		int result = hService.showVacationDays(eno);
 		// 출,퇴근 체크
 		WorkInOut work = hService.WorkSysdate(eno);
+
 		model.addAttribute("vacationDay", result)
 		     .addAttribute("work", work);
 		

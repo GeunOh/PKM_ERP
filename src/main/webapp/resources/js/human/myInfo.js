@@ -6,12 +6,13 @@ $(document).ready(function() {
 	var dayOfWeek = week[today.getDay()];
 	var dateText = date+" ("+dayOfWeek+")";
 	$("#yyyy-mm-dd").text(dateText);
-//	$("#day").text(dayOfWeek);
 	timePrint();
 	// 시계 작동
 	var timer = setInterval(function(){
 	  timePrint();
 	}, 1000);
+	
+	Currentweather();
 })
 // 버튼들 클릭 이벤트
 $("#vacationUseBox").on("click", function() {
@@ -148,3 +149,100 @@ function timePrint() {
 		$("#ss").text(sec);
 	}
 }
+
+//날씨
+function Currentweather(){
+	var apiURI = "https://api.openweathermap.org/data/2.5/onecall?lat=37.56826&lon=126.977829&cnt=5&appid=2e9f5ced9370b9912be54146e98c437b&units=metric";
+	var arr = [];
+	var cnt = 0;
+	let weatherIcon = {
+				        '01' : 'fas fa-sun',
+				        '02' : 'fas fa-cloud-sun',
+				        '03' : 'fas fa-cloud',
+				        '04' : 'fas fa-cloud-meatball', 
+				        '09' : 'fas fa-cloud-sun-rain',
+				        '10' : 'fas fa-cloud-showers-heavy',
+				        '11' : 'fas fa-poo-storm',
+				        '13' : 'far fa-snowflake',
+				        '50' : 'fas fa-smog'
+				       };
+    $.ajax({
+        url: apiURI,
+        dataType: "json",
+        type: "GET",
+        async: "false",
+        success: function(resp) {
+        	var Day = new Date(resp.daily[0].dt*1000);
+        	//필요한 데이터 배열로
+            for(var i in resp.daily){
+            	if(i<=5){
+            		arr[cnt++] = resp.daily[i];
+            	}
+            }
+        	console.log(arr)
+        	$currentWeatherForm = $('#currentWeatherForm');
+            $forecastForm = $('#forecastForm');
+            $('#currentWeatherForm').html('');
+            for(var i in arr){
+            	//현재날씨
+            	if(i == 0){
+            		$date = date_to_str(new Date(arr[i].dt*1000), 0);
+            		$day = day(new Date(arr[i].dt*1000));
+            		$icon = weatherIcon[arr[i].weather[0].icon.substring(0,2)];
+            		$tempMax = arr[i].temp.max.toFixed(1);
+            		$tempMin = arr[i].temp.min.toFixed(1);
+            		
+            		$current = $('<div class="current"></div>');
+                	$dateForm = $('<div class="currentDate"><p>' + $date + '('+$day+')</p></div>');
+                	$iconForm = $('<div class="currentIcon"><i class="'+$icon+'"></i></div>');
+                	$tempForm = $('<div class="currentTemp">'+$tempMax+"/"+ $tempMin +'</div>');
+                	
+                	$current.append($dateForm);
+                	$current.append($iconForm);
+                	$current.append($tempForm);
+                	$currentWeatherForm.append($current);
+            	}else{//5일 예보
+            		$date = date_to_str(new Date(arr[i].dt*1000), 1);
+            		$day = day(new Date(arr[i].dt*1000));
+            		$icon = weatherIcon[arr[i].weather[0].icon.substring(0,2)];
+            		$tempMax = arr[i].temp.max.toFixed(1);
+            		$tempMin = arr[i].temp.min.toFixed(1);
+            		
+	            	$forecast = $('<div class="forecast"></div>');
+	            	$dateForm = $('<div class="dateForm"><p>' + $date + '</p><p>('+$day+')</p></div>');
+	            	$iconForm = $('<div class="iconForm"><i class="'+$icon+'"></i></div>');
+	            	$tempMax = $('<div class="tempForm">'+$tempMax+'</div>');
+	            	$tempMin = $('<div class="tempForm">'+$tempMin+'</div>');
+	            	
+	            	$forecast.append($dateForm);
+	            	$forecast.append($iconForm);
+	            	$forecast.append($tempMax);
+	            	$forecast.append($tempMin);
+	            	$forecastForm.append($forecast);
+            	}
+            	
+            }
+            
+        }
+    })
+}
+//요일구하기
+function day(date){
+	var week = ['일', '월', '화', '수', '목', '금', '토'];
+	var dayOfWeek = week[new Date(date).getDay()];
+	return dayOfWeek;
+}
+//날짜구하기
+function date_to_str(format, num) {
+
+	var year = format.getFullYear();
+	var month = format.getMonth() + 1;
+	var date = format.getDate();
+	
+	if (month < 10) month = '0' + month;
+	if (date < 10) date = '0' + date;
+
+	if(num == 0) return year + "-" + month + "-" + date;
+	else return month + "." + date;
+}
+

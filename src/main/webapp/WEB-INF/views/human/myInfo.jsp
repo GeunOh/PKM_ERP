@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,41 +22,42 @@
 			<!-- 프로필 -->
 			<div id="profileBox" class="content_Box">
 				<h2>내 정보</h2>
-				<table id="profileTable">
-					<tr>
-						<td rowspan="3">
-							<div style="text-align: center;"><img width="70px" height="70px" src="resources/Profile-images/${loginUser.renameFileName }"></div>
-							<div><label>${loginUser.name}</label> ${loginUser.rcode}님 환영합니다.</div>
-						</td>
-						<th>사원번호</th>
-						<td>${loginUser.eno }</td>
-						<th>사원명</th>
-						<td>${loginUser.name }</td>
-						<th>이메일</th>
-						<td>${loginUser.email }</td>
-					</tr>
-					<tr>
-						<th>부서명</th>
-						<td>${loginUser.dcode }</td>
-						<th>직급</th>
-						<td>${loginUser.rcode }</td>
-						<th>입사일</th>
-						<td>${loginUser.indate }</td>
-					</tr>
-					<tr>
-						<th>핸드폰번호</th>
-						<td>${loginUser.phone }</td>
-						<th>생년월일</th>
-						<td>${loginUser.birthday }</td>
-						<th>주소</th>
-						<td>${loginUser.address }</td>
-					</tr>
-				</table>
+<!-- 				<table id="profileTable"> -->
+<!-- 					<tr> -->
+<!-- 						<td rowspan="3"> -->
+<%-- 							<div style="text-align: center;"><img width="70px" height="70px" src="resources/Profile-images/${loginUser.renameFileName }"></div> --%>
+<%-- 							<div><label>${loginUser.name}</label> ${loginUser.rcode}님 환영합니다.</div> --%>
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 				</table> -->
+				<div id="userInfo">
+					<c:if test="${loginUser.renameFileName eq null}"><div style="text-align: center;"><img width="100px" height="100px" src="resources/images/default-profile.jpg"></div></c:if> 
+					<c:if test="${loginUser.renameFileName ne null}"><div style="text-align: center;"><img width="100px" height="100px" src="resources/Profile-images/${loginUser.renameFileName }"></div></c:if> 
+					<div id="userText"><strong>${loginUser.name}</strong> ${loginUser.rname}님 환영합니다.</div>
+				</div>
 			</div>
+			
+			<!-- 날씨 -->
+			<div id="weatherBox" class="content_Box">
+				<h2>날씨</h2>
+				<div id="currentWeatherForm">
+					<span>오늘의 날씨</span>
+					<div class="currenticon">아이콘</div>
+					<div class="currentTemp"></div>
+				</div>
+				<div id="forecastForm">
+<!-- 					<div class="forecast"><div class="dateForm"><p>09-12</p><p>(금)</p></div></div> -->
+				</div>
+			</div>
+			
+			<!-- 차트 -->
+			<div id="chartBox" class="content_Box">
+				<h2>출근 통계</h2>
+			</div>
+			
 			<!-- 공지사항  -->
 			<div id="noticeBox" class="content_Box">
 				<h2>공지사항</h2>
-				<!-- 테이블 -->
 				<table id="noticeTable">
 					<thead>
 						<tr>
@@ -92,6 +94,10 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<!-- 쪽지 -->
+			<div id="messaeBox" class="content_Box">
+				<h2>쪽지</h2>
 			</div>
 		</div>
 		<div id="rightBox">
@@ -136,7 +142,8 @@
 			<div id="vacationDayBox" class="content_Box">
 				<h2>연차 정보</h2>
 				<div>
-					<p>${vacationDay }일</p>
+					<c:if test="${empty vacationDay}"><p>0일</p></c:if>
+					<c:if test="${not empty vacationDay}"><p>${vacationDay}일</p></c:if>
 					<span>남은 연차</span>
 					<input type="hidden" name="vacationDay" value="${vacationDay }">
 				</div>
