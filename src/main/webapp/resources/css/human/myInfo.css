@@ -483,4 +483,4 @@ h2>.fa-times {
 .tempMin { color: #00a1ed;}
 .currenticon{height: 140px;}
 .currentTemp{height: 30px;}
-#chartdiv{width: 100%; height: 350px;}
+#chart-area { margin-top: 8%; }
