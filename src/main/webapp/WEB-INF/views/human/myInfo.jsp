@@ -7,7 +7,8 @@
 <jsp:include page="../common/headTag.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/human/myInfo.css">
 <link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
-<script src="resources/js/plugin/selectbox.min.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
+<script src="https://uicdn.toast.com/tui.chart/latest/tui-chart-all.js"></script>
 <title>내 정보</title>
 </head>
 <body>
@@ -53,6 +54,7 @@
 			<!-- 차트 -->
 			<div id="chartBox" class="content_Box">
 				<h2>출근 통계</h2>
+				<div id="chart-area"></div>
 			</div>
 			
 			<!-- 공지사항  -->
@@ -209,5 +211,60 @@
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/human/myInfo.js"></script>
+	<script>
+			$(document).ready(function(){
+				var chart = tui.chart;
+				var container = document.getElementById('chart-area');
+				var data = {
+				    categories: ['June', 'July', 'Aug', 'Sep', 'Oct', 'Nov'],
+				    series: [
+				        {
+				            name: 'Budget',
+				            data: [5000, 3000, 5000, 7000, 6000, 4000]
+				        },
+				        {
+				            name: 'Income',
+				            data: [8000, 1000, 7000, 2000, 5000, 3000]
+				        }
+				    ]
+				};
+				var options = {
+				    chart: {
+				        width: 350,
+				        height: 350,
+				        title: 'Monthly Revenue',
+				        format: '1,000'
+				    },
+				    yAxis: {
+				        title: 'Month'
+				    },
+				    xAxis: {
+				        title: 'Amount',
+				        min: 0,
+				        max: 9000,
+				        suffix: '$'
+				    },
+				     series: {
+				         showLabel: true
+				     },
+				    usageStatistics: false
+				};
+				var theme = {
+				    series: {
+				        colors: [
+				            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+				            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+				        ]
+				    }
+				};
+
+				// For apply theme
+
+//	 			tui.chart.registerTheme('myTheme', theme);
+//	 			options.theme = 'myTheme';
+
+				chart.barChart(container, data, options);
+			})
+		</script>
 </body>
 </html>
