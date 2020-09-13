@@ -84,31 +84,21 @@
 		<table id="productManagerTable">
 			<thead>
 				<tr>
-					<th>입출고일자</th>
-					<th>구분</th>
-					<th>거래처명</th>
-					<th>상품명</th>
-					<th>입고수량</th>
-					<th>입고단가</th>
-					<th>입고금액</th>
-					<th>출고수량</th>
-					<th>출고단가</th>
-					<th>출고금액</th>
+					<th>상품코드</th>
+					<th>상품이름</th>
+					<th>원가</th>
+					<th>판매가</th>
+					<th>수량</th>
 					<th>비고</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>2020-09-12</td>
-					<td>입고</td>
-					<td>동서울대학교</td>
+					<td>ADD-1233</td>
 					<td>학사관리 프로그램</td>
-					<td>500</td>
 					<td>500,000</td>
-					<td>250,000,000</td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>1,000,000</td>
+					<td>500</td>
 					<td></td>
 				</tr>
 			</tbody>
