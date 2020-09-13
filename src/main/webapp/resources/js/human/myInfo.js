@@ -13,6 +13,7 @@ $(document).ready(function() {
 	}, 1000);
 	
 	Currentweather();
+	
 })
 // 버튼들 클릭 이벤트
 $("#vacationUseBox").on("click", function() {
@@ -195,7 +196,7 @@ function Currentweather(){
             		$current = $('<div class="current"></div>');
                 	$dateForm = $('<div class="currentDate"><p>' + $date + '('+$day+')</p></div>');
                 	$iconForm = $('<div class="currentIcon"><i class="'+$icon+'"></i></div>');
-                	$tempForm = $('<div class="currentTemp">'+$tempMax+"/"+ $tempMin +'</div>');
+                	$tempForm = $('<div class="currentTemp"><span class="tempMax">'+$tempMax+"˚</span>/<span class='tempMin'>"+ $tempMin +'˚</span></div>');
                 	
                 	$current.append($dateForm);
                 	$current.append($iconForm);
@@ -211,8 +212,8 @@ function Currentweather(){
 	            	$forecast = $('<div class="forecast"></div>');
 	            	$dateForm = $('<div class="dateForm"><p>' + $date + '</p><p>('+$day+')</p></div>');
 	            	$iconForm = $('<div class="iconForm"><i class="'+$icon+'"></i></div>');
-	            	$tempMax = $('<div class="tempForm">'+$tempMax+'</div>');
-	            	$tempMin = $('<div class="tempForm">'+$tempMin+'</div>');
+	            	$tempMax = $('<div class="tempForm"><span class="tempMax">'+$tempMax+'˚</span></div>');
+	            	$tempMin = $('<div class="tempForm"><span class="tempMin">'+$tempMin+'˚</span></div>');
 	            	
 	            	$forecast.append($dateForm);
 	            	$forecast.append($iconForm);
@@ -245,4 +246,6 @@ function date_to_str(format, num) {
 	if(num == 0) return year + "-" + month + "-" + date;
 	else return month + "." + date;
 }
+
+
 

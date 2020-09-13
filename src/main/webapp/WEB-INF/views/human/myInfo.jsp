@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="resources/css/human/myInfo.css">
 <link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
 <script src="resources/js/plugin/selectbox.min.js"></script>
+
+<link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
+<script src="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.js"></script>
 <title>내 정보</title>
 </head>
 <body>
@@ -35,6 +38,9 @@
 					<c:if test="${loginUser.renameFileName ne null}"><div style="text-align: center;"><img width="100px" height="100px" src="resources/Profile-images/${loginUser.renameFileName }"></div></c:if> 
 					<div id="userText"><strong>${loginUser.name}</strong> ${loginUser.rname}님 환영합니다.</div>
 				</div>
+				<div id="userMenu">
+				
+				</div>
 			</div>
 			
 			<!-- 날씨 -->
@@ -42,7 +48,7 @@
 				<h2>날씨</h2>
 				<div id="currentWeatherForm">
 					<span>오늘의 날씨</span>
-					<div class="currenticon">아이콘</div>
+					<div class="currenticon"></div>
 					<div class="currentTemp"></div>
 				</div>
 				<div id="forecastForm">
@@ -53,6 +59,7 @@
 			<!-- 차트 -->
 			<div id="chartBox" class="content_Box">
 				<h2>출근 통계</h2>
+				<div id="workChart"></div>
 			</div>
 			
 			<!-- 공지사항  -->
