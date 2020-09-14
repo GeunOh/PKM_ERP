@@ -53,7 +53,7 @@ $('.selectBox ul').mouseleave(function(){
 $('.human_name').on('click',function(){
 	var eno = $(this).parent().siblings().eq(0).text();
 	
-	$(".popup-form").fadeIn();
+	$("#modifyForm").fadeIn();
 	
 	$.ajax({
 		url: '/Human/salaryModifyInfo',

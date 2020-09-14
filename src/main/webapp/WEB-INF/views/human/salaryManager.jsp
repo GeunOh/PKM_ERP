@@ -117,7 +117,7 @@
 		</table>
 		<!-- // 테이블 -->
 		<!-- 급여수정 팝업창 -->
-		<form name="modifyForm" class="popup-form">
+		<form name="modifyForm" class="popup-form" id="modifyForm">
 			<div class="popupContent">
 				<h2>급여 수정
 					<i class="fas fa-times" aria-hidden="true"></i>

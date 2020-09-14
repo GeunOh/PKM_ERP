@@ -76,4 +76,15 @@ public class StockController {
 		
 		return "applicationList";
 	}
+	
+	
+	/**
+	 *  [ 임 시 거 래 처 ]
+	 */
+	@RequestMapping("clientManager")
+	public String clientManager() {
+		
+		return "clientManager";
+	}
+	
 }
