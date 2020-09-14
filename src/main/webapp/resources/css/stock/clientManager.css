@@ -141,7 +141,7 @@ ul, li{list-style: none;}
 
 /*추가 외 버튼*/
 #btnForm{
-	margin: 2% 0 1% 0; 
+	margin: 4% 0 1% 0; 
 	font-family: NotoSans-Regular; font-weight: bold;
 }
 #btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
@@ -167,11 +167,11 @@ ul, li{list-style: none;}
 /*테이블*/
 /* 거래처 테이블 */
 #clientTable{
-	width: 60%; min-height:419px; 
+	width: 60%; min-height: 419px;
 	border-collapse: separate;
     border-spacing: 0;
 }
-.tables th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}
+.tables th{padding: 15px 0; background-color: #f7f7f7; font-size: 13px;}
 .tables td{padding: 10px 0; font-size: 13px; text-align: center;}
 
 .tables tr th,

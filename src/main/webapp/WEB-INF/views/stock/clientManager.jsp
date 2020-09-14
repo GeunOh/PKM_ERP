@@ -200,7 +200,7 @@
 		        suffix: '%'
 		    },
 		    legend: {
-		        align: 'bottom'
+		        align: 'right'
 		    },	
 		    /* 우측 메뉴 삭제 */
 		    chartExportMenu: {
@@ -272,7 +272,8 @@
 		    },
 		    chartExportMenu: {
 		    	visible: false /* 우측 메뉴 삭제 */
-		    }
+		    },
+		    
 		};
 		var theme = {
 		    series: {
