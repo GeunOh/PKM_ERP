@@ -345,6 +345,11 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.changePwd(sqlSession, hs);
 	}
 
+	@Override
+	public ArrayList<WorkInOut> WeekWorkTime(HashMap<String, String> hs) {
+		return hDAO.WeekWorkTime(sqlSession, hs);
+	}
+
 	
 	
 }

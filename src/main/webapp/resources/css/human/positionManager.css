@@ -171,7 +171,7 @@ ul, li{list-style: none;}
 #positionTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
-#positionTable tbody tr:hover { background-color: #bbb; cursor: pointer;}
+/* #positionTable tbody tr:hover { background-color: #f6f6f6; cursor: pointer;} */
 
 
 #positionManager { color: red; }
@@ -335,4 +335,6 @@ h2>.fa-times {
     right: 43%;
     border-radius: 3px;
 }
-/*
+
+.selectTr{background: #424d5c; color: #fff;}
+.noSelectTr{background-color: #f6f6f6; cursor: pointer;}

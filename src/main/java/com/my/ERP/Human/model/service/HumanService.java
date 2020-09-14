@@ -132,5 +132,7 @@ public interface HumanService {
 
 	int changePwd(HashMap<String, String> hs);
 
+	ArrayList<WorkInOut> WeekWorkTime(HashMap<String, String> hs);
+
 
 }

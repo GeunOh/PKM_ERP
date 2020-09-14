@@ -13,7 +13,7 @@ $(document).ready(function() {
 	}, 1000);
 	
 	Currentweather();
-	
+	workWeekTime();
 })
 // 버튼들 클릭 이벤트
 $("#vacationUseBox").on("click", function() {
@@ -157,15 +157,15 @@ function Currentweather(){
 	var arr = [];
 	var cnt = 0;
 	let weatherIcon = {
-				        '01' : 'fas fa-sun',
-				        '02' : 'fas fa-cloud-sun',
-				        '03' : 'fas fa-cloud',
-				        '04' : 'fas fa-cloud-meatball', 
-				        '09' : 'fas fa-cloud-sun-rain',
-				        '10' : 'fas fa-cloud-showers-heavy',
-				        '11' : 'fas fa-poo-storm',
-				        '13' : 'far fa-snowflake',
-				        '50' : 'fas fa-smog'
+				        '01' : 'fas fa-sun', //네이버 1번
+				        '02' : 'fas fa-cloud-sun', // 5번
+				        '03' : 'fas fa-cloud', // 7번
+				        '04' : 'fas fa-cloud-meatball', // 7번
+				        '09' : 'fas fa-cloud-sun-rain', // 22번
+				        '10' : 'fas fa-cloud-showers-heavy', // 10번
+				        '11' : 'fas fa-poo-storm', // 18번
+				        '13' : 'far fa-snowflake', // 12번
+				        '50' : 'fas fa-smog' // 17번
 				       };
     $.ajax({
         url: apiURI,
@@ -246,6 +246,144 @@ function date_to_str(format, num) {
 	if(num == 0) return year + "-" + month + "-" + date;
 	else return month + "." + date;
 }
+//근태 주간통계 데이터
+function workWeekTime(){
+	var dt = new Date();
+	var i = dt.getDay();
+	
+	var start = new Date( dt.getFullYear(), dt.getMonth(), dt.getDate()+(1-i) ); //주간 첫째날
+    var end = new Date( dt.getFullYear(), dt.getMonth(), dt.getDate()+(5-i) );   //주간 마지막날
+    
+    var startDay = start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDate();
+    var endDay = end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDate();
+    $.ajax({
+    	url : '/Human/myInfoWeekWorkTime',
+    	data: {startDay:startDay,
+    		   endDay:endDay},
+    	success:function(data){
+    		worktimeChart(data)
+    	}
+    		  
+    })
+}
+//근태 통계 그래프
+function worktimeChart(data){
+	var cate = [workChangeDate(data[0].date),workChangeDate(data[1].date),workChangeDate(data[2].date),workChangeDate(data[3].date),workChangeDate(data[4].date)];
+	var worktime = [changeTimeChart(data[0].worktime),changeTimeChart(data[1].worktime),changeTimeChart(data[2].worktime),changeTimeChart(data[3].worktime),changeTimeChart(data[4].worktime)]
+	
+	console.log(changeTimeChart(data[1].worktime))
+	var chart = tui.chart;
+	var container = document.getElementById('chart-area');
+	var data = {
+	    categories: cate,
+	    series: [
+	        {
+	            name: '소정근로시간',
+	            data: worktime
+	        }
+	    ]
+	};
+	var options = {
+	    chart: {
+	        width: 340,
+	        height: 350,
+	        // title: 'Monthly Revenue',
+	        format: '0'
+	    },
+	    yAxis: {
+	        // title: 'Month',
+	        min : 0,
+	        max : 10,
+	        suffix: '시간'
+	    },
+	    xAxis: {
+	       // title: 'Amount',
+	        min: 100,
+	        max: 9000,
+	    },
+        series: {
+            showLabel: false
+        },
+	    usageStatistics: false,
+	    
+	    /* 우측 메뉴 삭제 */
+	    chartExportMenu: {
+	    	visible: false
+	    },
+	    
+	    legend: {
+	        align: 'bottom',
+	        showCheckbox : false
+	    },
+	    
+	    tooltip: {
+	    	suffix : '시간',
+	    	template: function(category, item) {
+	    		// 0 5  9   
+	    		// 0 30 60
+	    		// 6초당 0.1
+	    		console.log("itemValue : " + item.value)
+	    		console.log("changeHour : " + changeHour(item.value))
+	    		var time = changeSecond(changeHour(item.value));
+	    		var tootles = '<div class="tui-chart-default-tooltip"><div class="tui-chart-tooltip-head show">' + item.legend + '</div>';
+                tootles +='<div class="tui-chart-tooltip-body"><span class="tui-chart-legend-rect column" style="background-color: rgb(97, 179, 210);"></span>'
+                tootles +='<span>' + item.legend + '</span><span class="tui-chart-tooltip-value">' +chartValueChangeTooltip(time)+'</span></div></div>';
+                return tootles;
+	        }
+	    }
+	};
+	var theme = {
+	    series: {
+	        colors: [
+	            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+	            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+	        ]
+	    }
+	};
 
+	chart.columnChart(container, data, options);
+}
+	//툴팁 시간계산
+	var chartValueChangeTooltip = function(value) {
+		console.log(value)
+		
+		var diff_hour   = Math.floor(value / (60 * 60));
+		var diff_minute = Math.floor((value %3600) / 60);
+		console.log(diff_hour)
+		console.log(diff_minute)
+		return  diff_hour+"시간"+  ((diff_minute < 10) ? "0" + diff_minute+"분" : diff_minute+"분");
+	
+	}
+	// 시간->초로 변환
+	var changeSecond = function(value) {
+		var hms = value;   // your input string
+		var a = hms.split(':'); // split it at the colons
 
-
+		// minutes are worth 60 seconds. Hours are worth 60 minutes.
+		return (a[0]) * 60 * 60 + (a[1]) * 60;
+	}
+	
+	// 시간을 소수점으로 변환
+	var changeTimeChart = function(value){
+		var arr = value.split(':');
+		var hour = arr[0];
+		var minute = arr[1]==0 ? "0" : ((arr[1]/ 60)+"").substr(2);
+		return hour + "." + minute;
+	}
+	//소수점 시간으로 변환
+	var changeHour = function(value) {
+		if(value==0){
+			return "0:0";
+		}else{
+			var arr = value.split('.');
+			var hour = arr[0] <= 9 ? "0" +arr[0] : arr[0];
+			var min = arr[1] * 60 + " ";
+			return hour + ":" + (min.substr(0,2) == ""? "0" : min.substr(0,2));
+		}
+	}
+	//툴팁에 들어갈 날짜
+	var workChangeDate = function(value){
+		var dt = new Date(value);
+		
+		return ((dt.getMonth() < 10) ? "0" + (dt.getMonth()+1) : (dt.getMonth()+1))  + "." + dt.getDate() + "("+day(dt)+")";
+	}
