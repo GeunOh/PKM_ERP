@@ -141,7 +141,7 @@ function showHumanList(deptName) {
 		url: "/Human/departHumanShow",
 		data: {deptName: deptName},
 		success: function(hList) {
-			
+			console.log(hList);
 			$tbody = $("#hListTableWrap tbody");
 			$tr = $("<tr/>");
 			$tbody.html("");

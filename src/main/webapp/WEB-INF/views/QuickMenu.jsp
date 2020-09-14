@@ -13,7 +13,7 @@
 	<h4 id="sub-title">아래의 메뉴를 클릭하시면 이동하실 수 있습니다.</h4>
 	<div id="content-form">
 		<div class="circle-form" onclick="location.href='/Human/humanManager'"><div class="circle"><i class="fas fa-users"></i></div><br><label>인사 관리</label></div>
-		<div class="circle-form" onclick="location.href='/Stock/productList'">><div class="circle"><i class="fas fa-boxes"></i></div><br><label>재고 관리</label></div>
+		<div class="circle-form" onclick="location.href='/Stock/productList'"><div class="circle"><i class="fas fa-boxes"></i></div><br><label>재고 관리</label></div>
 		<div class="circle-form"><div class="circle"><i class="fas fa-coins"></i></div><br><label>매출 관리</label></div>
 	</div>
 </body>

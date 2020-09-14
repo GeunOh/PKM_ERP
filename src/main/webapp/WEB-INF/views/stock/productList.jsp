@@ -18,20 +18,6 @@
 		<div id="Search-back">
 			<div id="Serach-form">
 				<form action="">
-					<!-- <div class="search-area">
-						<span class="title">구분</span>
-						<div class="selectBox">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
-							<a href="#none" class="link-selected">전체</a>
-							<ul>
-								<li><a href="#" class="link-select" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select" data-value="in">입고</a></li>
-								<li><a href="#" class="link-select" data-value="out">출고</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div> -->
-					
 					<div class="search-area">
 						<span class="title">거래처명</span>
 						<div class="selectBox wid_150">
@@ -54,23 +40,7 @@
 						</div>
 					</div>
 					
-					<br>
-					
-					<div class="search-area downSearch" style="height: 31px;">
-						<span class="title">입/출고일자</span>
-						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
-							<a href="#none" class="link-selected wid_55">전체</a>
-							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateSelect">선택</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
-						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
-					</div>
-					<button id="searchBtn">검색</button>
+					<button id="searchBtn" class="buttons">검색</button>
 				</form>
 			</div>
 		</div>
@@ -221,30 +191,39 @@
 			</tbody>
 		</table>
 		<!-- // 제품목록 테이블 -->
-		<!-- 제품정보 테이블 -->
-		<table id="productInfoTable" class="tables">
-			<thead>
-				<tr>
-					<th>제품코드</th>
-					<th>제품명</th>
-					<th>원가</th>
-					<th>판매가</th>
-					<th>잔여수량</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>500개</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-			</tbody>
-		</table>
-		<!-- // 제품 정보 테이블 -->
+		<!-- 제품정보 -->
+		<div id="info-back">
+			<div id="info-form">
+				<form action="">
+					<div class="info-area">
+						<span class="title">제품코드</span>
+						<input type="text" class="txtBox wid_163" name="eno" autocomplete="off">
+					</div>
+					<div class="info-area">
+						<span class="title">제품명</span>
+						<input type="text" class="txtBox" name="eno" autocomplete="off">
+					</div>
+					
+					<br>
+					
+					<div class="info-area downSearch">
+						<span class="title">원가</span>
+						<input type="text" class="txtBox" name="eno" autocomplete="off">
+					</div>
+					<div class="info-area">
+						<span class="title">판매가</span>
+						<input type="text" class="txtBox" name="eno" autocomplete="off">
+					</div>
+					<div class="info-area">
+						<span class="title">비고</span>
+						<input type="text" class="txtBox" name="eno" autocomplete="off">
+					</div>
+					<button id="saveBtn" class="buttons">저장</button>
+					<button id="deleteBtn" class="buttons">삭제</button>
+				</form>
+			</div>
+		</div>
+		<!-- // 제품 정보 -->
 	</div>
 	<!-- // wrap -->
 	
