@@ -8,6 +8,7 @@ public class WorkInOut {
 	private String date;
 	private String intime;
 	private String outtime;
+	private String worktime;
 	private String type;
 	
 	public WorkInOut() {}
@@ -68,6 +69,14 @@ public class WorkInOut {
 		this.outtime = outtime;
 	}
 
+	public String getWorktime() {
+		return worktime;
+	}
+
+	public void setWorktime(String worktime) {
+		this.worktime = worktime;
+	}
+
 	public String getType() {
 		return type;
 	}
@@ -79,7 +88,7 @@ public class WorkInOut {
 	@Override
 	public String toString() {
 		return "WorkInOut [eno=" + eno + ", name=" + name + ", rname=" + rname + ", dname=" + dname + ", date=" + date
-				+ ", intime=" + intime + ", outtime=" + outtime + ", type=" + type + "]";
+				+ ", intime=" + intime + ", outtime=" + outtime + ", worktime=" + worktime + ", type=" + type + "]";
 	}
 
 }
