@@ -937,7 +937,29 @@ public class HumanController {
 
 		wb.write(res.getOutputStream());
 		wb.close();
+	}
+	
+	//마이페이지 근태통계
+	@RequestMapping("myInfoWeekWorkTime")
+	public void WeekWorkTime(@RequestParam("startDay") String startDay,@RequestParam("endDay") String endDay,
+						     HttpServletResponse res, HttpSession session) {
+			                
+		res.setContentType("application/json; charset=UTF-8");
 
-
+		String eno = ((Human)session.getAttribute("loginUser")).getEno();
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("startDay",startDay);
+		hs.put("endDay",endDay);
+		hs.put("eno",eno);
+		
+		ArrayList<WorkInOut> wlist = hService.WeekWorkTime(hs);
+		
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(wlist, res.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -57,6 +57,7 @@
 		<result column="HIRDATE" property="date"/>
 		<result column="INTIME" property="intime"/>
 		<result column="OUTTIME" property="outtime"/>
+		<result column="WORKTIME" property="worktime"/>
 		<result column="WORK_TYPE" property="type"/>
 	</resultMap>
 	
@@ -504,4 +505,20 @@
 	<update id="changePwd">
 		UPDATE TB_USER SET PWD = #{new_pwd} WHERE ENO=#{eno}
 	</update>
+	
+	<!--마이페이지 주간 근태 통계 -->
+	<select id="WeekWorkTime" resultMap="worktimeResult">
+		SELECT a.hirdate , NVL(b.worktime, '0:0') WORKTIME
+		FROM( SELECT TO_CHAR(to_date(#{startDay}) + LEVEL - 1, 'yyyy-mm-dd') hirdate  
+		        FROM dual
+		        <![CDATA[CONNECT BY LEVEL <= to_date(#{endDay}) - to_date(#{startDay}) + 1]]>
+   			)a
+	    LEFT JOIN
+		    (SELECT ENO, TO_CHAR(WORKIN_DATE, 'YYYY-MM-DD') hirdate,
+		       NVL(trunc(mod((trunc(WORKOUT_TIME, 'mi')-trunc(WORKIN_TIME, 'mi')),1)*24),'00')|| ':' || NVL(trunc(mod((trunc(WORKOUT_TIME, 'mi')-trunc(WORKIN_TIME, 'mi'))*24,1)*60),'00') worktime , WORK_TYPE
+		        FROM TB_WORKINOUT
+		    )b
+		PARTITION BY (b.eno) ON a.hirdate = b.hirdate
+		where b.eno = #{eno}
+	</select>
 </mapper>
