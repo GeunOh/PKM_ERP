@@ -174,7 +174,9 @@ $('.modify-btn-form button:first-child').on('click',function(){
 
 // 직급 클릭 시 사원 목록 조회
 $("#positionTable tbody tr").on("click", function() {
-	
+	$("#positionTable tbody tr").removeClass('noSelectTr');
+	$("#positionTable tbody tr").removeClass('selectTr');
+	$(this).addClass('selectTr');
 	var rcode = $(this).children().eq(1).text();
 		
 	$.ajax({
@@ -246,4 +248,9 @@ function rcodeDupChk(rcode) {
 	return chk;
 }
 
-
+$("#positionTable tbody tr").on('mouseenter',function(){
+	if(!$(this).hasClass('selectTr')) $(this).addClass('noSelectTr')
+})
+$("#positionTable tbody tr").on('mouseleave',function(){
+	if($(this).hasClass('noSelectTr')) $(this).removeClass('noSelectTr')
+})
