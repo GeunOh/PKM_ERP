@@ -311,6 +311,7 @@ function worktimeChart(data){
 	       // title: 'Amount',
 	        min: 100,
 	        max: 9000,
+	        maxWidth: 1000
 	    },
         series: {
             showLabel: false

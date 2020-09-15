@@ -79,149 +79,158 @@
 			<!-- // 조직정보 -->
 		</div>
 		<!-- 부서 등록 수정 삭제 -->
-		<div id="popupBox">
-			<div id="dimBox"></div>
-			<!-- 부서 등록 -->
-			<div id="addDept" class="crud_box">
-				<h2>부서 등록</h2>
-				<form name="addFrm">
+		<!-- 부서등록 팝업 -->
+		<form class="dept-popup-form" name="addFrm" id="addDept">
+			<div class="popupContent">
+				<h2>부서등록
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form" style="margin-top:7%;">
+					<span>부서 등록 정보</span>
+					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">* 필수 정보 입력란입니다.</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">부서코드</span>
+						<input type="text" class="txtBox add-text" name="dcode" onkeyup="dcodeDupChk(event);">
+						<label class="dcodeChk"></label>
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">부서명</span>
+						<input type="text" class="txtBox add-text" name="dname">
+					</div>
+				</div>
+				<div class="content-form">
+					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">선택 사항입니다.</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">부서장</span>
+						<input type="text" class="txtBox add-text" name="eno">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">부서설명</span>
+						<input type="text" class="txtBox add-text" name="eno">
+					</div>
+				</div>
+				<div class="btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button" class="addBtn" onclick="dataChk()">
+						<i class="fas fa-check" aria-hidden="true"></i> 신청
+					</button>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- 부서 수정 -->
+		<form class="dept-popup-form" name="modifyFrm" id="modifyDept">
+			<div class="popupContent">
+				<h2>부서 수정
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<p>수정하실 부서를 선택해주세요.</p>
+				<div class="deptList" id="delList">
 					<table>
 						<tr>
 							<th>부서명</th>
-							<td>
-								<input type="text" name="dname">
-							</td>
+						</tr>
+						<c:forEach items="${deptList}" var="dept">
+							<tr>
+								<td>${dept.dname}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div id="deptInfo">
+					<h3>조직 정보</h3>
+					<table>
+						<tr>
+							<th>부서명</th>
+							<td id="m_dname"></td>
 						</tr>
 						<tr>
 							<th>부서코드</th>
-							<td>
-								<input type="text" name="dcode" onkeyup="dcodeDupChk(event);">
-								<label class='dcodeChk'></label>
-								
+							<td id="m_dcode">
 							</td>
+							
 						</tr>
 						<tr>
 							<th>부서장</th>
-							<td>
-								<input type="text" name="ename">
-							</td>
+							<td id="m_dboss"></td>
+						</tr>
+						<tr>
+							<th>시작일</th>
+							<td id="m_startDate"></td>
+						</tr>
+						<tr>
+							<th>부서소개</th>
+							<td id="m_dcomment"></td>
 						</tr>
 					</table>
-					<p>부서 설명 및 소개</p>
-					<textarea rows="6" name="dcomment"></textarea>
-					<div class="button_group">
-						<button type="button" class="addBtn">등록</button>
-						<button type="button" class="cancleBtn">취소</button>
-					</div>
-				</form>
-			</div>
-			<!-- // 부서 등록 -->
-			<!-- 부서 삭제 -->
-			<div id="delDept" class="crud_box">
-				<h2>부서 삭제</h2>
-				<form name="delForm">
-					<p>삭제하실 부서를 선택해주세요.</p>
-					<div id="deptList">
-						<table>
-							<tr>
-								<th><input type="checkbox"></th>
-								<th>부서명</th>
-							</tr>
-							<%-- 존재하는 부서들 출력 --%>
-							<c:forEach items="${deptList}" var="dept">
-								<tr>
-									<td><input type="checkbox" id="${dept.dname}" name="dname" value="${dept.dname}"></td>
-									<td><label for="${dept.dname}">${dept.dname}</label></td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
-					<div id="deptInfo">
-						<h3>조직 정보</h3>
-						<table>
-							<tr>
-								<th>회사명</th>
-								<td class="dname">WORKSPACE COMPANY</td>
-							</tr>
-							<tr>
-								<th>회사코드</th>
-								<td class="dcode">C123123123</td>
-							</tr>
-							<tr>
-								<th>회사대표</th>
-								<td class="dboss">쿠크다스</td>
-							</tr>
-							<tr>
-								<th>시작일</th>
-								<td class="startDate">2020-11-11</td>
-							</tr>
-							<tr>
-								<th>회사소개</th>
-								<td class="dcomment">좋은 회사입니다.</td>
-							</tr>
-						</table>
-					</div>
-					<div class="button_group">
-						<button type="button" class="deleteBtn">삭제</button>
-						<button type="button" class="cancleBtn">취소</button>
-					</div>
-				</form>
-			</div>
-			<!-- // 부서 삭제  -->
-			<!-- 부서 수정 -->
-			<div id="modifyDept" class="crud_box" >
-				<h2>부서 수정</h2>
-				<form name="modifyFrm">
-					<p>수정하실 부서를 선택해주세요.</p>
-					<div id="deptList">
-						<table>
-							<tr>
-								<th>부서명</th>
-							</tr>
-							<%-- 존재하는 부서들 출력 --%>
-							<c:forEach items="${deptList}" var="dept">
-								<tr>
-									<td>${dept.dname}</td>
-								</tr>
-							</c:forEach>
-						</table>
-					</div>
-					<div id="deptInfo">
-						<h3>조직 정보</h3>
-						<table>
-							<tr>
-								<th>부서명</th>
-								<td id="m_dname"></td>
-							</tr>
-							<tr>
-								<th>부서코드</th>
-								<td id="m_dcode">
-								</td>
-								
-							</tr>
-							<tr>
-								<th>부서장</th>
-								<td id="m_dboss"></td>
-							</tr>
-							<tr>
-								<th>시작일</th>
-								<td id="m_startDate"></td>
-							</tr>
-							<tr>
-								<th>부서소개</th>
-								<td id="m_dcomment"></td>
-							</tr>
-						</table>
-					</div>
-					<div class="button_group">
-						<button type="button" class="modifyBtn">수정</button>
-						<button type="button" class="cancleBtn">취소</button>
-					</div>
+				</div>
+				<div class="btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button" class="modifyBtn">
+						<i class="fas fa-check" aria-hidden="true"></i> 수정
+					</button>
 					<input type="hidden" id="beforeDept" name="beforeDept">
-				</form>
+				</div>
 			</div>
-			<!-- // 부서 수정 -->
-		</div>
+			<div class="popupLayer"></div>
+		</form>
+		<form class="dept-popup-form" name="delFrm" id="delDept">
+			<div class="popupContent">
+				<h2>부서 삭제
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<p>삭제하실 부서를 선택해주세요.</p>
+				<div class="deptList" id="modifyList">
+					<table>
+						<tr>
+							<th><input type="checkbox"></th>
+							<th>부서명</th>
+						</tr>
+						<c:forEach items="${deptList}" var="dept">
+							<tr>
+								<td><input type="checkbox" id="${dept.dname}" name="dname" value="${dept.dname}"></td>
+								<td><label for="${dept.dname}">${dept.dname}</label></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+				<div id="deptInfo">
+					<h3>조직 정보</h3>
+					<table>
+						<tr>
+							<th>회사명</th>
+							<td class="dname">WORKSPACE COMPANY</td>
+						</tr>
+						<tr>
+							<th>회사코드</th>
+							<td class="dcode">C123123123</td>
+						</tr>
+						<tr>
+							<th>회사대표</th>
+							<td class="dboss">쿠크다스</td>
+						</tr>
+						<tr>
+							<th>시작일</th>
+							<td class="startDate">2020-11-11</td>
+						</tr>
+						<tr>
+							<th>회사소개</th>
+							<td class="dcomment">좋은 회사입니다.</td>
+						</tr>
+					</table>
+				</div>
+				<div class="btn-form">
+					<button type="button" class="cancleBtn">취소</button>
+					<button type="button" id="deleteBtn">삭제</button>
+					<input type="hidden" id="beforeDept" name="beforeDept">
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
 		<!-- // 부서 등록 수정 삭제 -->
 		<div class="notice_box">
             <ul>

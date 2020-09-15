@@ -2,6 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="stockMapper">
 	
+	<resultMap type="Product" id="productList">
+		<id column="PCODE" property="pcode"/>
+		<result column="PNAME" property="pname"/>
+		<result column="COST_PRICE" property="cost_price"/>
+		<result column="SELLING_PRICE" property="selling_price"/>
+		<result column="P_COMMENT" property="p_comment"/>
+		<result column="CCODE" property="ccode"/>
+	</resultMap>
 	
+	<!-- 제품 목록 -->
+	<select id="productList" resultMap="productList">
+		SELECT * FROM TB_PRODUCT
+	</select>
+	<!-- 단일 제품 정보 -->
+	<select id="showProduct" resultType="Product">
+		SELECT * FROM TB_PRODUCT WHERE PCODE = #{pcode}
+	</select>
+	<!-- 제품 삭제 -->
+	<delete id="deleteProduct">
+		DELETE TB_PRODUCT WHERE PCODE = #{pcode}
+	</delete>
+	<!-- 제품 등록 -->
+	<insert id="addProduct">
+		INSERT INTO TB_PRODUCT VALUES(#{pcode}, #{pname}, #{cost_price}, #{selling_price}, #{p_comment}, #{ccode})
+	</insert>
 	
 </mapper>

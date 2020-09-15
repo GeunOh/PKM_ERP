@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,104 +130,87 @@
 					<th>제품이름</th>
 					<th>원가</th>
 					<th>판매가</th>
+					<th>거래처</th>
 					<th>비고</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
-				<tr>
-					<td>AA-16584</td>
-					<td>ERP PROGRAM</td>
-					<td>10,000,000</td>
-					<td>12,000,000</td>
-					<td>인사,재고,매출관리 ERP 프로그램</td>
-				</tr>
+				<c:forEach items="${plist}" var="p">
+					<tr>
+						<td>${p.pcode}</td>
+						<td>${p.pname}</td>
+						<td>${p.cost_price}</td>
+						<td>${p.selling_price}</td>
+						<c:if test="${p.ccode eq null}">
+							<td>-</td>
+						</c:if>
+						<c:if test="${p.ccode ne null}">
+							<td>${p.ccode}</td>
+						</c:if>
+						<td>${p.p_comment}</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty plist}">
+					<tr>
+						<td colspan="6">제품이 존재하지않습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${!empty plist}">
+					<c:if test="${ fn:length(plist) < 10 }">
+						<c:forEach begin="${fn:length(plist)}" end="${9}">
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- // 제품목록 테이블 -->
 		<!-- 제품정보 -->
 		<div id="info-back">
 			<div id="info-form">
-				<form action="">
+				<form name="infoForm">
 					<div class="info-area">
 						<span class="title">제품코드</span>
-						<input type="text" class="txtBox wid_163" name="eno" autocomplete="off">
+						<input type="text" class="txtBox wid_163" name="pcode" autocomplete="off">
 					</div>
 					<div class="info-area">
 						<span class="title">제품명</span>
-						<input type="text" class="txtBox" name="eno" autocomplete="off">
+						<input type="text" class="txtBox" name="pname" autocomplete="off">
+					</div>
+					<div class="info-area">
+						<span class="title">거래처</span>
+						<input type="text" class="txtBox wid_175" name="ccode" autocomplete="off">
 					</div>
 					
 					<br>
 					
 					<div class="info-area downSearch">
 						<span class="title">원가</span>
-						<input type="text" class="txtBox" name="eno" autocomplete="off">
+						<input type="text" class="txtBox" name="cost_price" autocomplete="off">
 					</div>
 					<div class="info-area">
 						<span class="title">판매가</span>
-						<input type="text" class="txtBox" name="eno" autocomplete="off">
+						<input type="text" class="txtBox" name="selling_price" autocomplete="off">
 					</div>
 					<div class="info-area">
 						<span class="title">비고</span>
-						<input type="text" class="txtBox" name="eno" autocomplete="off">
+						<input type="text" class="txtBox" name="p_comment" autocomplete="off">
 					</div>
-					<button id="saveBtn" class="buttons">저장</button>
-					<button id="deleteBtn" class="buttons">삭제</button>
+					<button type="button" id="saveBtn" class="buttons">추가</button>
+					<button type="button" id="deleteBtn" class="buttons" disabled>삭제</button>
 				</form>
 			</div>
 		</div>
 		<!-- // 제품 정보 -->
 	</div>
 	<!-- // wrap -->
-	
+	<script type="text/javascript" src="resources/js/stock/productList.js"></script>
 </body>
 </html>
