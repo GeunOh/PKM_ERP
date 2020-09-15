@@ -97,7 +97,8 @@ public class HumanController {
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
 		ArrayList<Human> hList = hService.HumanList(pi,order);
 		
-		model.addAttribute("pi", pi)
+		model.addAttribute(""
+				+ "pi", pi)
 		     .addAttribute("hList", hList)
 		     .addAttribute("order", order);
 		

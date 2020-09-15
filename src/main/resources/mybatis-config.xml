@@ -6,6 +6,7 @@
 	</settings>
 	
 	<typeAliases>
+		<!-- 인사 -->
 		<typeAlias type="com.my.ERP.Human.model.vo.Human" alias="Human"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.Department" alias="Department"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.Rank" alias="Rank"/>
@@ -14,6 +15,9 @@
 		<typeAlias type="com.my.ERP.Human.model.vo.Salary" alias="Salary"/>
 		<typeAlias type="com.my.ERP.Human.model.vo.PeopleCount" alias="PeopleCount"/>
 		<typeAlias type="com.my.ERP.common.vo.SearchOption" alias="SearchOption"/>
+		
+		<!-- 재고 -->
+		<typeAlias type="com.my.ERP.Stock.model.vo.Product" alias="Product"/>
 	</typeAliases>
 	
 	<mappers>

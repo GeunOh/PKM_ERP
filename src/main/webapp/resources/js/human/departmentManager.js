@@ -5,21 +5,34 @@ $(function(){
 
 //부서 등록 버튼 클릭 시 팝업창
 $("#addBtn").on("click", function() {
-	$("#popupBox").show();
-	$("#addDept").show();
+	$("#addDept").fadeIn();
 });
+
+//부서 수정 버튼 클릭 시 팝업창
+$("#modifyBtn").on("click", function() {
+	$("#modifyDept").fadeIn();
+});
+
 // 부서 삭제 버튼 클릭 시 팝업창
 $("#delBtn").on("click", function() {
-	
-	$("#popupBox").show();
-	$("#delDept").show();
+	$("#delDept").fadeIn();
 });
-// 부서 수정 버튼 클릭 시 팝업창
-$("#modifyBtn").on("click", function() {
+
+// 팝업 닫기
+$('h2 .fa-times').on('click',function(){
+	$(".dcodeChk").text("");
+	var addFrm = document.addFrm;
+	addFrm.reset();
 	
-	$("#popupBox").show();
-	$("#modifyDept").show();
-});
+	$(".dept-popup-form").fadeOut();
+})
+$('.btn-form button:first-child').on('click',function(){
+	$(".dcodeChk").text("");
+	var form = document.addFrm;
+	form.reset();
+	
+	$(".dept-popup-form").fadeOut();
+})
 
 // 각 부서 클릭시 해당 부서 내용 조회 
 // 및 해당 부서 사원 조회
@@ -32,13 +45,13 @@ $("#branch-area li span").on("click", function() {
 });
 
 // 삭제 팝업창 호버 시 각 부서 내용 조회
-$("#delDept #deptList td").on("mouseenter", function() {
+$("#delDept .deptList td").on("mouseenter", function() {
 	var deptName = $(this).children().text();  // 해당 부서 이름
 	showDeptInfo(deptName);
 });
 
 // 수정 시 각 부서 내용 조회
-$("#modifyDept #deptList td").on("click", function() {
+$("#modifyDept .deptList td:last-child").on("click", function() {
 	var deptName = $(this).text();  // 해당 부서 이름
 	$("#beforeDept").attr("value",deptName);
 	$("#modifyDept #deptInfo td").empty();
@@ -71,11 +84,11 @@ $(".addBtn").on("click", function() {
 	addForm.submit();
 })
 // 부서 삭제 서비스
-$(".deleteBtn").on("click", function() {
+$("#deleteBtn").on("click", function() {
 	if(confirm("정말로 삭제하시겠습니까?")){
-		var delForm = document.delForm;
-		delForm.action = "/Human/delDept";
-		delForm.submit();
+		var delFrm = document.delFrm;
+		delFrm.action = "/Human/delDept";
+		delFrm.submit();
 	} else {
 		return;
 	}
@@ -84,8 +97,7 @@ $(".deleteBtn").on("click", function() {
 // 부서 수정 서비스
 $(".modifyBtn").on("click", function() {
 	var dcode = $("#modifyDept .dcodeChk").text();
-	
-	if(dcode == "이미 존재하는 부서코드"){
+	if(dcode == "사용 불가능"){
 		alert("이미 존재하는 부서코드입니다.");
 		$("input[name='dcode']").focus();
 		return;
@@ -95,14 +107,6 @@ $(".modifyBtn").on("click", function() {
 	modifyForm.submit();
 })
 
-// 취소 버튼시 
-$(".cancleBtn").on("click", function() {
-	var addForm = document.addFrm;
-	addForm.reset();
-	
-	$("#addDept, #delDept, #modifyDept").hide();
-	$("#popupBox").hide();
-});
 
 
 // 부서 정보 보여주기 기능
@@ -111,9 +115,8 @@ function showDeptInfo(deptName) {
 		type: "post",
 		async: false,
 		url: "/Human/departmentShow",
-		datatype: "text",
 		data: {deptName: deptName},
-		success: function(data, textStatus) {
+		success: function(data) {
 			$(".dname").text(data.dname);
 			$(".dname").siblings().text("부서명");
 			$(".dcode").text(data.dcode);
@@ -126,6 +129,7 @@ function showDeptInfo(deptName) {
 			}
 			$(".startDate").text(data.startDate);
 			$(".startDate").siblings().text("시작일");
+			
 			$(".dcomment").text(data.dcomment);
 			$(".dcomment").siblings().text("부서소개");
 		}
@@ -134,7 +138,6 @@ function showDeptInfo(deptName) {
 
 // 부서 클릭 시 해당 사원 목록 조회
 function showHumanList(deptName) {
-	console.log("js")
 	$.ajax({
 		type: "post",
 		async: false,
@@ -219,14 +222,18 @@ function modifyDeptInfo(deptName) {
 				$("#m_dboss").append("<input type='text' name='ename' value='"+data.eno+"'>");
 			}
 			$("#m_startDate").append("<input type='date' name='startDate' value='"+data.startDate+"'>");
-			$("#m_dcomment").append("<input type='text' name='dcomment' value='"+data.dcomment+"'>");
+			
+			if(data.dcomment==undefined){
+				$("#m_dcomment").append("<input type='text' name='ename'>");
+			} else {
+				$("#m_dcomment").append("<input type='text' name='dcomment' value='"+data.dcomment+"'>");
+			}
 		}
 	})
 }
 
 // 부서코드 중복 체크
 function dcodeDupChk(e) {
-	
 	var dcode = e.target.value;
 	
 	$.ajax({
@@ -235,7 +242,7 @@ function dcodeDupChk(e) {
 		data: {dcode, dcode},
 		success: function(data) {
 			if(data=="true"){
-				$('.dcodeChk').text('이미 존재하는 부서코드');
+				$('.dcodeChk').text('사용 불가능');
 				$('.dcodeChk').css('color','red');
 			} else {
 				$('.dcodeChk').text('사용 가능');
