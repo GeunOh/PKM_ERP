@@ -39,6 +39,13 @@ h2{margin-bottom: 1%;}
     font-size: 17px;
     padding-right: 20px;
 }
+#userMenu>p{
+	border: 1px solid #bbb;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50px;
+    margin-top: 10%;
+}
 #userText{
 	margin-top: 20px;
 	text-align: center;
@@ -46,6 +53,7 @@ h2{margin-bottom: 1%;}
 #userText>strong{
 	color:#426fca;
 }
+#userInfo{ margin-top: 15%;}
 #userInfo img {
 	border-radius: 50%;
 }
@@ -463,9 +471,8 @@ h2>.fa-times {
 	border-left: 5px solid transparent;
 }
 #currentWeatherForm{
-	margin-top: 5%;
 	text-align: center;
-	height: 55%;
+	height: 56%;
 }
 #currentWeatherForm>span{
 	font-family: NotoSans-Regular;
@@ -473,10 +480,10 @@ h2>.fa-times {
 }
 #forecastForm{height: 40%;}
 .forecast{width: 20%; height: 100%; display: inline-block;}
-.dateForm{text-align: center;}
-.iconForm{text-align: center; margin: 10px 0; }
-.tempForm{text-align: center;}
-.currentIcon{height: 65px; margin: 20px 0;}
+.dateForm{text-align: center; font-size: 14px; font-weight: bold;}
+.iconForm{text-align: center;}
+.tempForm{text-align: center; font-size: 14px;}
+.currentIcon{height: 65px; margin: 20px 0; position: relative;}
 .currentIcon .fa-sun { font-size: 60px; }
 .currentTemp{height: 30px; font-size: 22px;}
 .tempMax { color: #f53f3c;}
@@ -484,3 +491,12 @@ h2>.fa-times {
 .currenticon{height: 140px;}
 .currentTemp{height: 30px;}
 #chart-area { margin-top: 8%; }
+.currentDate>p{margin-bottom: 10%; font-size: 20px; font-weight: bold;}
+.currentWeatherIcon{
+	position: absolute;
+	top: -47%; left: 30%;
+	width: 130px; height: 130px;
+}
+.weatherIcon{width: 60px; height: 60px;}
+.fa-long-arrow-alt-down{color: #00a1ed; font-size: 18px; margin-right: 1%;}
+.fa-long-arrow-alt-up{color: #f53f3c; font-size: 18px; margin-right: 1%; margin-left: 3%;}
