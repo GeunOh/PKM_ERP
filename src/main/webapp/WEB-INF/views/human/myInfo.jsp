@@ -42,7 +42,8 @@
 					<div id="userText"><strong>${loginUser.name}</strong> ${loginUser.rname}님 환영합니다.</div>
 				</div>
 				<div id="userMenu">
-				
+					<p>내 정보 변경</p>
+					<p>몰랑</p>
 				</div>
 			</div>
 			
@@ -215,134 +216,8 @@
 			</div>
 			<div class="popupLayer"></div>
 		</form>
-		<!-- // 휴가신청 팝업창 -->
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/human/myInfo.js"></script>
-<!--  	<script type="text/javascript">
-// 		$(function(){
-// 			var dt = new Date();
-// 			var i = dt.getDay();
-			
-// 			var start = new Date( dt.getFullYear(), dt.getMonth(), dt.getDate()+(1-i) ); //주간 첫째날
-// 		    var end = new Date( dt.getFullYear(), dt.getMonth(), dt.getDate()+(5-i) );   //주간 마지막날
-		    
-// 		    var startDay = start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDate();
-// 		    var endDay = end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDate();
-// 		    $.ajax({
-// 		    	url : '/Human/myInfoWeekWorkTime',
-// 		    	data: {startDay:startDay,
-// 		    		   endDay:endDay},
-// 		    	success:function(data){
-// 		    		console.log(data)
-// 		    	}
-		    		  
-// 		    })
-// 		})
- 	</script> 
- 	<script> 
-// 			$(document).ready(function(){
-// 				var chart = tui.chart;
-// 				var container = document.getElementById('chart-area');
-// 				var data = {
-// 				    categories: ['월', '화', '수', '목', '금'],
-// 				    series: [
-// 				        {
-// 				            name: '소정근로시간',
-// 				            data: [5.5123123, 3.93121, 7.2, 4.95, 3.9166666666666667]
-// 				        }
-// 				    ]
-// 				};
-// 				var options = {
-// 				    chart: {
-// 				        width: 340,
-// 				        height: 350,
-// 				        // title: 'Monthly Revenue',
-// 				        format: '0'
-// 				    },
-// 				    yAxis: {
-// 				        // title: 'Month',
-// 				        min : 0,
-// 				        max : 10,
-// 				        suffix: '시간'
-// 				    },
-// 				    xAxis: {
-// 				       // title: 'Amount',
-// 				        min: 0,
-// 				        max: 9000,
-// 				        suffix: '요일'
-// 				    },
-// 			        series: {
-// 			            showLabel: false
-// 			        },
-// 				    usageStatistics: false,
-				    
-// 				    /* 우측 메뉴 삭제 */
-// 				    chartExportMenu: {
-// 				    	visible: false
-// 				    },
-				    
-// 				    legend: {
-// 				        align: 'bottom',
-// 				        showCheckbox : false
-// 				    },
-				    
-// 				    tooltip: {
-// 				    	suffix : '시간',
-// 				    	template: function(category, item) {
-// 				    		// 0 5  9   
-// 				    		// 0 30 60
-// 				    		// 6초당 0.1
-// 				    		console.log("HH:MM" + changeHour(item.value));
-// 				    		console.log(changeSecond(changeHour(item.value)));
-				    		
-				    		
-// 				    		var time = changeSecond(changeHour(item.value));
-// 				    		var tootles = '<div class="tui-chart-default-tooltip"><div class="tui-chart-tooltip-head show">' + item.legend + '</div>';
-// 	                        tootles +='<div class="tui-chart-tooltip-body"><span class="tui-chart-legend-rect column" style="background-color: rgb(97, 179, 210);"></span>'
-// 	                        tootles +='<span>' + item.legend + '</span><span class="tui-chart-tooltip-value">' +chartValueChangeTooltip(time)+'</span></div></div>';
-//                             return tootles;
-// 				        }
-// 				    }
-// 				};
-// 				var theme = {
-// 				    series: {
-// 				        colors: [
-// 				            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-// 				            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
-// 				        ]
-// 				    }
-// 				};
-
-// 				// For apply theme
-
-// //	 			tui.chart.registerTheme('myTheme', theme);
-// //	 			options.theme = 'myTheme';
-			
-// //				chart.barChart(container, data, options);
-// 				chart.columnChart(container, data, options);
-// //				series.tooltipText = "{dateX.formatDate('yyyy-mm')}: {valueY.formatNumber('#.00')}";
-// 			})
-			
-// 			var chartValueChangeTooltip = function(value) {
-// 				var diff_hour   = Math.floor(value / (60 * 60));
-// 				var diff_minute = Math.floor((value %3600) / 60);
-// 				return  diff_hour+"시간"+  ((diff_minute < 10) ? "0" + diff_minute+"분" : diff_minute+"분");
-				
-// 			}
-// 			var changeSecond = function(value) {
-// 				var hms = value;   // your input string
-// 				var a = hms.split(':'); // split it at the colons
-
-// 				// minutes are worth 60 seconds. Hours are worth 60 minutes.
-// 				return (a[0]) * 60 * 60 + (a[1]) * 60;
-// 			}
-// 			var changeHour = function(value) {
-// 				var arr = value.split('.');
-// 				var hour = arr[0] <= 9 ? "0" +arr[0] : arr[0];
-// 				var min = arr[1] * 60 + " ";
-// 				return hour + ":" + min.substr(0,2);
-// 			}
- 		</script> -->
 </body>
 </html>

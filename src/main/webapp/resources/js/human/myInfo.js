@@ -156,16 +156,27 @@ function Currentweather(){
 	var apiURI = "https://api.openweathermap.org/data/2.5/onecall?lat=37.56826&lon=126.977829&cnt=5&appid=2e9f5ced9370b9912be54146e98c437b&units=metric";
 	var arr = [];
 	var cnt = 0;
+	let currentWeatherIcon = {
+	        '01' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt1.svg>', //네이버 1번
+	        '02' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt5.svg>', // 5번
+	        '03' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt7.svg>', // 7번
+	        '04' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt7.svg>', // 7번
+	        '09' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt22.svg>', // 22번
+	        '10' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt20.svg>', // 10번
+	        '11' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt18.svg>', // 18번
+	        '13' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt12.svg>', // 12번
+	        '50' : '<img class="currentWeatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_animation_wt17.svg>' // 17번
+	       };
 	let weatherIcon = {
-				        '01' : 'fas fa-sun', //네이버 1번
-				        '02' : 'fas fa-cloud-sun', // 5번
-				        '03' : 'fas fa-cloud', // 7번
-				        '04' : 'fas fa-cloud-meatball', // 7번
-				        '09' : 'fas fa-cloud-sun-rain', // 22번
-				        '10' : 'fas fa-cloud-showers-heavy', // 10번
-				        '11' : 'fas fa-poo-storm', // 18번
-				        '13' : 'far fa-snowflake', // 12번
-				        '50' : 'fas fa-smog' // 17번
+				        '01' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt1.png>', //네이버 1번
+				        '02' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt5.png>', // 5번
+				        '03' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt7.png>', // 7번
+				        '04' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt7.png>', // 7번
+				        '09' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt22.png>', // 22번
+				        '10' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt10.png>', // 10번
+				        '11' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt18.png>', // 18번
+				        '13' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt12.png>', // 12번
+				        '50' : '<img class="weatherIcon" src=https://ssl.pstatic.net/static/weather/image/icon_weather/ico_wt17.png>' // 17번
 				       };
     $.ajax({
         url: apiURI,
@@ -189,14 +200,14 @@ function Currentweather(){
             	if(i == 0){
             		$date = date_to_str(new Date(arr[i].dt*1000), 0);
             		$day = day(new Date(arr[i].dt*1000));
-            		$icon = weatherIcon[arr[i].weather[0].icon.substring(0,2)];
+            		$icon = currentWeatherIcon[arr[i].weather[0].icon.substring(0,2)];
             		$tempMax = arr[i].temp.max.toFixed(1);
             		$tempMin = arr[i].temp.min.toFixed(1);
             		
             		$current = $('<div class="current"></div>');
-                	$dateForm = $('<div class="currentDate"><p>' + $date + '('+$day+')</p></div>');
-                	$iconForm = $('<div class="currentIcon"><i class="'+$icon+'"></i></div>');
-                	$tempForm = $('<div class="currentTemp"><span class="tempMax">'+$tempMax+"˚</span>/<span class='tempMin'>"+ $tempMin +'˚</span></div>');
+                	$dateForm = $('<div class="currentDate"><p>오늘의 날씨</p></div>');
+                	$iconForm = $('<div class="currentIcon">'+$icon+'</div>');
+                	$tempForm = $('<div class="currentTemp"><i class="fas fa-long-arrow-alt-down"></i></strong><span class="tempMin">'+ $tempMin +'˚</span><i class="fas fa-long-arrow-alt-up"></i><span class="tempMax">'+$tempMax+'˚</span></div>');
                 	
                 	$current.append($dateForm);
                 	$current.append($iconForm);
@@ -211,7 +222,7 @@ function Currentweather(){
             		
 	            	$forecast = $('<div class="forecast"></div>');
 	            	$dateForm = $('<div class="dateForm"><p>' + $date + '</p><p>('+$day+')</p></div>');
-	            	$iconForm = $('<div class="iconForm"><i class="'+$icon+'"></i></div>');
+	            	$iconForm = $('<div class="iconForm">'+$icon+'</div>');
 	            	$tempMax = $('<div class="tempForm"><span class="tempMax">'+$tempMax+'˚</span></div>');
 	            	$tempMin = $('<div class="tempForm"><span class="tempMin">'+$tempMin+'˚</span></div>');
 	            	
