@@ -196,7 +196,12 @@
 	<update id="modifyDept">
 		UPDATE TB_DEPT 
 		SET DCODE=#{dcode}, DCOMMENT=#{dcomment}, DNAME=#{dname}, STARTDATE=#{startDate}, 
+		<if test="eno != null"> 
 			ENO=(SELECT ENO FROM tb_user WHERE ENAME=#{eno}) 
+		</if>
+		<if test="eno == null">
+			ENO=NULL
+		</if>
 		WHERE DNAME=#{beforeDeptName}
 	</update>
 	

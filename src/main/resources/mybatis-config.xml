@@ -18,6 +18,7 @@
 		
 		<!-- 재고 -->
 		<typeAlias type="com.my.ERP.Stock.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.my.ERP.Stock.model.vo.Client" alias="Client"/>
 	</typeAliases>
 	
 	<mappers>

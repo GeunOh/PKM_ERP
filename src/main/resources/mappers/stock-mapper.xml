@@ -2,22 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="stockMapper">
 	
-	<resultMap type="Product" id="productList">
+	<resultMap type="Product" id="productResult">
 		<id column="PCODE" property="pcode"/>
 		<result column="PNAME" property="pname"/>
 		<result column="COST_PRICE" property="cost_price"/>
 		<result column="SELLING_PRICE" property="selling_price"/>
 		<result column="P_COMMENT" property="p_comment"/>
 		<result column="CCODE" property="ccode"/>
+		<result column="CNAME" property="cname"/>
+	</resultMap>
+	
+	<resultMap type="Client" id="clientResult">
+		<id column="CCODE" property="ccode"/>
+		<result column="CNAME" property="cname"/>
+		<result column="CMANAGER" property="cmanager"/>
+		<result column="CPHONE" property="cphone"/>
+		<result column="C_COMMENT" property="c_comment"/>
 	</resultMap>
 	
 	<!-- 제품 목록 -->
-	<select id="productList" resultMap="productList">
-		SELECT * FROM TB_PRODUCT
+	<select id="productList" resultMap="productResult">
+		SELECT PCODE, PNAME, COST_PRICE, SELLING_PRICE, P_COMMENT, CNAME, CCODE
+		FROM PRODUCTLIST
 	</select>
 	<!-- 단일 제품 정보 -->
 	<select id="showProduct" resultType="Product">
-		SELECT * FROM TB_PRODUCT WHERE PCODE = #{pcode}
+		SELECT PCODE, PNAME, COST_PRICE, SELLING_PRICE, P_COMMENT, CNAME, CCODE
+		FROM PRODUCTLIST
+		WHERE PCODE = #{pcode}
 	</select>
 	<!-- 제품 삭제 -->
 	<delete id="deleteProduct">
@@ -27,5 +39,33 @@
 	<insert id="addProduct">
 		INSERT INTO TB_PRODUCT VALUES(#{pcode}, #{pname}, #{cost_price}, #{selling_price}, #{p_comment}, #{ccode})
 	</insert>
+	<!-- 검색창 제품 목록 -->
+	<select id="addProductList" resultMap="productResult">
+		SELECT PCODE, PNAME FROM TB_PRODUCT
+	</select>
+	<!-- 검색창 거래처 목록 -->
+	<select id="addClientList" resultMap="clientResult">
+		SELECT CCODE, CNAME FROM TB_CLIENT
+	</select>
+	<!-- 제품 수정  -->
+	<update id="modifyProduct">
+		UPDATE TB_PRODUCT SET
+			PCODE = #{product.pcode}, 
+			PNAME = #{product.pname},
+			COST_PRICE = #{product.cost_price},
+			SELLING_PRICE = #{product.selling_price},
+			P_COMMENT = #{product.p_comment},
+			CCODE = #{product.ccode}
+		WHERE PCODE = #{beforePcode}
+	</update>
+	<!-- 거래처 목록 -->
+	<select id="clientList" resultMap="clientResult">
+		SELECT * FROM TB_CLIENT
+	</select>
+	<!-- 거래처 존재 확인 -->
+	<select id="showClient" resultType="Client">
+		SELECT * FROM TB_CLIENT WHERE CCODE = #{ccode}
+	</select>
+	
 	
 </mapper>

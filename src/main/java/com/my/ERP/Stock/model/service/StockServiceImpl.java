@@ -1,12 +1,14 @@
 package com.my.ERP.Stock.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.ERP.Stock.model.dao.StockDAO;
+import com.my.ERP.Stock.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
 
 @Service("sService")
@@ -37,6 +39,30 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public int addProduct(Product product) {
 		return sDAO.addProduct(sqlSession, product);
+	}
+	// 검색창 제품 목록
+	@Override
+	public ArrayList<Product> addProductList() {
+		return sDAO.addProductList(sqlSession);
+	}
+	// 제품 수정
+	@Override
+	public int modifyProduct(HashMap<String, Object> hs) {
+		return sDAO.modifyProduct(sqlSession, hs);
+	}
+	// 거래처 목록
+	@Override
+	public ArrayList<Client> clientList() {
+		return sDAO.clientList(sqlSession);
+	}
+	// 거래처 존재 확인
+	@Override
+	public Client showClient(String ccode) {
+		return sDAO.showClient(sqlSession, ccode);
+	}
+	@Override
+	public ArrayList<Client> addClientList() {
+		return sDAO.addClientList(sqlSession);
 	}
 	
 }

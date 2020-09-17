@@ -23,7 +23,7 @@
 					<div class="search-area">
 						<span class="title">거래처명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
+							<input type="hidden" id="selectClient" name="selectClient" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>
@@ -34,7 +34,7 @@
 					<div class="search-area">
 						<span class="title">제품명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
+							<input type="hidden" id="selectProduct" name="selectProduct" data-value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>
@@ -63,62 +63,33 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td>자바 개발회사</td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
+				<c:forEach items="${clist}" var="c">
+					<tr>
+						<td>${c.cname}</td>
+						<td>${c.ccode}</td>
+						<td>${c.cmanager}</td>
+						<td>${c.cphone}</td>
+						<td>${c.c_comment}</td>
+					</tr>
+				</c:forEach>
+				<c:if test="${empty clist}">
+					<tr>
+						<td colspan="5">거래처가 존재하지않습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${!empty clist}">
+					<c:if test="${ fn:length(ㅊlist) < 10 }">
+						<c:forEach begin="${fn:length(clist)}" end="${9}">
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- // 거래처 테이블 -->
@@ -145,7 +116,7 @@
 							<td>-</td>
 						</c:if>
 						<c:if test="${p.ccode ne null}">
-							<td>${p.ccode}</td>
+							<td>${p.cname}</td>
 						</c:if>
 						<td>${p.p_comment}</td>
 					</tr>
@@ -203,6 +174,8 @@
 						<span class="title">비고</span>
 						<input type="text" class="txtBox" name="p_comment" autocomplete="off">
 					</div>
+					<input type="hidden" name="beforePcode">
+					<i class="fas fa-exchange-alt"></i>
 					<button type="button" id="saveBtn" class="buttons">추가</button>
 					<button type="button" id="deleteBtn" class="buttons" disabled>삭제</button>
 				</form>
