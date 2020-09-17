@@ -48,6 +48,10 @@ public class StockDAO {
 	public ArrayList<Client> addClientList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("stockMapper.addClientList");
 	}
+	// 제품 검색
+	public ArrayList<Product> searchProduct(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return (ArrayList)sqlSession.selectList("stockMapper.searchProduct", hs);
+	}
 	
 	
 	

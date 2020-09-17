@@ -19,11 +19,11 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="">
+				<form action="/Stock/serachProduct">
 					<div class="search-area">
 						<span class="title">거래처명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectClient" name="selectClient" data-value="all">
+							<input type="hidden" id="selectClient" name="selectClient" value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>
@@ -34,7 +34,7 @@
 					<div class="search-area">
 						<span class="title">제품명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectProduct" name="selectProduct" data-value="all">
+							<input type="hidden" id="selectProduct" name="selectProduct" value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>

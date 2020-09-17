@@ -27,7 +27,6 @@ public class StockController {
 	
 	
 	
-	
 	/**
 	 *  [ ========== 제 품 목 록 ========== ]
 	 */
@@ -40,21 +39,18 @@ public class StockController {
 		model.addAttribute("clist", clist);
 		return "productList";
 	}
-	
 	// 제품 정보
 	@RequestMapping("showProduct")
 	@ResponseBody
 	public Product showProduct(@RequestParam("pcode") String pcode) {
 		return sService.showProduct(pcode);
 	}
-	
 	// 제품 삭제
 	@RequestMapping("deleteProduct")
 	public String deleteProduct(@RequestParam("pcode") String pcode) {
 		int result = sService.deleteProduct(pcode);
 		return "redirect:/Stock/productList";
 	}
-	
 	// 제품 추가
 	@RequestMapping("addProduct")
 	public String addProduct(@RequestParam("pcode") String pcode,
@@ -139,6 +135,23 @@ public class StockController {
 	@ResponseBody
 	public ArrayList<Client> addClientList(){
 		return sService.addClientList();
+	}
+	// 제품 검색
+	@RequestMapping("serachProduct")
+	public String serachProduct(@RequestParam("selectClient") String selectClient,
+								@RequestParam("selectProduct") String selectProduct, Model model) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("selectClient", selectClient);
+		hs.put("selectProduct", selectProduct);
+		
+		ArrayList<Product> plist = sService.searchProduct(hs);
+		ArrayList<Client> clist = sService.clientList();
+
+		model.addAttribute("plist", plist);
+		model.addAttribute("clist", clist);
+		
+		return "productList";
 	}
 	
 	 

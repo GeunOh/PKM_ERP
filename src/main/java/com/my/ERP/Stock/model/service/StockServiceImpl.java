@@ -60,9 +60,15 @@ public class StockServiceImpl implements StockService {
 	public Client showClient(String ccode) {
 		return sDAO.showClient(sqlSession, ccode);
 	}
+	// 검색창 거래처 목록
 	@Override
 	public ArrayList<Client> addClientList() {
 		return sDAO.addClientList(sqlSession);
+	}
+	// 제품 검색
+	@Override
+	public ArrayList<Product> searchProduct(HashMap<String, String> hs) {
+		return sDAO.searchProduct(sqlSession, hs);
 	}
 	
 }

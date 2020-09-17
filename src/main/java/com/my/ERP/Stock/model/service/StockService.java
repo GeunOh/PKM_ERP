@@ -26,5 +26,8 @@ public interface StockService {
 
 	ArrayList<Client> addClientList();
 
+	ArrayList<Product> searchProduct(HashMap<String, String> hs);
+
+
 
 }

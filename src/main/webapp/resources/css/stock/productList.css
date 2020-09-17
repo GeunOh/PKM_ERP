@@ -240,3 +240,6 @@ ul, li{list-style: none;}
     color: #6d6c6c;
     cursor: pointer;
 }
+/* 호버 및 선택 효과 */
+.selectTr{background: #424d5c; color: #fff;}
+.noSelectTr{background-color: #f6f6f6; cursor: pointer;}

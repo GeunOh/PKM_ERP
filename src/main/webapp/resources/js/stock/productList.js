@@ -7,11 +7,11 @@ $(function(){
 			$ul.html("");
 			if(data.length > 0){
 				for(var i in data){
-					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].pcode +"'>"+data[i].pname+"</a></li>");
+					$li = $("<li><a href='#' class='link-select' value='"+ data[i].pcode +"'>"+data[i].pname+"</a></li>");
 					$ul.append($li);
 				}
 			} else {
-				$li = $("<li><a href='#' class='link-select' data-value='N'>제품 없음</a></li>");
+				$li = $("<li><a href='#' class='link-select' value='N'>제품 없음</a></li>");
 				$ul.append($li);
 			}
 		}
@@ -24,11 +24,11 @@ $(function(){
 			$ul.html("");
 			if(data.length > 0){
 				for(var i in data){
-					$li = $("<li><a href='#' class='link-select' data-value='"+ data[i].ccode +"'>"+data[i].cname+"</a></li>");
+					$li = $("<li><a href='#' class='link-select' value='"+ data[i].ccode +"'>"+data[i].cname+"</a></li>");
 					$ul.append($li);
 				}
 			} else {
-				$li = $("<li><a href='#' class='link-select' data-value='N'>제품 없음</a></li>");
+				$li = $("<li><a href='#' class='link-select' value='N'>제품 없음</a></li>");
 				$ul.append($li);
 			}
 		}
@@ -46,15 +46,19 @@ $('.selectBox ul').mouseleave(function(){
 })
 // 검색 조건 클릭 시
 $(document).on('click', '.link-select', function(){
-	var value = $(this).attr('data-value');
+	var value = $(this).attr('value');
 	var text = $(this).text();
 	// 속성 및 텍스트 변경
 	$(this).parents('ul').siblings('.link-selected').text(text);
-	$(this).parents('ul').siblings('input').attr('data-value', value);
+	$(this).parents('ul').siblings('input').attr('value', value);
 })
 
 //제품 클릭 시 하단 표시
 $("#productListTable tbody tr").on("click", function() {
+	
+	$("#productListTable tbody tr").removeClass('noSelectTr');
+	$("#productListTable tbody tr").removeClass('selectTr');
+	$(this).addClass('selectTr');
 	
 	$("#saveBtn").text("수정");
 	$("#deleteBtn").removeAttr('disabled');
@@ -97,6 +101,7 @@ $("#saveBtn").on("click", function() {
 		var form = document.infoForm;
 		form.action = "/Stock/addProduct";
 		form.submit();
+		
 	} else if($(this).text() == "수정"){
 		var beforePcode = $("input[name=beforePcode]").val();
 		var afterPcode = $("input[name=pcode]").val();
@@ -121,13 +126,14 @@ $("#saveBtn").on("click", function() {
 	}
 })
 
-
 // 제품 삭제
 $("#deleteBtn").on("click", function() {
 	
 	var pcode = $("input[name=pcode]");
-	if(pcode.val="")
-	
+	if(pcode.val() == ""){
+		alert("삭제하실 제품코드가 없습니다.");
+		return;
+	}
 	if(confirm("정말로 삭제하시겠습니까?")){
 		// 필요 없는 정보 컨트롤러로 안보냄
 		$("input[name=pname]").prop('disabled','true');
@@ -212,4 +218,11 @@ function dataChk(){
 	}
 }
 
+// 마우스 호버 효과
+$("#productListTable tbody tr").on('mouseenter',function(){
+	if(!$(this).hasClass('selectTr')) $(this).addClass('noSelectTr')
+})
+$("#productListTable tbody tr").on('mouseleave',function(){
+	if($(this).hasClass('noSelectTr')) $(this).removeClass('noSelectTr')
+})
 

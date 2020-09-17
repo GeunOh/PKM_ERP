@@ -66,6 +66,14 @@
 	<select id="showClient" resultType="Client">
 		SELECT * FROM TB_CLIENT WHERE CCODE = #{ccode}
 	</select>
+	<!-- 제품 검색 -->
+	<select id="searchProduct" resultMap="productResult">
+		SELECT * FROM PRODUCTLIST
+		<where>
+			<if test="selectClient != 'all'">AND CCODE = #{selectClient}</if>
+			<if test="selectProduct != 'all'">AND PCODE = #{selectProduct}</if>
+		</where>
+	</select>
 	
 	
 </mapper>

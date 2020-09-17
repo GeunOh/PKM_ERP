@@ -335,6 +335,6 @@ h2>.fa-times {
     right: 43%;
     border-radius: 3px;
 }
-
+/* 호버 및 선택 효과 */
 .selectTr{background: #424d5c; color: #fff;}
 .noSelectTr{background-color: #f6f6f6; cursor: pointer;}
