@@ -54,7 +54,7 @@ public class HomeController {
 						HttpServletResponse response, RedirectAttributes ra) throws Exception {
 		
 		Human loginUser = hService.Login(id);
-		
+		System.out.println(loginUser);
 		response.setContentType("text/html; charset=UTF-8");
 
 		if(loginUser != null) {

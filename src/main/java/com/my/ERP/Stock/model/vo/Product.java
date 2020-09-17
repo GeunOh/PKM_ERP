@@ -10,6 +10,8 @@ public class Product {
 	private String p_comment;
 	private String ccode;
 	
+	private String cname;
+
 	public Product() {}
 
 	public String getPcode() {
@@ -60,10 +62,19 @@ public class Product {
 		this.ccode = ccode;
 	}
 
+	public String getCname() {
+		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [pcode=" + pcode + ", pname=" + pname + ", cost_price=" + cost_price + ", selling_price="
-				+ selling_price + ", p_comment=" + p_comment + ", ccode=" + ccode + "]";
+				+ selling_price + ", p_comment=" + p_comment + ", ccode=" + ccode + ", cname=" + cname + "]";
 	}
+
 	
 }

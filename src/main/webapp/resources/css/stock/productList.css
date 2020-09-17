@@ -220,10 +220,23 @@ ul, li{list-style: none;}
     right: 15px;
     top: 15px;
 }
+#addBtn{
+	position: absolute;
+    right: 15px;
+    top: -18px;
+}
 #deleteBtn {
 	position: absolute;
     right: 15px;
     top: 53px;
     background-color: #c1392b;
     color : #fff;
+}
+.fa-exchange-alt { 
+	transform: rotate(90deg); 
+	position: absolute;
+    right: -8px;
+    top: 22px;
+    color: #6d6c6c;
+    cursor: pointer;
 }

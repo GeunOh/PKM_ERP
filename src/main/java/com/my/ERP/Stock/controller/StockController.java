@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Stock.model.service.StockService;
+import com.my.ERP.Stock.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
 
 @Controller
@@ -34,9 +35,9 @@ public class StockController {
 	public String productList(Model model) {
 		
 		ArrayList<Product> plist = sService.productList();
-		System.out.println(plist);
-		
+		ArrayList<Client> clist = sService.clientList();
 		model.addAttribute("plist", plist);
+		model.addAttribute("clist", clist);
 		return "productList";
 	}
 	
@@ -76,6 +77,33 @@ public class StockController {
 		
 		return "redirect:/Stock/productList";
 	}
+	// 제품 수정
+	@RequestMapping("modifyProduct")
+	public String modifyProduct(@RequestParam("pcode") String pcode,@RequestParam("beforePcode") String beforePcode,
+			 					@RequestParam("pname") String pname,
+			 					@RequestParam("cost_price") int cost_price,
+			 					@RequestParam("selling_price") int selling_price,
+			 					@RequestParam("p_comment") String p_comment,
+			 					@RequestParam(value="ccode", required = false) String ccode) {
+		// Service에 보낼 객체(해시맵)
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		// 수정될 제품 정보
+		Product product = new Product();
+		product.setPcode(pcode);
+		product.setPname(pname);
+		product.setCost_price(cost_price);
+		product.setSelling_price(selling_price);
+		product.setP_comment(p_comment);
+		if(!ccode.equals("")) {
+			product.setCcode(ccode);
+		}
+		hs.put("beforePcode", beforePcode);	// 바뀌기전의 pCode
+		hs.put("product", product);
+		
+		int result = sService.modifyProduct(hs);
+		
+		return "redirect:/Stock/productList";
+	}
 	// 제품 중복확인
 	@RequestMapping("pcodeChk")
 	@ResponseBody
@@ -88,8 +116,32 @@ public class StockController {
 			return false;   // 사용가능이면 false
 		}
 	}
+	// 거래처 존재확인
+	@RequestMapping("ccodeChk")
+	@ResponseBody
+	public String ccodeChk(@RequestParam("ccode") String ccode) {
+		Client client = sService.showClient(ccode);
+		System.out.println(client);
+		if(client != null)  {
+			return "exist";	 // 존재
+		} else{
+			return "notExist";   // 존재하지 않음
+		}
+	}
+	// 검색창 제품 목록
+	@RequestMapping("addProductList")
+	@ResponseBody
+	public ArrayList<Product> addProductList(){
+		return sService.addProductList();
+	}
+	// 검색창 거래처 목록
+	@RequestMapping("addClientList")
+	@ResponseBody
+	public ArrayList<Client> addClientList(){
+		return sService.addClientList();
+	}
 	
-	
+	 
 	
 	
 	

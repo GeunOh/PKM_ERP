@@ -455,7 +455,9 @@ public class HumanController {
 		dept.setDcode(request.getParameter("dcode"));
 		dept.setDname(request.getParameter("dname"));
 		dept.setDcomment(request.getParameter("dcomment"));
-		dept.setEno(request.getParameter("ename")); // eno 이지만 직원의 이름을 가지고있음
+		if(!request.getParameter("ename").equals("")) {
+			dept.setEno(request.getParameter("ename")); // eno 이지만 직원의 이름을 가지고있음
+		}
 		dept.setStartDate(request.getParameter("startDate"));
 		
 		hService.modifyDept(dept, beforeDeptName);
