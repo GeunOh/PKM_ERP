@@ -39,6 +39,8 @@ public interface StockService {
 
 	int addClient(Client client);
 
+	int deleteClient(String ccode);
+
 	
 
 

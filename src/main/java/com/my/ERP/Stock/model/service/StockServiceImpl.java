@@ -96,5 +96,10 @@ public class StockServiceImpl implements StockService {
 	public int addClient(Client client) {
 		return sDAO.addClient(sqlSession, client);
 	}
+	// 거래처 삭제
+	@Override
+	public int deleteClient(String ccode) {
+		return sDAO.deleteClient(sqlSession, ccode);
+	}
 	
 }

@@ -347,20 +347,38 @@ h1>.fa-times {
     outline: none;
     transition: all .5s;
 }
-.add-btn-form {
+.btn-form {
     text-align: center;
     margin-top: 1%;
 }
-.add-btn-form button {
+.btn-form button {
     padding: 7px 16px;
     border-radius: 3px;
     border: none;
     cursor: pointer;
 }
-.add-btn-form button:last-child {
+.btn-form button:last-child {
     margin-left: 1%;
     font-family: NotoSans-Regular;
     background-color: #282c34;
     color: #fff;
 }
+#modify-popup-form .popupContent{
+	height: 23%;
+}
+#modify-popup-form .popupContent p{
+	text-align: center;
+	font-size: 20px;
+}
+#modify-popup-form .btn-form {
+	margin-top: 3%;
+}
+#modify-popup-form .btn-form button {
+	background-color: #282c34;
+    color: #fff;
+}
 
+#modify-popup-form .btn-form button:last-child {
+	background-color: #c1392b;
+    color: #fff;
+}

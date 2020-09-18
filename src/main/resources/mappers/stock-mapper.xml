@@ -104,4 +104,8 @@
 	<insert id="addClient">
 		INSERT INTO TB_CLIENT VALUES(#{ccode}, #{cname}, #{cmanager}, #{cphone}, #{c_comment})
 	</insert>
+	<!-- 거래처 삭제 -->
+	<delete id="deleteClient">
+		DELETE FROM TB_CLIENT WHERE CCODE = #{ccode}
+	</delete>
 </mapper>

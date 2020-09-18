@@ -78,6 +78,10 @@ public class StockDAO {
 	public int addClient(SqlSessionTemplate sqlSession, Client client) {
 		return sqlSession.insert("stockMapper.addClient", client);
 	}
+	// 거래처 삭제
+	public int deleteClient(SqlSessionTemplate sqlSession, String ccode) {
+		return sqlSession.delete("stockMapper.deleteClient", ccode);
+	}
 	
 	
 	

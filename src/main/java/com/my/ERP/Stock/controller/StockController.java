@@ -263,6 +263,7 @@ public class StockController {
 			 .addAttribute("hs", hs);
 		return "clientManager";
 	}
+	// 거래처 추가
 	@RequestMapping("addClient")
 	public String addClient(@RequestParam("add_ccode") String ccode,
 							@RequestParam("add_cname") String cname,
@@ -278,6 +279,14 @@ public class StockController {
 		client.setC_comment(c_comment);
 		
 		int result = sService.addClient(client);
+		
+		return "redirect:/Stock/clientManager";
+	}
+	// 거래처 삭제
+	@RequestMapping("deleteClient")
+	public String deleteClient(@RequestParam("del_ccode") String ccode) {
+		
+		int result = sService.deleteClient(ccode);
 		
 		return "redirect:/Stock/clientManager";
 	}

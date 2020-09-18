@@ -193,7 +193,7 @@
 				<div id="columnChart-area"></div>
 			</div>
 		</div>
-		<!-- 팝업창 -->
+		<!-- 거래처 추가 팝업창 -->
 		<form action="/Stock/addClient" id="add-popup-form" class="popup-form" style="display: none;">
 			<div class="popupContent">
 				<h1>거래처 추가 
@@ -223,11 +223,28 @@
 						<span class="add-title add-title2">비고</span>
 						<input type="text" class="txtBox add-text" name="add_c_comment">
 					</div>
-					<div class="add-textform add-btn-form">
+					<div class="add-textform btn-form">
 						<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
 						<button type="button" onclick="addClient();"><i class="fas fa-check" aria-hidden="true"></i> 추가</button>
 					</div>
 				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- 거래처 수정/삭제 -->
+		<form action="/Stock/deleteClient" id="modify-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>거래처 수정/삭제 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<p>
+					<span id="selectInfo"></span>이(가) 선택되었습니다.
+				</p>
+				<div class="btn-form">
+					<button type="button" onclick=""><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					<button type="button" onclick="deleteClient();"><i class="fas fa-times" aria-hidden="true"></i> 삭제</button>
+				</div>
+				<input type="hidden" name="del_ccode">
 			</div>
 			<div class="popupLayer"></div>
 		</form>

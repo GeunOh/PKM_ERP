@@ -197,7 +197,7 @@ function dataChk() {
 	}
 	return true;
 }
-
+// 거래처 추가
 function addClient() {
 	if(dataChk()){
 		if(confirm("거래처를 추가하시겠습니까?")){
@@ -206,3 +206,20 @@ function addClient() {
 		}
 	}
 }
+// 거래처 수정/삭제 선택
+$("#clientTable tbody tr").on("click", function() {
+	$("#modify-popup-form").fadeIn();
+	var cname = $(this).children("td").eq(0).text();
+	var ccode = $(this).children("td").eq(1).text();
+	$("input[name=del_ccode").attr("value", ccode);
+	
+	$("#selectInfo").text("["+ccode+"] " +cname + " " );
+})
+// 거래처 삭제
+function deleteClient() {
+	if(confirm("정말로 삭제하시겠습니까?")){
+		$("#modify-popup-form").submit();
+	}
+}
+
+
