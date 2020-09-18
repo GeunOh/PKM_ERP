@@ -19,11 +19,11 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="">
+				<form action="/Stock/serachProduct">
 					<div class="search-area">
 						<span class="title">거래처명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectClient" name="selectClient" data-value="all">
+							<input type="hidden" id="selectClient" name="selectClient" value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>
@@ -34,7 +34,7 @@
 					<div class="search-area">
 						<span class="title">제품명</span>
 						<div class="selectBox wid_150">
-							<input type="hidden" id="selectProduct" name="selectProduct" data-value="all">
+							<input type="hidden" id="selectProduct" name="selectProduct" value="all">
 							<a href="#none" class="link-selected wid_170">전체</a>
 							<ul class="wid_170">
 							</ul>
@@ -52,96 +52,100 @@
 			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 거래처 테이블 -->
-		<table id="clientTable" class="tables">
-			<thead>
-				<tr>
-					<th>거래처명</th>
-					<th>사업자등록번호</th>
-					<th>담당자</th>
-					<th>연락처</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${clist}" var="c">
+		<div id="clientTableWrap">
+			<table id="clientTable" class="tables">
+				<thead>
 					<tr>
-						<td>${c.cname}</td>
-						<td>${c.ccode}</td>
-						<td>${c.cmanager}</td>
-						<td>${c.cphone}</td>
-						<td>${c.c_comment}</td>
+						<th>거래처명</th>
+						<th>사업자등록번호</th>
+						<th>담당자</th>
+						<th>연락처</th>
+						<th>비고</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${empty clist}">
-					<tr>
-						<td colspan="5">거래처가 존재하지않습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty clist}">
-					<c:if test="${ fn:length(ㅊlist) < 10 }">
-						<c:forEach begin="${fn:length(clist)}" end="${9}">
-							<tr>
-								<td>&nbsp;</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${clist}" var="c">
+						<tr>
+							<td>${c.cname}</td>
+							<td>${c.ccode}</td>
+							<td>${c.cmanager}</td>
+							<td>${c.cphone}</td>
+							<td>${c.c_comment}</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${empty clist}">
+						<tr>
+							<td colspan="5">거래처가 존재하지않습니다.</td>
+						</tr>
 					</c:if>
-				</c:if>
-			</tbody>
-		</table>
+					<c:if test="${!empty clist}">
+						<c:if test="${ fn:length(clist) < 10 }">
+							<c:forEach begin="${fn:length(clist)}" end="9">
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
+				</tbody>
+			</table>
+		</div>
 		<!-- // 거래처 테이블 -->
 		<!-- 제품목록 테이블 -->
-		<table id="productListTable" class="tables">
-			<thead> 
-				<tr>
-					<th>제품코드</th>
-					<th>제품이름</th>
-					<th>원가</th>
-					<th>판매가</th>
-					<th>거래처</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${plist}" var="p">
+		<div id="productTableWrap">
+			<table id="productListTable" class="tables">
+				<thead> 
 					<tr>
-						<td>${p.pcode}</td>
-						<td>${p.pname}</td>
-						<td>${p.cost_price}</td>
-						<td>${p.selling_price}</td>
-						<c:if test="${p.ccode eq null}">
-							<td>-</td>
-						</c:if>
-						<c:if test="${p.ccode ne null}">
-							<td>${p.cname}</td>
-						</c:if>
-						<td>${p.p_comment}</td>
+						<th>제품코드</th>
+						<th>제품이름</th>
+						<th>원가</th>
+						<th>판매가</th>
+						<th>거래처</th>
+						<th>비고</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${empty plist}">
-					<tr>
-						<td colspan="6">제품이 존재하지않습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty plist}">
-					<c:if test="${ fn:length(plist) < 10 }">
-						<c:forEach begin="${fn:length(plist)}" end="${9}">
-							<tr>
-								<td>&nbsp;</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${plist}" var="p">
+						<tr>
+							<td>${p.pcode}</td>
+							<td>${p.pname}</td>
+							<td>${p.cost_price}</td>
+							<td>${p.selling_price}</td>
+							<c:if test="${p.ccode eq null}">
+								<td>-</td>
+							</c:if>
+							<c:if test="${p.ccode ne null}">
+								<td>${p.cname}</td>
+							</c:if>
+							<td>${p.p_comment}</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${empty plist}">
+						<tr>
+							<td colspan="6">제품이 존재하지않습니다.</td>
+						</tr>
 					</c:if>
-				</c:if>
-			</tbody>
-		</table>
+					<c:if test="${!empty plist}">
+						<c:if test="${ fn:length(plist) < 10 }">
+							<c:forEach begin="${fn:length(plist)}" end="${9}">
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
+				</tbody>
+			</table>
+		</div>
 		<!-- // 제품목록 테이블 -->
 		<!-- 제품정보 -->
 		<div id="info-back">

@@ -14,6 +14,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.my.ERP.Stock.model.service.StockService;
 import com.my.ERP.Stock.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
+import com.my.ERP.common.Pagenation;
+import com.my.ERP.common.vo.PageInfo;
 
 @Controller
 public class StockController {
@@ -27,34 +29,29 @@ public class StockController {
 	
 	
 	
-	
 	/**
 	 *  [ ========== 제 품 목 록 ========== ]
 	 */
 	@RequestMapping("productList")
 	public String productList(Model model) {
-		
 		ArrayList<Product> plist = sService.productList();
 		ArrayList<Client> clist = sService.clientList();
-		model.addAttribute("plist", plist);
-		model.addAttribute("clist", clist);
+		model.addAttribute("plist", plist)
+			 .addAttribute("clist", clist);
 		return "productList";
 	}
-	
 	// 제품 정보
 	@RequestMapping("showProduct")
 	@ResponseBody
 	public Product showProduct(@RequestParam("pcode") String pcode) {
 		return sService.showProduct(pcode);
 	}
-	
 	// 제품 삭제
 	@RequestMapping("deleteProduct")
 	public String deleteProduct(@RequestParam("pcode") String pcode) {
 		int result = sService.deleteProduct(pcode);
 		return "redirect:/Stock/productList";
 	}
-	
 	// 제품 추가
 	@RequestMapping("addProduct")
 	public String addProduct(@RequestParam("pcode") String pcode,
@@ -140,6 +137,23 @@ public class StockController {
 	public ArrayList<Client> addClientList(){
 		return sService.addClientList();
 	}
+	// 제품 검색
+	@RequestMapping("serachProduct")
+	public String serachProduct(@RequestParam("selectClient") String selectClient,
+								@RequestParam("selectProduct") String selectProduct, Model model) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("selectClient", selectClient);
+		hs.put("selectProduct", selectProduct);
+		
+		ArrayList<Product> plist = sService.searchProduct(hs);
+		ArrayList<Client> clist = sService.clientList();
+
+		model.addAttribute("plist", plist)
+			 .addAttribute("clist", clist);
+		
+		return "productList";
+	}
 	
 	 
 	
@@ -201,12 +215,70 @@ public class StockController {
 	
 	
 	/**
-	 *  [ 임 시 거 래 처 ]
+	 *  [  임 시 거 래 처  ]
 	 */
 	@RequestMapping("clientManager")
-	public String clientManager() {
+	public String clientManager(Model model, @RequestParam(value="page", required = false) Integer page) {
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.clientListCount();
+		
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Client> clist = sService.clientList(pi);
+		
+		model.addAttribute("clist", clist)
+		     .addAttribute("pi", pi);
 		
 		return "clientManager";
 	}
-	
+	// 거래처 검색
+	@RequestMapping("searchClient")
+	public String searchClient(@RequestParam("cname") String cname,
+							   @RequestParam("ccode") String ccode,
+							   @RequestParam("cmanager") String cmanager,
+							   @RequestParam("cphone") String cphone,
+							   @RequestParam(value="c_comment", required = false ) String c_comment,
+							   Model model, @RequestParam(value="page", required = false) Integer page) {
+		// 검색 조건 저장
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("cname", cname);
+		hs.put("ccode", ccode);
+		hs.put("cmanager", cmanager);
+		hs.put("cphone", cphone);
+		hs.put("c_comment", c_comment);
+		// 페이징
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		// 검색 후 행 개수 
+		int listCount = sService.searchClientListCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);	// 페이징
+		// 검색 내용
+		ArrayList<Client> clist = sService.searchClient(hs, pi);
+		model.addAttribute("clist", clist)
+			 .addAttribute("pi", pi)
+			 .addAttribute("hs", hs);
+		return "clientManager";
+	}
+	@RequestMapping("addClient")
+	public String addClient(@RequestParam("add_ccode") String ccode,
+							@RequestParam("add_cname") String cname,
+							@RequestParam("add_cmanager") String cmanager,
+							@RequestParam("add_cphone") String cphone,
+							@RequestParam("add_c_comment") String c_comment) {
+		
+		Client client = new Client();
+		client.setCcode(ccode);
+		client.setCname(cname);
+		client.setCmanager(cmanager);
+		client.setCphone(cphone);
+		client.setC_comment(c_comment);
+		
+		int result = sService.addClient(client);
+		
+		return "redirect:/Stock/clientManager";
+	}
 }
