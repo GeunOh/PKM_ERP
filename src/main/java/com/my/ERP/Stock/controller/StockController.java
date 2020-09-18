@@ -261,8 +261,24 @@ public class StockController {
 		model.addAttribute("clist", clist)
 			 .addAttribute("pi", pi)
 			 .addAttribute("hs", hs);
-		
 		return "clientManager";
 	}
-	
+	@RequestMapping("addClient")
+	public String addClient(@RequestParam("add_ccode") String ccode,
+							@RequestParam("add_cname") String cname,
+							@RequestParam("add_cmanager") String cmanager,
+							@RequestParam("add_cphone") String cphone,
+							@RequestParam("add_c_comment") String c_comment) {
+		
+		Client client = new Client();
+		client.setCcode(ccode);
+		client.setCname(cname);
+		client.setCmanager(cmanager);
+		client.setCphone(cphone);
+		client.setC_comment(c_comment);
+		
+		int result = sService.addClient(client);
+		
+		return "redirect:/Stock/clientManager";
+	}
 }

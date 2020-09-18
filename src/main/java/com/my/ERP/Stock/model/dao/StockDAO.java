@@ -72,7 +72,11 @@ public class StockDAO {
 	}
 	// 검색 시 페이징처리를 위한 카운트
 	public int searchClientListCount(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
-		return sqlSession.selectOne("searchClientListCount", hs);
+		return sqlSession.selectOne("stockMapper.searchClientListCount", hs);
+	}
+	// 거래처 추가
+	public int addClient(SqlSessionTemplate sqlSession, Client client) {
+		return sqlSession.insert("stockMapper.addClient", client);
 	}
 	
 	

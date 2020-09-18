@@ -37,6 +37,8 @@ public interface StockService {
 
 	int searchClientListCount(HashMap<String, String> hs);
 
+	int addClient(Client client);
+
 	
 
 

@@ -81,13 +81,20 @@ public class StockServiceImpl implements StockService {
 	public int clientListCount() {
 		return sDAO.clientListCount(sqlSession);
 	}
+	// 거래처 목록
 	@Override
 	public ArrayList<Client> clientList() {
 		return sDAO.clientList(sqlSession);
 	}
+	// 거래처 검색 시 페이징을 위한 행 개수
 	@Override
 	public int searchClientListCount(HashMap<String, String> hs) {
 		return sDAO.searchClientListCount(sqlSession, hs);
+	}
+	// 거래처 추가
+	@Override
+	public int addClient(Client client) {
+		return sDAO.addClient(sqlSession, client);
 	}
 	
 }

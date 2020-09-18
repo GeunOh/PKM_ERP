@@ -52,49 +52,51 @@
 			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
 		</div>
 		<!-- 거래처 테이블 -->
-		<table id="clientTable" class="tables">
-			<thead>
-				<tr>
-					<th>거래처명</th>
-					<th>사업자등록번호</th>
-					<th>담당자</th>
-					<th>연락처</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${clist}" var="c">
+		<div id="clientTableWrap">
+			<table id="clientTable" class="tables">
+				<thead>
 					<tr>
-						<td>${c.cname}</td>
-						<td>${c.ccode}</td>
-						<td>${c.cmanager}</td>
-						<td>${c.cphone}</td>
-						<td>${c.c_comment}</td>
+						<th>거래처명</th>
+						<th>사업자등록번호</th>
+						<th>담당자</th>
+						<th>연락처</th>
+						<th>비고</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${empty clist}">
-					<tr>
-						<td colspan="5">거래처가 존재하지않습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty clist}">
-					<c:if test="${ fn:length(clist) < 10 }">
-						<c:forEach begin="${fn:length(clist)}" end="9">
-							<tr>
-								<td>&nbsp;</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${clist}" var="c">
+						<tr>
+							<td>${c.cname}</td>
+							<td>${c.ccode}</td>
+							<td>${c.cmanager}</td>
+							<td>${c.cphone}</td>
+							<td>${c.c_comment}</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${empty clist}">
+						<tr>
+							<td colspan="5">거래처가 존재하지않습니다.</td>
+						</tr>
 					</c:if>
-				</c:if>
-			</tbody>
-		</table>
+					<c:if test="${!empty clist}">
+						<c:if test="${ fn:length(clist) < 10 }">
+							<c:forEach begin="${fn:length(clist)}" end="9">
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
+				</tbody>
+			</table>
+		</div>
 		<!-- // 거래처 테이블 -->
 		<!-- 제품목록 테이블 -->
-		<div id="tableWrap">
+		<div id="productTableWrap">
 			<table id="productListTable" class="tables">
 				<thead> 
 					<tr>

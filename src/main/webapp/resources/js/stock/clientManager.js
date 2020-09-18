@@ -32,7 +32,7 @@ var data = {
 };
 var options = {
     chart: {
-        width: 500,
+        width: 550,
         height: 300,
         title: '거래처별 거래현황',
         format: function(value, chartType, areaType, valuetype, legendName) {
@@ -104,7 +104,7 @@ var data = {
 };
 var options = {
     chart: {
-        width: 500,
+        width: 550,
         height: 300,
         title: 'Monthly Revenue',
         "format": "1,000"
@@ -139,4 +139,70 @@ var theme = {
 //options.theme = 'myTheme';
 tui.chart.columnChart(container, data, options);
 
+// 팝업창 버튼들 작동
+$('#addBtn').on('click',function(){
+	$('#add-popup-form').fadeIn();	// 추가 팝업창
+})
+$('h1 .fa-times').on('click',function(){
+	$('.popup-form').fadeOut();
+})
+$('.add-btn-form button:first-child').on('click',function(){
+	$('.popup-form').fadeOut();
+})
 
+// 거래처 추가시 ccode 중복확인
+$("input[name=add_ccode]").on("keyup", function(){
+	var ccode = $(this).val();
+	
+	$.ajax({
+		url: "/Stock/ccodeChk",
+		data: {ccode, ccode},
+		success: function(data) {
+			if(data == "exist"){
+				$("#ccodeChk").text("사용 불가능").css('color','red');
+				$("input[name=ccodeChk]").attr('value',0);
+			} else {
+				$("#ccodeChk").text("사용 가능").css('color','green');
+				$("input[name=ccodeChk]").attr('value',1);
+			}
+		}
+	})
+})
+
+function dataChk() {
+	var $ccode = $("input[name=add_ccode]");
+	var $cname = $("input[name=add_cname]");
+	var $cmanager = $("input[name=add_cmanager]");
+	var $cphone = $("input[name=add_cphone]");
+	
+	if($ccode.val() == ''){
+		alert("사업자등록번호를 입력해주세요.");
+		$ccode.focus();
+		return false;
+	}
+	if($cname.val() == ''){
+		alert("거래처명을 입력해주세요.");
+		$cname.focus();
+		return false;
+	}
+	if($cmanager.val() == ''){
+		alert("담당자를 입력해주세요.");
+		$cmanager.focus();
+		return false;
+	}
+	if($cphone.val() == ''){
+		alert("연락처를 입력해주세요.");
+		$cphone.focus();
+		return false;
+	}
+	return true;
+}
+
+function addClient() {
+	if(dataChk()){
+		if(confirm("거래처를 추가하시겠습니까?")){
+			$("#add-popup-form").submit();
+	 		$(".popup-form").fadeOut();
+		}
+	}
+}

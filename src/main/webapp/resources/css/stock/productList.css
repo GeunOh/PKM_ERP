@@ -163,7 +163,7 @@ ul, li{list-style: none;}
     right: 2.5%;
     top: 18%; */
 }
-#tableWrap {
+#productTableWrap {
 	position: absolute;
     right: 2.5%;
     top: 18%;
@@ -173,9 +173,14 @@ ul, li{list-style: none;}
 }
 /* 거래처 테이블 */
 #clientTable{
-	width: 55%; min-height:419px; 
+	width: 100%; min-height:419px; 
 	border-collapse: separate;
     border-spacing: 0;
+}
+#clientTableWrap{
+    width: 55%;
+	max-height: 420px;
+    overflow-y: auto;
 }
 /*테이블*/
 .tables th{padding: 10px 0; background-color: #f7f7f7; font-size: 13px;}

@@ -100,5 +100,8 @@
 			<if test="c_comment != ''">AND C_COMMENT LIKE '%'|| #{c_comment} ||'%'</if>
 		</where>
 	</select>
-	
+	<!-- 거래처 추가 -->
+	<insert id="addClient">
+		INSERT INTO TB_CLIENT VALUES(#{ccode}, #{cname}, #{cmanager}, #{cphone}, #{c_comment})
+	</insert>
 </mapper>
