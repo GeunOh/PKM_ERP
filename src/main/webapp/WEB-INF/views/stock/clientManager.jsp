@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,39 +20,32 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/searchVacation">
-					
+				<form action="/Stock/searchClient">
 					<div class="search-area">
 						<span class="title">거래처명</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+						<input type="text" class="txtBox wid_150" name="cname">
 					</div>
 					
 					<div class="search-area">
 						<span class="title">사업자등록번호</span>
-						<input type="text" class="txtBox wid_150" name="name">
+						<input type="text" class="txtBox wid_150" name="ccode">
 					</div>
 					
 					<br>
 					
 					<div class="search-area downSearch">
 						<span class="title">담당자</span>
-						<input type="text" class="txtBox wid_150" name="name">
+						<input type="text" class="txtBox wid_150" name="cmanager">
 					</div>
 					
 					<div class="search-area downSearch">
 						<span class="title">연락처</span>
-						<input type="text" class="txtBox wid_150" name="name">
+						<input type="text" class="txtBox wid_150" name="cphone">
 					</div>
 					
 					<div class="search-area">
 						<span class="title">비고</span>
-						<input type="text" class="txtBox wid_150" name="name">
+						<input type="text" class="txtBox wid_150" name="c_comment">
 					</div>
 			
 					<button id="searchBtn">검색</button>
@@ -75,65 +70,119 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td>자바 개발회사</td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>PM-Company</td>
-					<td>01-15699-7891-1</td>
-					<td>죠리퐁</td>
-					<td>010-1225-8874</td>
-					<td></td>
-				</tr>
+				<c:if test="${empty clist }">
+					<tr>
+						<td colspan="5">거래처가 존재하지 않습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${!empty clist }">
+					<c:forEach items="${clist }" var="c">
+						<tr>
+							<td>${c.cname }</td>
+							<td>${c.ccode }</td>
+							<td>${c.cmanager }</td>
+							<td>${c.cphone }</td>
+							<td>${c.c_comment }</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${!empty clist }">
+					<c:if test="${fn:length(clist) < 10 }">
+						<c:forEach	begin="${fn:length(clist)}" end="9"> 
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
+				
 			</tbody>
 		</table>
 		<!-- // 거래처 테이블 -->
+		<!-- 페이징 -->
+		<div id="pagingForm">
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+					<c:if test="${not empty hs}">
+						<c:param name="cname" value="${hs.cname}"/>
+						<c:param name="ccode" value="${hs.ccode}"/>
+						<c:param name="cmanager" value="${hs.cmanager}"/>
+						<c:param name="cphone" value="${hs.cphone}"/>
+						<c:param name="c_comment" value="${hs.c_comment}"/>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${not empty hs}">
+						<c:param name="cname" value="${hs.cname}"/>
+						<c:param name="ccode" value="${hs.ccode}"/>
+						<c:param name="cmanager" value="${hs.cmanager}"/>
+						<c:param name="cphone" value="${hs.cphone}"/>
+						<c:param name="c_comment" value="${hs.c_comment}"/>
+					</c:if>	
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:if test="${p ne 0}">
+						<c:url var="pagination" value="${ loc }">
+							<c:param name="page" value="${ p }"/>
+							<c:if test="${not empty hs}">
+								<c:param name="cname" value="${hs.cname}"/>
+								<c:param name="ccode" value="${hs.ccode}"/>
+								<c:param name="cmanager" value="${hs.cmanager}"/>
+								<c:param name="cphone" value="${hs.cphone}"/>
+								<c:param name="c_comment" value="${hs.c_comment}"/>
+							</c:if>
+						</c:url>
+						<a class="pg_page" href="${ pagination }">${ p }</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="cname" value="${hs.cname}"/>
+						<c:param name="ccode" value="${hs.ccode}"/>
+						<c:param name="cmanager" value="${hs.cmanager}"/>
+						<c:param name="cphone" value="${hs.cphone}"/>
+						<c:param name="c_comment" value="${hs.c_comment}"/>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="cname" value="${hs.cname}"/>
+						<c:param name="ccode" value="${hs.ccode}"/>
+						<c:param name="cmanager" value="${hs.cmanager}"/>
+						<c:param name="cphone" value="${hs.cphone}"/>
+						<c:param name="c_comment" value="${hs.c_comment}"/>
+					</c:if>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>	
+		</div>
+		
 		<!-- 거래처 차트 -->
 		<div class="clientChart" id="pieChart">
 			<div id="chart-area"></div>
@@ -146,151 +195,5 @@
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/stock/clientManager.js"></script>
-	<script>
-		/* pie Chart */
-		var chart = tui.chart;
-		var container = document.getElementById('chart-area');
-		var data = {
-		    categories: ['Browser'],
-		    series: [
-		        {
-		            name: 'Chrome',
-		            data: 46.02
-		        },
-		        {
-		            name: 'IE',
-		            data: 20.47
-		        },
-		        {
-		            name: 'Firefox',
-		            data: 17.71
-		        },
-		        {
-		            name: 'Safari',
-		            data: 5.45
-		        },
-		        {
-		            name: 'Opera',
-		            data: 3.10
-		        },
-		        {
-		            name: 'Etc',
-		            data: 7.25
-		        }
-		    ]
-		};
-		var options = {
-		    chart: {
-		        width: 500,
-		        height: 300,
-		        title: '거래처별 거래현황',
-		        format: function(value, chartType, areaType, valuetype, legendName) {
-		            if (areaType === 'makingSeriesLabel') { // formatting at series area
-		                value = value + '%';
-		            }
-
-		            return value;
-		        }
-		    },
-		    series: {
-		        radiusRange: ['40%', '100%'],
-		        showLabel: false
-		    },
-		    tooltip: {
-		        suffix: '%'
-		    },
-		    legend: {
-		        align: 'right'
-		    },	
-		    /* 우측 메뉴 삭제 */
-		    chartExportMenu: {
-		    	visible: false
-		    }
-		};
-		var theme = {
-		    series: {
-		        series: {
-		            colors: [
-		                '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-		                '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
-		            ]
-		        },
-		        label: {
-		            color: '#fff',
-		            fontFamily: 'sans-serif'
-		        }
-		    }
-		};
-
-		// For apply theme
-
-		chart.registerTheme('myTheme', theme);
-		options.theme = 'myTheme';
-
-		chart.pieChart(container, data, options);
-		
-		/* Column Chart */
-		var container = document.getElementById('columnChart-area');
-		var data = {
-		    categories: ['May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-		    series: [
-		        {
-		            name: 'Budget',
-		            data: [4000, 5000, 3000, 5000, 7000, 6000, 4000, 1000]
-		        },
-		        {
-		            name: 'Income',
-		            data: [7000, 8000, 1000, 7000, 2000, 7000, 3000, 5000]
-		        },
-		        {
-		            name: 'Expenses',
-		            data: [-5000, -4000, -4000, -6000, -3000, -4000, -5000, -7000]
-		        },
-		        {
-		            name: 'Debt',
-		            data: [-3000, -6000, -3000, -3000, -1000, -2000, -4000, -3000]
-		        }
-		    ]
-		};
-		var options = {
-		    chart: {
-		        width: 500,
-		        height: 300,
-		        title: 'Monthly Revenue',
-		        "format": "1,000"
-		    },
-		    yAxis: {
-		        title: 'Amount',
-		        min: -10000,
-		        max: 10000
-		    },
-		    xAxis: {
-		        title: 'Month'
-		    },
-		    legend: {
-		        visible: false
-		    },
-		    chartExportMenu: {
-		    	visible: false /* 우측 메뉴 삭제 */
-		    },
-		    
-		};
-		var theme = {
-		    series: {
-		        colors: [
-		            '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-		            '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
-		        ]
-		    }
-		};
-
-		// For apply theme
-
-		// tui.chart.registerTheme('myTheme', theme);
-		// options.theme = 'myTheme';
-
-		tui.chart.columnChart(container, data, options);
-
-	</script>
 </body>
 </html>

@@ -153,15 +153,23 @@ ul, li{list-style: none;}
 
 /* 제품리스트 테이블 */
 #productListTable {
-	width: 35%;
+	width: 100%;
 	min-height: 670px;
 	border-collapse: separate;
     border-spacing: 0;
 }
 #productListTable {
-    position: absolute;
+   /*  position: absolute;
+    right: 2.5%;
+    top: 18%; */
+}
+#tableWrap {
+	position: absolute;
     right: 2.5%;
     top: 18%;
+    max-height: 670px;
+    overflow-y: auto;
+    width: 35%;
 }
 /* 거래처 테이블 */
 #clientTable{

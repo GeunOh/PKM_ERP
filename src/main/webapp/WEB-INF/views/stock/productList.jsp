@@ -78,8 +78,8 @@
 					</tr>
 				</c:if>
 				<c:if test="${!empty clist}">
-					<c:if test="${ fn:length(ㅊlist) < 10 }">
-						<c:forEach begin="${fn:length(clist)}" end="${9}">
+					<c:if test="${ fn:length(clist) < 10 }">
+						<c:forEach begin="${fn:length(clist)}" end="9">
 							<tr>
 								<td>&nbsp;</td>
 								<td></td>
@@ -94,54 +94,56 @@
 		</table>
 		<!-- // 거래처 테이블 -->
 		<!-- 제품목록 테이블 -->
-		<table id="productListTable" class="tables">
-			<thead> 
-				<tr>
-					<th>제품코드</th>
-					<th>제품이름</th>
-					<th>원가</th>
-					<th>판매가</th>
-					<th>거래처</th>
-					<th>비고</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${plist}" var="p">
+		<div id="tableWrap">
+			<table id="productListTable" class="tables">
+				<thead> 
 					<tr>
-						<td>${p.pcode}</td>
-						<td>${p.pname}</td>
-						<td>${p.cost_price}</td>
-						<td>${p.selling_price}</td>
-						<c:if test="${p.ccode eq null}">
-							<td>-</td>
-						</c:if>
-						<c:if test="${p.ccode ne null}">
-							<td>${p.cname}</td>
-						</c:if>
-						<td>${p.p_comment}</td>
+						<th>제품코드</th>
+						<th>제품이름</th>
+						<th>원가</th>
+						<th>판매가</th>
+						<th>거래처</th>
+						<th>비고</th>
 					</tr>
-				</c:forEach>
-				<c:if test="${empty plist}">
-					<tr>
-						<td colspan="6">제품이 존재하지않습니다.</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty plist}">
-					<c:if test="${ fn:length(plist) < 10 }">
-						<c:forEach begin="${fn:length(plist)}" end="${9}">
-							<tr>
-								<td>&nbsp;</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach items="${plist}" var="p">
+						<tr>
+							<td>${p.pcode}</td>
+							<td>${p.pname}</td>
+							<td>${p.cost_price}</td>
+							<td>${p.selling_price}</td>
+							<c:if test="${p.ccode eq null}">
+								<td>-</td>
+							</c:if>
+							<c:if test="${p.ccode ne null}">
+								<td>${p.cname}</td>
+							</c:if>
+							<td>${p.p_comment}</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${empty plist}">
+						<tr>
+							<td colspan="6">제품이 존재하지않습니다.</td>
+						</tr>
 					</c:if>
-				</c:if>
-			</tbody>
-		</table>
+					<c:if test="${!empty plist}">
+						<c:if test="${ fn:length(plist) < 10 }">
+							<c:forEach begin="${fn:length(plist)}" end="${9}">
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
+				</tbody>
+			</table>
+		</div>
 		<!-- // 제품목록 테이블 -->
 		<!-- 제품정보 -->
 		<div id="info-back">
