@@ -9,6 +9,8 @@
  
  ## Login Page
  
+ ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/59466401/93671083-16788380-fadb-11ea-96e9-23234c266bbb.gif)
+ 
  ### API 리스트
   - 날씨 : OpenWeathermap
   - 차트 : toast ui
