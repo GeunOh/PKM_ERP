@@ -12,7 +12,7 @@
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
+0input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
 	 transition: background-color 5000s ease-in-out 0s;
 	 -webkit-transition: background-color 9999s ease-out;
@@ -148,12 +148,18 @@ ul, li{list-style: none;}
 
 /*추가 외 버튼*/
 #btnForm{
+	position: relative;
 	width: 100%;
-	margin: 3% 0 2% 0; 
+	margin: 5% 0 2% 0; 
 	font-family: NotoSans-Regular; font-weight: bold;
 }
 #btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
-#btnForm > span { margin-left: 15%;}
+#btnForm > span { 
+    position: absolute;
+	right: 0;
+    bottom: -10px;
+    font-size: 14px;
+}
 #addBtn{width: 50px; text-align: center;}
 #addBtn:before{
 	content: "";
