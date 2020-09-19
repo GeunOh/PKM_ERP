@@ -1,23 +1,18 @@
 package com.my.ERP.Stock.controller;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.service.StockService;
-import com.my.ERP.Stock.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
-import com.my.ERP.common.Pagenation;
-import com.my.ERP.common.vo.PageInfo;
 
 @Controller
 public class StockController {
@@ -216,107 +211,6 @@ public class StockController {
 	}
 	
 	
-	/**
-	 *  [  임 시 거 래 처  ]
-	 */
-	@RequestMapping("clientManager")
-	public String clientManager(Model model, @RequestParam(value="page", required = false) Integer page) {
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		int listCount = sService.clientListCount();
-		
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
-		ArrayList<Client> clist = sService.clientList(pi);
-		
-		model.addAttribute("clist", clist)
-		     .addAttribute("pi", pi);
-		
-		return "clientManager";
-	}
-	// 거래처 검색
-	@RequestMapping("searchClient")
-	public String searchClient(@RequestParam("cname") String cname,
-							   @RequestParam("ccode") String ccode,
-							   @RequestParam("cmanager") String cmanager,
-							   @RequestParam("cphone") String cphone,
-							   @RequestParam(value="c_comment", required = false ) String c_comment,
-							   Model model, @RequestParam(value="page", required = false) Integer page) {
-		// 검색 조건 저장
-		HashMap<String, String> hs = new HashMap<String, String>();
-		hs.put("cname", cname);
-		hs.put("ccode", ccode);
-		hs.put("cmanager", cmanager);
-		hs.put("cphone", cphone);
-		hs.put("c_comment", c_comment);
-		// 페이징
-		int currentPage = 1;
-		if(page != null) {
-			currentPage = page;
-		}
-		// 검색 후 행 개수 
-		int listCount = sService.searchClientListCount(hs);
-		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);	// 페이징
-		// 검색 내용
-		ArrayList<Client> clist = sService.searchClient(hs, pi);
-		model.addAttribute("clist", clist)
-			 .addAttribute("pi", pi)
-			 .addAttribute("hs", hs);
-		return "clientManager";
-	}
-	// 거래처 추가
-	@RequestMapping("addClient")
-	public String addClient(@RequestParam("add_ccode") String ccode,
-							@RequestParam("add_cname") String cname,
-							@RequestParam("add_cmanager") String cmanager,
-							@RequestParam("add_cphone") String cphone,
-							@RequestParam("add_c_comment") String c_comment) {
-		
-		Client client = new Client();
-		client.setCcode(ccode);
-		client.setCname(cname);
-		client.setCmanager(cmanager);
-		client.setCphone(cphone);
-		client.setC_comment(c_comment);
-		
-		int result = sService.addClient(client);
-		
-		return "redirect:/Stock/clientManager";
-	}
-	// 거래처 삭제
-	@RequestMapping("deleteClient")
-	public String deleteClient(@RequestParam("del_ccode") String ccode) {
-		
-		int result = sService.deleteClient(ccode);
-		
-		return "redirect:/Stock/clientManager";
-	}
-	// 거래처 수정 내용
-	@RequestMapping("showClient")
-	@ResponseBody
-	public Client showClient(@RequestParam("ccode") String ccode) {
-		return sService.showClient(ccode);
-	}
-	// 거래처 수정
-	@RequestMapping("modifyClient")
-	public String modifyClient(@RequestParam("modify_ccode") String ccode,
-							   @RequestParam("modify_cname") String cname,
-							   @RequestParam("modify_cmanager") String cmanager,
-							   @RequestParam("modify_cphone") String cphone,
-							   @RequestParam("modify_c_comment") String c_comment,
-							   @RequestParam("beforeCcode") String beforeCcode) {
-		HashMap<String, String> hs = new HashMap<String, String>();
-		hs.put("ccode", ccode);
-		hs.put("cname", cname);
-		hs.put("cmanager", cmanager);
-		hs.put("cphone", cphone);
-		hs.put("c_comment", c_comment);
-		hs.put("beforeCcode", beforeCcode);
-		
-		int result = sService.modifyClient(hs);
-		
-		return "redirect:/Stock/clientManager";
-	}
+	
 	
 }

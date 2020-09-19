@@ -767,14 +767,7 @@ public class HumanController {
 	
 	// 휴가 신청 하기
 	@RequestMapping("addVacation")
-	public String addVacation(@ModelAttribute("vacation") Vacation vacation,
-							  @RequestParam("eno") String eno,
-							  @RequestParam("vType") String vType,
-							  @RequestParam("startDate") Date startDate,
-							  @RequestParam("endDate") Date endDate,
-							  @RequestParam("useDay") int useDay,
-							  @RequestParam(value="reason", required=false) String reason) {
-		
+	public String addVacation(@ModelAttribute("vacation") Vacation vacation) {
 		System.out.println(vacation);
 		int result = hService.addVacation(vacation);
 		

@@ -6,7 +6,7 @@
 <html>
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
-<link rel="stylesheet" href="resources/css/stock/clientManager.css">
+<link rel="stylesheet" href="resources/css/operation/clientManager.css">
 
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
 <script src="https://uicdn.toast.com/tui.chart/latest/tui-chart-all.js"></script>
@@ -21,7 +21,7 @@
 			<!-- 검색 영역 -->
 			<div id="Search-back">
 				<div id="Serach-form">
-					<form action="/Stock/searchClient">
+					<form action="/Operation/searchClient">
 						<div class="search-area">
 							<span class="title">거래처명</span>
 							<input type="text" class="txtBox wid_150" name="cname">
@@ -195,7 +195,7 @@
 			</div>
 		</div>
 		<!-- 거래처 추가 팝업창 -->
-		<form action="/Stock/addClient" id="add-popup-form" class="popup-form" style="display: none;">
+		<form action="/Operation/addClient" id="add-popup-form" class="popup-form" style="display: none;">
 			<div class="popupContent">
 				<h1>거래처 추가 
 					<i class="fas fa-times" aria-hidden="true"></i>
@@ -233,7 +233,7 @@
 			<div class="popupLayer"></div>
 		</form>
 		<!-- 거래처 수정/삭제 -->
-		<form action="/Stock/deleteClient" id="delete-popup-form" class="popup-form" style="display: none;">
+		<form action="/Operation/deleteClient" id="delete-popup-form" class="popup-form" style="display: none;">
 			<div class="popupContent">
 				<h1>거래처 수정/삭제 
 					<i class="fas fa-times" aria-hidden="true"></i>
@@ -250,9 +250,9 @@
 			<div class="popupLayer"></div>
 		</form>
 		<!-- 거래처 수정 -->
-		<form action="/Stock/modifyClient" id="modify-popup-form" class="popup-form" style="display: none;">
+		<form action="/Operation/modifyClient" id="modify-popup-form" class="popup-form" style="display: none;">
 			<div class="popupContent">
-				<h1>거래처 수정/삭제 
+				<h1>거래처 수정
 					<i class="fas fa-times" aria-hidden="true"></i>
 				</h1>
 				<div class="content-form">
@@ -290,6 +290,6 @@
 		</form>
 	</div>
 	<!-- // wrap -->
-	<script type="text/javascript" src="resources/js/stock/clientManager.js"></script>
+	<script type="text/javascript" src="resources/js/operation/clientManager.js"></script>
 </body>
 </html>

@@ -274,7 +274,7 @@ function modifyForm() {
 	var ccode = $("input[name=del_ccode").val();
 	
 	$.ajax({
-		url: "/Stock/showClient",
+		url: "/Operation/showClient",
 		data: {ccode, ccode},
 		success: function(data){
 			$("input[name=modify_ccode").val(data.ccode);
