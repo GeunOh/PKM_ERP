@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -47,6 +48,7 @@ import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 
+@SessionAttributes("loginUser")
 @Controller
 public class HumanController {
 	
@@ -595,7 +597,7 @@ public class HumanController {
 							 @RequestParam("selectVal") String selectVal, @RequestParam("selectDept") String selectDept,
 							 @RequestParam("selectRank") String selectRank, @RequestParam("eno") String eno, 
 							 @RequestParam("name") String name, @RequestParam("selectDate") String selectDate,
-							 @RequestParam(value="date", required = false) String date) {
+							 @RequestParam(value="date", required = false) String date) throws ParseException {
 		int currentPage = 1;
 		if(page != null) currentPage = page;
 		
@@ -621,11 +623,15 @@ public class HumanController {
 		hs.put("eno",eno);
 		hs.put("name",name);
 		hs.put("date",date);
-		int month = Integer.parseInt(date.substring(5));
+		
+		SimpleDateFormat sf = new SimpleDateFormat("YYYY-MM-dd");
+		String currentDate = sf.format(new java.util.Date());
+		int month = date==null?Integer.parseInt(currentDate.substring(5,7)):Integer.parseInt(date.substring(5));
 		int listCount = hService.SearchWorkCount(hs);
 		PageInfo pi = Pagenation.getWorkPageInfo(currentPage, listCount);
 		ArrayList<WorkInOut> wlist = hService.SearchWorkList(pi, hs);    //회원 출근기록
 		ArrayList<WorkInOut> mlist = hService.SearchWorkEnoList(pi, hs); //회원 이름
+		PeopleCount mCount = hService.WorkPeopleCount();
 		
 		model.addAttribute("pi", pi)
 	         .addAttribute("wlist", wlist)
@@ -633,6 +639,7 @@ public class HumanController {
 	         .addAttribute("month", month)
 	         .addAttribute("selectVal", selectVal)
 	         .addAttribute("selectDate", selectDate)
+	         .addAttribute("mCount", mCount)
 	         .addAttribute("hs", hs);
 		
 		return "workInOutManager";
@@ -957,5 +964,36 @@ public class HumanController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//마이페이지 정보수정
+	@RequestMapping("myInfoModify")
+	public String myInfoModify(@RequestParam("modify-email") String email1, @RequestParam(value="modify-email2", required=false) String email2,
+							   @RequestParam("modify-email3") String email3, @RequestParam("eno") String eno,
+							   @RequestParam("phone") String phone1, @RequestParam("phone2") String phone2,
+							   @RequestParam("phone3") String phone3, @RequestParam("gender") String gender,
+							   @RequestParam("address1") String address1, @RequestParam("address2") String address2,
+							   @RequestParam("modify-date") Date date, RedirectAttributes ra) {
+		System.out.println("email2 ==="  + email2);
+		String email, phone, address;
+		if(email3.equals("input-text")||email3.equals("all")) email = email1 + "@" + email2;
+		else email = email1 + "@" + email3;
+		
+		phone = phone1 + "-" + phone2 + "-" + phone3;
+		address = address1 + "/" + address2;
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("eno", eno);
+		hs.put("email", email);
+		hs.put("phone", phone);
+		hs.put("address", address);
+		hs.put("gender", gender); 
+		hs.put("birthday", date);
+		
+		hService.myInfoModify(hs);
+		
+		Human loginUser = hService.myInfoLoginUser(eno);
+		ra.addFlashAttribute("loginUser", loginUser);
+		return "redirect:/Human/myInfo";
 	}
 }

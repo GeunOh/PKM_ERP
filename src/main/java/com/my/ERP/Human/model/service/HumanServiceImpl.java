@@ -350,6 +350,16 @@ public class HumanServiceImpl implements HumanService {
 		return hDAO.WeekWorkTime(sqlSession, hs);
 	}
 
+	@Override
+	public int myInfoModify(HashMap<String, Object> hs) {
+		return hDAO.myInfoModify(sqlSession, hs);
+	}
+
+	@Override
+	public Human myInfoLoginUser(String eno) {
+		return hDAO.myInfoLoginUser(sqlSession, eno);
+	}
+
 	
 	
 }

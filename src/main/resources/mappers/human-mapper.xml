@@ -526,4 +526,14 @@
 		PARTITION BY (b.eno) ON a.hirdate = b.hirdate
 		where b.eno = #{eno}
 	</select>
+	
+	<update id="myInfoModify">
+		UPDATE TB_USER SET EBIRTHDAY = #{birthday}, EADDRESS = #{address}, EEMAIL = #{email},
+		                   EPHONE = #{phone} 
+		WHERE ENO = #{eno}
+	</update>
+	
+	<select id="myInfoLoginUser" resultMap="humanResult">
+		SELECT * FROM SOLOUSER WHERE ENO = #{eno} AND OUTYN = 'N'
+	</select>
 </mapper>

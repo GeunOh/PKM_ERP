@@ -134,5 +134,9 @@ public interface HumanService {
 
 	ArrayList<WorkInOut> WeekWorkTime(HashMap<String, String> hs);
 
+	int myInfoModify(HashMap<String, Object> hs);
+
+	Human myInfoLoginUser(String eno);
+
 
 }

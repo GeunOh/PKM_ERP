@@ -17,13 +17,13 @@ $(document).ready(function() {
 })
 // 버튼들 클릭 이벤트
 $("#vacationUseBox").on("click", function() {
-	$('.popup-form').fadeIn();
+	$('#vacation-add').fadeIn();
 })
 $('h2 .fa-times').on('click',function(){
-	$('.popup-form').fadeOut();
+	$('#vacation-add').fadeOut();
 })
 $('.add-btn-form button:first-child').on('click',function(){
-	$('.popup-form').fadeOut();
+	$('#vacation-add').fadeOut();
 })
 
 // 셀렉트박스 선택시
@@ -41,6 +41,15 @@ $(".link-select").on("click", function() {
 	$(this).parents('.selectBox').find('input').val(dv);
 	
 	$(this).parents('ul').siblings('.fa-angle-down').removeClass('rotate-angle');
+	
+	if($('#modify-email3').attr('data-value') == 'input-text'){
+		$('#modify-email2').removeAttr('readonly', false);
+		$('#modify-email2').css('cursor', 'pointer');
+	}else{
+		$('#modify-email2').val('');
+		$('#modify-email2').attr('readonly', true);
+		$('#modify-email2').css('cursor', 'auto');
+	}
 })
 // 휴가 사용 일수 계산
 $("input[name='endDate']").on("change", function(){
@@ -105,15 +114,14 @@ function dataChk() {
 		return false;
 	}
 	
-	console.log(vType);
 	// 구분이 연차가 아니면 실질 데이터를 0으로 변경하여 실 연차소모 X
 	if(vType!="연차"){
 		$("input[name='useDay']").val("0");
 	}
 	
 	
-	$('.popup-form').submit();
-	$(".popup-form").fadeOut();
+	$('#vacation-add').submit();
+	$("#vacation-add").fadeOut();
 	
 }
 
@@ -281,8 +289,7 @@ function workWeekTime(){
 function worktimeChart(data){
 	var cate = [workChangeDate(data[0].date),workChangeDate(data[1].date),workChangeDate(data[2].date),workChangeDate(data[3].date),workChangeDate(data[4].date)];
 	var worktime = [changeTimeChart(data[0].worktime),changeTimeChart(data[1].worktime),changeTimeChart(data[2].worktime),changeTimeChart(data[3].worktime),changeTimeChart(data[4].worktime)]
-	
-	console.log(changeTimeChart(data[1].worktime))
+	console.log(changeTimeChart(data[3].worktime))
 	var chart = tui.chart;
 	var container = document.getElementById('chart-area');
 	var data = {
@@ -355,47 +362,74 @@ function worktimeChart(data){
 
 	chart.columnChart(container, data, options);
 }
-	//툴팁 시간계산
-	var chartValueChangeTooltip = function(value) {
-		console.log(value)
-		
-		var diff_hour   = Math.floor(value / (60 * 60));
-		var diff_minute = Math.floor((value %3600) / 60);
-		console.log(diff_hour)
-		console.log(diff_minute)
-		return  diff_hour+"시간"+  ((diff_minute < 10) ? "0" + diff_minute+"분" : diff_minute+"분");
+//툴팁 시간계산
+var chartValueChangeTooltip = function(value) {
 	
-	}
-	// 시간->초로 변환
-	var changeSecond = function(value) {
-		var hms = value;   // your input string
-		var a = hms.split(':'); // split it at the colons
+	var diff_hour   = Math.floor(value / (60 * 60));
+	var diff_minute = Math.floor((value %3600) / 60);
+	return  diff_hour+"시간"+  ((diff_minute < 10) ? "0" + diff_minute+"분" : diff_minute+"분");
 
-		// minutes are worth 60 seconds. Hours are worth 60 minutes.
-		return (a[0]) * 60 * 60 + (a[1]) * 60;
-	}
+}
+// 시간->초로 변환
+var changeSecond = function(value) {
+	var hms = value;   // your input string
+	var a = hms.split(':'); // split it at the colons
+
+	// minutes are worth 60 seconds. Hours are worth 60 minutes.
+	return (a[0]) * 60 * 60 + (a[1]) * 60;
+}
+
+// 시간을 소수점으로 변환
+var changeTimeChart = function(value){
+	var arr = value.split(':');
+	var hour = arr[0];
+	var minute = arr[1]==0 ? "0" : ((arr[1]/ 60)+"").substr(2);
+	return hour + "." + minute;
+}
+//소수점 시간으로 변환
+var changeHour = function(value) {
+	var arr;
+	var hour;
+	var min;
 	
-	// 시간을 소수점으로 변환
-	var changeTimeChart = function(value){
-		var arr = value.split(':');
-		var hour = arr[0];
-		var minute = arr[1]==0 ? "0" : ((arr[1]/ 60)+"").substr(2);
-		return hour + "." + minute;
+	if(value==0){
+		return "0:0";
+	}else if(!value.includes('.')){
+		hour = value <= 9 ? "0" +value : value;
+		return hour + ":" + 0;
+    }else{
+		arr = value.split('.');
+		hour = arr[0] <= 9 ? "0" +arr[0] : arr[0];
+		min = arr[1] * 60 + " ";
+		console.log("0처리 : " + min.substr(0,2) == ""? "0" : min.substr(0,2));
+		return hour + ":" + (min.substr(0,2) == ""? "0" : min.substr(0,2));
 	}
-	//소수점 시간으로 변환
-	var changeHour = function(value) {
-		if(value==0){
-			return "0:0";
-		}else{
-			var arr = value.split('.');
-			var hour = arr[0] <= 9 ? "0" +arr[0] : arr[0];
-			var min = arr[1] * 60 + " ";
-			return hour + ":" + (min.substr(0,2) == ""? "0" : min.substr(0,2));
-		}
-	}
-	//툴팁에 들어갈 날짜
-	var workChangeDate = function(value){
-		var dt = new Date(value);
-		
-		return ((dt.getMonth() < 10) ? "0" + (dt.getMonth()+1) : (dt.getMonth()+1))  + "." + dt.getDate() + "("+day(dt)+")";
-	}
+}
+//툴팁에 들어갈 날짜
+var workChangeDate = function(value){
+	var dt = new Date(value);
+	
+	return ((dt.getMonth() < 10) ? "0" + (dt.getMonth()+1) : (dt.getMonth()+1))  + "." + dt.getDate() + "("+day(dt)+")";
+}
+
+//내 정보변경 팝업창
+$('#myInfoModify').on('click',function(){
+	$('#Modify-popup-form').fadeIn();
+})
+// 정보 수정
+$('#modify_btn').on('click',function(){
+	$('#Modify-popup-form').submit();
+	$('#Modify-popup-form').fadeOut();
+})
+//내 정보변경 팝업창 닫기
+$('#Modify-popup-form .fa-times').on('click',function(){
+	$('#Modify-popup-form').fadeOut();
+})
+$('#Modify-popup-form #cancle_btn').on('click',function(){
+	$('#Modify-popup-form').fadeOut();
+})
+//select box
+$('.selectBox ul').mouseleave(function(){
+	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
+	$(this).hide();
+})
