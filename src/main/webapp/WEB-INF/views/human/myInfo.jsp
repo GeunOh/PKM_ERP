@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../common/headTag.jsp"></jsp:include>
+<jsp:include page="../common/headTag_user.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/human/myInfo.css">
 <link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
 <script src="resources/js/plugin/selectbox.min.js"></script>
@@ -20,7 +20,7 @@
 </head>
 <body>
 
-	<jsp:include page="../common/template.jsp"></jsp:include>
+	<jsp:include page="../common/template_user.jsp"></jsp:include>
 	
 	<!-- wrap -->
 	<div id="wrap">
