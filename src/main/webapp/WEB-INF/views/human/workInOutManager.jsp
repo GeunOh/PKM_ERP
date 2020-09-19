@@ -80,8 +80,8 @@
 						</div>
 						<input type="month" id="date" name="date" class="date" disabled>
 					</div>
-					<button id="searchBtn">검색</button>
-					<button id="resetBtn">초기화</button>
+					<button type="submit" id="searchBtn">검색</button>
+					<button type="button" id="resetBtn">초기화</button>
 				</form>
 			</div>
 		</div>

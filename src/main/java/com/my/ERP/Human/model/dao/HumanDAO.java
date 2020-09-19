@@ -301,9 +301,15 @@ public class HumanDAO {
 	}
 
 	public ArrayList<WorkInOut> WeekWorkTime(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
-		System.out.println(hs.get("startDay"));
-		System.out.println(hs.get("endDay"));
 		return (ArrayList)sqlSession.selectList("humanMapper.WeekWorkTime", hs);
+	}
+
+	public int myInfoModify(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.update("humanMapper.myInfoModify", hs);
+	}
+
+	public Human myInfoLoginUser(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("humanMapper.myInfoLoginUser", eno);
 	}
 
 

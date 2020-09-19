@@ -384,7 +384,7 @@
 	</form>
 	
 	<!-- 조회 팝업창 -->
-	<form method="post" action="/Human/HumanManagerModify" class="popup-form" id="popup-Modify-form" enctype="Multipart/form-data" style="display: none;" onsubmit="return Modifydelete();">
+	<form method="post" action="/Human/HumanManagerModify" id="popup-Modify-form" class="popup-form"  enctype="Multipart/form-data" style="display: none;" onsubmit="return Modifydelete();">
 		<div class="popupContent">
 			<h1>상세 조회<i class="fas fa-times"></i></h1>
 			<div class="filebox bs3-primary preview-image add-image">

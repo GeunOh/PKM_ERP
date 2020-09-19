@@ -76,12 +76,13 @@ $('.selectBox').on('click',function(){
 
 function FormChk(){
 	
-	var bool = true;
-	
 	//달력 선택 안하고 검색 시 alert
 	if($('#selectDate').val() == 'dateSelect' && $('#date').val() == ''){
 		alert('날짜를 선택해주세요.');
 		return false;
 	} 
-	
 }
+
+$('#resetBtn').on('click',function(){
+	location.href = '/Human/workInOutManager';
+})
