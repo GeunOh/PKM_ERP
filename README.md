@@ -9,11 +9,8 @@
  
  
  ### API 리스트
-  - language : JAVA1.8
-  - framework : Spring, Spring Security
-  - DB : OracleDB
-  - UI : JSP, CSS, JS, JQUERY
-  - etc : Mybatis
+  - 날씨 : OpenWeathermap
+  - 차트 : toast ui
  ### 개발환경
   - language : JAVA1.8
   - framework : Spring, Spring Security
