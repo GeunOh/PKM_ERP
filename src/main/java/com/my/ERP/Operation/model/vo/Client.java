@@ -1,4 +1,4 @@
-package com.my.ERP.Stock.model.vo;
+package com.my.ERP.Operation.model.vo;
 
 public class Client {
 	private String ccode;

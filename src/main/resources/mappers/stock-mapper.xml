@@ -74,34 +74,4 @@
 			<if test="selectProduct != 'all'">AND PCODE = #{selectProduct}</if>
 		</where>
 	</select>
-	<!-- 거래처 검색 -->
-	<select id="searchClient" resultMap="clientResult">
-		SELECT * FROM TB_CLIENT
-		<where>
-			<if test="cname != ''">AND CNAME LIKE '%'|| #{cname} ||'%' </if>
-			<if test="ccode != ''">AND CCODE LIKE '%'|| #{ccode} ||'%'</if>
-			<if test="cmanager != ''">AND CMANAGER LIKE '%'|| #{cmanager} ||'%'</if>
-			<if test="cphone != ''">AND CPHONE LIKE '%'|| #{cphone} ||'%'</if>
-			<if test="c_comment != ''">AND C_COMMENT LIKE '%'|| #{c_comment} ||'%'</if>
-		</where>
-	</select>
-	<!-- 거래처 목록 행 개수 -->
-	<select id="clientListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_CLIENT
-	</select>
-	<!-- 검색 거래처 목록 행 개수 -->
-	<select id="searchClientListCount" resultType="_int">
-		SELECT COUNT(*) FROM TB_CLIENT
-		<where>
-			<if test="cname != ''">AND CNAME LIKE '%'|| #{cname} ||'%' </if>
-			<if test="ccode != ''">AND CCODE LIKE '%'|| #{ccode} ||'%'</if>
-			<if test="cmanager != ''">AND CMANAGER LIKE '%'|| #{cmanager} ||'%'</if>
-			<if test="cphone != ''">AND CPHONE LIKE '%'|| #{cphone} ||'%'</if>
-			<if test="c_comment != ''">AND C_COMMENT LIKE '%'|| #{c_comment} ||'%'</if>
-		</where>
-	</select>
-	<!-- 거래처 추가 -->
-	<insert id="addClient">
-		INSERT INTO TB_CLIENT VALUES(#{ccode}, #{cname}, #{cmanager}, #{cphone}, #{c_comment})
-	</insert>
 </mapper>

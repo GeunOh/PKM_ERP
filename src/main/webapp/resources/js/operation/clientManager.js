@@ -159,22 +159,58 @@ $("input[name=add_ccode]").on("keyup", function(){
 		data: {ccode, ccode},
 		success: function(data) {
 			if(data == "exist"){
-				$("#ccodeChk").text("사용 불가능").css('color','red');
-				$("input[name=ccodeChk]").attr('value',0);
+				$("#addCcodeChk").text("사용 불가능").css('color','red');
+				$("input[name=addCcodeChk]").attr('value',0);
 			} else {
-				$("#ccodeChk").text("사용 가능").css('color','green');
-				$("input[name=ccodeChk]").attr('value',1);
+				$("#addCcodeChk").text("사용 가능").css('color','green');
+				$("input[name=addCcodeChk]").attr('value',1);
 			}
 		}
 	})
 })
-
-function dataChk() {
-	var $ccode = $("input[name=add_ccode]");
-	var $cname = $("input[name=add_cname]");
-	var $cmanager = $("input[name=add_cmanager]");
-	var $cphone = $("input[name=add_cphone]");
+// 거래처  수정시 ccode 중복 확인
+$("input[name=modify_ccode]").on("keyup", function(){
+	var ccode = $(this).val();
+	var beforeCcode = $("input[name=beforeCcode]").val()
+	if(ccode == beforeCcode){
+		$("#modifyCcodeChk").text("");
+		$("input[name=modifyCcodeChk]").attr('value','allow');
+	}
+	// 수정할 코드와 이전 코드가 다르면 중복확인
+	if(ccode != beforeCcode){
+		$.ajax({
+			url: "/Stock/ccodeChk",
+			data: {ccode, ccode},
+			success: function(data) {
+				if(data == "exist"){
+					$("#modifyCcodeChk").text("사용 불가능").css('color','red');
+					$("input[name=modifyCcodeChk]").attr('value',"refuse");
+				} else {
+					$("#modifyCcodeChk").text("사용 가능").css('color','green');
+					$("input[name=modifyCcodeChk]").attr('value',"allow");
+				}
+			}
+		})
+	}
+})
+// 입력값 체크
+function dataChk(value) {
+	var $ccode;
+	var $cname;
+	var $cmanager;
+	var $cphone;
 	
+	if(value=="add") {
+		$ccode = $("input[name=add_ccode]");
+		$cname = $("input[name=add_cname]");
+		$cmanager = $("input[name=add_cmanager]");
+		$cphone = $("input[name=add_cphone]");
+	} else if(value == "modify") {
+		$ccode = $("input[name=modify_ccode]");
+		$cname = $("input[name=modify_cname]");
+		$cmanager = $("input[name=modify_cmanager]");
+		$cphone = $("input[name=modify_cphone]");
+	}
 	if($ccode.val() == ''){
 		alert("사업자등록번호를 입력해주세요.");
 		$ccode.focus();
@@ -197,12 +233,68 @@ function dataChk() {
 	}
 	return true;
 }
-
+// 거래처 추가
 function addClient() {
-	if(dataChk()){
+	var chk = $("input[name=addCcodeChk]").val();
+	if(dataChk("add")){
+		if(chk==0) {
+			alert("중복된 사용자등록번호입니다.");
+			return;
+		}
 		if(confirm("거래처를 추가하시겠습니까?")){
 			$("#add-popup-form").submit();
 	 		$(".popup-form").fadeOut();
 		}
 	}
 }
+// 거래처 수정/삭제 선택
+$("#clientTable tbody tr").on("dblclick", function() {
+	$("#delete-popup-form").fadeIn();
+	var cname = $(this).children("td").eq(0).text();
+	var ccode = $(this).children("td").eq(1).text();
+	$("input[name=del_ccode").attr("value", ccode);
+	$("input[name=beforeCcode").attr("value", ccode);
+	
+	$("#selectInfo").text("["+ccode+"] " +cname + " " );
+})
+$("#clientTable tbody tr").on("mouseenter", function() {
+	$("#clientTable tbody tr").css('background-color','#fff');
+	$(this).css('background-color','#f6f6f6').css('cursor','pointer');
+})
+// 거래처 삭제
+function deleteClient() {
+	if(confirm("정말로 삭제하시겠습니까?")){
+		$("#delete-popup-form").submit();
+	}
+}
+//거래처 수정 화면
+function modifyForm() {
+	$("#delete-popup-form").hide();
+	$("#modify-popup-form").fadeIn();
+	var ccode = $("input[name=del_ccode").val();
+	
+	$.ajax({
+		url: "/Operation/showClient",
+		data: {ccode, ccode},
+		success: function(data){
+			$("input[name=modify_ccode").val(data.ccode);
+			$("input[name=modify_cname").val(data.cname);
+			$("input[name=modify_cmanager").val(data.cmanager);
+			$("input[name=modify_cphone").val(data.cphone);
+			$("input[name=modify_c_comment").val(data.c_comment);
+		}
+	})
+}
+function modifyClient(){
+	var chk = $("input[name=modifyCcodeChk]").val();
+	if(dataChk("modify")){
+		if(chk=="refuse") {
+			alert("중복된 사용자등록번호입니다.");
+			return;
+		}
+		if(confirm("거래처를 수정하시겠습니까?")){
+			$("#modify-popup-form").submit();
+		}
+	}
+}
+

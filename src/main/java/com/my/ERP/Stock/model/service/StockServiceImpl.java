@@ -7,8 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.dao.StockDAO;
-import com.my.ERP.Stock.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
 import com.my.ERP.common.vo.PageInfo;
 
@@ -51,11 +51,6 @@ public class StockServiceImpl implements StockService {
 	public int modifyProduct(HashMap<String, Object> hs) {
 		return sDAO.modifyProduct(sqlSession, hs);
 	}
-	// 거래처 목록
-	@Override
-	public ArrayList<Client> clientList(PageInfo pi) {
-		return sDAO.clientList(sqlSession, pi);
-	}
 	// 거래처 존재 확인
 	@Override
 	public Client showClient(String ccode) {
@@ -71,30 +66,10 @@ public class StockServiceImpl implements StockService {
 	public ArrayList<Product> searchProduct(HashMap<String, String> hs) {
 		return sDAO.searchProduct(sqlSession, hs);
 	}
-	// 거래처 검색
-	@Override
-	public ArrayList<Client> searchClient(HashMap<String, String> hs, PageInfo pi) {
-		return sDAO.searchClient(sqlSession, hs, pi);
-	}
-	// 거래처 페이징을 위한 행 개수
-	@Override
-	public int clientListCount() {
-		return sDAO.clientListCount(sqlSession);
-	}
 	// 거래처 목록
 	@Override
 	public ArrayList<Client> clientList() {
 		return sDAO.clientList(sqlSession);
-	}
-	// 거래처 검색 시 페이징을 위한 행 개수
-	@Override
-	public int searchClientListCount(HashMap<String, String> hs) {
-		return sDAO.searchClientListCount(sqlSession, hs);
-	}
-	// 거래처 추가
-	@Override
-	public int addClient(Client client) {
-		return sDAO.addClient(sqlSession, client);
 	}
 	
 }
