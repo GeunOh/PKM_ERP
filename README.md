@@ -9,7 +9,8 @@
  
  ## Login Page
  
- ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/59466401/93671083-16788380-fadb-11ea-96e9-23234c266bbb.gif)
+![ezgif com-crop](https://user-images.githubusercontent.com/59466401/93671177-b8986b80-fadb-11ea-917c-d87ac04066a7.gif)
+
  
  ### API 리스트
   - 날씨 : OpenWeathermap
