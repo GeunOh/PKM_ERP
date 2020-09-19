@@ -1,11 +1,13 @@
 package com.my.ERP.Stock.controller;
 
+import java.io.Console;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -290,4 +292,31 @@ public class StockController {
 		
 		return "redirect:/Stock/clientManager";
 	}
+	// 거래처 수정 내용
+	@RequestMapping("showClient")
+	@ResponseBody
+	public Client showClient(@RequestParam("ccode") String ccode) {
+		return sService.showClient(ccode);
+	}
+	// 거래처 수정
+	@RequestMapping("modifyClient")
+	public String modifyClient(@RequestParam("modify_ccode") String ccode,
+							   @RequestParam("modify_cname") String cname,
+							   @RequestParam("modify_cmanager") String cmanager,
+							   @RequestParam("modify_cphone") String cphone,
+							   @RequestParam("modify_c_comment") String c_comment,
+							   @RequestParam("beforeCcode") String beforeCcode) {
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("ccode", ccode);
+		hs.put("cname", cname);
+		hs.put("cmanager", cmanager);
+		hs.put("cphone", cphone);
+		hs.put("c_comment", c_comment);
+		hs.put("beforeCcode", beforeCcode);
+		
+		int result = sService.modifyClient(hs);
+		
+		return "redirect:/Stock/clientManager";
+	}
+	
 }

@@ -58,6 +58,7 @@
 			<div id="btnForm">
 				<label id="addBtn">추가</label>
 				<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
+				<span>변경하실 행을 더블클릭 시 수정 또는 삭제하실수 있습니다</span>
 			</div>
 			<!-- 거래처 테이블 -->
 			<table id="clientTable" class="tables">
@@ -204,8 +205,8 @@
 					<div class="add-textform">
 						<span class="add-title add-title2">사업자등록번호</span>
 						<input type="text" class="txtBox add-text" name="add_ccode">
-						<label id="ccodeChk"></label>
-						<input type="hidden" name="ccodeChk" value="0">
+						<label id="addCcodeChk"></label>
+						<input type="hidden" name="addCcodeChk" value="0">
 					</div>
 					<div class="add-textform">
 						<span class="add-title add-title2">거래처명</span>
@@ -232,7 +233,7 @@
 			<div class="popupLayer"></div>
 		</form>
 		<!-- 거래처 수정/삭제 -->
-		<form action="/Stock/deleteClient" id="modify-popup-form" class="popup-form" style="display: none;">
+		<form action="/Stock/deleteClient" id="delete-popup-form" class="popup-form" style="display: none;">
 			<div class="popupContent">
 				<h1>거래처 수정/삭제 
 					<i class="fas fa-times" aria-hidden="true"></i>
@@ -241,10 +242,49 @@
 					<span id="selectInfo"></span>이(가) 선택되었습니다.
 				</p>
 				<div class="btn-form">
-					<button type="button" onclick=""><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					<button type="button" onclick="modifyForm()"><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
 					<button type="button" onclick="deleteClient();"><i class="fas fa-times" aria-hidden="true"></i> 삭제</button>
 				</div>
 				<input type="hidden" name="del_ccode">
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- 거래처 수정 -->
+		<form action="/Stock/modifyClient" id="modify-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>거래처 수정/삭제 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<div class="content-form">
+					<span>거래처 정보</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">사업자등록번호</span>
+						<input type="text" class="txtBox add-text" name="modify_ccode">
+						<label id="modifyCcodeChk"></label>
+						<input type="hidden" name="modifyCcodeChk" value="allow">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">거래처명</span>
+						<input type="text" class="txtBox add-text" name="modify_cname">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">담당자</span>
+						<input type="text" class="txtBox add-text" name="modify_cmanager">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">연락처</span>
+						<input type="text" class="txtBox add-text" name="modify_cphone">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비고</span>
+						<input type="text" class="txtBox add-text" name="modify_c_comment">
+					</div>
+					<div class="add-textform btn-form">
+						<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
+						<button type="button" onclick="modifyClient()"><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					</div>
+					<input type="hidden" name="beforeCcode">
+				</div>
 			</div>
 			<div class="popupLayer"></div>
 		</form>

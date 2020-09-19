@@ -41,6 +41,8 @@ public interface StockService {
 
 	int deleteClient(String ccode);
 
+	int modifyClient(HashMap<String, String> hs);
+
 	
 
 

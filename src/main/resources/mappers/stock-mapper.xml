@@ -108,4 +108,16 @@
 	<delete id="deleteClient">
 		DELETE FROM TB_CLIENT WHERE CCODE = #{ccode}
 	</delete>
+	<!-- 거래처 수정 -->
+	<update id="modifyClient">
+		UPDATE TB_CLIENT SET
+			CCODE = #{ccode},
+			CNAME = #{cname},
+			CMANAGER = #{cmanager},
+			CPHONE = #{cphone},
+			C_COMMENT = #{c_comment}
+			<where>
+				CCODE = #{beforeCcode}
+			</where>
+	</update>
 </mapper>

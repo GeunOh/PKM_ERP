@@ -101,5 +101,10 @@ public class StockServiceImpl implements StockService {
 	public int deleteClient(String ccode) {
 		return sDAO.deleteClient(sqlSession, ccode);
 	}
+	// 거래처 수정
+	@Override
+	public int modifyClient(HashMap<String, String> hs) {
+		return sDAO.modifyClient(sqlSession, hs);
+	}
 	
 }
