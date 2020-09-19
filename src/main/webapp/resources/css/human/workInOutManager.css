@@ -141,6 +141,8 @@ ul, li{list-style: none;}
     right: 15px;
     top: 15px;
     cursor: pointer;
+    background: #626977;
+    color: #fff;
 }
 .txtBox {
 	font-family: NotoSans-Regular;
