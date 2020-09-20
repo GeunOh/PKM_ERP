@@ -111,9 +111,9 @@
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2} </if>
 			<if test="dept != null and dept != ''">AND DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND RCODE = #{rank}</if>
-			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
-			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
-			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+			<if test="email != null and email != ''">AND EEMAIL LIKE '%'|| #{ename} ||'%'</if>
+			<if test="eno != null and eno != ''">AND  ENO LIKE '%'|| #{eno} ||'%'</if>
+			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 	</select>
 	
@@ -127,9 +127,9 @@
 			<if test="so.dateSelect != null ">AND INDATE BETWEEN #{date} AND #{date2} </if>
 			<if test="dept != null and dept != ''">AND DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND RCODE = #{rank}</if>
-			<if test="email != null and email != ''">AND EEMAIL = #{email}</if>
-			<if test="eno != null and eno != ''">AND  ENO = #{eno}</if>
-			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+			<if test="email != null and email != ''">AND EEMAIL LIKE '%'|| #{ename} ||'%'</if>
+			<if test="eno != null and eno != ''">AND  ENO LIKE '%'|| #{eno} ||'%'</if>
+			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 	</select>
 	
@@ -142,8 +142,8 @@
 	<select id="searchPosition" resultMap="rankResult">
 		SELECT * FROM TB_RANK
 		<where>
-			<if test="rcode != null and rcode != ''">AND rcode=#{rcode}</if>
-			<if test="rname != null and rname != ''">AND rname=#{rname}</if>
+			<if test="rcode != null and rcode != ''">AND rcode LIKE '%' || #{rcode} || '%'</if>
+			<if test="rname != null and rname != ''">AND rname LIKE '%' || #{rname} || '%'</if>
 		</where>
 	</select>
 	
@@ -269,7 +269,7 @@
 			<if test="so.dateEnd != null">AND ENDDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>
 			<if test="selectRank != ''">AND RCODE=#{selectRank}</if>
-			<if test="name != ''">AND ENAME=#{name}</if>
+			<if test="name != ''">AND ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 	</select>
 	
@@ -282,12 +282,17 @@
 	<select id="searchVacationListCount" resultType="_int">
 		SELECT COUNT(*) FROM VACATIONLIST
 		<where>
+			<if test="so.all != null"></if>
+			<if test="so.wait != null">AND STATUS = 'N'</if>
+			<if test="so.ok != null">AND STATUS = 'Y'</if>
+			<if test="so.no != null">AND STATUS = 'F'</if>
 			<if test="so.dateAll != null"></if>
-			<if test="so.dateSelect != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateRequest != null">AND REQUESTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateStart != null">AND STARTDATE BETWEEN #{date} AND #{date2}</if>
+			<if test="so.dateEnd != null">AND ENDDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DCODE=#{selectDept}</if>
 			<if test="selectRank != ''">AND RCODE=#{selectRank}</if>
-			<if test="eno != ''">AND ENO=#{eno}</if>
-			<if test="name != ''">AND ENAME=#{name}</if>
+			<if test="name != ''">AND ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 	</select>
 	
@@ -380,8 +385,8 @@
 			<if test="so.dateSelect != null ">AND TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') = #{date}</if>
 			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
-			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
-			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO LIKE '%'|| #{eno} ||'%'</if>
+			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 	</select>
 	
@@ -399,8 +404,8 @@
 			<if test="so.dateSelect != null ">AND TO_CHAR(TO_DATE(HIRDATE), 'YYYY-MM') = #{date}</if>
 			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
-			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
-			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO LIKE '%'|| #{eno} ||'%'</if>
+			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 		ORDER BY W.ENO, W.HIRDATE
 	</select>
@@ -419,8 +424,8 @@
 			<if test="so.dateSelect != null ">AND HIRDATE = #{date}</if>
 			<if test="dept != null and dept != ''">AND D.DCODE = #{dept}</if>
 			<if test="rank != null and rank != ''">AND R.RCODE = #{rank}</if>
-			<if test="eno != null and eno != ''">AND  W.ENO = #{eno}</if>
-			<if test="name != null and name != ''">AND  ENAME = #{name}</if>
+			<if test="eno != null and eno != ''">AND  W.ENO LIKE '%'|| #{eno} ||'%'</if>
+			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
 		ORDER BY W.ENO
 	</select>
@@ -461,8 +466,8 @@
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
-			<if test="eno != ''">AND ENO = #{eno}</if>
-			<if test="name != ''">AND ENAME = #{name}</if>
+			<if test="eno != ''">AND ENO LIKE '%' || #{eno} || '%'</if>
+			<if test="name != ''">AND ENAME LIKE '%' || #{ename} || '%'</if>
 		</where>
 	</select>
 	
@@ -473,8 +478,8 @@
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
-			<if test="eno != ''">AND ENO = #{eno}</if>
-			<if test="name != ''">AND ENAME = #{name}</if>
+			<if test="eno != ''">AND ENO LIKE '%' || #{eno} || '%'</if>
+			<if test="name != ''">AND ENAME LIKE '%' || #{ename} || '%'</if>
 		</where>
 	</select>
 	
