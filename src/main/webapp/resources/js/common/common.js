@@ -1,15 +1,11 @@
 /**
  * 	공통(템플릿) script
  */
-
-
-
 $(function(){
 	// 사이드메뉴 슬라이드 토글 기능
 	$("#mainMenu > li > span").on("click", function() {
 		$(this).siblings("ul").slideToggle();
 	})
-	
 	// 비밀번호 변경 팝업창
 	$("#dropdown-menu li:eq(1)").on("click", function() {
 		$("#changePwdPopUp").fadeIn();
@@ -28,6 +24,7 @@ function showMenu(){
 		menu.style.display = "block";
 	}
 }
+
 // 비밀번호 변경
 function changePwd(){
 	var $now_pwd = $("#now_pwd");
