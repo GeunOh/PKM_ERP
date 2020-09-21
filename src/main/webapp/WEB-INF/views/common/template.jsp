@@ -91,7 +91,7 @@
 		</li>
 		<li>	
 			<span>운영/매출관리</span>
-			<ul class="subMenu">
+			<ul id="operation" class="subMenu">
 				<li>
 					<a href="/Operation/clientManager"><span id="clientManager">거래처 관리</span></a>
 				</li>

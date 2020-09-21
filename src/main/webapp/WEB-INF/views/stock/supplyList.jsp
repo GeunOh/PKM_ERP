@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +78,26 @@
 			</div>
 		</div>
 		<!-- // 검색 영역 -->
+		<!-- 추가 외 버튼 -->
+		<div id="btnForm">
+			<label id="addBtn">추가</label>
+			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
+		</div>
+		<!-- 테이블 -->
+		<table id="supplyListTable">
+			<thead>
+				<tr>
+					<th>비품코드</th>
+					<th>비품이름</th>
+					<th>비품가격</th>
+					<th>수량</th>
+					<th>비고</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		<!-- 테이블 -->
 	</div>
 	<!-- // wrap -->
 	

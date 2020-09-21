@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 
 public interface StockService {
@@ -28,6 +29,8 @@ public interface StockService {
 	ArrayList<Client> addClientList();
 
 	ArrayList<Product> searchProduct(HashMap<String, String> hs);
+
+	ArrayList<Supply> supplyManager();
 
 
 	

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 
 @Repository("sDAO")
@@ -53,6 +54,10 @@ public class StockDAO {
 	// 거래처 목록
 	public ArrayList<Client> clientList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("stockMapper.clientList");
+	}
+	// 비품 재고 관리
+	public ArrayList<Supply> supplyManager(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("stockMapper.supplyManager");
 	}
 	
 	

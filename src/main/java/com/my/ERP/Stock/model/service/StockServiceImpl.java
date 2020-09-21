@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.dao.StockDAO;
 import com.my.ERP.Stock.model.vo.Product;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 
 @Service("sService")
@@ -70,6 +71,11 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public ArrayList<Client> clientList() {
 		return sDAO.clientList(sqlSession);
+	}
+	// 비품 재고 관리
+	@Override
+	public ArrayList<Supply> supplyManager() {
+		return sDAO.supplyManager(sqlSession);
 	}
 	
 }
