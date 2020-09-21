@@ -20,6 +20,14 @@
 		<result column="C_COMMENT" property="c_comment"/>
 	</resultMap>
 	
+	<resultMap type="Supply" id="supplyResult">
+		<id column="SCODE" property="scode"/>
+		<result column="SNAME" property="sname"/>
+		<result column="COST_PRICE" property="cost_price"/>
+		<result column="S_COMMENT" property="s_comment"/>
+		<result column="SCOUNT" property="scount"/>
+	</resultMap>
+	
 	<!-- 제품 목록 -->
 	<select id="productList" resultMap="productResult">
 		SELECT PCODE, PNAME, COST_PRICE, SELLING_PRICE, P_COMMENT, CNAME, CCODE
@@ -73,5 +81,13 @@
 			<if test="selectClient != 'all'">AND CCODE = #{selectClient}</if>
 			<if test="selectProduct != 'all'">AND PCODE = #{selectProduct}</if>
 		</where>
+	</select>
+	<!-- 비품 재고 관리 -->
+	<select id="supplyManager" resultMap="supplyResult">
+		select * from (
+		    select rownum num, S.*
+		    from (select scode, sname, cost_price, s_comment, scount from SUPPLYLIST order by scode asc)S
+		    where <![CDATA[rownum <= 10]]>
+		) <![CDATA[where num > 0]]>
 	</select>
 </mapper>

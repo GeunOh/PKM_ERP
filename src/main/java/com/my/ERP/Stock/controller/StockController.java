@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.service.StockService;
 import com.my.ERP.Stock.model.vo.Product;
+import com.my.ERP.Stock.model.vo.Supply;
 
 @Controller
 public class StockController {
@@ -194,7 +195,10 @@ public class StockController {
 	 *  [ ========== 비 품 재 고 관 리 ========== ]
 	 */
 	@RequestMapping("supplyManager")
-	public String supplyManager() {
+	public String supplyManager(Model model) {
+		
+		ArrayList<Supply> slist = sService.supplyManager();
+		model.addAttribute("slist", slist);
 		
 		return "supplyManager";
 	}

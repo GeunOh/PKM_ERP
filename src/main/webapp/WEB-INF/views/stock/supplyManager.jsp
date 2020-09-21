@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,13 +94,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>ADD-1233</td>
-					<td>Logitech 마우스</td>
-					<td>50,000</td>
-					<td>30</td>
-					<td>유선 마우스</td>
-				</tr>
+				<c:forEach items="${slist }" var="s">
+					<tr>
+						<td>${s.scode }</td>
+						<td>${s.sname }</td>
+						<td>${s.cost_price }</td>
+						<td>${s.scount }</td>
+						<td>${s.s_comment }</td>
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 		<!-- 테이블 -->
