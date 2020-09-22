@@ -74,8 +74,13 @@ public class StockServiceImpl implements StockService {
 	}
 	// 비품 재고 관리
 	@Override
-	public ArrayList<Supply> supplyManager() {
-		return sDAO.supplyManager(sqlSession);
+	public ArrayList<Supply> supplyManager(PageInfo pi) {
+		return sDAO.supplyManager(sqlSession, pi);
+	}
+	// 비품 재고 관리 전체 행 개수
+	@Override
+	public int supplyManagerCount() {
+		return sDAO.supplyManagerCount(sqlSession);
 	}
 	
 }

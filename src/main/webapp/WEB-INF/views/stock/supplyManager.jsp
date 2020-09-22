@@ -20,57 +20,32 @@
 		<div id="Search-back">
 			<div id="Serach-form">
 				<form action="">
+					
 					<div class="search-area">
-						<span class="title">구분</span>
-						<div class="selectBox">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
-							<a href="#none" class="link-selected">전체</a>
-							<ul>
-								<li><a href="#" class="link-select" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select" data-value="in">입고</a></li>
-								<li><a href="#" class="link-select" data-value="out">출고</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+						<span class="title">사원명</span>
+						<input type="text" class="txtBox" name="name">
 					</div>
 					
 					<div class="search-area">
-						<span class="title">거래처명</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
-					
-					<div class="search-area">
-						<span class="title">상품명</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+						<span class="title">사원명</span>
+						<input type="text" class="txtBox" name="name">
 					</div>
 					
 					<br>
 					
 					<div class="search-area downSearch" style="height: 31px;">
-						<span class="title">입/출고일자</span>
+						<span class="title">비품가격</span>
 						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
+							<input type="hidden" id="selectPrice" name="selectPrice" value="priceAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateSelect">선택</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="priceAll">전체</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="priceSelect">선택</a></li>
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
-						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
-						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
+						<input type="number" id="price" name="price" class="txtBox" disabled> <label>~</label>
+						<input type="number" id="price2" name="price2" class="txtBox rightDate" disabled>
 					</div>
 					<button id="searchBtn">검색</button>
 				</form>
@@ -106,6 +81,50 @@
 			</tbody>
 		</table>
 		<!-- 테이블 -->
+		<!-- 페이징 -->
+		<div id="pagingForm">
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:if test="${p ne 0}">
+						<c:url var="pagination" value="${ loc }">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a class="pg_page" href="${ pagination }">${ p }</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>	
+		</div>
 	</div>
 	<!-- // wrap -->
 	

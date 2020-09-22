@@ -30,7 +30,9 @@ public interface StockService {
 
 	ArrayList<Product> searchProduct(HashMap<String, String> hs);
 
-	ArrayList<Supply> supplyManager();
+	ArrayList<Supply> supplyManager(PageInfo pi);
+
+	int supplyManagerCount();
 
 
 	

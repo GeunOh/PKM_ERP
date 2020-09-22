@@ -56,8 +56,14 @@ public class StockDAO {
 		return (ArrayList)sqlSession.selectList("stockMapper.clientList");
 	}
 	// 비품 재고 관리
-	public ArrayList<Supply> supplyManager(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("stockMapper.supplyManager");
+	public ArrayList<Supply> supplyManager(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("stockMapper.supplyManager", null, rowbounds);
+	}
+	// 비품 재고관리 전체 행 수
+	public int supplyManagerCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.supplyManagerCount");
 	}
 	
 	

@@ -84,10 +84,11 @@
 	</select>
 	<!-- 비품 재고 관리 -->
 	<select id="supplyManager" resultMap="supplyResult">
-		select * from (
-		    select rownum num, S.*
-		    from (select scode, sname, cost_price, s_comment, scount from SUPPLYLIST order by scode asc)S
-		    where <![CDATA[rownum <= 10]]>
-		) <![CDATA[where num > 0]]>
+		SELECT * FROM SUPPLYLIST
 	</select>
+	<!-- 비품 재고 관리 행 -->
+	<select id="supplyManagerCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLYLIST
+	</select>
+	
 </mapper>
