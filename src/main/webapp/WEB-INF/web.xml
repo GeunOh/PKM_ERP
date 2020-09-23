@@ -104,5 +104,21 @@
 		<servlet-name>OperationServlet</servlet-name>
 		<url-pattern>/Operation/*</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 마이페이지  -->
+	<servlet>
+		<servlet-name>MyInfoServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/MyInfo-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+		
+	<servlet-mapping>
+		<servlet-name>MyInfoServlet</servlet-name>
+		<url-pattern>/MyInfo/*</url-pattern>
+	</servlet-mapping>
 
 </web-app>
