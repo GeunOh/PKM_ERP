@@ -104,7 +104,7 @@ ul, li{list-style: none;}
     box-sizing: border-box;
     cursor: pointer;
 }
-.date + label{ margin: 0 10px; font-size: 20px;}
+#price + label{ margin: 0 10px; font-size: 20px;}
 
 #searchBtn { 
 	font-family: NotoSans-Regular;
@@ -185,4 +185,34 @@ ul, li{list-style: none;}
 }
 #supplyManagerTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
+}
+/* 페이징버튼 */
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+.pg_current {
+    display: inline-block;
+    background: #282c34;
+    border: 1px solid #282c34;
+    color: #fff;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.pg_page {
+	display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #959595;
+    font-size: 1.083em;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.pg_page:hover {
+	background-color: #dadada;
 }

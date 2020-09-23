@@ -3,6 +3,8 @@ package com.my.ERP.Stock.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,8 @@ import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.service.StockService;
 import com.my.ERP.Stock.model.vo.Product;
 import com.my.ERP.Stock.model.vo.Supply;
+import com.my.ERP.common.Pagenation;
+import com.my.ERP.common.vo.PageInfo;
 
 @Controller
 public class StockController {
@@ -24,7 +28,6 @@ public class StockController {
 	/**
 	 *  [ ========== 공 통 ========== ]
 	 */
-	
 	
 	
 	/**
@@ -195,15 +198,47 @@ public class StockController {
 	 *  [ ========== 비 품 재 고 관 리 ========== ]
 	 */
 	@RequestMapping("supplyManager")
-	public String supplyManager(Model model) {
+	public String supplyManager(@RequestParam(name="page", required = false) Integer page, Model model) {
 		
-		ArrayList<Supply> slist = sService.supplyManager();
-		model.addAttribute("slist", slist);
+		int listCount = sService.supplyManagerCount();
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Supply> slist = sService.supplyManager(pi);
+
+		model.addAttribute("slist", slist)
+			 .addAttribute("pi", pi);
 		
 		return "supplyManager";
 	}
 	
-	
+	@RequestMapping("searchSupply")
+	public String searchSupply(String scode, String sname, @RequestParam(name="page", required = false) Integer page,
+							   @RequestParam(value="price", required = false) String price,
+							   @RequestParam(value="price2", required = false) String price2,
+							   Model model) {
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("scode", scode);
+		hs.put("sname", sname);
+		hs.put("price", price);
+		hs.put("price2", price2);
+		
+		int listCount = sService.searchSupplyCount(hs);
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Supply> slist = sService.searchSupply(hs, pi);
+		
+		model.addAttribute("hs", hs)
+			 .addAttribute("slist", slist)
+			 .addAttribute("pi", pi);
+		
+		return "supplyManager";
+	}
 	
 	/**
 	 *  [ ========== 비 품 신 청 현 황 ========== ]
