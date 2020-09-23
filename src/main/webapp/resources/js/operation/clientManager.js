@@ -146,7 +146,7 @@ $('#addBtn').on('click',function(){
 $('h1 .fa-times').on('click',function(){
 	$('.popup-form').fadeOut();
 })
-$('.add-btn-form button:first-child').on('click',function(){
+$('.add-textform button:first-child').on('click',function(){
 	$('.popup-form').fadeOut();
 })
 

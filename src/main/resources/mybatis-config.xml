@@ -18,6 +18,7 @@
 		
 		<!-- 재고 -->
 		<typeAlias type="com.my.ERP.Stock.model.vo.Product" alias="Product"/>
+		<typeAlias type="com.my.ERP.Stock.model.vo.Supply" alias="Supply"/>
 		
 		<!-- 운영/매출 -->
 		<typeAlias type="com.my.ERP.Operation.model.vo.Client" alias="Client"/>
