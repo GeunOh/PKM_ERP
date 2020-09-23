@@ -45,7 +45,7 @@
 		<li>
 			<ul id="human" class="subMenu">
 				<li>
-					<a href=""><span id="">공지사항</span></a>
+					<a href="/MyInfo/notice"><span id="">공지사항</span></a>
 				</li>
 				<li>
 					<a href=""><span id="">사원검색</span></a>

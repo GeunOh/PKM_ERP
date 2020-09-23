@@ -21,12 +21,17 @@
 		
 		<!-- 운영/매출 -->
 		<typeAlias type="com.my.ERP.Operation.model.vo.Client" alias="Client"/>
+		
+		<!-- 공지사항 -->
+		<typeAlias type="com.my.ERP.myInfo.model.vo.Notice" alias="Notice"/>
+		
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mappers/human-mapper.xml" />
 		<mapper resource="mappers/stock-mapper.xml" />
 		<mapper resource="mappers/operation-mapper.xml" />
+		<mapper resource="mappers/notice-mapper.xml" />
 	</mappers>
 	
 	

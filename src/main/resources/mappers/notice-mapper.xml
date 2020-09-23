@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeMapper">
+
+	<resultMap type="Notice" id="noticeResult">
+		<id column="BNO" property="bNo"/>
+		<result column="WRITER" property="writer"/>
+		<result column="BCONTENT" property="content"/>
+		<result column="CREATE_DATE" property="create_date"/>
+		<result column="MODIFY_DATE" property="modify_date"/>
+		<result column="DELETE_YN" property="outyn"/>
+	</resultMap>
+	
+	<select id="NoticeForm" resultMap="noticeResult">
+		SELECT * FROM TB_NOTICE WHERE DELETE_YN = 'N' ORDER BY BNO DESC
+	</select>
+	
+	<insert id="NoticeInsert">
+		INSERT INTO TB_NOTICE VALUES(TB_NOTICE_BNO.NEXTVAL, #{title}, #{id}, #{text}, sysdate, sysdate, default)
+	</insert>
+	
+	<update id="NoticeModify">
+		UPDATE TB_NOTICE SET TITLE = #{title}, BCONTENT = #{text} WHERE BNO = #{no}
+	</update>
+	
+	<update id="NoticeDelete">
+		UPDATE TB_NOTICE SET DELETE_YN = 'Y' WHERE BNO = #{no}
+	</update>
+</mapper>
