@@ -68,6 +68,13 @@ $('#wclose').click(function(){
 })
 
 //수정/삭제 버튼 클릭시 가운데 띄우기 팝업창
+$('#writeBtn').click(function(){
+	var wrap = $('#wrap').outerHeight();
+	var content = $('#content').outerHeight();
+	
+	if(wrap > content) $('.modal').css("height",wrap);
+	else $('.modal').css("height",content+74);
+})
 $('.uBtn').click(function(){
 	var wrap = $('#wrap').outerHeight();
 	var content = $('#content').outerHeight();

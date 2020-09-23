@@ -28,6 +28,7 @@
 						<span class="text">${n.title}</span>
 						<span class="date">${n.create_date}</span>
 					</div>
+					
 					<div class="contentForm" style="display: none;">
 						<c:if test="${loginUser.adminyn eq 'Y' and (loginUser.eno eq n.writer or loginUser.eno eq 'admin')}">
 							<button class="wcbtn uBtn ub_right">삭제</button>
@@ -48,9 +49,10 @@
 			<form id="NoticeWriteForm" action="/MyInfo/NoticeInsert">
 				<label>제목</label><input type="text" name="title" id="title" >
 				<textarea name="ir1" id="ir1" rows="10" cols="100" style="width: 100%"></textarea>
+				<div id="fileform"><input type="file" value="파일 선택"></div>
 				<div class="btnForm">
-				<button type="button" id="writeContent" class="wcbtn">등록</button>
-				<button type="button" id="wclose" class="close wcbtn">취소</button>
+					<button type="button" id="writeContent" class="wcbtn">등록</button>
+					<button type="button" id="wclose" class="close wcbtn">취소</button>
 				</div>
 			</form>
 		</div>
