@@ -90,5 +90,47 @@
 	<select id="supplyManagerCount" resultType="_int">
 		SELECT COUNT(*) FROM SUPPLYLIST
 	</select>
+	<!-- 비품 검색 행 개수 -->
+	<select id="searchSupplyCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLYLIST
+		<where>
+			<if test="scode != ''">
+				AND SCODE LIKE '%' || #{scode} || '%'
+			</if>
+			<if test="sname != ''">
+				AND SNAME LIKE '%' || #{sname} || '%'
+			</if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+		</where>
+	</select>
+	<!--  -->
+	<select id="searchSupply" resultMap="supplyResult">
+		SELECT * FROM SUPPLYLIST
+		<where>
+			<if test="scode != ''">
+				AND SCODE LIKE '%' || #{scode} || '%'
+			</if>
+			<if test="sname != ''">
+				AND SNAME LIKE '%' || #{sname} || '%'
+			</if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+		</where>
+	</select>
 	
 </mapper>

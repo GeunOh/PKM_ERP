@@ -19,33 +19,25 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="">
+				<form action="/Stock/searchSupply">
 					
 					<div class="search-area">
-						<span class="title">사원명</span>
-						<input type="text" class="txtBox" name="name">
+						<span class="title">비품코드</span>
+						<input type="text" class="txtBox" name="scode">
 					</div>
 					
 					<div class="search-area">
-						<span class="title">사원명</span>
-						<input type="text" class="txtBox" name="name">
+						<span class="title">비품명</span>
+						<input type="text" class="txtBox" name="sname">
 					</div>
 					
 					<br>
 					
 					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">비품가격</span>
-						<div class="selectBox wid_55">
-							<input type="hidden" id="selectPrice" name="selectPrice" value="priceAll">
-							<a href="#none" class="link-selected wid_55">전체</a>
-							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_55" data-value="priceAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="priceSelect">선택</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-						<input type="number" id="price" name="price" class="txtBox" disabled> <label>~</label>
-						<input type="number" id="price2" name="price2" class="txtBox rightDate" disabled>
+						<input type="text" id="price" name="price" class="txtBox wid_150"> 
+						<label>~</label>
+						<input type="text" id="price2" name="price2" class="txtBox rightDate wid_150">
 					</div>
 					<button id="searchBtn">검색</button>
 				</form>
@@ -86,6 +78,12 @@
 			<c:if test="${ pi.currentPage > 1 }">
 				<c:url var="start" value="${ loc }">
 					<c:param name="page" value="1"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
 			</c:if>
@@ -93,6 +91,12 @@
 			<c:if test="${ pi.currentPage > 10 }">
 				<c:url var="prev" value="${ loc }">
 					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
 			</c:if>
@@ -105,6 +109,12 @@
 					<c:if test="${p ne 0}">
 						<c:url var="pagination" value="${ loc }">
 							<c:param name="page" value="${ p }"/>
+							<c:if test="${not empty hs}">
+								<c:param name="scode" value="${hs.scode }" />
+								<c:param name="sname" value="${hs.sname }" />
+								<c:param name="price" value="${hs.price }" />
+								<c:param name="price2" value="${hs.price2 }" />
+							</c:if>
 						</c:url>
 						<a class="pg_page" href="${ pagination }">${ p }</a>
 					</c:if>
@@ -114,6 +124,12 @@
 			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
 				<c:url var="next" value="${ loc }">
 					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
 			</c:if>
@@ -121,6 +137,12 @@
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="end" value="${ loc }">
 					<c:param name="page" value="${ pi.maxPage }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url> 
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>	

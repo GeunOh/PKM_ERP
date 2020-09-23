@@ -34,6 +34,10 @@ public interface StockService {
 
 	int supplyManagerCount();
 
+	int searchSupplyCount(HashMap<String, Object> hs);
+
+	ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi);
+
 
 	
 

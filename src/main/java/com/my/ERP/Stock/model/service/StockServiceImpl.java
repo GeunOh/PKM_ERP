@@ -82,5 +82,15 @@ public class StockServiceImpl implements StockService {
 	public int supplyManagerCount() {
 		return sDAO.supplyManagerCount(sqlSession);
 	}
+	// 비품 재고 검색 행 개수
+	@Override
+	public int searchSupplyCount(HashMap<String, Object> hs) {
+		return sDAO.searchSupplyCount(sqlSession, hs);
+	}
+	// 비품 재고 검색
+	@Override
+	public ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi) {
+		return sDAO.searchSupply(sqlSession, hs, pi);
+	}
 	
 }
