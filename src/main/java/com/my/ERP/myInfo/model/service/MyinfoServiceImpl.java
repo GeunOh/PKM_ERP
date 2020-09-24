@@ -1,10 +1,13 @@
 package com.my.ERP.myInfo.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.my.ERP.myInfo.model.dao.MyinfoDAO;
 import com.my.ERP.myInfo.model.vo.Notice;
@@ -35,5 +38,16 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 	public int NoticeDelete(int no) {
 		return mDAO.NoticeDelete(sqlSession, no);
 	}
+
+	@Override
+	public int insertFile(HashMap<String, Object> fileHs) {
+		return mDAO.insertFile(sqlSession, fileHs);
+	}
+
+	@Override
+	public Notice selectNotice(String bNo) {
+		return mDAO.selectNotice(sqlSession, bNo);
+	}
+
 
 }

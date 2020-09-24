@@ -37,4 +37,12 @@ public class MyinfoDAO {
 		return sqlSession.update("noticeMapper.NoticeDelete", no);
 	}
 
+	public int insertFile(SqlSessionTemplate sqlSession, HashMap<String, Object> fileHs) {
+		return sqlSession.insert("noticeMapper.insertFile", fileHs);
+	}
+
+	public Notice selectNotice(SqlSessionTemplate sqlSession, String bNo) {
+		return sqlSession.selectOne("noticeMapper.selectNotice", bNo);
+	}
+
 }
