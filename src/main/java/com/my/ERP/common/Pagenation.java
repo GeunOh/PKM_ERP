@@ -25,7 +25,6 @@ public class Pagenation {
 		
 		pi = new PageInfo(currentPage, listCount, pageLimit, maxPage, startPage, endPage, boardLimit);
 		
-		
 		return pi;
 		
 	}

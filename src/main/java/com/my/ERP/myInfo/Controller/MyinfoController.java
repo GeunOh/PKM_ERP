@@ -2,11 +2,14 @@ package com.my.ERP.myInfo.Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Human.model.vo.Human;
@@ -106,15 +111,73 @@ public class MyinfoController {
 	//공지사항 작성
 	@RequestMapping("NoticeInsert")
 	public String NoticeInsert(@RequestParam("title") String title, @RequestParam("ir1") String text,
-			                   HttpSession session, RedirectAttributes ra) {
-		
+			                   HttpSession session, RedirectAttributes ra,
+			                   @RequestParam("file") MultipartFile file,
+			                   HttpServletRequest request) {
+		// 공지사항 테이블 글 작성
 		String id = ((Human)session.getAttribute("loginUser")).getEno();
 		int result = mService.NoticeInsert(title, text, id);
+		System.out.println("result   " + result);
+		// 첨부파일 추가
+		System.out.println(file.getName());
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getSize());
+		System.out.println(file.getContentType());
 		
-		if(result>0)  ra.addFlashAttribute("Imsg", "true");
+		// 파일이 존재한다면 파일 이름 변경 후 파일 저장
+		int fileResult = 0;
+		if(file != null && !file.isEmpty()) {
+			String renameFileName = saveFile(file, request);
+			
+			HashMap<String, Object> fileHs = new HashMap<String, Object>();
+			fileHs.put("org_file_name", file.getOriginalFilename());
+			fileHs.put("stored_file_name", renameFileName);
+			fileHs.put("file_size", file.getSize());
+			
+			fileResult = mService.insertFile(fileHs);
+		}
+		// 정상적으로 글 작성시
+		if(result>0 && fileResult>0)  ra.addFlashAttribute("Imsg", "true");
 		else  ra.addFlashAttribute("Imsg", "true"); 
 		
 		return "redirect:/MyInfo/notice";
+	}
+	//파일 이름 변경
+	public String saveFile(MultipartFile file, HttpServletRequest request) {
+		
+		// root : /webapp/resources/
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		// 실제로 저장될 폴더 위치
+		String savePath = root + "\\attach-file";
+		
+		// 지정된 경로로 폴더를 생성
+		File folder = new File(savePath);
+		
+		// 지정된 경로에 폴더가 없다면 폴더 생성
+		if(!folder.exists()) {
+			folder.mkdirs();
+		}
+		
+		// 현재 날짜
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		// 본래 첨부파일 이름
+		String originFileName = file.getOriginalFilename();
+		// 현재 날짜 + 확장자 (새로운 파일이름)
+		String renameFileName = sdf.format(new Date(System.currentTimeMillis()))
+								+ "."
+								+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		// 파일을 저장할 위치 및 새로운 파일이름 지정
+		String renamePath = folder + "\\" + renameFileName;
+		// 파일 이동
+		try {
+			file.transferTo(new File(renamePath));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 새로운 파일이름 리턴
+		return renameFileName;
 	}
 	
 	//공지사항 수정
@@ -129,6 +192,7 @@ public class MyinfoController {
 		
 		return "redirect:/MyInfo/notice";
 	}
+	
 	//공지사항 삭제
 	@RequestMapping("NoticeDelete")
 	public String NoticeDelete(@RequestParam("no") int no, HttpSession session, RedirectAttributes ra) {
@@ -137,6 +201,16 @@ public class MyinfoController {
 		
 		if(result>0)  ra.addFlashAttribute("Dmsg", "true");
 		else  ra.addFlashAttribute("Dmsg", "true"); 
+		
+		return "redirect:/MyInfo/notice";
+	}
+	
+	// 첨부파일 다운
+	@RequestMapping("fileDown")
+	public String fileDown(String bNo, HttpServletResponse res) {
+		
+		Notice notice = mService.selectNotice(bNo);
+		System.out.println(notice);
 		
 		return "redirect:/MyInfo/notice";
 	}
