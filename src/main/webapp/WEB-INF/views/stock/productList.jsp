@@ -190,8 +190,6 @@
 			</div>
 			<!-- // 제품목록 테이블 -->
 		</div>
-		
-		
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/stock/productList.js"></script>
