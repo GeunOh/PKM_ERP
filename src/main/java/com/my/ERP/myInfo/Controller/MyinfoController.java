@@ -22,7 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Human.model.vo.Human;
@@ -92,7 +91,6 @@ public class MyinfoController {
 	         os.close();
 
 	         ///////////////// 서버에 파일쓰기 /////////////////
-
 	         // 정보 출력
 	         sFileInfo += "&bNewLine=true";
 
