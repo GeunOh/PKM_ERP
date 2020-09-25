@@ -12,6 +12,7 @@ public class Notice {
 	private String outyn;
 	
 	private String org_file_name;
+	private String stored_file_name;
 	private int file_size;
 	
 	public Notice () {}
@@ -88,12 +89,22 @@ public class Notice {
 		this.file_size = file_size;
 	}
 
+	public String getStored_file_name() {
+		return stored_file_name;
+	}
+
+	public void setStored_file_name(String stored_file_name) {
+		this.stored_file_name = stored_file_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Notice [bNo=" + bNo + ", title=" + title + ", writer=" + writer + ", content=" + content
 				+ ", create_date=" + create_date + ", modify_date=" + modify_date + ", outyn=" + outyn
-				+ ", org_file_name=" + org_file_name + ", file_size=" + file_size + "]";
+				+ ", org_file_name=" + org_file_name + ", stored_file_name=" + stored_file_name + ", file_size="
+				+ file_size + "]";
 	}
+
 
 	
 }

@@ -1,6 +1,5 @@
 package com.my.ERP.Human.model.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +15,6 @@ import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
-import com.my.ERP.common.vo.SearchOption;
 
 @Repository("hDao")
 public class HumanDAO {

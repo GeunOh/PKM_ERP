@@ -36,13 +36,13 @@
 						</c:if>
 						<div class="content">
 								${n.content}
-								<br>
-								<br>
-								<br>
-								<c:if test="${ not empty n.org_file_name}">
-									첨부파일 : <a style="color: blue" href="/MyInfo/fileDown?bNo=${n.bNo}">${n.org_file_name}</a>&nbsp;&nbsp;(${n.file_size}&nbsp;KB)
-								</c:if>
 						</div>
+						<c:if test="${ not empty n.org_file_name}">
+							<div class="content">
+								첨부파일 : <a style="color: blue" href="/MyInfo/fileDown?bNo=${n.bNo}">${n.org_file_name}</a>&nbsp;&nbsp;(${n.file_size}&nbsp;KB)
+							</div>
+						</c:if>
+						
 						<input type="hidden" class="no" value="${n.bNo}">
 					</div>
 				</li>

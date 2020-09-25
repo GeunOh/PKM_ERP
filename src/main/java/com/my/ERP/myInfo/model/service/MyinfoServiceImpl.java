@@ -6,8 +6,6 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.my.ERP.myInfo.model.dao.MyinfoDAO;
 import com.my.ERP.myInfo.model.vo.Notice;

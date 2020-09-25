@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +22,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Human.model.vo.Human;
@@ -91,7 +91,6 @@ public class MyinfoController {
 	         os.close();
 
 	         ///////////////// 서버에 파일쓰기 /////////////////
-
 	         // 정보 출력
 	         sFileInfo += "&bNewLine=true";
 
@@ -117,12 +116,7 @@ public class MyinfoController {
 		// 공지사항 테이블 글 작성
 		String id = ((Human)session.getAttribute("loginUser")).getEno();
 		int result = mService.NoticeInsert(title, text, id);
-		System.out.println("result   " + result);
 		// 첨부파일 추가
-		System.out.println(file.getName());
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getSize());
-		System.out.println(file.getContentType());
 		
 		// 파일이 존재한다면 파일 이름 변경 후 파일 저장
 		int fileResult = 0;
@@ -207,11 +201,31 @@ public class MyinfoController {
 	
 	// 첨부파일 다운
 	@RequestMapping("fileDown")
-	public String fileDown(String bNo, HttpServletResponse res) {
+	public void fileDown(String bNo, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		
 		Notice notice = mService.selectNotice(bNo);
 		System.out.println(notice);
 		
-		return "redirect:/MyInfo/notice";
+		String originalFileName = notice.getOrg_file_name();
+		String storedFileName = notice.getStored_file_name();
+		
+		// 공백이 +로 처리되는 점을 막기 위한 정규식 처리
+		originalFileName = URLEncoder.encode(originalFileName, "UTF-8");
+		originalFileName = originalFileName.replaceAll("\\+", "%20");
+		
+		// root : /webapp/resources/
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		// 실제로 저장되어있는 폴더 위치
+		String savePath = root + "\\attach-file";
+		
+		// 파일을 저장했던 위치에서 첨부파일을 읽어 byte[]형식으로 변환한다.
+		byte fileByte[] = org.apache.commons.io.FileUtils.readFileToByteArray(new File(savePath+ "\\"+storedFileName));
+		
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition",  "attachment; fileName="+ originalFileName +";");
+		response.getOutputStream().write(fileByte);
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
 }

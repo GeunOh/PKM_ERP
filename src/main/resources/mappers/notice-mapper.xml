@@ -10,11 +10,12 @@
 		<result column="MODIFY_DATE" property="modify_date"/>
 		<result column="DELETE_YN" property="outyn"/>
 		<result column="ORG_FILE_NAME" property="org_file_name"/>
+		<result column="STORED_FILE_NAME" property="stored_file_name"/>
 		<result column="FILE_SIZE" property="file_size"/>
 	</resultMap>
 	
 	<select id="NoticeForm" resultMap="noticeResult">
-		SELECT N.bno, title, writer, bcontent, create_date, modify_date, org_file_name, file_size 
+		SELECT N.bno, title, writer, bcontent, create_date, modify_date, org_file_name, stored_file_name, file_size 
 		FROM TB_NOTICE N
 		LEFT JOIN TB_FILE F ON(N.bno = F.bno)
 		WHERE DELETE_YN = 'N' ORDER BY N.bno DESC
@@ -41,7 +42,7 @@
 	</insert>
 	
 	<select id="selectNotice" resultMap="noticeResult">
-		SELECT org_file_name, file_size 
+		SELECT org_file_name, stored_file_name, file_size 
 		FROM TB_NOTICE N
 		LEFT JOIN TB_FILE F ON(N.bno = F.bno)
 		WHERE N.BNO = #{BNO}
