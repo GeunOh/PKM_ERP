@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,9 +36,9 @@
 					
 					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">비품가격</span>
-						<input type="text" id="price" name="price" class="txtBox wid_150"> 
+						<input type="text" id="price" name="price" class="txtBox wid_150" onkeyup="numberWithCommas(this.value, this)"> 
 						<label>~</label>
-						<input type="text" id="price2" name="price2" class="txtBox rightDate wid_150">
+						<input type="text" id="price2" name="price2" class="txtBox rightDate wid_150" onkeyup="numberWithCommas(this.value, this)">
 					</div>
 					<button id="searchBtn">검색</button>
 				</form>
@@ -65,7 +66,9 @@
 					<tr>
 						<td>${s.scode }</td>
 						<td>${s.sname }</td>
-						<td>${s.cost_price }</td>
+						<td>
+							<fmt:formatNumber value="${s.cost_price }" type="currency" />
+						</td>
 						<td>${s.scount }</td>
 						<td>${s.s_comment }</td>
 					</tr>
@@ -149,6 +152,5 @@
 		</div>
 	</div>
 	<!-- // wrap -->
-	
-</body>
+	<script type="text/javascript" src="resources/js/stock/supplyManager.js"></script>
 </html>
