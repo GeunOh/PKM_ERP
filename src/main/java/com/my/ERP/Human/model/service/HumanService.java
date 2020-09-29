@@ -11,6 +11,7 @@ import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.myInfo.model.vo.Notice;
 
 public interface HumanService {
 
@@ -135,6 +136,8 @@ public interface HumanService {
 	int myInfoModify(HashMap<String, Object> hs);
 
 	Human myInfoLoginUser(String eno);
+
+	ArrayList<Notice> showNotices();
 
 
 }

@@ -216,3 +216,114 @@ ul, li{list-style: none;}
 .pg_page:hover {
 	background-color: #dadada;
 }
+
+/* 팝업창 */
+.popupLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.popup-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 51;
+    font-family: NotoSans-Regular;
+}
+.popupContent {
+    width: 40%;
+    height: 48%;
+    margin: auto;
+    max-height: 100vh;
+    background: white;
+    border-radius: 10px;
+    margin-top: 13%;
+}
+.popupContent>h1 {
+    text-align: center;
+    border-radius: 7px 7px 0 0;
+    background-color: #282c34;
+    padding: 10px 0;
+    color: #fff;
+    position: relative;
+}
+h1>.fa-times {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.content-form {
+    border-top: 3px solid #eaeaea;
+    width: 96%;
+    margin: 0 auto;
+    padding: 10px 0;
+    margin-top: 5%;
+    position: relative;
+}
+.content-form>span {
+    position: absolute;
+    top: -33px;
+    left: 0;
+    font-family: NotoSans-Regular;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+.add-textform {
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+}
+.add-title {
+    display: inline-block;
+    font-family: NotoSans-Regular;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    margin: 0 5% 0 3%;
+    position: relative;
+    width: 105px;
+}
+.add-text {
+    font-family: NotoSans-Regular;
+    border-radius: 3px;
+    width: 56%;
+}
+.txtBox {
+    font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+}
+.btn-form {
+    text-align: center;
+    margin-top: 1%;
+}
+.btn-form button {
+    padding: 7px 16px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+.btn-form button:last-child {
+    margin-left: 1%;
+    font-family: NotoSans-Regular;
+    background-color: #282c34;
+    color: #fff;
+}

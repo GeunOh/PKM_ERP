@@ -150,6 +150,44 @@
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>	
 		</div>
+		<!-- 비품 추가 팝업창 -->
+		<form action="" id="add-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>비품 추가 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<div class="content-form">
+					<span>비품 정보</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품코드</span>
+						<input type="text" class="txtBox add-text" name="add_ccode">
+						<label id="addScodeChk"></label>
+						<input type="hidden" name="addScodeChk" value="0">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품이름</span>
+						<input type="text" class="txtBox add-text" name="add_cname">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품가격</span>
+						<input type="text" class="txtBox add-text" name="add_cmanager" onkeyup="numberWithCommas(this.value, this)">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">수량</span>
+						<input type="text" class="txtBox add-text" name="add_cphone">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비고</span>
+						<input type="text" class="txtBox add-text" name="add_c_comment">
+					</div>
+					<div class="add-textform btn-form">
+						<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
+						<button type="button" onclick="addClient();"><i class="fas fa-check" aria-hidden="true"></i> 추가</button>
+					</div>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/stock/supplyManager.js"></script>
