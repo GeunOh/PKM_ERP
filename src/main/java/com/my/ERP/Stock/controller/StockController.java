@@ -185,7 +185,19 @@ public class StockController {
 	 *  [ ========== 비 품 목 록 ========== ]
 	 */
 	@RequestMapping("supplyList")
-	public String supplyList() {
+	public String supplyList(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.supplyManagerCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Supply> slist = sService.supplyManager(pi);
+		
+		model.addAttribute("pi", pi)
+			 .addAttribute("slist", slist);
 		
 		return "supplyList";
 	}

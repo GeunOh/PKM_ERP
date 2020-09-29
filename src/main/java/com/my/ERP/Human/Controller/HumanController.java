@@ -47,6 +47,7 @@ import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
+import com.my.ERP.myInfo.model.vo.Notice;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -765,10 +766,14 @@ public class HumanController {
 		int result = hService.showVacationDays(eno);
 		// 출,퇴근 체크
 		WorkInOut work = hService.WorkSysdate(eno);
-
-		model.addAttribute("vacationDay", result)
-		     .addAttribute("work", work);
+		// 게시글 4개 가져오기
+		ArrayList<Notice> nlist = hService.showNotices();
+		System.out.println(nlist);
 		
+		model.addAttribute("vacationDay", result)
+		     .addAttribute("work", work)
+			 .addAttribute("nlist", nlist);
+			
 		return "myInfo";
 	}
 	
