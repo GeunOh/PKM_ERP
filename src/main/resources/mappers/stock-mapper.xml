@@ -10,6 +10,7 @@
 		<result column="P_COMMENT" property="p_comment"/>
 		<result column="CCODE" property="ccode"/>
 		<result column="CNAME" property="cname"/>
+		<result column="PCOUNT" property="pcount"/>
 	</resultMap>
 	
 	<resultMap type="Client" id="clientResult">
@@ -131,6 +132,16 @@
 				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
 			</if>
 		</where>
+	</select>
+	
+	<select id="productListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_PRODUCT
+	</select>
+	
+	<select id="productManagerList" resultMap="productResult">
+		SELECT P.PCODE, PNAME, COST_PRICE, SELLING_PRICE, PCOUNT, P_COMMENT
+		FROM TB_PRODUCT P
+		JOIN TB_PRODUCT_STOCK PS ON(P.PCODE = PS.PCODE)
 	</select>
 	
 </mapper>

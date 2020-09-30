@@ -92,5 +92,14 @@ public class StockServiceImpl implements StockService {
 	public ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi) {
 		return sDAO.searchSupply(sqlSession, hs, pi);
 	}
+	// 제품 목록 수
+	@Override
+	public int productListCount() {
+		return sDAO.productListCount(sqlSession);
+	}
+	@Override
+	public ArrayList<Product> productList(PageInfo pi) {
+		return sDAO.productList(sqlSession, pi);
+	}
 	
 }

@@ -75,6 +75,16 @@ public class StockDAO {
 		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("stockMapper.searchSupply", hs, rowbounds);
 	}
+	// 제품 목록 수
+	public int productListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.productListCount");
+	}
+	// 제묵 목록(오버로딩)
+	public ArrayList<Product> productList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("stockMapper.productManagerList", null, rowBounds);
+	}
 	
 	
 	
