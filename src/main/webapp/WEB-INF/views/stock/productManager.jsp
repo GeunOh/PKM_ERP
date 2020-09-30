@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,17 +96,82 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>ADD-1233</td>
-					<td>학사관리 프로그램</td>
-					<td>500,000</td>
-					<td>1,000,000</td>
-					<td>500</td>
-					<td></td>
-				</tr>
+				<c:if test="${empty plist }">
+					<tr>
+						<td rowspan="6">"제품이 존재하지 않습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${not empty plist }">
+					<c:forEach items="${plist }" var="p">
+						<tr>
+							<td>${p.pcode }</td>
+							<td>${p.pname }</td>
+							<td><fmt:formatNumber value="${p.cost_price }" type="currency" /></td>
+							<td><fmt:formatNumber value="${p.selling_price }" type="currency" /></td>
+							<td>${p.pcount }</td>
+							<td>${p.p_comment }</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${fn:length(plist) < 10 }">
+					<c:forEach begin="1" end="${10 - fn:length(plist) }">
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- 테이블 -->
+		<!-- 페이징 -->
+		<div id="pagingForm">
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:if test="${p ne 0}">
+						<c:url var="pagination" value="${ loc }">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a class="pg_page" href="${ pagination }">${ p }</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>	
+		</div>
 	</div>
 	<!-- // wrap -->
 	

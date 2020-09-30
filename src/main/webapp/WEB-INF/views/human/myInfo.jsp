@@ -77,7 +77,7 @@
 							
 						 	<tr>
 								<td>${n.bNo }</td>
-								<td>${n.title }</td>
+								<td><a href="/MyInfo/notice">${n.title }</a></td>
 								<td>${n.modify_date }</td>
 								<c:if test="${n.org_file_name ne null }">
 									<td><a href="/MyInfo/fileDown?bNo=${n.bNo }"><i class="fas fa-paperclip"></i></a></td>

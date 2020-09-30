@@ -38,6 +38,10 @@ public interface StockService {
 
 	ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi);
 
+	int productListCount();
+
+	ArrayList<Product> productList(PageInfo pi);
+
 
 	
 

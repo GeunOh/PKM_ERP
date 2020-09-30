@@ -163,7 +163,18 @@ public class StockController {
 	 *  [ ========== 제 품 재 고 관 리 ========== ]
 	 */
 	@RequestMapping("productManager")
-	public String productManager() {
+	public String productManager(@RequestParam(value="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.productListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Product> plist = sService.productList(pi);	// 오버로딩
+		
+		model.addAttribute("plist", plist)
+			 .addAttribute("pi", pi);
 		
 		return "productManager";
 	}
