@@ -18,7 +18,6 @@
 				<li>
 					<c:if test="${loginUser.renameFileName eq null}"><img class="profile" src="resources/images/default-profile.jpg"></c:if> 
 					<c:if test="${loginUser.renameFileName ne null}"><img class="profile" src="resources/Profile-images/${loginUser.renameFileName }"></c:if> 
-					
 				</li>
 				<li onclick="showMenu();">
 					<span>${loginUser.name}님</span>
@@ -51,7 +50,7 @@
 					<a href="/MyInfo/notice"><span id="">공지사항</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">사원검색</span></a>
+					<a href="/MyInfo/searchHuman"><span id="">사원검색</span></a>
 				</li>
 				<li>
 					<a href=""><span id="">근태현황</span></a>

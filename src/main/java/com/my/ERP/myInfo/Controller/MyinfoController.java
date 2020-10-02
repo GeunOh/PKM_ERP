@@ -24,8 +24,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.common.FileDown;
+import com.my.ERP.common.Pagenation;
+import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.common.vo.SearchOption;
 import com.my.ERP.myInfo.model.service.MyinfoSerivce;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -34,6 +38,9 @@ public class MyinfoController {
 	
 	@Autowired
 	private MyinfoSerivce mService;
+	
+	@Autowired
+	private HumanService hService;
 	
 	@RequestMapping("notice")
 	public String NoticeForm(Model model) {
@@ -206,4 +213,66 @@ public class MyinfoController {
 		Notice notice = mService.selectNotice(bNo);
 		FileDown.fileDown(notice, response, request);
 	}
+	
+	// 사원검색
+	@RequestMapping("searchHuman")
+	public String searchHuman(Human human, @RequestParam(value="page", required = false) Integer page,
+							  @RequestParam(value="selectVal", required = false) String selectVal,
+							  @RequestParam(value="order", required = false) String order,
+							  @RequestParam(value="selectDate", required = false) String selectDate,
+							  @RequestParam(value="date", required = false) Date date,
+							  @RequestParam(value="date2", required = false) Date date2,
+							  Model model) {
+		System.out.println(human);
+		System.out.println(selectVal);
+		System.out.println(selectDate);
+		
+		int currentPage = 1;
+		if(page != null) currentPage = page;
+		
+		SearchOption so = new SearchOption();
+		
+		if(selectVal != null) {
+			if(selectVal.equals("all")) {
+				so.setAll("all");
+			}else if(selectVal.equals("in")) {
+				so.setInUser("in");
+			}else if(selectVal.equals("out")){
+				so.setOutUser("out");
+			}
+		}
+		if(selectDate != null) {
+			if(selectDate.equals("dateAll")) {
+				so.setDateAll("dateAll");
+			}else if(selectDate.equals("dateSelect")){
+				so.setDateSelect("dateSelect");
+			}
+		}
+		
+		HashMap<String, Object> hs = new HashMap<>();
+		hs.put("so",so);
+		hs.put("dept",human.getDcode());
+		hs.put("rank",human.getRcode());
+		hs.put("email",human.getEmail());
+		hs.put("eno",human.getEno());
+		hs.put("name",human.getName());
+		hs.put("date",date);
+		hs.put("date2",date2);
+		
+		System.out.println(hs);
+		
+		int listCount = hService.SearchHumanListCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Human> hList = hService.SearchHumanList(pi, hs);
+		System.out.println(hList);
+		
+		model.addAttribute("pi", pi)
+		.addAttribute("hList", hList)
+		.addAttribute("selectVal", selectVal)
+		.addAttribute("selectDate", selectDate)
+		.addAttribute("hs", hs);
+		
+		return "searchHuman";
+	}
+	
 }
