@@ -47,4 +47,10 @@
 		LEFT JOIN TB_FILE F ON(N.bno = F.bno)
 		WHERE N.BNO = #{BNO}
 	</select>
+	
+	<select id="vacationUseDays">
+		SELECT USEDAY, (SELECT SUM(USEDAY) FROM TB_VACATION_RECORD WHERE ENO = #{eno}) AS ALLDAY
+		FROM TB_VACATION
+		WHERE ENO = #{eno}
+	</select>
 </mapper>

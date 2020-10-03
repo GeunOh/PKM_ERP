@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="../common/headTag.jsp"/>
+<jsp:include page="../common/headTag_user.jsp"/>
 <title>기본인사관리</title>
 <link href="resources/css/myInfo/searchHuman.css" rel="styleSheet">
 </head>
@@ -138,7 +138,7 @@
 						</c:if>
 						<td>${h.indate }</td>
 						<td>${h.eno }</td>
-						<td><a class="human_name">${h.name}</a></td>
+						<td>${h.name}</td>
 						<td>${h.rname }</td>
 						<td>${h.dname }</td>
 						<td>${h.email }</td>

@@ -47,5 +47,10 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 		return mDAO.selectNotice(sqlSession, bNo);
 	}
 
+	@Override
+	public ArrayList<Integer> vacationUseDays(String eno) {
+		return mDAO.vacationUseDays(sqlSession, eno);
+	}
+
 
 }

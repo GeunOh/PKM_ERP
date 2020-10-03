@@ -1,0 +1,58 @@
+@charset "UTF-8";
+@font-face {
+  font-family: NotoSans-Black;
+  src: url('../../Fonts/NotoSansCJKkr-Black.otf');
+}
+
+@font-face {
+  font-family: NotoSans-Regular;
+  src: url('../../Fonts/NotoSansCJKkr-Regular.otf');
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	 transition: background-color 5000s ease-in-out 0s;
+	 -webkit-transition: background-color 9999s ease-out;
+     -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+     -webkit-text-fill-color: #000 !important;
+}
+h1{margin-bottom: 3%;}
+#myInfo-back{
+	width: 60%; height: 61px;
+    border: 1px solid #dedede; border-radius: 5px;
+    background-color: #e6e5e5;
+    margin-bottom: 2%;
+}
+#myInfo-form{
+	background-color: #f7f7f7;
+	height: 100%;
+	margin: 0 10px;
+    padding: 15px 50px 15px 5px;
+    box-sizing: border-box;
+}
+.myInfo-area{display: inline-block; font-size: 0;}
+.title{
+	color: #000; font-size: 13px; font-family: NotoSans-Regular;
+    background-color: #fff;
+    margin-left:10px; padding: 5px 10px;
+    border: 1px solid #969696; border-radius: 3px 0 0 3px; border-right: 0;
+}
+.txtBox {
+	font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+}
+.txtBox:focus {
+	border: 1px solid #282c34;
+}

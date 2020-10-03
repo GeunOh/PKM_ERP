@@ -19,5 +19,7 @@ public interface MyinfoSerivce {
 
 	Notice selectNotice(String bNo);
 
+	ArrayList<Integer> vacationUseDays(String eno);
+
 
 }
