@@ -131,6 +131,10 @@
 			<if test="eno != null and eno != ''">AND  ENO LIKE '%'|| #{eno} ||'%'</if>
 			<if test="name != null and name != ''">AND  ENAME LIKE '%'|| #{name} ||'%'</if>
 		</where>
+		<if test="order != '' and order != null">
+			<if test="order == 'DESC'">ORDER BY INDATE DESC</if>
+			<if test="order == 'ASC'">ORDER BY INDATE ASC</if>
+		</if>
 	</select>
 	
 	<select id="selectPositionCount" resultType="_int">

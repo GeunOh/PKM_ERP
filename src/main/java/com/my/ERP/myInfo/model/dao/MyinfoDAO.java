@@ -45,4 +45,8 @@ public class MyinfoDAO {
 		return sqlSession.selectOne("noticeMapper.selectNotice", bNo);
 	}
 
+	public ArrayList<Integer> vacationUseDays(SqlSessionTemplate sqlSession, String eno) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.vacationUseDays", eno);
+	}
+
 }

@@ -258,6 +258,7 @@ public class MyinfoController {
 		hs.put("name",human.getName());
 		hs.put("date",date);
 		hs.put("date2",date2);
+		hs.put("order",order);
 		
 		System.out.println(hs);
 		
@@ -270,9 +271,33 @@ public class MyinfoController {
 		.addAttribute("hList", hList)
 		.addAttribute("selectVal", selectVal)
 		.addAttribute("selectDate", selectDate)
-		.addAttribute("hs", hs);
+		.addAttribute("hs", hs)
+		.addAttribute("order", order);
 		
 		return "searchHuman";
+	}
+	// 내 근태 정보
+	@RequestMapping("workCalendar")
+	public String workCalendar() {
+		
+		return "workCalendar";
+	}
+	
+	// 내 휴가 정보
+	@RequestMapping("myVacation")
+	public String myVacation(HttpSession session, Model model) {
+		Human human = (Human)session.getAttribute("loginUser");
+		
+		String eno = human.getEno();
+		
+		// 휴가 잔여일수
+		ArrayList<Integer> useDay = mService.vacationUseDays(eno);
+		System.out.println(useDay);
+		
+		model.addAttribute("indate", human.getIndate())
+		     .addAttribute("useDay", useDay);
+		
+		return "myVacation";
 	}
 	
 }

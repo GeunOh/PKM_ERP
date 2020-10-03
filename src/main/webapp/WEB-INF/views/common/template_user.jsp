@@ -44,7 +44,7 @@
 		<li>
 			<ul id="human" class="subMenu">
 				<li>
-					<a href=""><span id="">내 정보</span></a>
+					<a href="/Human/myInfo"><span id="">내 정보</span></a>
 				</li>
 				<li>
 					<a href="/MyInfo/notice"><span id="">공지사항</span></a>
@@ -53,10 +53,10 @@
 					<a href="/MyInfo/searchHuman"><span id="">사원검색</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">근태현황</span></a>
+					<a href="/MyInfo/workCalendar"><span id="">근태현황</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">휴가사용현황</span></a>
+					<a href="/MyInfo/myVacation"><span id="">휴가사용현황</span></a>
 				</li>
 				<li>
 					<a href=""><span id="">업무관리(제품목록)</span></a>
