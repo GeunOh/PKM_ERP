@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.myInfo.model.vo.Notice;
 
 @Repository
@@ -45,8 +46,12 @@ public class MyinfoDAO {
 		return sqlSession.selectOne("noticeMapper.selectNotice", bNo);
 	}
 
-	public ArrayList<Integer> vacationUseDays(SqlSessionTemplate sqlSession, String eno) {
-		return (ArrayList)sqlSession.selectList("noticeMapper.vacationUseDays", eno);
+	public HashMap<String, Integer> vacationUseDays(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("noticeMapper.vacationUseDays", eno);
+	}
+
+	public ArrayList<Vacation> myVacationList(SqlSessionTemplate sqlSession, String eno) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.myVacationList", eno);
 	}
 
 }

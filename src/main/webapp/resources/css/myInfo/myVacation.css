@@ -18,9 +18,10 @@ input:-webkit-autofill:active {
      -webkit-box-shadow: 0 0 0px 1000px white inset !important;
      -webkit-text-fill-color: #000 !important;
 }
+.wid_40{width: 40px!important;}
 h1{margin-bottom: 3%;}
 #myInfo-back{
-	width: 60%; height: 61px;
+	width: 40%; height: 61px;
     border: 1px solid #dedede; border-radius: 5px;
     background-color: #e6e5e5;
     margin-bottom: 2%;
@@ -44,15 +45,58 @@ h1{margin-bottom: 3%;}
     color: #000;
     font-size: 13px;
     background-color: #fff;
-    padding: 5px 10px;
     border: 1px solid #969696;
     border-radius: 0 3px 3px 0;
     height: 31px;
     box-sizing: border-box;
-    cursor: pointer;
     outline: none;
     transition: all .5s;
+    text-align: center;
 }
 .txtBox:focus {
 	border: 1px solid #282c34;
+}
+/*추가 외 버튼*/
+#btnForm{
+	margin: 2% 0 1% 0; 
+	font-family: NotoSans-Regular; font-weight: bold;
+}
+#btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
+#downBtn{position: relative;}
+#downBtn i{position: absolute; top: 15px; left: 0;}
+/* 테이블  */
+#vacationTable{
+	font-family: NotoSans-Regular;
+	width: 100%; min-height:419px; 
+	border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
+#vacationTable tr th {
+    background: #eee;
+    border-top: 1px solid #bbb;
+}
+#vacationTable th{padding: 10px 0; font-size: 13px;}
+#vacationTable td{padding: 10px 0; font-size: 13px; text-align: center;}
+
+#vacationTable tr th:first-child, 
+#vacationTable tr td:first-child {
+    border-left: 1px solid #bbb;
+}
+#vacationTable tr th,
+#vacationTable tr td {
+    border-right: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+}
+#vacationTable tr:first-child th:first-child{
+	border-top-left-radius: 6px;
+}
+#vacationTable tr:first-child th:last-child{
+	border-top-right-radius: 6px;
+}
+#vacationTable tr:last-child td:first-child{
+	border-bottom-left-radius: 6px;
+}
+#vacationTable tr:last-child td:last-child{
+	border-bottom-right-radius: 6px;
 }

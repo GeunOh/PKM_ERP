@@ -48,9 +48,15 @@
 		WHERE N.BNO = #{BNO}
 	</select>
 	
-	<select id="vacationUseDays">
+	<select id="vacationUseDays" resultType="hashmap">
 		SELECT USEDAY, (SELECT SUM(USEDAY) FROM TB_VACATION_RECORD WHERE ENO = #{eno}) AS ALLDAY
 		FROM TB_VACATION
 		WHERE ENO = #{eno}
+	</select>
+	
+	<select id="myVacationList" resultType="Vacation">
+		SELECT * 
+		FROM VACATIONLIST
+		WHERE ENO=#{eno}
 	</select>
 </mapper>

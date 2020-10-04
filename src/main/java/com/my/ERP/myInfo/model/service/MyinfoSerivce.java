@@ -3,6 +3,7 @@ package com.my.ERP.myInfo.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.myInfo.model.vo.Notice;
 
 public interface MyinfoSerivce {
@@ -19,7 +20,9 @@ public interface MyinfoSerivce {
 
 	Notice selectNotice(String bNo);
 
-	ArrayList<Integer> vacationUseDays(String eno);
+	HashMap<String, Integer> vacationUseDays(String eno);
+
+	ArrayList<Vacation> myVacationList(String eno);
 
 
 }

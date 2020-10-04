@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.common.FileDown;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
@@ -291,11 +292,15 @@ public class MyinfoController {
 		String eno = human.getEno();
 		
 		// 휴가 잔여일수
-		ArrayList<Integer> useDay = mService.vacationUseDays(eno);
-		System.out.println(useDay);
+		HashMap<String, Integer> useDay = mService.vacationUseDays(eno);
+		// 내 휴가신청 내역
+		ArrayList<Vacation> vlist = mService.myVacationList(eno);
+		System.out.println(vlist);
+		System.out.println(vlist.get(0));
 		
 		model.addAttribute("indate", human.getIndate())
-		     .addAttribute("useDay", useDay);
+		     .addAttribute("useDay", useDay)
+		     .addAttribute("vlist", vlist);
 		
 		return "myVacation";
 	}

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.myInfo.model.dao.MyinfoDAO;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -48,8 +49,13 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 	}
 
 	@Override
-	public ArrayList<Integer> vacationUseDays(String eno) {
+	public HashMap<String, Integer> vacationUseDays(String eno) {
 		return mDAO.vacationUseDays(sqlSession, eno);
+	}
+
+	@Override
+	public ArrayList<Vacation> myVacationList(String eno) {
+		return mDAO.myVacationList(sqlSession, eno);
 	}
 
 
