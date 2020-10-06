@@ -295,8 +295,6 @@ public class MyinfoController {
 		HashMap<String, Integer> useDay = mService.vacationUseDays(eno);
 		// 내 휴가신청 내역
 		ArrayList<Vacation> vlist = mService.myVacationList(eno);
-		System.out.println(vlist);
-		System.out.println(vlist.get(0));
 		
 		model.addAttribute("indate", human.getIndate())
 		     .addAttribute("useDay", useDay)

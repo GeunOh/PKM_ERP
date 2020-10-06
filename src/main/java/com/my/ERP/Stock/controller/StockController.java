@@ -212,6 +212,51 @@ public class StockController {
 		
 		return "supplyList";
 	}
+	// 비품코드 존재확인
+	@RequestMapping("scodeChk")
+	@ResponseBody
+	public String scodeChk(@RequestParam("scode") String scode) {
+		Supply supply = sService.showSupply(scode);
+		System.out.println(supply);
+		if(supply != null)  {
+			return "exist";	 // 존재
+		} else{
+			return "notExist";   // 존재하지 않음
+		}
+	}
+	// 비품정보
+	@RequestMapping("showSupply")
+	@ResponseBody
+	public Supply showSupply(@RequestParam("scode") String scode) {
+		Supply supply = sService.showSupply(scode);
+		return supply;
+	}
+	
+	// 비품 추가
+	@RequestMapping("addSupply")
+	public String addSupply(String add_scode, String add_sname, String add_price, String add_s_comment) {
+		
+		add_price = add_price.replace(",", "");
+		Supply supply = new Supply(add_scode, add_sname, add_price, add_s_comment, "0");
+		int result = sService.addSupply(supply);
+		
+		return "redirect:/Stock/supplyList";
+	}
+	// 비품 수정
+	@RequestMapping("modifySupply")
+	public String modifySupply(String modify_scode, String modify_sname, String modify_price, String modify_s_comment,
+							   String beforeScode) {
+		modify_price = modify_price.replace(",", "");
+		Supply supply = new Supply(modify_scode, modify_sname, modify_price, modify_s_comment, beforeScode);
+		int result = sService.modifySupply(supply);
+		return "redirect:/Stock/supplyList";
+	}
+	// 비품 삭제
+	@RequestMapping("deleteSupply")
+	public String deleteSupply(String del_scode) {
+		int result = sService.deleteSupply(del_scode);
+		return "redirect:/Stock/supplyList";
+	}
 	
 	
 	
@@ -240,6 +285,11 @@ public class StockController {
 							   @RequestParam(value="price", required = false) String price,
 							   @RequestParam(value="price2", required = false) String price2,
 							   Model model) {
+		if(price != null || price2 != null) {
+			price = price.replace(",", "");
+			price2 = price2.replace(",", "");
+		}
+		
 		HashMap<String, Object> hs = new HashMap<String, Object>();
 		hs.put("scode", scode);
 		hs.put("sname", sname);

@@ -9,6 +9,13 @@ public class Supply {
 	private String scount;
 	
 	public Supply() {}
+	public Supply(String scode, String sname, String cost_price, String s_comment, String scount) {
+		this.scode = scode;
+		this.sname = sname;
+		this.cost_price = cost_price;
+		this.s_comment = s_comment;
+		this.scount = scount;
+	}
 
 	public String getScode() {
 		return scode;

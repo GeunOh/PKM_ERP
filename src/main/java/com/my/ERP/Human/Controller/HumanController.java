@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -578,13 +579,27 @@ public class HumanController {
 		int currentPage = 1;
 		if(page != null) currentPage = page;
 		
+		// 현재 달의 마지막 일수 구하기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(new java.util.Date());
+		int year = Integer.parseInt(date.split("-")[0]);
+		int month = Integer.parseInt(date.split("-")[1]);
+		int day = Integer.parseInt(date.split("-")[2]);
+		
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month-1, day);
+		int endDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
 		int listCount = hService.workListCount();
 		PageInfo pi = Pagenation.getWorkPageInfo(currentPage, listCount);
+		pi.setBoardLimit(endDay*5);
+		
 		ArrayList<WorkInOut>wlist = hService.workList(pi);    //회원 출근기록     
 		ArrayList<WorkInOut>mlist = hService.enoWorkList(pi); //회원 이름  
 		PeopleCount mCount = hService.WorkPeopleCount();
-		System.out.println(mCount);
-		System.out.println(wlist);
+//		System.out.println(mCount);
+		System.out.println(wlist.size());
+		System.out.println(mlist.size());
 		model.addAttribute("wlist", wlist)
 			 .addAttribute("mlist", mlist)
 			 .addAttribute("mCount", mCount)
@@ -629,7 +644,20 @@ public class HumanController {
 		String currentDate = sf.format(new java.util.Date());
 		int month = date==null?Integer.parseInt(currentDate.substring(5,7)):Integer.parseInt(date.substring(5));
 		int listCount = hService.SearchWorkCount(hs);
+		
+		// 현재 달의 마지막 일수 구하기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date2 = sdf.format(new java.util.Date());
+		int year = Integer.parseInt(date2.split("-")[0]);
+		int month2 = Integer.parseInt(date2.split("-")[1]);
+		int day = Integer.parseInt(date2.split("-")[2]);
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month2-1, day);
+		int endDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		
 		PageInfo pi = Pagenation.getWorkPageInfo(currentPage, listCount);
+		pi.setBoardLimit(endDay*5);
+		
 		ArrayList<WorkInOut> wlist = hService.SearchWorkList(pi, hs);    //회원 출근기록
 		ArrayList<WorkInOut> mlist = hService.SearchWorkEnoList(pi, hs); //회원 이름
 		PeopleCount mCount = hService.WorkPeopleCount();
@@ -771,8 +799,8 @@ public class HumanController {
 		System.out.println(nlist);
 		
 		model.addAttribute("vacationDay", result)
-		     .addAttribute("work", work)
-			 .addAttribute("nlist", nlist);
+			 .addAttribute("nlist", nlist)
+		     .addAttribute("work", work);
 			
 		return "myInfo";
 	}

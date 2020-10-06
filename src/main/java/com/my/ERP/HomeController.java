@@ -155,4 +155,9 @@ public class HomeController {
 			return "success";
 		}
 	}
+	// 퀵메뉴
+	@RequestMapping("quickMenu")
+	public String quickMenu() {
+		return "QuickMenu";
+	}
 }

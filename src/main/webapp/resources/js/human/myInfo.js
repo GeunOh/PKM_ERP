@@ -276,17 +276,29 @@ function workWeekTime(){
     var startDay = start.getFullYear() + "-" + (start.getMonth()+1) + "-" + start.getDate();
     var endDay = end.getFullYear() + "-" + (end.getMonth()+1) + "-" + end.getDate();
     $.ajax({
+    	
     	url : '/Human/myInfoWeekWorkTime',
     	data: {startDay:startDay,
     		   endDay:endDay},
+    	async: false,
     	success:function(data){
-    		worktimeChart(data)
+    		worktimeChart(data);
     	}
     		  
     })
 }
 //근태 통계 그래프
 function worktimeChart(data){
+	// data가 null 일때 처리를 해줍시다..하하
+//	var cate;
+//	var nDate = new Date();
+//	nDate.setDate(nDate.getDate()+1);
+//	
+//	console.log(nDate);
+//	if(data.length == 0){
+//		cate = [nDate, nDate.setDate(nDate.getDate()+1);, new Date()+1, ]
+//	}
+	
 	var cate = [workChangeDate(data[0].date),workChangeDate(data[1].date),workChangeDate(data[2].date),workChangeDate(data[3].date),workChangeDate(data[4].date)];
 	var worktime = [changeTimeChart(data[0].worktime),changeTimeChart(data[1].worktime),changeTimeChart(data[2].worktime),changeTimeChart(data[3].worktime),changeTimeChart(data[4].worktime)]
 	console.log(changeTimeChart(data[3].worktime))

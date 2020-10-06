@@ -144,4 +144,20 @@
 		JOIN TB_PRODUCT_STOCK PS ON(P.PCODE = PS.PCODE)
 	</select>
 	
+	<select id="showSupply" resultMap="supplyResult">
+		SELECT * FROM TB_SUPPLY WHERE SCODE = #{scode}
+	</select>
+	
+	<insert id="addSupply">
+		INSERT INTO TB_SUPPLY VALUES(#{scode}, #{sname}, #{cost_price}, #{s_comment})
+	</insert>
+	
+	<update id="modifySupply">
+		UPDATE TB_SUPPLY SET SCODE=#{scode}, SNAME=#{sname}, COST_PRICE=#{cost_price}, S_COMMENT=#{s_comment}
+		WHERE SCODE=#{scount}
+	</update>
+	
+	<delete id="deleteSupply">
+		DELETE FROM TB_SUPPLY WHERE SCODE=#{del_scode}
+	</delete>
 </mapper>
