@@ -101,5 +101,21 @@ public class StockServiceImpl implements StockService {
 	public ArrayList<Product> productList(PageInfo pi) {
 		return sDAO.productList(sqlSession, pi);
 	}
+	@Override
+	public Supply showSupply(String scode) {
+		return sDAO.showSupply(sqlSession, scode);
+	}
+	@Override
+	public int addSupply(Supply supply) {
+		return sDAO.addSupply(sqlSession, supply);
+	}
+	@Override
+	public int modifySupply(Supply supply) {
+		return sDAO.modifySupply(sqlSession, supply);
+	}
+	@Override
+	public int deleteSupply(String del_scode) {
+		return sDAO.deleteSupply(sqlSession, del_scode);
+	}
 	
 }

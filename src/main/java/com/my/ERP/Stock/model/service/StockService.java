@@ -42,6 +42,14 @@ public interface StockService {
 
 	ArrayList<Product> productList(PageInfo pi);
 
+	Supply showSupply(String scode);
+
+	int addSupply(Supply supply);
+
+	int modifySupply(Supply supply);
+
+	int deleteSupply(String del_scode);
+
 
 	
 

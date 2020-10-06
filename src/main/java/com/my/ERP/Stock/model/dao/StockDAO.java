@@ -85,6 +85,19 @@ public class StockDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("stockMapper.productManagerList", null, rowBounds);
 	}
+	// 비품코드 중복체크
+	public Supply showSupply(SqlSessionTemplate sqlSession, String scode) {
+		return sqlSession.selectOne("stockMapper.showSupply", scode);
+	}
+	public int addSupply(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.insert("stockMapper.addSupply", supply);
+	}
+	public int modifySupply(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.update("stockMapper.modifySupply", supply);
+	}
+	public int deleteSupply(SqlSessionTemplate sqlSession, String del_scode) {
+		return sqlSession.delete("stockMapper.deleteSupply", del_scode);
+	}
 	
 	
 	

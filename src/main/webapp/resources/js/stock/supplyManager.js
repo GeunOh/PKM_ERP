@@ -17,3 +17,20 @@ $('.add-textform button:first-child').on('click',function(){
 })
 
 // 비품 추가시 scode 중복확인
+$("input[name=add_scode]").on("keyup", function(){
+	var scode = $(this).val();
+	
+	$.ajax({
+		url: "/Stock/scodeChk",
+		data: {scode, scode},
+		success: function(data) {
+			if(data == "exist"){
+				$("#addScodeChk").text("사용 불가능").css('color','red');
+				$("input[name=addScodeChk]").attr('value',0);
+			} else {
+				$("#addScodeChk").text("사용 가능").css('color','green');
+				$("input[name=addScodeChk]").attr('value',1);
+			}
+		}
+	})
+})

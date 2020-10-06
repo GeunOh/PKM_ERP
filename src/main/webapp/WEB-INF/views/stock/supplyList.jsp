@@ -83,6 +83,7 @@
 		<div id="btnForm">
 			<label id="addBtn">추가</label>
 			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
+			<span>변경하실 행을 더블클릭 시 수정 또는 삭제하실수 있습니다</span>
 		</div>
 		<!-- 테이블 -->
 		<table id="supplyListTable">
@@ -115,6 +116,12 @@
 			<c:if test="${ pi.currentPage > 1 }">
 				<c:url var="start" value="${ loc }">
 					<c:param name="page" value="1"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
 			</c:if>
@@ -122,6 +129,12 @@
 			<c:if test="${ pi.currentPage > 10 }">
 				<c:url var="prev" value="${ loc }">
 					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
 			</c:if>
@@ -134,6 +147,12 @@
 					<c:if test="${p ne 0}">
 						<c:url var="pagination" value="${ loc }">
 							<c:param name="page" value="${ p }"/>
+							<c:if test="${not empty hs}">
+								<c:param name="scode" value="${hs.scode }" />
+								<c:param name="sname" value="${hs.sname }" />
+								<c:param name="price" value="${hs.price }" />
+								<c:param name="price2" value="${hs.price2 }" />
+							</c:if>
 						</c:url>
 						<a class="pg_page" href="${ pagination }">${ p }</a>
 					</c:if>
@@ -143,6 +162,12 @@
 			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
 				<c:url var="next" value="${ loc }">
 					<c:param name="page" value="${pi.endPage + 1 }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
 			</c:if>
@@ -150,12 +175,104 @@
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="end" value="${ loc }">
 					<c:param name="page" value="${ pi.maxPage }"/>
+					<c:if test="${not empty hs}">
+						<c:param name="scode" value="${hs.scode }" />
+						<c:param name="sname" value="${hs.sname }" />
+						<c:param name="price" value="${hs.price }" />
+						<c:param name="price2" value="${hs.price2 }" />
+					</c:if>
 				</c:url> 
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>	
 		</div>
+		<!-- 비품 추가 팝업창 -->
+		<form action="/Stock/addSupply" id="add-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>비품 추가 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<div class="content-form">
+					<span>비품 정보</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품코드</span>
+						<input type="text" class="txtBox add-text" name="add_scode">
+						<label id="addScodeChk"></label>
+						<input type="hidden" name="addScodeChk" value="0">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품이름</span>
+						<input type="text" class="txtBox add-text" name="add_sname">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품가격</span>
+						<input type="text" class="txtBox add-text" name="add_price" onkeyup="numberWithCommas(this.value, this)">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비고</span>
+						<input type="text" class="txtBox add-text" name="add_s_comment">
+					</div>
+					<div class="add-textform btn-form">
+						<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
+						<button type="button" onclick="addSupply();"><i class="fas fa-check" aria-hidden="true"></i> 추가</button>
+					</div>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- 비품 수정/삭제 -->
+		<form action="/Stock/deleteSupply" id="delete-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>비품 수정/삭제 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<p>
+					<span id="selectInfo"></span>이(가) 선택되었습니다.
+				</p>
+				<div class="btn-form">
+					<button type="button" onclick="modifyForm()"><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					<button type="button" onclick="deleteSupply();"><i class="fas fa-times" aria-hidden="true"></i> 삭제</button>
+				</div>
+				<input type="hidden" name="del_scode">
+			</div>
+			<div class="popupLayer"></div>
+		</form>
+		<!-- 비품 수정 -->
+		<form action="/Stock/modifySupply" id="modify-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>비품 수정
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<div class="content-form">
+					<span>비품 정보</span>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품코드</span>
+						<input type="text" class="txtBox add-text" name="modify_scode">
+						<label id="modifyScodeChk"></label>
+						<input type="hidden" name="modifyScodeChk" value="allow">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품이름</span>
+						<input type="text" class="txtBox add-text" name="modify_sname">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비품가격</span>
+						<input type="text" class="txtBox add-text" name="modify_price" onkeyup="numberWithCommas(this.value, this)">
+					</div>
+					<div class="add-textform">
+						<span class="add-title add-title2">비고</span>
+						<input type="text" class="txtBox add-text" name="modify_s_comment">
+					</div>
+					<div class="add-textform btn-form">
+						<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
+						<button type="button" onclick="modifySupply()"><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					</div>
+					<input type="hidden" name="beforeScode">
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
 	</div>
 	<!-- // wrap -->
-	
+	<script type="text/javascript" src="resources/js/stock/supplyList.js"></script>	
 </body>
 </html>

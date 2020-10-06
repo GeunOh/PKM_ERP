@@ -364,6 +364,7 @@ public class HumanServiceImpl implements HumanService {
 	// 공지사항 가져오기
 	@Override
 	public ArrayList<Notice> showNotices() {
+		System.out.println("하이?");
 		return hDAO.showNotices(sqlSession);
 	}
 
