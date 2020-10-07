@@ -6,31 +6,42 @@ function numberWithCommas(x, t) {
 }
 
 //팝업창 버튼들 작동
-$('#addBtn').on('click',function(){
-	$('#add-popup-form').fadeIn();	// 추가 팝업창
-})
 $('h1 .fa-times').on('click',function(){
 	$('.popup-form').fadeOut();
 })
-$('.add-textform button:first-child').on('click',function(){
+$('.btn-form button:last-child').on('click',function(){
 	$('.popup-form').fadeOut();
 })
 
-// 비품 추가시 scode 중복확인
-$("input[name=add_scode]").on("keyup", function(){
-	var scode = $(this).val();
+// 행 더블 클릭 시  이벤트 발생
+var trs = document.querySelectorAll('tbody tr');
+for(var i=0; i<trs.length; i++){
+	trs[i].addEventListener('dblclick', dblclick);		// 더블클릭 시 수정화면
+	trs[i].addEventListener('mouseenter', hoverCss);	// 호버시 css 효과
+}
+
+function dblclick() {
+	var scode = $(this).children("td").eq(0).text();
+	var sname = $(this).children("td").eq(1).text();
+	var scount = $(this).children("td").eq(3).text();
 	
-	$.ajax({
-		url: "/Stock/scodeChk",
-		data: {scode, scode},
-		success: function(data) {
-			if(data == "exist"){
-				$("#addScodeChk").text("사용 불가능").css('color','red');
-				$("input[name=addScodeChk]").attr('value',0);
-			} else {
-				$("#addScodeChk").text("사용 가능").css('color','green');
-				$("input[name=addScodeChk]").attr('value',1);
-			}
-		}
-	})
-})
+	$("input[name=modify_scode").attr("value", scode);
+	$("input[name=scount").attr("value", scount);
+	
+	$("#selectInfo").text("["+scode+"] " +sname + " " );
+	$('#modify-popup-form').fadeIn();
+}
+
+function hoverCss() {
+	for(var i=0; i<trs.length; i++){
+		trs[i].style.backgroundColor = '#fff';
+	}
+	this.style.backgroundColor = '#f6f6f6';
+}
+
+function modifyForm() {
+	if(confirm('정말로 수정하시겠습니까?')){
+		$('#modify-popup-form').submit();
+		alert("수정이 완료되었습니다.");
+	}
+}

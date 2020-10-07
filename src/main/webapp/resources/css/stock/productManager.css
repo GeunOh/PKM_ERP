@@ -105,7 +105,10 @@ ul, li{list-style: none;}
     cursor: pointer;
 }
 .date + label{ margin: 0 10px; font-size: 20px;}
-
+#price + label {
+    margin: 0 10px;
+    font-size: 20px;
+}
 #searchBtn { 
 	font-family: NotoSans-Regular;
 	padding: 22px 15px;
@@ -122,7 +125,7 @@ ul, li{list-style: none;}
 .wid_150{width: 150px!important;}
 .wid_170{width: 170px!important;}
 .wid_75{width: 75px!important;}
-.wid_55{width: 55px!important; border-radius: 0; border-right: 0;}
+.wid_55{width: 55px!important;}
 .wid_35{width: 35px!important;}
 
 /*검색창 아래부분*/

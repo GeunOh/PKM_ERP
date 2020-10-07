@@ -117,5 +117,17 @@ public class StockServiceImpl implements StockService {
 	public int deleteSupply(String del_scode) {
 		return sDAO.deleteSupply(sqlSession, del_scode);
 	}
+	@Override
+	public int modifySupplyCount(Supply supply) {
+		return sDAO.modifySupplyCount(sqlSession, supply);
+	}
+	@Override
+	public int searchProductListCount(HashMap<String, Object> hs) {
+		return sDAO.searchProductListCount(sqlSession, hs);
+	}
+	@Override
+	public ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi) {
+		return sDAO.searchProductManagerList(sqlSession, hs, pi);
+	}
 	
 }

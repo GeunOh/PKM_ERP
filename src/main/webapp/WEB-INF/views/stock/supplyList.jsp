@@ -20,61 +20,26 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Stock/serachProduct">
+				<form action="/Stock/searchSupplyList">
 					<div class="search-area">
-						<span class="title">구분</span>
-						<div class="selectBox">
-							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
-							<a href="#none" class="link-selected">전체</a>
-							<ul>
-								<li><a href="#" class="link-select" data-value="all">전체</a></li>
-								<li><a href="#" class="link-select" data-value="in">입고</a></li>
-								<li><a href="#" class="link-select" data-value="out">출고</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+						<span class="title">비품코드</span>
+						<input type="text" class="txtBox" name="scode">
 					</div>
 					
 					<div class="search-area">
-						<span class="title">거래처명</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
-					
-					<div class="search-area">
-						<span class="title">상품명</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
+						<span class="title">비품명</span>
+						<input type="text" class="txtBox" name="sname">
 					</div>
 					
 					<br>
 					
 					<div class="search-area downSearch" style="height: 31px;">
-						<span class="title">입/출고일자</span>
-						<div class="selectBox wid_55">
-							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
-							<a href="#none" class="link-selected wid_55">전체</a>
-							<ul class="wid_75">
-								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateSelect">선택</a></li>
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-						<input type="date" id="date" name="date" class="date" disabled> <label>~</label>
-						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
+						<span class="title">비품가격</span>
+						<input type="text" id="price" name="price" class="txtBox wid_150" onkeyup="numberWithCommas(this.value, this)"> 
+						<label>~</label>
+						<input type="text" id="price2" name="price2" class="txtBox rightDate wid_150" onkeyup="numberWithCommas(this.value, this)">
 					</div>
-					
-					<button id="searchBtn" class="buttons">검색</button>
+					<button id="searchBtn">검색</button>
 				</form>
 			</div>
 		</div>
@@ -108,6 +73,25 @@
 						<td>${s.s_comment }</td>
 					</tr>
 				</c:forEach>
+				<c:if test="${empty slist}">
+					<tr>
+						<td colspan="6">비품이 존재하지않습니다.</td>
+					</tr>
+				</c:if>
+				<c:if test="${!empty slist}">
+					<c:if test="${ fn:length(slist) < 10 }">
+						<c:forEach begin="${fn:length(slist)}" end="9">
+							<tr>
+								<td>&nbsp;</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</c:forEach>
+					</c:if>
+				</c:if>
 			</tbody>
 		</table>
 		<!-- 테이블 -->

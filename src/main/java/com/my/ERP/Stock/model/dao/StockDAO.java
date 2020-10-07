@@ -98,6 +98,18 @@ public class StockDAO {
 	public int deleteSupply(SqlSessionTemplate sqlSession, String del_scode) {
 		return sqlSession.delete("stockMapper.deleteSupply", del_scode);
 	}
+	public int modifySupplyCount(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.update("stockMapper.modifySupplyCount", supply);
+	}
+	public int searchProductListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("stockMapper.searchProductListCount", hs);
+	}
+	public ArrayList<Product> searchProductManagerList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("stockMapper.searchProductManagerList", hs, rowBounds);
+	}
 	
 	
 	
