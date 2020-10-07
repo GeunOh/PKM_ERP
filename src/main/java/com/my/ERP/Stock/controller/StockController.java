@@ -178,7 +178,39 @@ public class StockController {
 		
 		return "productManager";
 	}
-	
+	@RequestMapping("searchProductManager")
+	public String searchProduct(@RequestParam(name="page", required = false) Integer page, Model model,
+								String price, String price2, String pcode, String pname, String p_comment,
+							    String pcount) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		if(price != null) price = price.replace(",", "");
+		if(price2 != null) price2 = price2.replace(",", "");
+		
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("pcode", pcode);
+		hs.put("pname", pname);
+		hs.put("pcount", pcount);
+		hs.put("price", price);
+		hs.put("price2", price2);
+		hs.put("p_comment", p_comment);
+		
+		int listCount = sService.searchProductListCount(hs);
+		System.out.println(listCount);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Product> plist = sService.searchProductManagerList(hs, pi);
+		model.addAttribute("pi", pi)
+		     .addAttribute("plist", plist)
+		     .addAttribute("hs", hs);
+		
+		return "productManager";
+	}
 	
 	
 	/**
@@ -212,6 +244,37 @@ public class StockController {
 		
 		return "supplyList";
 	}
+	@RequestMapping("searchSupplyList")
+	public String searchSupplyList(String scode, String sname, @RequestParam(name="page", required = false) Integer page,
+								   @RequestParam(value="price", required = false) String price,
+								   @RequestParam(value="price2", required = false) String price2,
+								   Model model) {
+		
+		if(price != null || price2 != null) {
+		price = price.replace(",", "");
+		price2 = price2.replace(",", "");
+		}
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("scode", scode);
+		hs.put("sname", sname);
+		hs.put("price", price);
+		hs.put("price2", price2);
+		
+		int listCount = sService.searchSupplyCount(hs);
+		int currentPage = 1;
+		if(page != null) {
+		currentPage = page;
+		}
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Supply> slist = sService.searchSupply(hs, pi);
+		
+		model.addAttribute("hs", hs)
+		.addAttribute("slist", slist)
+		.addAttribute("pi", pi);
+		return "supplyList";
+	}
+	
 	// 비품코드 존재확인
 	@RequestMapping("scodeChk")
 	@ResponseBody
@@ -307,8 +370,20 @@ public class StockController {
 		model.addAttribute("hs", hs)
 			 .addAttribute("slist", slist)
 			 .addAttribute("pi", pi);
-		
+		 
 		return "supplyManager";
+	}
+	
+	@RequestMapping("modifySupplyCount")
+	public String modifySupplyCount(String modify_scode, String scount) {
+		
+		Supply supply = new Supply();
+		supply.setScode(modify_scode);
+		supply.setScount(scount);
+		
+		int result = sService.modifySupplyCount(supply);
+		
+		return "redirect:/Stock/supplyManager";
 	}
 	
 	/**

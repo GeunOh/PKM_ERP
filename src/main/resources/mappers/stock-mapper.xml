@@ -160,4 +160,46 @@
 	<delete id="deleteSupply">
 		DELETE FROM TB_SUPPLY WHERE SCODE=#{del_scode}
 	</delete>
+	
+	<update id="modifySupplyCount">
+		UPDATE TB_SUPPLY_STOCK SET SCOUNT = #{scount} WHERE SCODE = #{scode}
+	</update>
+	
+	<select id="searchProductListCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCTLIST
+		<where>
+			<if test="pcode != ''">AND PCODE LIKE '%' || #{pcode} || '%'</if>
+			<if test="pname != ''">AND PNAME LIKE '%' || #{pname} || '%'</if>
+			<if test="pcount != ''"><![CDATA[ PCOUNT >= #{pcount} ]]></if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+			<if test="p_comment != ''">AND P_COMMENT LIKE '%' || #{p_comment} || '%'</if>
+		</where>
+	</select>
+	
+	<select id="searchProductManagerList" resultMap="productResult">
+		SELECT PCODE, PNAME, PCOUNT, COST_PRICE, SELLING_PRICE, P_COMMENT FROM PRODUCTLIST
+		<where>
+			<if test="pcode != ''">AND PCODE LIKE '%' || #{pcode} || '%'</if>
+			<if test="pname != ''">AND PNAME LIKE '%' || #{pname} || '%'</if>
+			<if test="pcount != ''"><![CDATA[ PCOUNT >= #{pcount} ]]></if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+			<if test="p_comment != ''">AND P_COMMENT LIKE '%' || #{p_comment} || '%'</if>
+		</where>
+	</select>
 </mapper>

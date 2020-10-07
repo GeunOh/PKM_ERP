@@ -50,6 +50,14 @@ public interface StockService {
 
 	int deleteSupply(String del_scode);
 
+	int modifySupplyCount(Supply supply);
+
+	int searchProductListCount(HashMap<String, Object> hs);
+
+	ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi);
+
+
+
 
 	
 

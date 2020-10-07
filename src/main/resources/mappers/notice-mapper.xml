@@ -59,4 +59,7 @@
 		FROM VACATIONLIST
 		WHERE ENO=#{eno}
 	</select>
+	
+	
+	
 </mapper>

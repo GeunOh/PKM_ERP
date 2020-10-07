@@ -132,7 +132,21 @@ ul, li{list-style: none;}
 
 /*검색창 아래부분*/
 .downSearch{margin-top: 1%;}
-
+#price + label {
+    margin: 0 10px;
+    font-size: 20px;
+}
+#searchBtn {
+    font-family: NotoSans-Regular;
+    padding: 22px 15px;
+    background-color: transparent;
+    border: 1px solid #969696;
+    border-radius: 3px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
 /* 추가 외 버튼 폼*/
 #btnForm{
 	position: relative;
