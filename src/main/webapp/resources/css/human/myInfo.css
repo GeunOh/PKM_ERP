@@ -265,14 +265,13 @@ h2{margin-bottom: 1%;}
 #vacationDayBox span { color: #8c8c8c; }
 /* 휴가 신청 */
 #rightBox #vacationUseBox {
-	cursor: pointer;
 	background-color: #f1f9ff;
 }
 #vacationUseBox div {
 	text-align: center;
     margin-top: 15%;
 }
-.fa-plane { font-size: 70px; color: #BCE; }
+.fa-plane { font-size: 70px; color: #BCE; cursor: pointer; }
 
 
 

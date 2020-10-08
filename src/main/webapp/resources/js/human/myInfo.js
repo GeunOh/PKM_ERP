@@ -16,7 +16,7 @@ $(document).ready(function() {
 	workWeekTime();
 })
 // 버튼들 클릭 이벤트
-$("#vacationUseBox").on("click", function() {
+$("#vacationUseBox .fa-plane").on("click", function() {
 	$('#vacation-add').fadeIn();
 })
 $('h2 .fa-times').on('click',function(){

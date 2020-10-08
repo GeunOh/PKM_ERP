@@ -7,8 +7,6 @@
 <head>
 <jsp:include page="../common/headTag.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/human/salaryManager.css">
-<link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
-<script src="resources/js/plugin/selectbox.min.js"></script>
 <title>급여 관리</title>
 </head>
 <body>

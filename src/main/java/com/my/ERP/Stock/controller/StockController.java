@@ -211,7 +211,17 @@ public class StockController {
 		
 		return "productManager";
 	}
-	
+	@RequestMapping("modifyProductCount")
+	public String modifyProductCount(String modify_pcode, String modify_pcount) {
+		
+		Product product = new Product();
+		product.setPcode(modify_pcode);
+		product.setPcount(Integer.parseInt(modify_pcount));
+		
+		int result = sService.modifyProductCount(product);
+		
+		return "redirect:/Stock/productManager";
+	}
 	
 	/**
 	 *  [ ========== 제 품 입 출 고 현 황 ========== ]

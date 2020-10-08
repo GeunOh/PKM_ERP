@@ -129,5 +129,9 @@ public class StockServiceImpl implements StockService {
 	public ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi) {
 		return sDAO.searchProductManagerList(sqlSession, hs, pi);
 	}
+	@Override
+	public int modifyProductCount(Product product) {
+		return sDAO.modifyProductCount(sqlSession, product);
+	}
 	
 }
