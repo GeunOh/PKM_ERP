@@ -110,6 +110,9 @@ public class StockDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("stockMapper.searchProductManagerList", hs, rowBounds);
 	}
+	public int modifyProductCount(SqlSessionTemplate sqlSession, Product product) {
+		return sqlSession.update("stockMapper.modifyProductCount", product);
+	}
 	
 	
 	

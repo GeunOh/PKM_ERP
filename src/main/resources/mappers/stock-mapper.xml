@@ -202,4 +202,8 @@
 			<if test="p_comment != ''">AND P_COMMENT LIKE '%' || #{p_comment} || '%'</if>
 		</where>
 	</select>
+	
+	<update id="modifyProductCount">
+		UPDATE TB_PRODUCT_STOCK SET PCOUNT = #{pcount} WHERE PCODE = #{pcode}
+	</update>
 </mapper>

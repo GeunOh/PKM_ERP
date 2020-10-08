@@ -56,6 +56,8 @@ public interface StockService {
 
 	ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi);
 
+	int modifyProductCount(Product product);
+
 
 
 

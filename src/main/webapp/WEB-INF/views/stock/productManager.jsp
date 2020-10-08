@@ -189,6 +189,23 @@
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>	
 		</div>
+		<!-- 제품 재고 수정 -->
+		<form action="/Stock/modifyProductCount" id="modify-popup-form" class="popup-form" style="display: none;">
+			<div class="popupContent">
+				<h1>제품 재고 수정 
+					<i class="fas fa-times" aria-hidden="true"></i>
+				</h1>
+				<p>
+					<span id="selectInfo"></span>이(가) 선택되었습니다. 수량 : <input type="number" name="modify_pcount">
+				</p>
+				<div class="btn-form">
+					<button type="button" onclick="modifyForm()"><i class="fas fa-check" aria-hidden="true"></i> 수정</button>
+					<button type="button"><i class="fas fa-times" aria-hidden="true"></i> 취소</button>
+				</div>
+				<input type="hidden" name="modify_pcode">
+			</div>
+			<div class="popupLayer"></div>
+		</form>
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/stock/productManager.js"></script>
