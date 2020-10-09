@@ -60,6 +60,31 @@
 		WHERE ENO=#{eno}
 	</select>
 	
+	<select id="myVacationListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM VACATIONLIST
+		WHERE ENO=#{eno}
+	</select>
 	
+	<insert id="addSupplyRequest">
+		INSERT INTO TB_SUPPLY_APPLICATION
+		VALUES(TB_SUPPLY_APPLICATION_ANO.nextval, #{eno}, #{scode}, #{sname}, SYSDATE, #{count}, #{comment}, DEFAULT)
+	</insert>
+	
+	<select id="totalCount" resultType="hashmap">
+		SELECT COUNT(*) AS totalCount, 
+		COUNT(CASE WHEN STATUS = 'N' THEN 1 ELSE NULL END) AS  waitCount,
+		COUNT(CASE WHEN STATUS = 'F' THEN 1 ELSE NULL END) AS  failCount,
+		COUNT(CASE WHEN STATUS = 'Y' THEN 1 ELSE NULL END) AS  successCount
+		FROM SUPPLY_APPLICATION_VIEW
+		WHERE eno = #{eno}
+	</select>
+	
+	<select id="supplyRequestList" resultType="hashmap">
+		SELECT *
+		FROM SUPPLY_APPLICATION_VIEW
+		WHERE eno = #{eno}
+		ORDER BY APPLICATE_DATE DESC
+	</select>
 	
 </mapper>

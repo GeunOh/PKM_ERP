@@ -206,4 +206,14 @@
 	<update id="modifyProductCount">
 		UPDATE TB_PRODUCT_STOCK SET PCOUNT = #{pcount} WHERE PCODE = #{pcode}
 	</update>
+	
+	<select id="applicationListCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLY_APPLICATION_VIEW
+	</select>
+	
+	<select id="applicationList" resultType="hashmap">
+		SELECT *
+		FROM SUPPLY_APPLICATION_VIEW
+		ORDER BY APPLICATE_DATE DESC
+	</select>
 </mapper>

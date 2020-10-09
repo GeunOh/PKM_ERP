@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
@@ -57,6 +58,10 @@ public interface StockService {
 	ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi);
 
 	int modifyProductCount(Product product);
+
+	int applicationListCount();
+
+	List<HashMap<String, String>> applicationList(PageInfo pi);
 
 
 

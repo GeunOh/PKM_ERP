@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +133,14 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public int modifyProductCount(Product product) {
 		return sDAO.modifyProductCount(sqlSession, product);
+	}
+	@Override
+	public int applicationListCount() {
+		return sDAO.applicationListCount(sqlSession);
+	}
+	@Override
+	public List<HashMap<String, String>> applicationList(PageInfo pi) {
+		return sDAO.applicationList(sqlSession, pi);
 	}
 	
 }

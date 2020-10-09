@@ -2,11 +2,14 @@ package com.my.ERP.myInfo.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.myInfo.model.vo.Notice;
 
 @Repository
@@ -50,8 +53,28 @@ public class MyinfoDAO {
 		return sqlSession.selectOne("noticeMapper.vacationUseDays", eno);
 	}
 
-	public ArrayList<Vacation> myVacationList(SqlSessionTemplate sqlSession, String eno) {
-		return (ArrayList)sqlSession.selectList("noticeMapper.myVacationList", eno);
+	public ArrayList<Vacation> myVacationList(SqlSessionTemplate sqlSession, String eno, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("noticeMapper.myVacationList", eno, rowbounds);
+	}
+
+	public int myVacationListCount(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("noticeMapper.myVacationListCount", eno);
+	}
+
+	public int addSupplyRequest(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.insert("noticeMapper.addSupplyRequest", hs);
+	}
+
+	public HashMap<String, String> totalCount(SqlSessionTemplate sqlSession, String eno) {
+		return sqlSession.selectOne("noticeMapper.totalCount", eno);
+	}
+
+	public List<HashMap<String, String>> supplyRequestList(SqlSessionTemplate sqlSession, String eno, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("noticeMapper.supplyRequestList", eno, rowbounds);
 	}
 
 }

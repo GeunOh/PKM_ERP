@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,30 +103,135 @@
 						<th>비품이름</th>
 						<th>수량</th>
 						<th>신청일자</th>
+						<th>가격</th>
+						<th>승인여부</th>
 						<th>사유</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><input type="checkbox" name="scode" value=""></td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-						<td>1</td>
-					</tr>
-
+					<c:if test="${empty alist}">
+						<tr>
+							<td colspan="10">신청내역 존재하지않습니다.</td>
+						</tr>
+					</c:if>
+					<c:if test="${!empty alist}">	
+						<c:forEach items="${alist }" var="a">
+							<tr>
+								<td><input type="checkbox" value="${a.ANO }"></td>
+								<td>${a.DNAME }</td>
+								<td>${a.ENAME }</td>
+								<td>${a.SCODE }</td>
+								<td>${a.SNAME }</td>
+								<td>${a.COUNT }</td>
+								<td><fmt:formatDate value="${a.APPLICATE_DATE }" pattern="yyyy-MM-dd"/></td>
+								<td>
+									<fmt:formatNumber value="${a.COST_PRICE }" type="currency" />
+								</td>
+								<c:if test="${a.STATUS eq 'N'}"> <td>승인대기중</td> </c:if>
+								<c:if test="${a.STATUS eq 'Y'}"> <td style="color:green">승인완료</td> </c:if>
+								<c:if test="${a.STATUS eq 'F'}"> <td style="color:red">승인거절</td> </c:if>
+								<td>${s.A_COMMENT }</td>
+							</tr>
+						</c:forEach>
+						<c:if test="${ fn:length(alist) < 10 }">
+							<c:forEach begin="${fn:length(alist)}" end="9">
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</c:if>
 				</tbody>
 			</table>
 			<!-- // 비품신청 목록 테이블 -->
 			<div class="buttons">
-				<button type="button" onclick="approvalVacation();">승인</button>
-				<button type="button" onclick="refuseVacation();">거절</button>
+				<button type="button" onclick="approval();">승인</button>
+				<button type="button" onclick="refuse();">거절</button>
 			</div>
 		</form>
 		<!-- 페이징 폼 -->
+		<div id="pagingForm">
+			<!-- 첫 페이지로 -->
+			<c:if test="${pi.currentPage > 1}">
+				<c:url var="start" value="${loc}">
+					<c:param name="page" value="1"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="selectRank" value="${hs.selectRank}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			
+			<!-- 10개씩 전 페이징 -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+					<c:if test="${ not empty hs }">
+						<c:param name="selectDept" value="${hs.selectDept}"/>
+						<c:param name="selectRank" value="${hs.selectRank}"/>
+						<c:param name="eno" value="${hs.eno}"/>
+						<c:param name="name" value="${hs.name}"/>
+						
+					</c:if>
+					<c:if test="${selectDate ne null }">
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${selectDate eq 'dateSelect'}">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			
+			<!-- 기본 페이지-->
+			<c:forEach var="p" begin="${pi.startPage }" end="${pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="pagination" value="${loc}">
+						<c:param name="page" value="${p}"/>
+					</c:url>
+					<a class="pg_page" href="${pagination}">${p}</a>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 10개 씩 다음 페이지로 -->
+			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 and pi.maxPage ne pi.endPage }">
+				<c:url var="next" value="${loc }">
+					<c:param name="page" value="${pi.endPage + 1}" />
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			
+			<!-- 마지막 페이지로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${loc}">
+					<c:param name="page" value="${pi.maxPage }" />
+				</c:url>
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
+		</div>
 	</div>
 	<!-- // wrap -->
 </body>

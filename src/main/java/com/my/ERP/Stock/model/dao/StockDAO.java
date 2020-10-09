@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -112,6 +113,14 @@ public class StockDAO {
 	}
 	public int modifyProductCount(SqlSessionTemplate sqlSession, Product product) {
 		return sqlSession.update("stockMapper.modifyProductCount", product);
+	}
+	public int applicationListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.applicationListCount");
+	}
+	public List<HashMap<String, String>> applicationList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.applicationList", null, rowBounds);
 	}
 	
 	

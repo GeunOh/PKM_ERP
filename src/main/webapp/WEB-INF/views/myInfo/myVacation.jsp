@@ -100,6 +100,50 @@
 				</c:if>
 			</tbody>
 		</table>
+		<!-- 페이징 버튼 -->
+		<div id="pagingForm">
+				<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="start" value="${ loc }">
+					<c:param name="page" value="1"/>
+				</c:url>
+				<a class="pg_page" href="${ start }"><i class="fas fa-backward"></i></a>
+			</c:if>
+			<!--10개씩 전 페이징  -->
+			<c:if test="${ pi.currentPage > 10 }">
+				<c:url var="prev" value="${ loc }">
+					<c:param name="page" value="${pi.startPage - 10}"/>
+				</c:url>
+				<a class="pg_page" href="${ prev }"><i class="fas fa-caret-left"></i></a>
+			</c:if>
+			<!-- 기본페이지 -->
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<strong class="pg_current">${ p }</strong>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:if test="${p ne 0}">
+						<c:url var="pagination" value="${ loc }">
+							<c:param name="page" value="${ p }"/>
+						</c:url>
+						<a class="pg_page" href="${ pagination }">${ p }</a>
+					</c:if>
+				</c:if>
+			</c:forEach>
+			<!--10개씩 다음 페이징  -->
+			<c:if test="${ pi.currentPage > 1 and pi.maxPage > 10}">
+				<c:url var="next" value="${ loc }">
+					<c:param name="page" value="${pi.endPage + 1 }"/>
+				</c:url>
+				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
+			</c:if>
+			<!--맨 끝으로 -->
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="end" value="${ loc }">
+					<c:param name="page" value="${ pi.maxPage }"/>
+				</c:url> 
+				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
+			</c:if>
+		</div>
 	</div>
 	<!-- // wrap -->
 	

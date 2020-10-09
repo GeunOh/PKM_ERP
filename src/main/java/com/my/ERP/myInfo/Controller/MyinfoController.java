@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -286,21 +287,74 @@ public class MyinfoController {
 	
 	// 내 휴가 정보
 	@RequestMapping("myVacation")
-	public String myVacation(HttpSession session, Model model) {
+	public String myVacation(HttpSession session, Model model,
+							 @RequestParam(value="page", required = false) Integer page) {
 		Human human = (Human)session.getAttribute("loginUser");
 		
 		String eno = human.getEno();
 		
 		// 휴가 잔여일수
 		HashMap<String, Integer> useDay = mService.vacationUseDays(eno);
+		
+		int currentPage = 1;
+		if(page != null) currentPage = page;
+		int listCount = mService.myVacationListCount(eno);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
 		// 내 휴가신청 내역
-		ArrayList<Vacation> vlist = mService.myVacationList(eno);
+		ArrayList<Vacation> vlist = mService.myVacationList(eno, pi);
 		
 		model.addAttribute("indate", human.getIndate())
 		     .addAttribute("useDay", useDay)
-		     .addAttribute("vlist", vlist);
+		     .addAttribute("vlist", vlist)
+		     .addAttribute("pi", pi);
 		
 		return "myVacation";
 	}
+	
+	// 내 비품 신청 정보
+	@RequestMapping("mySupplyRequest")
+	public String mySupplyRequest(@RequestParam(value="page", required = false) Integer page
+								  ,HttpSession session, Model model) {
+		Human human = (Human)session.getAttribute("loginUser");
+		String eno = human.getEno();
+		
+		// 총 신청 수
+		HashMap<String, String> hs = mService.totalCount(eno);
+		
+		// 페이징
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = Integer.parseInt(String.valueOf(hs.get("TOTALCOUNT")));
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> slist = mService.supplyRequestList(eno, pi);
+		System.out.println(slist);
+		
+		model.addAttribute("hs", hs)
+			 .addAttribute("slist", slist)
+			 .addAttribute("pi", pi);
+		
+		return "mySupplyRequest";
+	}
+	
+	// 비품 신청
+	@RequestMapping("addSupplyRequest")
+	public String addSupplyRequest(String scode, String sname, String count, String comment, String eno) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("eno", eno);
+		hs.put("scode", scode);
+		hs.put("sname", sname);
+		hs.put("count", count);
+		hs.put("comment", comment);
+		
+		int result = mService.addSupplyRequest(hs);
+		
+		return "redirect:/MyInfo/mySupplyRequest";
+	}
+	
+	
 	
 }
