@@ -63,7 +63,7 @@
 					<a href=""><span id="">업무관리(제품목록)</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">비품신청</span></a>
+					<a href="/MyInfo/mySupplyRequest"><span id="">비품신청</span></a>
 				</li>
 			</ul>
 		</li>

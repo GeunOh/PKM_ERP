@@ -2,6 +2,7 @@ package com.my.ERP.Stock.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -400,7 +401,18 @@ public class StockController {
 	 *  [ ========== 비 품 신 청 현 황 ========== ]
 	 */
 	@RequestMapping("applicationList")
-	public String applicationList() {
+	public String applicationList(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = sService.applicationListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> alist = sService.applicationList(pi);
+		
+		model.addAttribute("alist", alist)
+			 .addAttribute("pi", pi);
 		
 		return "applicationList";
 	}
