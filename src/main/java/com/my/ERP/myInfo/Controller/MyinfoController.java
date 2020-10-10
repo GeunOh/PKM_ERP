@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.FileDown;
 import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
@@ -330,11 +331,12 @@ public class MyinfoController {
 		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
 		
 		List<HashMap<String, String>> slist = mService.supplyRequestList(eno, pi);
-		System.out.println(slist);
-		
+		List<Supply> supplyList = mService.supplyList();
+		System.out.println(supplyList);
 		model.addAttribute("hs", hs)
 			 .addAttribute("slist", slist)
-			 .addAttribute("pi", pi);
+			 .addAttribute("pi", pi)
+			 .addAttribute("supplyList", supplyList);
 		
 		return "mySupplyRequest";
 	}

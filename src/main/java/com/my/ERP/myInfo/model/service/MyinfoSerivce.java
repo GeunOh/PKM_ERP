@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -33,6 +34,8 @@ public interface MyinfoSerivce {
 	HashMap<String, String> totalCount(String eno);
 
 	List<HashMap<String, String>> supplyRequestList(String eno, PageInfo pi);
+
+	List<Supply> supplyList();
 
 
 

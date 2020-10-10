@@ -63,6 +63,10 @@ public interface StockService {
 
 	List<HashMap<String, String>> applicationList(PageInfo pi);
 
+	int refuseApplication(String[] ano);
+
+	int approvalApplication(String[] ano);
+
 
 
 

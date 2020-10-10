@@ -72,10 +72,10 @@
 								<fmt:formatNumber value="${s.COST_PRICE }" type="currency" />
 							</td>
 							<td>${s.COUNT }</td>
-							<td><fmt:formatDate value="${s.APPLICATE_DATE }" pattern="yyyy-MM-dd"/></td>
 							<c:if test="${s.STATUS eq 'N'}"> <td>승인대기중</td> </c:if>
 							<c:if test="${s.STATUS eq 'Y'}"> <td style="color:green">승인완료</td> </c:if>
 							<c:if test="${s.STATUS eq 'F'}"> <td style="color:red">승인거절</td> </c:if>
+							<td><fmt:formatDate value="${s.APPLICATE_DATE }" pattern="yyyy-MM-dd"/></td>
 							<td>${s.A_COMMENT }</td>
 						</tr>
 					</c:forEach>
@@ -146,11 +146,36 @@
 					<i class="fas fa-times" aria-hidden="true"></i>
 				</h1>
 				<div class="content-form">
+					<span>비품 목록</span>
+					<div id="contentList">
+						<table id="supplyList">
+							<thead>
+								<tr>
+									<th>비품코드</th>
+									<th>비품이름</th>
+									<th>가격</th>
+									<th>현재수량</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${supplyList }" var="sl">
+									<tr>
+										<td>${sl.scode }</td>
+										<td>${sl.sname }</td>
+										<td><fmt:formatNumber value="${sl.cost_price }" type="currency" /></td>
+										<td>${sl.scount }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="content-form">
 					<span>신청 정보</span>
 					<span>없는 비품이라도 자유롭게 기재해서 신청해주세요.</span>
 					<div class="add-textform">
 						<span class="add-title add-title2">비품코드</span>
-						<input type="text" class="txtBox add-text" name="scode">
+						<input type="text" class="txtBox add-text" name="scode" autocomplete="off">
 					</div>
 					<div class="add-textform">
 						<span class="add-title add-title2">비품이름</span>

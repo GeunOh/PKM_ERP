@@ -16,7 +16,6 @@ function addSupply() {
 }
 
 function dataChk() {
-	
 	sname = $("input[name=sname]").val();
 	count = $("input[name=count]").val();
 	
@@ -29,5 +28,25 @@ function dataChk() {
 		return false;
 	}
 	return true;
-	
 }
+
+//클릭 시  표시
+$("#supplyList tbody tr").on("click", function() {
+	$("#supplyList tbody tr").removeClass('noSelectTr');
+	$("#supplyList tbody tr").removeClass('selectTr');
+	$(this).addClass('selectTr');
+	
+	$("input[name=scode]").val($(this).children().eq(0).text());
+	$("input[name=scode]").attr("readonly", "readonly");
+	$("input[name=sname]").val($(this).children().eq(1).text());
+	$("input[name=sname]").attr("readonly", "readonly");
+})
+
+//마우스 호버 효과
+$("#supplyList tbody tr").on('mouseenter',function(){
+	if(!$(this).hasClass('selectTr')) $(this).addClass('noSelectTr')
+})
+$("#supplyList tbody tr").on('mouseleave',function(){
+	if($(this).hasClass('noSelectTr')) $(this).removeClass('noSelectTr')
+})
+

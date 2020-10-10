@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -75,6 +76,10 @@ public class MyinfoDAO {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
 		return sqlSession.selectList("noticeMapper.supplyRequestList", eno, rowbounds);
+	}
+
+	public List<Supply> supplyList(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectList("noticeMapper.supplyList");
 	}
 
 }

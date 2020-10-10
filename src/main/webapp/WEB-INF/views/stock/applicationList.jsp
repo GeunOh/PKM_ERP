@@ -116,8 +116,15 @@
 					</c:if>
 					<c:if test="${!empty alist}">	
 						<c:forEach items="${alist }" var="a">
-							<tr>
-								<td><input type="checkbox" value="${a.ANO }"></td>
+							<tr>	
+								<c:choose>
+									<c:when test="${a.STATUS eq 'Y' or a.STATUS eq 'F'}">
+										<td><input type="checkbox" name="ano" value=${a.ANO } disabled></td>
+									</c:when>
+									<c:otherwise>
+										<td><input type="checkbox" name="ano" value=${a.ANO }></td>
+									</c:otherwise>
+								</c:choose>
 								<td>${a.DNAME }</td>
 								<td>${a.ENAME }</td>
 								<td>${a.SCODE }</td>
@@ -234,5 +241,6 @@
 		</div>
 	</div>
 	<!-- // wrap -->
+	<script type="text/javascript" src="resources/js/stock/applicationList.js"></script>
 </body>
 </html>

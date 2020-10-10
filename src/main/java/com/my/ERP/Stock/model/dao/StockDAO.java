@@ -122,6 +122,12 @@ public class StockDAO {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		return sqlSession.selectList("stockMapper.applicationList", null, rowBounds);
 	}
+	public int refuseApplication(SqlSessionTemplate sqlSession, String[] ano) {
+		return sqlSession.update("stockMapper.refuseApplication", ano);
+	}
+	public int approvalApplication(SqlSessionTemplate sqlSession, String[] ano) {
+		return sqlSession.update("stockMapper.approvalApplication", ano);
+	}
 	
 	
 	

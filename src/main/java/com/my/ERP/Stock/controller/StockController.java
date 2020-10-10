@@ -416,6 +416,21 @@ public class StockController {
 		
 		return "applicationList";
 	}
+	// 비품신청 승인
+	@RequestMapping("approvalApplication")
+	public String approvalApplication(String[] ano) {
+		int result = sService.approvalApplication(ano);
+		
+		return "redirect:/Stock/applicationList";
+	}
+	// 비품신청 거절
+	@RequestMapping("refuseApplication")
+	public String refuseApplication(String[] ano) {
+		int result = sService.refuseApplication(ano);
+		
+		return "redirect:/Stock/applicationList";
+	}
+	
 	
 	
 	
