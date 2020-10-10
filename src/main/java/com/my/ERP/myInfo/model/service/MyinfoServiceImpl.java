@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.myInfo.model.dao.MyinfoDAO;
 import com.my.ERP.myInfo.model.vo.Notice;
@@ -78,6 +79,11 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 	@Override
 	public List<HashMap<String, String>> supplyRequestList(String eno, PageInfo pi) {
 		return mDAO.supplyRequestList(sqlSession, eno, pi);
+	}
+
+	@Override
+	public List<Supply> supplyList() {
+		return mDAO.supplyList(sqlSession);
 	}
 
 

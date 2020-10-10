@@ -142,5 +142,14 @@ public class StockServiceImpl implements StockService {
 	public List<HashMap<String, String>> applicationList(PageInfo pi) {
 		return sDAO.applicationList(sqlSession, pi);
 	}
+	@Override
+	public int refuseApplication(String[] ano) {
+		return sDAO.refuseApplication(sqlSession, ano);
+	}
+	@Override
+	public int approvalApplication(String[] ano) {
+		// 재고테이블이 수정되는 로직도 추가해야함
+		return sDAO.approvalApplication(sqlSession, ano);
+	}
 	
 }

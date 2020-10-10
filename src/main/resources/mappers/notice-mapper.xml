@@ -87,4 +87,10 @@
 		ORDER BY APPLICATE_DATE DESC
 	</select>
 	
+	<select id="supplyList" resultType="Supply">
+		SELECT S.*, SS.scount 
+		FROM TB_SUPPLY S
+		JOIN TB_SUPPLY_STOCK SS ON(S.scode = SS.scode)
+	</select>
+	
 </mapper>

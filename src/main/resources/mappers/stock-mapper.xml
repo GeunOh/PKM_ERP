@@ -216,4 +216,17 @@
 		FROM SUPPLY_APPLICATION_VIEW
 		ORDER BY APPLICATE_DATE DESC
 	</select>
+	
+	<update id="refuseApplication">
+		UPDATE TB_SUPPLY_APPLICATION SET STATUS = 'F' WHERE ANO IN
+		<foreach collection="array" item="ano" open="(" close=")" separator="," >
+			#{ano}
+		</foreach>
+	</update>
+	<update id="approvalApplication">
+		UPDATE TB_SUPPLY_APPLICATION SET STATUS = 'Y' WHERE ANO IN
+		<foreach collection="array" item="ano" open="(" close=")" separator="," >
+			#{ano}
+		</foreach>
+	</update>
 </mapper>
