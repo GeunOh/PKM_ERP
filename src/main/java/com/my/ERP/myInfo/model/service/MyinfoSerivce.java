@@ -37,6 +37,8 @@ public interface MyinfoSerivce {
 
 	List<Supply> supplyList();
 
+	int addProductInOut(HashMap<String, String> hs);
+
 
 
 }

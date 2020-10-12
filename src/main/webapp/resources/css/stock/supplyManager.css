@@ -310,3 +310,9 @@ input[name='scount'] {
     margin: 1px;
     vertical-align: text-bottom;
 }
+.searchAngle{
+	position: absolute; 
+	top: 8px; right: 10px;
+	cursor: pointer;
+}
+.rotate-angle{ transform: rotate(180deg);}

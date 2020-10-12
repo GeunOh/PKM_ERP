@@ -64,4 +64,17 @@
 				CCODE = #{beforeCcode}
 			</where>
 	</update>
+	<select id="clientsList" resultType="hashmap">
+		<![CDATA[
+		SELECT COUNT, C.CNAME
+		FROM (
+		    SELECT COUNT(*) count, ccode
+		    FROM PRODUCT_INOUT_VIEW
+		    GROUP BY ROLLUP(CCODE)
+		    ORDER BY count DESC
+		    ) S
+		LEFT JOIN TB_CLIENT C ON(S.ccode = C.ccode)
+		WHERE ROWNUM <= 6
+		]]>
+	</select>
 </mapper>

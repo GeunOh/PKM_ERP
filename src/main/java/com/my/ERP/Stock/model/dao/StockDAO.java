@@ -128,6 +128,32 @@ public class StockDAO {
 	public int approvalApplication(SqlSessionTemplate sqlSession, String[] ano) {
 		return sqlSession.update("stockMapper.approvalApplication", ano);
 	}
+	public int searchApplicationCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("stockMapper.searchApplicationCount", hs);
+	}
+	public List<HashMap<String, String>> searchApplicationList(SqlSessionTemplate sqlSession, PageInfo pi,
+			HashMap<String, Object> hs) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.searchApplicationList", hs, rowBounds);
+	}
+	public int stockInOutCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.stockInOutCount");
+	}
+	public List<HashMap<String, String>> stockInOutList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.stockInOutList", null, rowBounds);
+	}
+	public int searchStockInOutCount(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.selectOne("stockMapper.searchStockInOutCount", hs);
+	}
+	public List<HashMap<String, String>> searchStockInOutList(SqlSessionTemplate sqlSession, HashMap<String, String> hs,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.searchStockInOutList", hs, rowBounds);
+	}
 	
 	
 	

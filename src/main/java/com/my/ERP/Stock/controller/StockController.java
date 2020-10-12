@@ -1,5 +1,6 @@
 package com.my.ERP.Stock.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +105,7 @@ public class StockController {
 	// 제품 중복확인
 	@RequestMapping("pcodeChk")
 	@ResponseBody
-	public boolean dcodeChk(@RequestParam("pcode") String pcode) {
+	public boolean pcodeChk(@RequestParam("pcode") String pcode) {
 		Product product = sService.showProduct(pcode);
 		System.out.println(product);
 		if(product != null)  {
@@ -228,12 +229,50 @@ public class StockController {
 	 *  [ ========== 제 품 입 출 고 현 황 ========== ]
 	 */
 	@RequestMapping("stockInOut")
-	public String stockInOut() {
+	public String stockInOut(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.stockInOutCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> slist = sService.stockInOutList(pi);
+		
+		model.addAttribute("slist", slist)
+		     .addAttribute("pi", pi);
 		
 		return "stockInOut";
 	}
-	
-	
+	@RequestMapping("searchStockInout")
+	public String searchStockInout(@RequestParam(name="page", required = false) Integer page, Model model,
+								   String selectVal, String selectClient, String selectProduct, String selectDate,
+								   String date, String date2) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("selectVal", selectVal);
+		hs.put("selectClient", selectClient);
+		hs.put("selectProduct", selectProduct);
+		hs.put("selectDate", selectDate);
+		hs.put("date", date);
+		hs.put("date2", date2);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.searchStockInOutCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> slist = sService.searchStockInOutList(hs, pi);
+		
+		model.addAttribute("slist", slist)
+	     	 .addAttribute("pi", pi)
+	     	 .addAttribute("hs", hs);
+		
+		return "stockInOut";
+	}
 	
 	/**
 	 *  [ ========== 비 품 목 록 ========== ]
@@ -413,6 +452,33 @@ public class StockController {
 		
 		model.addAttribute("alist", alist)
 			 .addAttribute("pi", pi);
+		
+		return "applicationList";
+	}
+	@RequestMapping("searchApplication")
+	public String searchApplication(@RequestParam(name="page", required = false) Integer page, Model model,
+									String selectVal, String ename, String sname, String selectDate,
+									@RequestParam(value="date", required = false) String date, 
+									@RequestParam(value="date2", required = false) String date2) {
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("selectVal", selectVal);
+		hs.put("ename", ename);
+		hs.put("sname", sname);
+		hs.put("selectDate", selectDate);
+		hs.put("date", date);
+		hs.put("date2", date2);
+
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = sService.searchApplicationCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		List<HashMap<String, String>> alist = sService.searchApplicationList(pi, hs);
+		
+		model.addAttribute("alist", alist)
+			 .addAttribute("pi", pi)
+			 .addAttribute("hs", hs);
 		
 		return "applicationList";
 	}

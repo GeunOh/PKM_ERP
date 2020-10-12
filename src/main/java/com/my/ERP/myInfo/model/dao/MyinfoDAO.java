@@ -82,4 +82,8 @@ public class MyinfoDAO {
 		return sqlSession.selectList("noticeMapper.supplyList");
 	}
 
+	public int addProductInOut(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.insert("noticeMapper.addProductInOut", hs);
+	}
+
 }

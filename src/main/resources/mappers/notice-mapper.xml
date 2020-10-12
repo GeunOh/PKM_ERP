@@ -93,4 +93,12 @@
 		JOIN TB_SUPPLY_STOCK SS ON(S.scode = SS.scode)
 	</select>
 	
+	<insert id="addProductInOut">
+		INSERT INTO TB_PRODUCT_INOUT VALUES(
+			#{ccode}, #{pcode}, #{status}, SYSDATE, 
+			<if test="status == 'IN'">#{count}, null,</if>
+			<if test="status == 'OUT'">null, #{count},</if>
+			#{comment}
+		)
+	</insert>
 </mapper>

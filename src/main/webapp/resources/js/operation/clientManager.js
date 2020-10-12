@@ -1,83 +1,103 @@
-/* pie Chart */
-var chart = tui.chart;
-var container = document.getElementById('chart-area');
-var data = {
-    categories: ['Browser'],
-    series: [
-        {
-            name: 'Chrome',
-            data: 46.02
-        },
-        {
-            name: 'IE',
-            data: 20.47
-        },
-        {
-            name: 'Firefox',
-            data: 17.71
-        },
-        {
-            name: 'Safari',
-            data: 5.45
-        },
-        {
-            name: 'Opera',
-            data: 3.10
-        },
-        {
-            name: 'Etc',
-            data: 7.25
+window.onload = function() {
+	var clients;
+	$.ajax({
+		url: "/Operation/clientsList",
+		async: false,
+        success: function(data){
+        	clients = data;
         }
-    ]
-};
-var options = {
-    chart: {
-        width: 550,
-        height: 300,
-        title: '거래처별 거래현황',
-        format: function(value, chartType, areaType, valuetype, legendName) {
-            if (areaType === 'makingSeriesLabel') { // formatting at series area
-                value = value + '%';
-            }
+	})
+	makePieChart(clients);
+}
+function makePieChart(clients){
+	/* pie Chart */
+	var sum = 0;
+	for(var i=1; i<clients.length; i++){
+		sum += clients[i].COUNT;
+	}
+	sum = clients[0].COUNT - sum;
+	var chart = tui.chart;
+	var container = document.getElementById('chart-area');
+	var data = {
+	    categories: ['Client'],
+	    series: [
+	        {
+	            name: clients[1].CNAME,
+	            data: clients[1].COUNT/clients[0].COUNT
+	        },
+	        {
+	            name: clients[2].CNAME,
+	            data: clients[2].COUNT/clients[0].COUNT
+	        },
+	        {
+	            name: clients[3].CNAME,
+	            data: clients[3].COUNT/clients[0].COUNT
+	        },
+	        {
+	            name: clients[4].CNAME,
+	            data: clients[4].COUNT/clients[0].COUNT
+	        },
+	        {
+	            name: clients[5].CNAME,
+	            data: clients[5].COUNT/clients[0].COUNT
+	        },
+	        {
+	            name: 'Etc',
+	            data: sum/clients[0].COUNT
+	        }
+	    ]
+	};
+	var options = {
+	    chart: {
+	        width: 550,
+	        height: 300,
+	        title: '거래처별 거래현황',
+	        format: function(value, chartType, areaType, valuetype, legendName) {
+	            if (areaType === 'makingSeriesLabel') { // formatting at series area
+	                value = value + '%';
+	            }
 
-            return value;
-        }
-    },
-    series: {
-        radiusRange: ['40%', '100%'],
-        showLabel: false
-    },
-    tooltip: {
-        suffix: '%'
-    },
-    legend: {
-        align: 'right'
-    },	
-    /* 우측 메뉴 삭제 */
-    chartExportMenu: {
-    	visible: false
-    }
-};
-var theme = {
-    series: {
-        series: {
-            colors: [
-                '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
-                '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
-            ]
-        },
-        label: {
-            color: '#fff',
-            fontFamily: 'sans-serif'
-        }
-    }
-};
+	            return value;
+	        }
+	    },
+	    series: {
+	        radiusRange: ['40%', '100%'],
+	        showLabel: false,
+	        showLegend: true
+	    },
+	    tooltip: {
+	        suffix: '%'
+	    },
+	    legend: {
+	        align: 'right'
+	    },	
+	    /* 우측 메뉴 삭제 */
+	    chartExportMenu: {
+	    	visible: false
+	    }
+	};
+	var theme = {
+	    series: {
+	        series: {
+	            colors: [
+	                '#83b14e', '#458a3f', '#295ba0', '#2a4175', '#289399',
+	                '#289399', '#617178', '#8a9a9a', '#516f7d', '#dddddd'
+	            ]
+	        },
+	        label: {
+	            color: '#fff',
+	            fontFamily: 'sans-serif'
+	        }
+	    }
+	};
 
-// For apply theme
-chart.registerTheme('myTheme', theme);
-options.theme = 'myTheme';
+	// For apply theme
+	chart.registerTheme('myTheme', theme);
+	options.theme = 'myTheme';
 
-chart.pieChart(container, data, options);
+	chart.pieChart(container, data, options);
+}
+
 
 /* Column Chart */
 var container = document.getElementById('columnChart-area');

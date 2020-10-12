@@ -20,37 +20,9 @@
 		<!-- 검색 영역 -->
 		<div id="Search-back">
 			<div id="Serach-form">
-				<form action="/Human/searchVacation">
-					<div class="search-area">
-						<span class="title">부서</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectDept" name="selectDept" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
+				<form action="/Stock/searchApplication">
 					
 					<div class="search-area">
-						<span class="title">직급</span>
-						<div class="selectBox wid_150">
-							<input type="hidden" id="selectRank" name="selectRank" data-value="all">
-							<a href="#none" class="link-selected wid_170">전체</a>
-							<ul class="wid_170">
-							</ul>
-							<i class="fas fa-angle-down searchAngle"></i>
-						</div>
-					</div>
-					
-					<div class="search-area">
-						<span class="title">사원명</span>
-						<input type="text" class="txtBox" name="name">
-					</div>
-					
-					<br>
-					
-					<div class="search-area downSearch">
 						<span class="title">상태</span>
 						<div class="selectBox">
 							<input type="hidden" id="selectVal" name="selectVal" data-value="all" value="all">
@@ -64,17 +36,27 @@
 							<i class="fas fa-angle-down searchAngle" aria-hidden="true"></i>
 						</div>
 					</div>
+					
+					<div class="search-area">
+						<span class="title">사원명</span>
+						<input type="text" class="txtBox" name="ename">
+					</div>
+					
+					<div class="search-area">
+						<span class="title">비품명</span>
+						<input type="text" class="txtBox" name="sname">
+					</div>
+					
+					<br>
 			
-					<div class="search-area" style="height: 31px;">
+					<div class="search-area downSearch" style="height: 31px;">
 						<span class="title">조회일자</span>
 						<div class="selectBox wid_55">
 							<input type="hidden" id="selectDate" name="selectDate" data-value="dateAll" value="dateAll">
 							<a href="#none" class="link-selected wid_55">전체</a>
 							<ul class="wid_75">
 								<li><a href="#" class="link-select wid_55" data-value="dateAll">전체</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateRequest">신청일자</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateStart">시작일</a></li>
-								<li><a href="#" class="link-select wid_55" data-value="dateEnd">종료일</a></li>
+								<li><a href="#" class="link-select wid_55" data-value="dateRequest">신청일</a></li>
 							</ul>
 							<i class="fas fa-angle-down searchAngle"></i>
 						</div>
@@ -172,14 +154,11 @@
 				<c:url var="start" value="${loc}">
 					<c:param name="page" value="1"/>
 					<c:if test="${ not empty hs }">
-						<c:param name="selectDept" value="${hs.selectDept}"/>
-						<c:param name="selectRank" value="${hs.selectRank}"/>
-						<c:param name="eno" value="${hs.eno}"/>
-						<c:param name="name" value="${hs.name}"/>
-					</c:if>
-					<c:if test="${selectDate ne null }">
+						<c:param name="selectVal" value="${hs.selectVal}"/>
+						<c:param name="ename" value="${hs.ename}"/>
+						<c:param name="sname" value="${hs.sname}"/>
 						<c:param name="selectDate" value="${selectDate}"/>
-						<c:if test="${selectDate eq 'dateSelect'}">
+						<c:if test="${hs.selectDate eq 'dateRequest' }">
 							<c:param name="date" value="${hs.date}"/>
 							<c:param name="date2" value="${hs.date2}"/>
 						</c:if>
@@ -193,15 +172,11 @@
 				<c:url var="prev" value="${ loc }">
 					<c:param name="page" value="${pi.startPage - 10}"/>
 					<c:if test="${ not empty hs }">
-						<c:param name="selectDept" value="${hs.selectDept}"/>
-						<c:param name="selectRank" value="${hs.selectRank}"/>
-						<c:param name="eno" value="${hs.eno}"/>
-						<c:param name="name" value="${hs.name}"/>
-						
-					</c:if>
-					<c:if test="${selectDate ne null }">
+						<c:param name="selectVal" value="${hs.selectVal}"/>
+						<c:param name="ename" value="${hs.ename}"/>
+						<c:param name="sname" value="${hs.sname}"/>
 						<c:param name="selectDate" value="${selectDate}"/>
-						<c:if test="${selectDate eq 'dateSelect'}">
+						<c:if test="${hs.selectDate eq 'dateRequest' }">
 							<c:param name="date" value="${hs.date}"/>
 							<c:param name="date2" value="${hs.date2}"/>
 						</c:if>
@@ -218,6 +193,16 @@
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="pagination" value="${loc}">
 						<c:param name="page" value="${p}"/>
+						<c:if test="${ not empty hs }">
+							<c:param name="selectVal" value="${hs.selectVal}"/>
+							<c:param name="ename" value="${hs.ename}"/>
+							<c:param name="sname" value="${hs.sname}"/>
+							<c:param name="selectDate" value="${selectDate}"/>
+							<c:if test="${hs.selectDate eq 'dateRequest' }">
+								<c:param name="date" value="${hs.date}"/>
+								<c:param name="date2" value="${hs.date2}"/>
+							</c:if>
+						</c:if>
 					</c:url>
 					<a class="pg_page" href="${pagination}">${p}</a>
 				</c:if>
@@ -227,6 +212,16 @@
 			<c:if test="${ pi.maxPage > 10 and pi.currentPage > 1 and pi.maxPage ne pi.endPage }">
 				<c:url var="next" value="${loc }">
 					<c:param name="page" value="${pi.endPage + 1}" />
+					<c:if test="${ not empty hs }">
+						<c:param name="selectVal" value="${hs.selectVal}"/>
+						<c:param name="ename" value="${hs.ename}"/>
+						<c:param name="sname" value="${hs.sname}"/>
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${hs.selectDate eq 'dateRequest' }">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ next }"><i class="fas fa-caret-right"></i></a>
 			</c:if>
@@ -235,6 +230,16 @@
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="end" value="${loc}">
 					<c:param name="page" value="${pi.maxPage }" />
+					<c:if test="${ not empty hs }">
+						<c:param name="selectVal" value="${hs.selectVal}"/>
+						<c:param name="ename" value="${hs.ename}"/>
+						<c:param name="sname" value="${hs.sname}"/>
+						<c:param name="selectDate" value="${selectDate}"/>
+						<c:if test="${hs.selectDate eq 'dateRequest' }">
+							<c:param name="date" value="${hs.date}"/>
+							<c:param name="date2" value="${hs.date2}"/>
+						</c:if>
+					</c:if>
 				</c:url>
 				<a class="pg_page" href="${ end }"><i class="fas fa-forward"></i></a>
 			</c:if>

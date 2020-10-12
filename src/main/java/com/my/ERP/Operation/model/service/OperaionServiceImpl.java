@@ -60,5 +60,9 @@ public class OperaionServiceImpl implements OperationService{
 	@Override
 	public ArrayList<Client> searchClient(HashMap<String, String> hs, PageInfo pi) {
 		return oDAO.searchClient(sqlSession, hs, pi);
+	}
+	@Override
+	public Object clientsList() {
+		return oDAO.clientsList(sqlSession);
 	}	
 }

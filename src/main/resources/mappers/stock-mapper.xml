@@ -229,4 +229,67 @@
 			#{ano}
 		</foreach>
 	</update>
+	
+	<select id="searchApplicationCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLY_APPLICATION_VIEW
+		<where>
+			<if test="selectVal == 'wait'">AND STATUS = 'N'</if>
+			<if test="selectVal == 'ok'">AND STATUS = 'Y'</if>
+			<if test="selectVal == 'no'">AND STATUS = 'F'</if>
+			<if test="ename != ''">AND ENAME = #{ename}</if>
+			<if test="sname != ''">AND SNAME = #{sname}</if>
+			<if test="selectDate == 'dateRequest'">
+				<if test="date != '' and date2 != ''">AND APPLICATE_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND APPLICATE_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND APPLICATE_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="searchApplicationList" resultType="hashmap">
+		SELECT * FROM SUPPLY_APPLICATION_VIEW
+		<where>
+			<if test="selectVal == 'wait'">AND STATUS = 'N'</if>
+			<if test="selectVal == 'ok'">AND STATUS = 'Y'</if>
+			<if test="selectVal == 'no'">AND STATUS = 'F'</if>
+			<if test="ename != ''">AND ENAME = #{ename}</if>
+			<if test="sname != ''">AND SNAME = #{sname}</if>
+			<if test="selectDate == 'dateRequest'">
+				<if test="date != '' and date2 != ''">AND APPLICATE_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND APPLICATE_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND APPLICATE_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="stockInOutCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
+	</select>
+	<select id="stockInOutList" resultType="hashmap">
+		SELECT * FROM PRODUCT_INOUT_VIEW
+	</select>
+	<select id="searchStockInOutCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
+		<where>
+			<if test="selectVal != 'all'">AND INOUT_STATE = #{selectVal}</if>
+			<if test="selectClient != ''">AND CCODE = #{selectClient}</if>
+			<if test="selectProduct != ''">AND PCODE = #{selectProduct}</if>
+			<if test="selectDate == 'dateSelect'">
+				<if test="date != '' and date2 != ''">AND INOUT_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND INOUT_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND INOUT_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="searchStockInOutList" resultType="hashmap">
+		SELECT * FROM PRODUCT_INOUT_VIEW
+		<where>
+			<if test="selectVal != 'all'">AND INOUT_STATE = #{selectVal}</if>
+			<if test="selectClient != ''">AND CCODE = #{selectClient}</if>
+			<if test="selectProduct != ''">AND PCODE = #{selectProduct}</if>
+			<if test="selectDate == 'dateSelect'">
+				<if test="date != '' and date2 != ''">AND INOUT_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND INOUT_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND INOUT_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
 </mapper>
