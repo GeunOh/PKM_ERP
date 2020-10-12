@@ -151,5 +151,29 @@ public class StockServiceImpl implements StockService {
 		// 재고테이블이 수정되는 로직도 추가해야함
 		return sDAO.approvalApplication(sqlSession, ano);
 	}
+	@Override
+	public int searchApplicationCount(HashMap<String, Object> hs) {
+		return sDAO.searchApplicationCount(sqlSession, hs);
+	}
+	@Override
+	public List<HashMap<String, String>> searchApplicationList(PageInfo pi, HashMap<String, Object> hs) {
+		return sDAO.searchApplicationList(sqlSession, pi, hs);
+	}
+	@Override
+	public int stockInOutCount() {
+		return sDAO.stockInOutCount(sqlSession);
+	}
+	@Override
+	public List<HashMap<String, String>> stockInOutList(PageInfo pi) {
+		return sDAO.stockInOutList(sqlSession, pi);
+	}
+	@Override
+	public int searchStockInOutCount(HashMap<String, String> hs) {
+		return sDAO.searchStockInOutCount(sqlSession, hs);
+	}
+	@Override
+	public List<HashMap<String, String>> searchStockInOutList(HashMap<String, String> hs, PageInfo pi) {
+		return sDAO.searchStockInOutList(sqlSession, hs, pi);
+	}
 	
 }

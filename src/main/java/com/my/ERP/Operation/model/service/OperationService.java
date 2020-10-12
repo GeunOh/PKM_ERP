@@ -24,4 +24,6 @@ public interface OperationService {
 
 	int modifyClient(HashMap<String, String> hs);
 
+	Object clientsList();
+
 }

@@ -49,5 +49,8 @@ public class OperationDAO {
 		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("operationMapper.searchClient", hs, rowbounds);
 	}
+	public Object clientsList(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectList("operationMapper.clientsList");
+	}
 	
 }

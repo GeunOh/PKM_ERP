@@ -122,5 +122,10 @@ public class OperationController {
 		int result = oService.modifyClient(hs);
 		return "redirect:/Operation/clientManager";
 	}
+	@RequestMapping("clientsList")
+	@ResponseBody
+	public Object clientsList() {
+		return oService.clientsList();
+	}
 	
 }

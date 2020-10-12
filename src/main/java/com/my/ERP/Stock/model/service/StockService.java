@@ -67,6 +67,18 @@ public interface StockService {
 
 	int approvalApplication(String[] ano);
 
+	int searchApplicationCount(HashMap<String, Object> hs);
+
+	List<HashMap<String, String>> searchApplicationList(PageInfo pi, HashMap<String, Object> hs);
+
+	int stockInOutCount();
+
+	List<HashMap<String, String>> stockInOutList(PageInfo pi);
+
+	int searchStockInOutCount(HashMap<String, String> hs);
+
+	List<HashMap<String, String>> searchStockInOutList(HashMap<String, String> hs, PageInfo pi);
+
 
 
 

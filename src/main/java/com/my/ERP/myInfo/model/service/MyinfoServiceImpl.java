@@ -86,6 +86,11 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 		return mDAO.supplyList(sqlSession);
 	}
 
+	@Override
+	public int addProductInOut(HashMap<String, String> hs) {
+		return mDAO.addProductInOut(sqlSession, hs);
+	}
+
 
 
 }

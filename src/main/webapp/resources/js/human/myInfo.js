@@ -90,9 +90,6 @@ $("input[name='endDate']").on("change", function(){
 	$("input[name='useDay']").val(useDay);
 	
 })
-
-
-
 function dataChk() {
 	
 	var vType = $("input[name='vType']").val();
@@ -118,11 +115,8 @@ function dataChk() {
 	if(vType!="연차"){
 		$("input[name='useDay']").val("0");
 	}
-	
-	
 	$('#vacation-add').submit();
 	$("#vacation-add").fadeOut();
-	
 }
 
 /*

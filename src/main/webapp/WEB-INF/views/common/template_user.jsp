@@ -60,7 +60,7 @@
 					<a href="/MyInfo/myVacation"><span id="">휴가사용현황</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">업무관리(제품목록)</span></a>
+					<a href="/MyInfo/productWork"><span id="">제품목록 및 입/출고</span></a>
 				</li>
 				<li>
 					<a href="/MyInfo/mySupplyRequest"><span id="">비품신청</span></a>

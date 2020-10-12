@@ -28,6 +28,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.my.ERP.Human.model.service.HumanService;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Vacation;
+import com.my.ERP.Operation.model.vo.Client;
+import com.my.ERP.Stock.model.service.StockService;
+import com.my.ERP.Stock.model.vo.Product;
 import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.FileDown;
 import com.my.ERP.common.Pagenation;
@@ -44,6 +47,9 @@ public class MyinfoController {
 	
 	@Autowired
 	private HumanService hService;
+	
+	@Autowired
+	private StockService sService;
 	
 	@RequestMapping("notice")
 	public String NoticeForm(Model model) {
@@ -357,6 +363,44 @@ public class MyinfoController {
 		return "redirect:/MyInfo/mySupplyRequest";
 	}
 	
+	@RequestMapping("productWork")
+	public String productWork(Model model) {
+		ArrayList<Product> plist = sService.productList();
+		ArrayList<Client> clist = sService.clientList();
+		model.addAttribute("plist", plist)
+			 .addAttribute("clist", clist);
+		return "productWork";
+	}
+	@RequestMapping("serachMyProduct")
+	public String serachMyProduct(@RequestParam("selectClient") String selectClient,
+								  @RequestParam("selectProduct") String selectProduct, Model model) {
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("selectClient", selectClient);
+		hs.put("selectProduct", selectProduct);
+		
+		ArrayList<Product> plist = sService.searchProduct(hs);
+		ArrayList<Client> clist = sService.clientList();
+
+		model.addAttribute("plist", plist)
+			 .addAttribute("clist", clist);
+		
+		return "productWork";
+	}
+	
+	@RequestMapping("addProductInOut")
+	public String addProductInOut(String status, String ccode, String pcode, String count, String comment) {
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("status", status);
+		hs.put("ccode", ccode);
+		hs.put("pcode", pcode);
+		hs.put("count", count);
+		hs.put("comment", comment);
+		System.out.println(hs);
+		
+		int result = mService.addProductInOut(hs);
+		
+		return "redirect:/MyInfo/productWork";
+	}
 	
 	
 }
