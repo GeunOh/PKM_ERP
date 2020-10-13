@@ -7,8 +7,6 @@
 
 <jsp:include page="../common/headTag_user.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/human/myInfo.css">
-<link href="resources/css/plugin/selectbox.min.css" rel="stylesheet">
-<script src="resources/js/plugin/selectbox.min.js"></script>
 
 <link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css">
 <script src="https://uicdn.toast.com/tui.chart/latest/tui-chart-all.js"></script>
