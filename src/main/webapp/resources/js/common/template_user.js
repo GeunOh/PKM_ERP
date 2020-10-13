@@ -6,6 +6,48 @@ $(function(){
 	$(".btn-form button:first").on("click", function() {
 		$("#changePwdPopUp").fadeOut();
 	});
+	//쪽지 팝업
+	$('#message_icon').on("click", function() {
+		$('#message_popup').fadeIn();
+	});
+	$('.msg_sub_text .fa-times').on("click", function() {
+		$('#message_popup').fadeOut();
+	})
+	$('#receiver_text').on("click", function() {
+		$('#send_text').css('color','#A7A7A7');
+		$('#receiver_text').css('color','black');
+		$('.msg_receiver').show();
+		$('.msg_send').hide();
+		
+	});
+	$('#send_text').on("click", function() {
+		$('#receiver_text').css('color','#A7A7A7');
+		$('#send_text').css('color','black');
+		$('.msg_send').show();
+		$('.msg_receiver').hide();
+	});
+	
+	$('#write_text').on("click", function() {
+		$('.msg_write').fadeIn();
+	});
+	
+	$('.msg_wrtie_top .fa-chevron-left').on("click", function() {
+		$('.msg_write').fadeOut();
+		$('#msg_title').val('');
+		$('#msg_reciever').val('');
+		$('.msg_write_txtForm2 textarea').val('');  
+		$('.msg_write_txtForm ul').html('');
+	});
+	
+	$('.msg_wrtie_top .fa-times').on("click", function() {
+		$('.msg_write').fadeOut();
+		$('#message_popup').fadeOut();
+	});
+	
+	RecieverMsg();
+	SendMsg();
+	NoReadMsg();
+	connect();
 });
 
 // 드롭다운 메뉴 토글 기능
@@ -60,3 +102,4 @@ function changePwd(){
 		}
 	})
 }
+//수신함 갱신

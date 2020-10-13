@@ -11,6 +11,41 @@
 		<result column="DELETE_YN" property="outyn"/>
 	</resultMap>
 	
+	<resultMap type="Human" id="humanResult">
+		<id column="ENO" property="eno"/>
+		<result column="PWD" property="pwd"/>
+		<result column="ENAME" property="name"/>
+		<result column="EBIRTHDAY" property="birthday"/>
+		<result column="EADDRESS" property="address"/>
+		<result column="EEMAIL" property="email"/>
+		<result column="EPHONE" property="phone"/>
+		<result column="INDATE" property="indate"/>
+		<result column="OUTDATE" property="outdate"/>
+		<result column="OUTYN" property="outyn"/>
+		<result column="RCODE" property="rcode"/>
+		<result column="RNAME" property="rname"/>
+		<result column="DCODE" property="dcode"/>
+		<result column="DNAME" property="dname"/>
+		<result column="ORIGINALNAME_FILE" property="originalFileName"/>
+		<result column="RENAME_FILE" property="renameFileName"/>
+		<result column="ADMIN_YN" property="adminyn"/>
+	</resultMap>
+	
+	<resultMap type="Message" id="MessageResult">
+		<id column="MNO" property="mno"/>
+		<result column="TITLE" property="title"/>
+		<result column="WRITER" property="writer"/>
+		<result column="RECIEVER" property="reciever"/>
+		<result column="ENAME" property="name"/>
+		<result column="RNAME" property="rname"/>
+		<result column="DNAME" property="dname"/>
+		<result column="RENAME_FILE" property="profile"/>
+		<result column="BCONTENT" property="bcontent"/>
+		<result column="MREAD" property="mread"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		
+	</resultMap>
+	
 	<select id="NoticeForm" resultMap="noticeResult">
 		SELECT * FROM TB_NOTICE WHERE DELETE_YN = 'N' ORDER BY BNO DESC
 	</select>
@@ -26,4 +61,58 @@
 	<update id="NoticeDelete">
 		UPDATE TB_NOTICE SET DELETE_YN = 'Y' WHERE BNO = #{no}
 	</update>
+	
+	<select id="MsgFindMember" resultMap="humanResult">
+		SELECT * FROM HUMANLIST 
+	    <where>
+			<if test="mem == null or mem == ''">ENAME IS NULL</if>
+			<if test="mem != null ">ENAME LIKE '%'|| #{mem} ||'%'</if>
+	    </where>
+	</select>
+	
+	<insert id="MsgSend">
+		INSERT INTO TB_MESSAGE VALUES(TB_MESSAGE_MNO.NEXTVAL, #{title}, #{writer}, #{reciever}, #{content}, 'N', SYSDATE)
+	</insert>
+	
+	<select id="RecieverMsg" resultMap="MessageResult">
+		SELECT * FROM TB_MESSAGE 
+		JOIN SOLOUSER ON (WRITER = ENO)
+		WHERE RECIEVER = #{user}
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="SendMsg" resultMap="MessageResult">
+		SELECT * FROM TB_MESSAGE 
+		JOIN SOLOUSER ON (WRITER = ENO)
+		WHERE WRITER = #{user}
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="recieverDetail" resultMap="MessageResult">
+		SELECT * FROM TB_MESSAGE 
+		JOIN SOLOUSER ON (RECIEVER = ENO)
+		WHERE MNO = #{mno}
+	</select>
+	
+	<select id="NoReadMsg" resultType="_int">
+		SELECT COUNT(*) FROM TB_MESSAGE  WHERE RECIEVER = #{user} AND MREAD = 'N'
+	</select>
+	
+	<select id="sendDetail" resultMap="MessageResult">
+		SELECT * FROM TB_MESSAGE 
+		JOIN SOLOUSER ON (WRITER = ENO)
+		WHERE MNO = #{mno}
+	</select>
+	
+	<update id="recieverReadChk">
+		UPDATE TB_MESSAGE SET MREAD = 'Y' WHERE MNO = #{mno}
+	</update>
+	
+	<select id="sendResend" resultMap="MessageResult">
+		SELECT * FROM TB_MESSAGE WHERE MNO = #{mno}
+	</select>
+	
+	<insert id="sendResendMsg">
+		INSERT INTO TB_MESSAGE VALUES(TB_MESSAGE_MNO.NEXTVAL, #{title}, #{writer}, #{reciever}, #{bcontent}, 'N', SYSDATE)
+	</insert>
 </mapper>

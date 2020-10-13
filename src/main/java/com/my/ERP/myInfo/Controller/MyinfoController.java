@@ -2,11 +2,13 @@ package com.my.ERP.myInfo.Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,10 +19,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.myInfo.model.service.MyinfoSerivce;
+import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.myInfo.model.vo.Notice;
 
 @Controller
@@ -139,5 +145,130 @@ public class MyinfoController {
 		else  ra.addFlashAttribute("Dmsg", "true"); 
 		
 		return "redirect:/MyInfo/notice";
+	}
+	
+	//쪽지 사람 검색(글작성)
+	@RequestMapping("MsgFindMember")
+	public void MsgFindMember(@RequestParam("mem") String mem, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		if(mem.equals("")) {
+			System.out.println("빈칸");
+			mem = null; 
+		}
+		
+		ArrayList<Human> hList = mService.MsgFindMember(mem);
+		
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(hList, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//쪽지 보내기
+	@RequestMapping("MsgSend")
+	public void MsgSend(@RequestParam("title") String title, @RequestParam("reciever") String reciever,
+			            @RequestParam("content") String content, @RequestParam("writer") String writer, 
+			            HttpServletResponse response) {
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("title", title);
+		hs.put("writer", writer);
+		hs.put("reciever", reciever);
+		hs.put("content", content);
+		
+		int result = mService.MsgSend(hs);
+		
+		boolean chk = result>0 ? true : false;	// 부서가 중복되면 true, 아니면 false
+		
+		try {
+			response.getWriter().print(chk);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//쪽지 수신함 갱신
+	@RequestMapping("RecieverMsg")
+	public void RecieverMsg(@RequestParam("user") String user, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		ArrayList<Message> RmsgList = mService.RecieverMsg(user);
+
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(RmsgList, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//쪽지 발신함 갱신
+	@RequestMapping("SendMsg")
+	public void SendMsg(@RequestParam("user") String user, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		ArrayList<Message> SmsgList = mService.SendMsg(user);
+		
+		Gson gson = new GsonBuilder().setDateFormat("yy-MM-dd'T'HH시 MM분").create();
+		try {
+			gson.toJson(SmsgList, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//쪽지(수신) 상세보기
+	@RequestMapping("recieverDetail")
+	@ResponseBody
+	public Message recieverDetail(@RequestParam("mno") String mno, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Message recieverDetail = mService.recieverDetail(mno);
+		
+		return recieverDetail;
+	}
+	
+	//쪽지(수신) 상세보기
+	@RequestMapping("sendDetail")
+	@ResponseBody
+	public Message sendDetail(@RequestParam("mno") String mno, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Message sendDetail = mService.sendDetail(mno);
+		
+		return sendDetail;
+	}
+	
+	//쪽지(수신) 안읽은 개수 
+	@RequestMapping("NoReadMsg")
+	public void NoReadMsg(@RequestParam("user") String user, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		int NoCount = mService.NoReadMsg(user);
+		
+		try {
+			response.getWriter().print(NoCount);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//쪽지(발신) 재전송 
+	@RequestMapping("sendResend")
+	public void sendResend(@RequestParam("mno") String mno, HttpServletResponse response) {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Message msg = mService.sendResend(mno);
+		
+		int result = mService.sendResendMsg(msg);
+		
+		boolean b = result>0 ? true : false;
+		try {
+			response.getWriter().print(b);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
