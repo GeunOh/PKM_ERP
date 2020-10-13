@@ -66,15 +66,57 @@
 	</update>
 	<select id="clientsList" resultType="hashmap">
 		<![CDATA[
-		SELECT COUNT, C.CNAME
+		SELECT cnt, CNAME, ROWNUM
 		FROM (
-		    SELECT COUNT(*) count, ccode
+		    SELECT COUNT(*) cnt, CNAME
 		    FROM PRODUCT_INOUT_VIEW
-		    GROUP BY ROLLUP(CCODE)
-		    ORDER BY count DESC
+		    GROUP BY ROLLUP(CNAME)
+		    ORDER BY cnt DESC
 		    ) S
-		LEFT JOIN TB_CLIENT C ON(S.ccode = C.ccode)
 		WHERE ROWNUM <= 6
+		ORDER BY CNT DESC
+		]]>
+	</select>
+	<select id="salesList" resultType="hashmap">
+		SELECT B.LV MONTH, NVL(A.입고수량,0) INCOUNT, NVL(A.입고총액,0) INPRICE, NVL(A.출고수량,0) OUTCOUNT, NVL(A.출고총액,0) OUTPRICE FROM 
+		(
+		    SELECT TO_CHAR(INOUT_DATE, 'mm') 년월, SUM(INCOUNT) 입고수량, SUM(COST_PRICE) 입고총액, SUM(OUTCOUNT) 출고수량, SUM(SELLING_PRICE) 출고총액
+		    FROM PRODUCT_INOUT_VIEW
+		    <where>
+		    	<if test="year != null">AND TO_CHAR(INOUT_DATE, 'yyyy') = #{year}</if>
+		    	<if test="year == null">AND TO_CHAR(INOUT_DATE, 'yyyy') = TO_CHAR(SYSDATE, 'yyyy')</if>
+		    </where>
+		    GROUP BY TO_CHAR(INOUT_DATE, 'mm')
+		) A
+		RIGHT JOIN
+		<![CDATA[
+		(
+		    SELECT
+		    LPAD(LEVEL, 2, '0') LV
+		    FROM DUAL CONNECT BY LEVEL <= 12
+		) B ON(A.년월 = B.LV)
+		ORDER BY MONTH
+		]]>
+	</select>
+	<select id="getInOutCount" resultType="hashmap">
+		SELECT B.LV MONTH, NVL(A.입고수량,0) INCOUNT, NVL(A.출고수량,0) OUTCOUNT FROM
+		(
+		    SELECT TO_CHAR(INOUT_DATE, 'mm') 년월, SUM(INCOUNT) 입고수량, SUM(COST_PRICE) 입고총액, SUM(OUTCOUNT) 출고수량, SUM(SELLING_PRICE) 출고총액
+		    FROM PRODUCT_INOUT_VIEW
+		    <where>
+		    	<if test="year != null">AND TO_CHAR(INOUT_DATE, 'yyyy') = #{year}</if>
+		    	<if test="year == null">AND TO_CHAR(INOUT_DATE, 'yyyy') = TO_CHAR(SYSDATE, 'yyyy')</if>
+		    </where>
+		    GROUP BY TO_CHAR(INOUT_DATE, 'mm')
+		) A
+		RIGHT JOIN
+		<![CDATA[
+		(
+		    SELECT
+		    LPAD(LEVEL, 2, '0') LV
+		    FROM DUAL CONNECT BY LEVEL <= 12
+		) B ON(A.년월 = B.LV)
+		ORDER BY MONTH
 		]]>
 	</select>
 </mapper>
