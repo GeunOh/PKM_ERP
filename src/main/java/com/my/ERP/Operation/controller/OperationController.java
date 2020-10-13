@@ -2,6 +2,7 @@ package com.my.ERP.Operation.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -126,6 +127,20 @@ public class OperationController {
 	@ResponseBody
 	public Object clientsList() {
 		return oService.clientsList();
+	}
+	
+	@RequestMapping("salesManager")
+	public String salesManager(Model model, String year) {
+		List<HashMap<String, String>> slist = oService.salesList(year);
+		model.addAttribute("slist", slist);
+		
+		return "salesManager";
+	}
+	@RequestMapping("getInOutCount")
+	@ResponseBody
+	public Object getInOutCount(String year) {
+		System.out.println(year);
+		return oService.getInOutCount(year);
 	}
 	
 }

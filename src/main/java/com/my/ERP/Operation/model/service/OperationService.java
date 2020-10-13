@@ -2,6 +2,7 @@ package com.my.ERP.Operation.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.common.vo.PageInfo;
@@ -25,5 +26,9 @@ public interface OperationService {
 	int modifyClient(HashMap<String, String> hs);
 
 	Object clientsList();
+
+	List<HashMap<String, String>> salesList(String year);
+
+	Object getInOutCount(String year);
 
 }

@@ -2,6 +2,7 @@ package com.my.ERP.Operation.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -51,6 +52,12 @@ public class OperationDAO {
 	}
 	public Object clientsList(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectList("operationMapper.clientsList");
+	}
+	public List<HashMap<String, String>> salesList(SqlSessionTemplate sqlSession, String year) {
+		return sqlSession.selectList("operationMapper.salesList", year);
+	}
+	public Object getInOutCount(SqlSessionTemplate sqlSession, String year) {
+		return sqlSession.selectList("operationMapper.getInOutCount", year);
 	}
 	
 }

@@ -13,9 +13,12 @@ function makePieChart(clients){
 	/* pie Chart */
 	var sum = 0;
 	for(var i=1; i<clients.length; i++){
-		sum += clients[i].COUNT;
+		sum += clients[i].CNT;
 	}
-	sum = clients[0].COUNT - sum;
+	sum = clients[0].CNT - sum;
+	console.log(clients)
+	console.log(clients[0].CNT)
+	console.log(sum)
 	var chart = tui.chart;
 	var container = document.getElementById('chart-area');
 	var data = {
@@ -23,27 +26,27 @@ function makePieChart(clients){
 	    series: [
 	        {
 	            name: clients[1].CNAME,
-	            data: clients[1].COUNT/clients[0].COUNT
+	            data: clients[1].CNT/clients[0].CNT
 	        },
 	        {
 	            name: clients[2].CNAME,
-	            data: clients[2].COUNT/clients[0].COUNT
+	            data: clients[2].CNT/clients[0].CNT
 	        },
 	        {
 	            name: clients[3].CNAME,
-	            data: clients[3].COUNT/clients[0].COUNT
+	            data: clients[3].CNT/clients[0].CNT
 	        },
 	        {
 	            name: clients[4].CNAME,
-	            data: clients[4].COUNT/clients[0].COUNT
+	            data: clients[4].CNT/clients[0].CNT
 	        },
 	        {
 	            name: clients[5].CNAME,
-	            data: clients[5].COUNT/clients[0].COUNT
+	            data: clients[5].CNT/clients[0].CNT
 	        },
 	        {
 	            name: 'Etc',
-	            data: sum/clients[0].COUNT
+	            data: sum/clients[0].CNT
 	        }
 	    ]
 	};
@@ -63,7 +66,7 @@ function makePieChart(clients){
 	    series: {
 	        radiusRange: ['40%', '100%'],
 	        showLabel: false,
-	        showLegend: true
+//	        showLegend: true
 	    },
 	    tooltip: {
 	        suffix: '%'
@@ -126,11 +129,11 @@ var options = {
     chart: {
         width: 550,
         height: 300,
-        title: 'Monthly Revenue',
+        title: '월별 입출고 개수',
         "format": "1,000"
     },
     yAxis: {
-        title: 'Amount',
+        title: 'count',
         min: -10000,
         max: 10000
     },

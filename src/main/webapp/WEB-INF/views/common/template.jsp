@@ -97,7 +97,7 @@
 					<a href="/Operation/clientManager"><span id="clientManager">거래처 관리</span></a>
 				</li>
 				<li>	
-					<span>매출관리</span>
+					<a href="/Operation/salesManager"><span id="salesManager">매출 관리</span></a>
 				</li>
 			</ul>
 		</li>

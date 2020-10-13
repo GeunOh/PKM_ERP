@@ -2,6 +2,7 @@ package com.my.ERP.Operation.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,13 @@ public class OperaionServiceImpl implements OperationService{
 	@Override
 	public Object clientsList() {
 		return oDAO.clientsList(sqlSession);
+	}
+	@Override
+	public List<HashMap<String, String>> salesList(String year) {
+		return oDAO.salesList(sqlSession, year);
+	}
+	@Override
+	public Object getInOutCount(String year) {
+		return oDAO.getInOutCount(sqlSession, year);
 	}	
 }
