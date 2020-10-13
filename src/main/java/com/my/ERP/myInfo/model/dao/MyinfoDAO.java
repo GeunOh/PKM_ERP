@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.myInfo.model.vo.Caleander;
 import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Stock.model.vo.Supply;
@@ -126,6 +127,10 @@ public class MyinfoDAO {
 
 	public int addProductInOut(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
 		return sqlSession.insert("noticeMapper.addProductInOut", hs);
+	}
+
+	public ArrayList<Caleander> workData(SqlSessionTemplate sqlSession, String eno) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.workData", eno);
 	}
 
 }

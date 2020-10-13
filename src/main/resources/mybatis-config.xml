@@ -25,8 +25,12 @@
 		
 		<!-- 공지사항 -->
 		<typeAlias type="com.my.ERP.myInfo.model.vo.Notice" alias="Notice"/>
+		
 		<!-- 쪽지 -->
 		<typeAlias type="com.my.ERP.myInfo.model.vo.Message" alias="Message"/>
+		
+		<!-- 캘린더 -->
+		<typeAlias type="com.my.ERP.myInfo.model.vo.Caleander" alias="Caleander"/>
 		
 	</typeAliases>
 	

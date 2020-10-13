@@ -40,6 +40,7 @@ import com.my.ERP.common.Pagenation;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.common.vo.SearchOption;
 import com.my.ERP.myInfo.model.service.MyinfoSerivce;
+import com.my.ERP.myInfo.model.vo.Caleander;
 import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -528,6 +529,20 @@ public class MyinfoController {
 		int result = mService.addProductInOut(hs);
 		
 		return "redirect:/MyInfo/productWork";
+	}
+	
+	@RequestMapping("workData")
+	public void workData(@RequestParam("eno") String eno, HttpServletResponse response)  {
+		response.setContentType("application/json; charset=UTF-8");
+		
+		ArrayList<Caleander> list = mService.workData(eno);
+		System.out.println(list);
+		Gson gson = new GsonBuilder().create();
+		try {
+			gson.toJson(list, response.getWriter());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

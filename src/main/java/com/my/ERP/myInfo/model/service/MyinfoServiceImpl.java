@@ -13,6 +13,7 @@ import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
 import com.my.ERP.myInfo.model.dao.MyinfoDAO;
+import com.my.ERP.myInfo.model.vo.Caleander;
 import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -135,6 +136,11 @@ public class MyinfoServiceImpl implements MyinfoSerivce{
 	@Override
 	public int addProductInOut(HashMap<String, String> hs) {
 		return mDAO.addProductInOut(sqlSession, hs);
+	}
+
+	@Override
+	public ArrayList<Caleander> workData(String eno) {
+		return mDAO.workData(sqlSession, eno);
 	}
 
 }
