@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,8 +156,8 @@
 							<tr>
 								<td>${p.pcode}</td>
 								<td>${p.pname}</td>
-								<td>${p.cost_price}</td>
-								<td>${p.selling_price}</td>
+								<td><fmt:formatNumber value="${p.cost_price }" type="currency" /></td>
+								<td><fmt:formatNumber value="${p.selling_price }" type="currency" /></td>
 								<c:if test="${p.ccode eq null}">
 									<td>-</td>
 								</c:if>
@@ -190,8 +191,6 @@
 			</div>
 			<!-- // 제품목록 테이블 -->
 		</div>
-		
-		
 	</div>
 	<!-- // wrap -->
 	<script type="text/javascript" src="resources/js/stock/productList.js"></script>

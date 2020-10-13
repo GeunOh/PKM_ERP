@@ -10,6 +10,7 @@
 		<result column="P_COMMENT" property="p_comment"/>
 		<result column="CCODE" property="ccode"/>
 		<result column="CNAME" property="cname"/>
+		<result column="PCOUNT" property="pcount"/>
 	</resultMap>
 	
 	<resultMap type="Client" id="clientResult">
@@ -133,4 +134,162 @@
 		</where>
 	</select>
 	
+	<select id="productListCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_PRODUCT
+	</select>
+	
+	<select id="productManagerList" resultMap="productResult">
+		SELECT P.PCODE, PNAME, COST_PRICE, SELLING_PRICE, PCOUNT, P_COMMENT
+		FROM TB_PRODUCT P
+		JOIN TB_PRODUCT_STOCK PS ON(P.PCODE = PS.PCODE)
+	</select>
+	
+	<select id="showSupply" resultMap="supplyResult">
+		SELECT * FROM TB_SUPPLY WHERE SCODE = #{scode}
+	</select>
+	
+	<insert id="addSupply">
+		INSERT INTO TB_SUPPLY VALUES(#{scode}, #{sname}, #{cost_price}, #{s_comment})
+	</insert>
+	
+	<update id="modifySupply">
+		UPDATE TB_SUPPLY SET SCODE=#{scode}, SNAME=#{sname}, COST_PRICE=#{cost_price}, S_COMMENT=#{s_comment}
+		WHERE SCODE=#{scount}
+	</update>
+	
+	<delete id="deleteSupply">
+		DELETE FROM TB_SUPPLY WHERE SCODE=#{del_scode}
+	</delete>
+	
+	<update id="modifySupplyCount">
+		UPDATE TB_SUPPLY_STOCK SET SCOUNT = #{scount} WHERE SCODE = #{scode}
+	</update>
+	
+	<select id="searchProductListCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCTLIST
+		<where>
+			<if test="pcode != ''">AND PCODE LIKE '%' || #{pcode} || '%'</if>
+			<if test="pname != ''">AND PNAME LIKE '%' || #{pname} || '%'</if>
+			<if test="pcount != ''"><![CDATA[ PCOUNT >= #{pcount} ]]></if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+			<if test="p_comment != ''">AND P_COMMENT LIKE '%' || #{p_comment} || '%'</if>
+		</where>
+	</select>
+	
+	<select id="searchProductManagerList" resultMap="productResult">
+		SELECT PCODE, PNAME, PCOUNT, COST_PRICE, SELLING_PRICE, P_COMMENT FROM PRODUCTLIST
+		<where>
+			<if test="pcode != ''">AND PCODE LIKE '%' || #{pcode} || '%'</if>
+			<if test="pname != ''">AND PNAME LIKE '%' || #{pname} || '%'</if>
+			<if test="pcount != ''"><![CDATA[ PCOUNT >= #{pcount} ]]></if>
+			<if test="price != '' and price2 != ''">
+				AND COST_PRICE BETWEEN #{price} AND #{price2}
+			</if>
+			<if test="price != '' and price2 == ''">
+				<![CDATA[ AND COST_PRICE >= #{price} ]]>
+			</if>
+			<if test="price == '' and price2 != ''">
+				<![CDATA[ AND COST_PRICE <= #{price2} ]]>
+			</if>
+			<if test="p_comment != ''">AND P_COMMENT LIKE '%' || #{p_comment} || '%'</if>
+		</where>
+	</select>
+	
+	<update id="modifyProductCount">
+		UPDATE TB_PRODUCT_STOCK SET PCOUNT = #{pcount} WHERE PCODE = #{pcode}
+	</update>
+	
+	<select id="applicationListCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLY_APPLICATION_VIEW
+	</select>
+	
+	<select id="applicationList" resultType="hashmap">
+		SELECT *
+		FROM SUPPLY_APPLICATION_VIEW
+		ORDER BY APPLICATE_DATE DESC
+	</select>
+	
+	<update id="refuseApplication">
+		UPDATE TB_SUPPLY_APPLICATION SET STATUS = 'F' WHERE ANO IN
+		<foreach collection="array" item="ano" open="(" close=")" separator="," >
+			#{ano}
+		</foreach>
+	</update>
+	<update id="approvalApplication">
+		UPDATE TB_SUPPLY_APPLICATION SET STATUS = 'Y' WHERE ANO IN
+		<foreach collection="array" item="ano" open="(" close=")" separator="," >
+			#{ano}
+		</foreach>
+	</update>
+	
+	<select id="searchApplicationCount" resultType="_int">
+		SELECT COUNT(*) FROM SUPPLY_APPLICATION_VIEW
+		<where>
+			<if test="selectVal == 'wait'">AND STATUS = 'N'</if>
+			<if test="selectVal == 'ok'">AND STATUS = 'Y'</if>
+			<if test="selectVal == 'no'">AND STATUS = 'F'</if>
+			<if test="ename != ''">AND ENAME = #{ename}</if>
+			<if test="sname != ''">AND SNAME = #{sname}</if>
+			<if test="selectDate == 'dateRequest'">
+				<if test="date != '' and date2 != ''">AND APPLICATE_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND APPLICATE_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND APPLICATE_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="searchApplicationList" resultType="hashmap">
+		SELECT * FROM SUPPLY_APPLICATION_VIEW
+		<where>
+			<if test="selectVal == 'wait'">AND STATUS = 'N'</if>
+			<if test="selectVal == 'ok'">AND STATUS = 'Y'</if>
+			<if test="selectVal == 'no'">AND STATUS = 'F'</if>
+			<if test="ename != ''">AND ENAME = #{ename}</if>
+			<if test="sname != ''">AND SNAME = #{sname}</if>
+			<if test="selectDate == 'dateRequest'">
+				<if test="date != '' and date2 != ''">AND APPLICATE_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND APPLICATE_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND APPLICATE_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="stockInOutCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
+	</select>
+	<select id="stockInOutList" resultType="hashmap">
+		SELECT * FROM PRODUCT_INOUT_VIEW
+	</select>
+	<select id="searchStockInOutCount" resultType="_int">
+		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
+		<where>
+			<if test="selectVal != 'all'">AND INOUT_STATE = #{selectVal}</if>
+			<if test="selectClient != ''">AND CCODE = #{selectClient}</if>
+			<if test="selectProduct != ''">AND PCODE = #{selectProduct}</if>
+			<if test="selectDate == 'dateSelect'">
+				<if test="date != '' and date2 != ''">AND INOUT_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND INOUT_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND INOUT_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
+	<select id="searchStockInOutList" resultType="hashmap">
+		SELECT * FROM PRODUCT_INOUT_VIEW
+		<where>
+			<if test="selectVal != 'all'">AND INOUT_STATE = #{selectVal}</if>
+			<if test="selectClient != ''">AND CCODE = #{selectClient}</if>
+			<if test="selectProduct != ''">AND PCODE = #{selectProduct}</if>
+			<if test="selectDate == 'dateSelect'">
+				<if test="date != '' and date2 != ''">AND INOUT_DATE BETWEEN #{date} AND #{date2}</if>
+				<if test="date != '' and date2 == ''"><![CDATA[ AND INOUT_DATE >= #{date} ]]></if>
+				<if test="date == '' and date2 != ''"><![CDATA[ AND INOUT_DATE <= #{date2} ]]></if>
+			</if>
+		</where>
+	</select>
 </mapper>

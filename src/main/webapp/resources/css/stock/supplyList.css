@@ -132,13 +132,34 @@ ul, li{list-style: none;}
 
 /*검색창 아래부분*/
 .downSearch{margin-top: 1%;}
-
+#price + label {
+    margin: 0 10px;
+    font-size: 20px;
+}
+#searchBtn {
+    font-family: NotoSans-Regular;
+    padding: 22px 15px;
+    background-color: transparent;
+    border: 1px solid #969696;
+    border-radius: 3px;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
 /* 추가 외 버튼 폼*/
 #btnForm{
+	position: relative;
 	margin: 2% 0 1% 0; 
 	font-family: NotoSans-Regular; font-weight: bold;
 }
 #btnForm > label{ cursor: pointer; padding: 10px 10px 10px 20px; position: relative;}
+#btnForm > span { 
+    position: absolute;
+	right: 0;
+    bottom: -10px;
+    font-size: 14px;
+}
 #addBtn{width: 50px; text-align: center;}
 #addBtn:before{
 	content: "";
@@ -191,4 +212,163 @@ ul, li{list-style: none;}
 }
 #supplyListTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
+}
+/* 페이징버튼 */
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+.pg_current {
+    display: inline-block;
+    background: #282c34;
+    border: 1px solid #282c34;
+    color: #fff;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.pg_page {
+	display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #959595;
+    font-size: 1.083em;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.pg_page:hover {
+	background-color: #dadada;
+}
+/* 팝업창 */
+.popupLayer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+.popup-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 51;
+    font-family: NotoSans-Regular;
+}
+.popupContent {
+    width: 40%;
+    height: 43%;
+    margin: auto;
+    max-height: 100vh;
+    background: white;
+    border-radius: 10px;
+    margin-top: 13%;
+}
+.popupContent>h1 {
+    text-align: center;
+    border-radius: 7px 7px 0 0;
+    background-color: #282c34;
+    padding: 10px 0;
+    color: #fff;
+    position: relative;
+}
+h1>.fa-times {
+    color: #fff;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+.content-form {
+    border-top: 3px solid #eaeaea;
+    width: 96%;
+    margin: 0 auto;
+    padding: 10px 0;
+    margin-top: 5%;
+    position: relative;
+}
+.content-form>span {
+    position: absolute;
+    top: -33px;
+    left: 0;
+    font-family: NotoSans-Regular;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+}
+.add-textform {
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+}
+.add-title {
+    display: inline-block;
+    font-family: NotoSans-Regular;
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
+    margin: 0 5% 0 3%;
+    position: relative;
+    width: 105px;
+}
+.add-text {
+    font-family: NotoSans-Regular;
+    border-radius: 3px;
+    width: 56%;
+}
+.txtBox {
+    font-family: NotoSans-Regular;
+    color: #000;
+    font-size: 13px;
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #969696;
+    border-radius: 0 3px 3px 0;
+    height: 31px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: all .5s;
+}
+.btn-form {
+    text-align: center;
+    margin-top: 1%;
+}
+.btn-form button {
+    padding: 7px 16px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+}
+.btn-form button:last-child {
+    margin-left: 1%;
+    font-family: NotoSans-Regular;
+    background-color: #282c34;
+    color: #fff;
+}
+#delete-popup-form .popupContent{
+	height: 23%;
+}
+#delete-popup-form .popupContent p{
+	text-align: center;
+	font-size: 20px;
+}
+#delete-popup-form .btn-form {
+	margin-top: 3%;
+}
+#delete-popup-form .btn-form button {
+	background-color: #282c34;
+    color: #fff;
+}
+
+#delete-popup-form .btn-form button:last-child {
+	background-color: #c1392b;
+    color: #fff;
 }

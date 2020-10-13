@@ -9,6 +9,7 @@ public class Product {
 	private int selling_price;
 	private String p_comment;
 	private String ccode;
+	private int pcount;
 	
 	private String cname;
 
@@ -70,11 +71,19 @@ public class Product {
 		this.cname = cname;
 	}
 
+	public int getPcount() {
+		return pcount;
+	}
+
+	public void setPcount(int pcount) {
+		this.pcount = pcount;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [pcode=" + pcode + ", pname=" + pname + ", cost_price=" + cost_price + ", selling_price="
-				+ selling_price + ", p_comment=" + p_comment + ", ccode=" + ccode + ", cname=" + cname + "]";
+				+ selling_price + ", p_comment=" + p_comment + ", ccode=" + ccode + ", pcount=" + pcount + ", cname="
+				+ cname + "]";
 	}
 
-	
 }

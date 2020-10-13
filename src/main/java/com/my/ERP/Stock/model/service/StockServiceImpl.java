@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,88 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi) {
 		return sDAO.searchSupply(sqlSession, hs, pi);
+	}
+	// 제품 목록 수
+	@Override
+	public int productListCount() {
+		return sDAO.productListCount(sqlSession);
+	}
+	@Override
+	public ArrayList<Product> productList(PageInfo pi) {
+		return sDAO.productList(sqlSession, pi);
+	}
+	@Override
+	public Supply showSupply(String scode) {
+		return sDAO.showSupply(sqlSession, scode);
+	}
+	@Override
+	public int addSupply(Supply supply) {
+		return sDAO.addSupply(sqlSession, supply);
+	}
+	@Override
+	public int modifySupply(Supply supply) {
+		return sDAO.modifySupply(sqlSession, supply);
+	}
+	@Override
+	public int deleteSupply(String del_scode) {
+		return sDAO.deleteSupply(sqlSession, del_scode);
+	}
+	@Override
+	public int modifySupplyCount(Supply supply) {
+		return sDAO.modifySupplyCount(sqlSession, supply);
+	}
+	@Override
+	public int searchProductListCount(HashMap<String, Object> hs) {
+		return sDAO.searchProductListCount(sqlSession, hs);
+	}
+	@Override
+	public ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi) {
+		return sDAO.searchProductManagerList(sqlSession, hs, pi);
+	}
+	@Override
+	public int modifyProductCount(Product product) {
+		return sDAO.modifyProductCount(sqlSession, product);
+	}
+	@Override
+	public int applicationListCount() {
+		return sDAO.applicationListCount(sqlSession);
+	}
+	@Override
+	public List<HashMap<String, String>> applicationList(PageInfo pi) {
+		return sDAO.applicationList(sqlSession, pi);
+	}
+	@Override
+	public int refuseApplication(String[] ano) {
+		return sDAO.refuseApplication(sqlSession, ano);
+	}
+	@Override
+	public int approvalApplication(String[] ano) {
+		// 재고테이블이 수정되는 로직도 추가해야함
+		return sDAO.approvalApplication(sqlSession, ano);
+	}
+	@Override
+	public int searchApplicationCount(HashMap<String, Object> hs) {
+		return sDAO.searchApplicationCount(sqlSession, hs);
+	}
+	@Override
+	public List<HashMap<String, String>> searchApplicationList(PageInfo pi, HashMap<String, Object> hs) {
+		return sDAO.searchApplicationList(sqlSession, pi, hs);
+	}
+	@Override
+	public int stockInOutCount() {
+		return sDAO.stockInOutCount(sqlSession);
+	}
+	@Override
+	public List<HashMap<String, String>> stockInOutList(PageInfo pi) {
+		return sDAO.stockInOutList(sqlSession, pi);
+	}
+	@Override
+	public int searchStockInOutCount(HashMap<String, String> hs) {
+		return sDAO.searchStockInOutCount(sqlSession, hs);
+	}
+	@Override
+	public List<HashMap<String, String>> searchStockInOutList(HashMap<String, String> hs, PageInfo pi) {
+		return sDAO.searchStockInOutList(sqlSession, hs, pi);
 	}
 	
 }

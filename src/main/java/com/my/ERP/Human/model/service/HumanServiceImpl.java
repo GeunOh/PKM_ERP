@@ -16,6 +16,7 @@ import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.myInfo.model.vo.Notice;
 
 @Service("hService")
 public class HumanServiceImpl implements HumanService {
@@ -358,6 +359,13 @@ public class HumanServiceImpl implements HumanService {
 	@Override
 	public Human myInfoLoginUser(String eno) {
 		return hDAO.myInfoLoginUser(sqlSession, eno);
+	}
+	
+	// 공지사항 가져오기
+	@Override
+	public ArrayList<Notice> showNotices() {
+		System.out.println("하이?");
+		return hDAO.showNotices(sqlSession);
 	}
 
 	

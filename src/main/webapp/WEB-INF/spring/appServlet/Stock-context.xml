@@ -16,12 +16,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean id="LogoutInterceptor" class="com.my.ERP.common.Interceptor.LogoutInterceptor"/>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 	
 	<context:component-scan base-package="com.my.ERP.Stock" />
 	

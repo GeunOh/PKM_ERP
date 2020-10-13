@@ -1,9 +1,9 @@
 package com.my.ERP.Stock.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.annotation.Resource;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -105,7 +105,7 @@ public class StockController {
 	// 제품 중복확인
 	@RequestMapping("pcodeChk")
 	@ResponseBody
-	public boolean dcodeChk(@RequestParam("pcode") String pcode) {
+	public boolean pcodeChk(@RequestParam("pcode") String pcode) {
 		Product product = sService.showProduct(pcode);
 		System.out.println(product);
 		if(product != null)  {
@@ -165,31 +165,210 @@ public class StockController {
 	 *  [ ========== 제 품 재 고 관 리 ========== ]
 	 */
 	@RequestMapping("productManager")
-	public String productManager() {
+	public String productManager(@RequestParam(value="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.productListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Product> plist = sService.productList(pi);	// 오버로딩
+		
+		model.addAttribute("plist", plist)
+			 .addAttribute("pi", pi);
 		
 		return "productManager";
 	}
-	
-	
+	@RequestMapping("searchProductManager")
+	public String searchProduct(@RequestParam(name="page", required = false) Integer page, Model model,
+								String price, String price2, String pcode, String pname, String p_comment,
+							    String pcount) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		
+		if(price != null) price = price.replace(",", "");
+		if(price2 != null) price2 = price2.replace(",", "");
+		
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("pcode", pcode);
+		hs.put("pname", pname);
+		hs.put("pcount", pcount);
+		hs.put("price", price);
+		hs.put("price2", price2);
+		hs.put("p_comment", p_comment);
+		
+		int listCount = sService.searchProductListCount(hs);
+		System.out.println(listCount);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Product> plist = sService.searchProductManagerList(hs, pi);
+		model.addAttribute("pi", pi)
+		     .addAttribute("plist", plist)
+		     .addAttribute("hs", hs);
+		
+		return "productManager";
+	}
+	@RequestMapping("modifyProductCount")
+	public String modifyProductCount(String modify_pcode, String modify_pcount) {
+		
+		Product product = new Product();
+		product.setPcode(modify_pcode);
+		product.setPcount(Integer.parseInt(modify_pcount));
+		
+		int result = sService.modifyProductCount(product);
+		
+		return "redirect:/Stock/productManager";
+	}
 	
 	/**
 	 *  [ ========== 제 품 입 출 고 현 황 ========== ]
 	 */
 	@RequestMapping("stockInOut")
-	public String stockInOut() {
+	public String stockInOut(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.stockInOutCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> slist = sService.stockInOutList(pi);
+		
+		model.addAttribute("slist", slist)
+		     .addAttribute("pi", pi);
 		
 		return "stockInOut";
 	}
-	
-	
+	@RequestMapping("searchStockInout")
+	public String searchStockInout(@RequestParam(name="page", required = false) Integer page, Model model,
+								   String selectVal, String selectClient, String selectProduct, String selectDate,
+								   String date, String date2) {
+		
+		HashMap<String, String> hs = new HashMap<String, String>();
+		hs.put("selectVal", selectVal);
+		hs.put("selectClient", selectClient);
+		hs.put("selectProduct", selectProduct);
+		hs.put("selectDate", selectDate);
+		hs.put("date", date);
+		hs.put("date2", date2);
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.searchStockInOutCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> slist = sService.searchStockInOutList(hs, pi);
+		
+		model.addAttribute("slist", slist)
+	     	 .addAttribute("pi", pi)
+	     	 .addAttribute("hs", hs);
+		
+		return "stockInOut";
+	}
 	
 	/**
 	 *  [ ========== 비 품 목 록 ========== ]
 	 */
 	@RequestMapping("supplyList")
-	public String supplyList() {
+	public String supplyList(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page != null) {
+			currentPage = page;
+		}
+		int listCount = sService.supplyManagerCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		ArrayList<Supply> slist = sService.supplyManager(pi);
+		
+		model.addAttribute("pi", pi)
+			 .addAttribute("slist", slist);
 		
 		return "supplyList";
+	}
+	@RequestMapping("searchSupplyList")
+	public String searchSupplyList(String scode, String sname, @RequestParam(name="page", required = false) Integer page,
+								   @RequestParam(value="price", required = false) String price,
+								   @RequestParam(value="price2", required = false) String price2,
+								   Model model) {
+		
+		if(price != null || price2 != null) {
+		price = price.replace(",", "");
+		price2 = price2.replace(",", "");
+		}
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("scode", scode);
+		hs.put("sname", sname);
+		hs.put("price", price);
+		hs.put("price2", price2);
+		
+		int listCount = sService.searchSupplyCount(hs);
+		int currentPage = 1;
+		if(page != null) {
+		currentPage = page;
+		}
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		ArrayList<Supply> slist = sService.searchSupply(hs, pi);
+		
+		model.addAttribute("hs", hs)
+		.addAttribute("slist", slist)
+		.addAttribute("pi", pi);
+		return "supplyList";
+	}
+	
+	// 비품코드 존재확인
+	@RequestMapping("scodeChk")
+	@ResponseBody
+	public String scodeChk(@RequestParam("scode") String scode) {
+		Supply supply = sService.showSupply(scode);
+		System.out.println(supply);
+		if(supply != null)  {
+			return "exist";	 // 존재
+		} else{
+			return "notExist";   // 존재하지 않음
+		}
+	}
+	// 비품정보
+	@RequestMapping("showSupply")
+	@ResponseBody
+	public Supply showSupply(@RequestParam("scode") String scode) {
+		Supply supply = sService.showSupply(scode);
+		return supply;
+	}
+	
+	// 비품 추가
+	@RequestMapping("addSupply")
+	public String addSupply(String add_scode, String add_sname, String add_price, String add_s_comment) {
+		
+		add_price = add_price.replace(",", "");
+		Supply supply = new Supply(add_scode, add_sname, add_price, add_s_comment, "0");
+		int result = sService.addSupply(supply);
+		
+		return "redirect:/Stock/supplyList";
+	}
+	// 비품 수정
+	@RequestMapping("modifySupply")
+	public String modifySupply(String modify_scode, String modify_sname, String modify_price, String modify_s_comment,
+							   String beforeScode) {
+		modify_price = modify_price.replace(",", "");
+		Supply supply = new Supply(modify_scode, modify_sname, modify_price, modify_s_comment, beforeScode);
+		int result = sService.modifySupply(supply);
+		return "redirect:/Stock/supplyList";
+	}
+	// 비품 삭제
+	@RequestMapping("deleteSupply")
+	public String deleteSupply(String del_scode) {
+		int result = sService.deleteSupply(del_scode);
+		return "redirect:/Stock/supplyList";
 	}
 	
 	
@@ -219,6 +398,11 @@ public class StockController {
 							   @RequestParam(value="price", required = false) String price,
 							   @RequestParam(value="price2", required = false) String price2,
 							   Model model) {
+		if(price != null || price2 != null) {
+			price = price.replace(",", "");
+			price2 = price2.replace(",", "");
+		}
+		
 		HashMap<String, Object> hs = new HashMap<String, Object>();
 		hs.put("scode", scode);
 		hs.put("sname", sname);
@@ -236,18 +420,83 @@ public class StockController {
 		model.addAttribute("hs", hs)
 			 .addAttribute("slist", slist)
 			 .addAttribute("pi", pi);
-		
+		 
 		return "supplyManager";
+	}
+	
+	@RequestMapping("modifySupplyCount")
+	public String modifySupplyCount(String modify_scode, String scount) {
+		
+		Supply supply = new Supply();
+		supply.setScode(modify_scode);
+		supply.setScount(scount);
+		
+		int result = sService.modifySupplyCount(supply);
+		
+		return "redirect:/Stock/supplyManager";
 	}
 	
 	/**
 	 *  [ ========== 비 품 신 청 현 황 ========== ]
 	 */
 	@RequestMapping("applicationList")
-	public String applicationList() {
+	public String applicationList(@RequestParam(name="page", required = false) Integer page, Model model) {
+		
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = sService.applicationListCount();
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		
+		List<HashMap<String, String>> alist = sService.applicationList(pi);
+		
+		model.addAttribute("alist", alist)
+			 .addAttribute("pi", pi);
 		
 		return "applicationList";
 	}
+	@RequestMapping("searchApplication")
+	public String searchApplication(@RequestParam(name="page", required = false) Integer page, Model model,
+									String selectVal, String ename, String sname, String selectDate,
+									@RequestParam(value="date", required = false) String date, 
+									@RequestParam(value="date2", required = false) String date2) {
+		
+		HashMap<String, Object> hs = new HashMap<String, Object>();
+		hs.put("selectVal", selectVal);
+		hs.put("ename", ename);
+		hs.put("sname", sname);
+		hs.put("selectDate", selectDate);
+		hs.put("date", date);
+		hs.put("date2", date2);
+
+		int currentPage = 1;
+		if(page!=null) currentPage = page;
+		
+		int listCount = sService.searchApplicationCount(hs);
+		PageInfo pi = Pagenation.getPageInfo(currentPage, listCount);
+		List<HashMap<String, String>> alist = sService.searchApplicationList(pi, hs);
+		
+		model.addAttribute("alist", alist)
+			 .addAttribute("pi", pi)
+			 .addAttribute("hs", hs);
+		
+		return "applicationList";
+	}
+	// 비품신청 승인
+	@RequestMapping("approvalApplication")
+	public String approvalApplication(String[] ano) {
+		int result = sService.approvalApplication(ano);
+		
+		return "redirect:/Stock/applicationList";
+	}
+	// 비품신청 거절
+	@RequestMapping("refuseApplication")
+	public String refuseApplication(String[] ano) {
+		int result = sService.refuseApplication(ano);
+		
+		return "redirect:/Stock/applicationList";
+	}
+	
 	
 	
 	

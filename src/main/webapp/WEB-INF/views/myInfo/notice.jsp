@@ -34,7 +34,15 @@
 							<button class="wcbtn uBtn ub_right">삭제</button>
 							<button class="wcbtn uBtn ub_left">수정</button>
 						</c:if>
-						<div class="content">${n.content}</div>
+						<div class="content">
+								${n.content}
+						</div>
+						<c:if test="${ not empty n.org_file_name}">
+							<div class="content">
+								첨부파일 : <a style="color: blue" href="/MyInfo/fileDown?bNo=${n.bNo}">${n.org_file_name}</a>&nbsp;&nbsp;(${n.file_size}&nbsp;KB)
+							</div>
+						</c:if>
+						
 						<input type="hidden" class="no" value="${n.bNo}">
 					</div>
 				</li>
@@ -46,10 +54,10 @@
 	<div class="modal" id="modal" style="display: none;">
 		<div class="modal-content">
 			<h2>공지사항 작성</h2>
-			<form id="NoticeWriteForm" action="/MyInfo/NoticeInsert">
+			<form id="NoticeWriteForm" action="/MyInfo/NoticeInsert" enctype="multipart/form-data" method="post">
 				<label>제목</label><input type="text" name="title" id="title" >
 				<textarea name="ir1" id="ir1" rows="10" cols="100" style="width: 100%"></textarea>
-				<div id="fileform"><input type="file" value="파일 선택"></div>
+				<div id="fileform"><input type="file" value="파일 선택" name="file"></div>
 				<div class="btnForm">
 					<button type="button" id="writeContent" class="wcbtn">등록</button>
 					<button type="button" id="wclose" class="close wcbtn">취소</button>

@@ -58,6 +58,7 @@ ul, li{list-style: none;}
 }
 .selectBox>a{color: #000; font-size: 13px; z-index: 5; font-family: NotoSans-Regular;}
 .selectBox ul{
+	overflow-y: auto;
 	display: none;
 	position: absolute; 
 	top: 33px; left: -1px; padding:0; 
@@ -195,5 +196,40 @@ ul, li{list-style: none;}
 #stockInOutTable tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
+.searchAngle{
+	position: absolute; 
+	top: 8px; right: 10px;
+	cursor: pointer;
+}
+.rotate-angle{ transform: rotate(180deg);}
 
-
+/* 페이징버튼 */
+#pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
+.pg_current {
+    display: inline-block;
+    background: #282c34;
+    border: 1px solid #282c34;
+    color: #fff;
+    font-weight: bold;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+.pg_page {
+	display: inline-block;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid #fff;
+    color: #959595;
+    font-size: 1.083em;
+    height: 30px;
+    line-height: 28px;
+    min-width: 30px;
+    text-decoration: none;
+    border-radius: 3px;
+}
+.pg_page:hover {
+	background-color: #dadada;
+}

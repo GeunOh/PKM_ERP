@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.my.ERP.Operation.model.vo.Client;
 import com.my.ERP.Stock.model.vo.Product;
@@ -37,6 +38,48 @@ public interface StockService {
 	int searchSupplyCount(HashMap<String, Object> hs);
 
 	ArrayList<Supply> searchSupply(HashMap<String, Object> hs, PageInfo pi);
+
+	int productListCount();
+
+	ArrayList<Product> productList(PageInfo pi);
+
+	Supply showSupply(String scode);
+
+	int addSupply(Supply supply);
+
+	int modifySupply(Supply supply);
+
+	int deleteSupply(String del_scode);
+
+	int modifySupplyCount(Supply supply);
+
+	int searchProductListCount(HashMap<String, Object> hs);
+
+	ArrayList<Product> searchProductManagerList(HashMap<String, Object> hs, PageInfo pi);
+
+	int modifyProductCount(Product product);
+
+	int applicationListCount();
+
+	List<HashMap<String, String>> applicationList(PageInfo pi);
+
+	int refuseApplication(String[] ano);
+
+	int approvalApplication(String[] ano);
+
+	int searchApplicationCount(HashMap<String, Object> hs);
+
+	List<HashMap<String, String>> searchApplicationList(PageInfo pi, HashMap<String, Object> hs);
+
+	int stockInOutCount();
+
+	List<HashMap<String, String>> stockInOutList(PageInfo pi);
+
+	int searchStockInOutCount(HashMap<String, String> hs);
+
+	List<HashMap<String, String>> searchStockInOutList(HashMap<String, String> hs, PageInfo pi);
+
+
 
 
 	

@@ -2,6 +2,7 @@ package com.my.ERP.Stock.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -74,6 +75,84 @@ public class StockDAO {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowbounds = new RowBounds(offset, pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("stockMapper.searchSupply", hs, rowbounds);
+	}
+	// 제품 목록 수
+	public int productListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.productListCount");
+	}
+	// 제묵 목록(오버로딩)
+	public ArrayList<Product> productList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("stockMapper.productManagerList", null, rowBounds);
+	}
+	// 비품코드 중복체크
+	public Supply showSupply(SqlSessionTemplate sqlSession, String scode) {
+		return sqlSession.selectOne("stockMapper.showSupply", scode);
+	}
+	public int addSupply(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.insert("stockMapper.addSupply", supply);
+	}
+	public int modifySupply(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.update("stockMapper.modifySupply", supply);
+	}
+	public int deleteSupply(SqlSessionTemplate sqlSession, String del_scode) {
+		return sqlSession.delete("stockMapper.deleteSupply", del_scode);
+	}
+	public int modifySupplyCount(SqlSessionTemplate sqlSession, Supply supply) {
+		return sqlSession.update("stockMapper.modifySupplyCount", supply);
+	}
+	public int searchProductListCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("stockMapper.searchProductListCount", hs);
+	}
+	public ArrayList<Product> searchProductManagerList(SqlSessionTemplate sqlSession, HashMap<String, Object> hs,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("stockMapper.searchProductManagerList", hs, rowBounds);
+	}
+	public int modifyProductCount(SqlSessionTemplate sqlSession, Product product) {
+		return sqlSession.update("stockMapper.modifyProductCount", product);
+	}
+	public int applicationListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.applicationListCount");
+	}
+	public List<HashMap<String, String>> applicationList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.applicationList", null, rowBounds);
+	}
+	public int refuseApplication(SqlSessionTemplate sqlSession, String[] ano) {
+		return sqlSession.update("stockMapper.refuseApplication", ano);
+	}
+	public int approvalApplication(SqlSessionTemplate sqlSession, String[] ano) {
+		return sqlSession.update("stockMapper.approvalApplication", ano);
+	}
+	public int searchApplicationCount(SqlSessionTemplate sqlSession, HashMap<String, Object> hs) {
+		return sqlSession.selectOne("stockMapper.searchApplicationCount", hs);
+	}
+	public List<HashMap<String, String>> searchApplicationList(SqlSessionTemplate sqlSession, PageInfo pi,
+			HashMap<String, Object> hs) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.searchApplicationList", hs, rowBounds);
+	}
+	public int stockInOutCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("stockMapper.stockInOutCount");
+	}
+	public List<HashMap<String, String>> stockInOutList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.stockInOutList", null, rowBounds);
+	}
+	public int searchStockInOutCount(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.selectOne("stockMapper.searchStockInOutCount", hs);
+	}
+	public List<HashMap<String, String>> searchStockInOutList(SqlSessionTemplate sqlSession, HashMap<String, String> hs,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return sqlSession.selectList("stockMapper.searchStockInOutList", hs, rowBounds);
 	}
 	
 	

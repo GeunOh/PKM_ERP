@@ -1,6 +1,5 @@
 package com.my.ERP.Human.model.dao;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +15,7 @@ import com.my.ERP.Human.model.vo.Salary;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Human.model.vo.WorkInOut;
 import com.my.ERP.common.vo.PageInfo;
-import com.my.ERP.common.vo.SearchOption;
+import com.my.ERP.myInfo.model.vo.Notice;
 
 @Repository("hDao")
 public class HumanDAO {
@@ -310,6 +309,10 @@ public class HumanDAO {
 
 	public Human myInfoLoginUser(SqlSessionTemplate sqlSession, String eno) {
 		return sqlSession.selectOne("humanMapper.myInfoLoginUser", eno);
+	}
+
+	public ArrayList<Notice> showNotices(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("humanMapper.showNotices");
 	}
 
 

@@ -11,6 +11,10 @@ public class Notice {
 	private Date modify_date;
 	private String outyn;
 	
+	private String org_file_name;
+	private String stored_file_name;
+	private int file_size;
+	
 	public Notice () {}
 
 	public int getbNo() {
@@ -69,10 +73,38 @@ public class Notice {
 		this.outyn = outyn;
 	}
 
+	public String getOrg_file_name() {
+		return org_file_name;
+	}
+
+	public void setOrg_file_name(String org_file_name) {
+		this.org_file_name = org_file_name;
+	}
+
+	public int getFile_size() {
+		return file_size;
+	}
+
+	public void setFile_size(int file_size) {
+		this.file_size = file_size;
+	}
+
+	public String getStored_file_name() {
+		return stored_file_name;
+	}
+
+	public void setStored_file_name(String stored_file_name) {
+		this.stored_file_name = stored_file_name;
+	}
+
 	@Override
 	public String toString() {
 		return "Notice [bNo=" + bNo + ", title=" + title + ", writer=" + writer + ", content=" + content
-				+ ", create_date=" + create_date + ", modify_date=" + modify_date + ", outyn=" + outyn + "]";
+				+ ", create_date=" + create_date + ", modify_date=" + modify_date + ", outyn=" + outyn
+				+ ", org_file_name=" + org_file_name + ", stored_file_name=" + stored_file_name + ", file_size="
+				+ file_size + "]";
 	}
+
+
 	
 }

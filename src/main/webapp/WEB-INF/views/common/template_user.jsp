@@ -18,7 +18,6 @@
 				<li>
 					<c:if test="${loginUser.renameFileName eq null}"><img class="profile" src="resources/images/default-profile.jpg"></c:if> 
 					<c:if test="${loginUser.renameFileName ne null}"><img class="profile" src="resources/Profile-images/${loginUser.renameFileName }"></c:if> 
-					
 				</li>
 				<li onclick="showMenu();">
 					<span>${loginUser.name}님</span>
@@ -27,8 +26,9 @@
 						<ul>
 							<li onclick="location.href='/Human/myInfo'"><i class="fas fa-user-circle"></i>내 정보</li>
 							<li><i class="fas fa-lock"></i>비밀번호변경</li>
-							<li><i class="fas fa-bell"></i>알림설정</li>
-							<li><i class="fas fa-cog"></i>환경설정</li>
+							<c:if test="${loginUser.adminyn eq 'Y' }">
+								<li onclick="location.href='/quickMenu'"><i class="fas fa-cog"></i>관리자모드</li>
+							</c:if>
 							<li onclick="location.href='/Logout'"><i class="fas fa-power-off"></i>로그아웃</li>
 						</ul>
 					</div>
@@ -45,25 +45,25 @@
 		<li>
 			<ul id="human" class="subMenu">
 				<li>
-					<a href=""><span id="">내 정보</span></a>
+					<a href="/Human/myInfo"><span id="">내 정보</span></a>
 				</li>
 				<li>
 					<a href="/MyInfo/notice"><span id="">공지사항</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">사원검색</span></a>
+					<a href="/MyInfo/searchHuman"><span id="">사원검색</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">근태현황</span></a>
+					<a href="/MyInfo/workCalendar"><span id="">근태현황</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">휴가사용현황</span></a>
+					<a href="/MyInfo/myVacation"><span id="">휴가사용현황</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">업무관리(제품목록)</span></a>
+					<a href="/MyInfo/productWork"><span id="">제품목록 및 입/출고</span></a>
 				</li>
 				<li>
-					<a href=""><span id="">비품신청</span></a>
+					<a href="/MyInfo/mySupplyRequest"><span id="">비품신청</span></a>
 				</li>
 			</ul>
 		</li>

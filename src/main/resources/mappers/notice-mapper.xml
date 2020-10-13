@@ -9,6 +9,9 @@
 		<result column="CREATE_DATE" property="create_date"/>
 		<result column="MODIFY_DATE" property="modify_date"/>
 		<result column="DELETE_YN" property="outyn"/>
+		<result column="ORG_FILE_NAME" property="org_file_name"/>
+		<result column="STORED_FILE_NAME" property="stored_file_name"/>
+		<result column="FILE_SIZE" property="file_size"/>
 	</resultMap>
 	
 	<resultMap type="Human" id="humanResult">
@@ -47,7 +50,10 @@
 	</resultMap>
 	
 	<select id="NoticeForm" resultMap="noticeResult">
-		SELECT * FROM TB_NOTICE WHERE DELETE_YN = 'N' ORDER BY BNO DESC
+		SELECT N.bno, title, writer, bcontent, create_date, modify_date, org_file_name, stored_file_name, file_size 
+		FROM TB_NOTICE N
+		LEFT JOIN TB_FILE F ON(N.bno = F.bno)
+		WHERE DELETE_YN = 'N' ORDER BY N.bno DESC
 	</select>
 	
 	<insert id="NoticeInsert">
@@ -114,5 +120,74 @@
 	
 	<insert id="sendResendMsg">
 		INSERT INTO TB_MESSAGE VALUES(TB_MESSAGE_MNO.NEXTVAL, #{title}, #{writer}, #{reciever}, #{bcontent}, 'N', SYSDATE)
+	</insert>
+	
+	<insert id="insertFile">
+		INSERT INTO TB_FILE VALUES(
+			TB_FILE_NO.nextval, 
+			TB_NOTICE_BNO.currval, 
+			#{org_file_name}, #{stored_file_name}, 
+			#{file_size}, sysdate, default)
+	</insert>
+	
+	<select id="selectNotice" resultMap="noticeResult">
+		SELECT org_file_name, stored_file_name, file_size 
+		FROM TB_NOTICE N
+		LEFT JOIN TB_FILE F ON(N.bno = F.bno)
+		WHERE N.BNO = #{BNO}
+	</select>
+	
+	<select id="vacationUseDays" resultType="hashmap">
+		SELECT USEDAY, (SELECT SUM(USEDAY) FROM TB_VACATION_RECORD WHERE ENO = #{eno}) AS ALLDAY
+		FROM TB_VACATION
+		WHERE ENO = #{eno}
+	</select>
+	
+	<select id="myVacationList" resultType="Vacation">
+		SELECT * 
+		FROM VACATIONLIST
+		WHERE ENO=#{eno}
+	</select>
+	
+	<select id="myVacationListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM VACATIONLIST
+		WHERE ENO=#{eno}
+	</select>
+	
+	<insert id="addSupplyRequest">
+		INSERT INTO TB_SUPPLY_APPLICATION
+		VALUES(TB_SUPPLY_APPLICATION_ANO.nextval, #{eno}, #{scode}, #{sname}, SYSDATE, #{count}, #{comment}, DEFAULT)
+	</insert>
+	
+	<select id="totalCount" resultType="hashmap">
+		SELECT COUNT(*) AS totalCount, 
+		COUNT(CASE WHEN STATUS = 'N' THEN 1 ELSE NULL END) AS  waitCount,
+		COUNT(CASE WHEN STATUS = 'F' THEN 1 ELSE NULL END) AS  failCount,
+		COUNT(CASE WHEN STATUS = 'Y' THEN 1 ELSE NULL END) AS  successCount
+		FROM SUPPLY_APPLICATION_VIEW
+		WHERE eno = #{eno}
+	</select>
+	
+	<select id="supplyRequestList" resultType="hashmap">
+		SELECT *
+		FROM SUPPLY_APPLICATION_VIEW
+		WHERE eno = #{eno}
+		ORDER BY APPLICATE_DATE DESC
+	</select>
+	
+	<select id="supplyList" resultType="Supply">
+		SELECT S.*, SS.scount 
+		FROM TB_SUPPLY S
+		JOIN TB_SUPPLY_STOCK SS ON(S.scode = SS.scode)
+	</select>
+	
+	<insert id="addProductInOut">
+		INSERT INTO TB_PRODUCT_INOUT VALUES(
+			#{ccode}, #{pcode}, #{status}, SYSDATE, 
+			<if test="status == 'IN'">#{count}, null,</if>
+			<if test="status == 'OUT'">null, #{count},</if>
+			#{comment}
+		)
 	</insert>
 </mapper>

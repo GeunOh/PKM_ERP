@@ -265,14 +265,13 @@ h2{margin-bottom: 1%;}
 #vacationDayBox span { color: #8c8c8c; }
 /* 휴가 신청 */
 #rightBox #vacationUseBox {
-	cursor: pointer;
 	background-color: #f1f9ff;
 }
 #vacationUseBox div {
 	text-align: center;
     margin-top: 15%;
 }
-.fa-plane { font-size: 70px; color: #BCE; }
+.fa-plane { font-size: 70px; color: #BCE; cursor: pointer; }
 
 
 
@@ -289,7 +288,7 @@ h2{margin-bottom: 1%;}
 }
 #vacation-add .popupContent {
     width: 40%;
-    height: 50%;
+    height: 41%;
     margin: auto;
     max-height: 100vh;
     background: white;
@@ -431,7 +430,6 @@ h2>.fa-times {
 .add-text {
     font-family: NotoSans-Regular;
     border-radius: 3px;
-    width: 100%;
     padding: 30px 0px;
 }
 .add-btn-form {
@@ -693,11 +691,13 @@ h1>.fa-times{
 	background-color: #000;
 	border-radius: 50%;
 }
+#vacation-add .add-text { width: 100%;}
 .add-text{ 
 	font-family: NotoSans-Regular; 
-	border-radius: 3px; width: 56%;
+	border-radius: 3px;
 }
 .add-btn-form{
+	border: none;
 	text-align: center;
 	margin-top: 1%;
 }
@@ -765,3 +765,9 @@ h1>.fa-times{
 	background-color: #282c34;
     color: #fff;
 } 
+.fa-paperclip { font-size: 18px; }
+
+#product-InOut-add { top: 60px; }
+#product-InOut-add .popup-content {
+	height: 50%;
+}

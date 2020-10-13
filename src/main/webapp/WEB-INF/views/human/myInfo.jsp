@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <jsp:include page="../common/headTag_user.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/human/myInfo.css">
 
@@ -17,9 +18,7 @@
 </style>
 </head>
 <body>
-
 	<jsp:include page="../common/template_user.jsp"></jsp:include>
-	
 	<!-- wrap -->
 	<div id="wrap">
 		<h2>${vacation }</h2>
@@ -67,34 +66,23 @@
 							<th>번호</th>
 							<th>제목</th>
 							<th>게시날짜</th>
-							<th>조회수</th>
+							<th>첨부파일</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>test 제목</td>
-							<td>2020-08-27</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>test 제목</td>
-							<td>2020-08-27</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>test 제목</td>
-							<td>2020-08-27</td>
-							<td>5</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>test 제목</td>
-							<td>2020-08-27</td>
-							<td>5</td>
-						</tr>
+						<c:forEach items="${nlist }" var="n">
+						 	<tr>
+								<td>${n.bNo }</td>
+								<td><a href="/MyInfo/notice">${n.title }</a></td>
+								<td>${n.modify_date }</td>
+								<c:if test="${n.org_file_name ne null }">
+									<td><a href="/MyInfo/fileDown?bNo=${n.bNo }"><i class="fas fa-paperclip"></i></a></td>
+								</c:if>
+								<c:if test="${n.org_file_name eq null }">
+									<td></td>
+								</c:if>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
