@@ -8,6 +8,7 @@ import com.my.ERP.Human.model.vo.Human;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
+import com.my.ERP.myInfo.model.vo.Caleander;
 import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.myInfo.model.vo.Notice;
 
@@ -58,5 +59,7 @@ public interface MyinfoSerivce {
 	Message sendResend(String mno);
 
 	int sendResendMsg(Message msg);
+
+	ArrayList<Caleander> workData(String eno);
 
 }

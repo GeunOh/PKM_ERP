@@ -20,15 +20,39 @@
 	
 </body>
 <script>
+function getEvent() {
+	var eno = '${loginUser.eno}'; 
+	var events;
+	$.ajax({
+		type : 'POST',
+		data : {eno:eno},
+		datatype : 'json',
+		async : false,
+		url : '/MyInfo/workData',
+		success : function(result) {
+			console.log(result)
+			events = result;
+		}
+	});
+	return events;
+}
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          height: '90%',
-        });
-        calendar.render();
-      });
+ document.addEventListener('DOMContentLoaded', function() {
+   var calendarEl = document.getElementById('calendar');
+   var calendar = new FullCalendar.Calendar(calendarEl, {
+   	timeZone : 'local',
+     initialView: 'dayGridMonth',
+     height: '90%',
+     buttonText:{ // 버튼 글자 커스텀
+				today : '오늘',
+				month : '월',
+				week : '주',
+				day : '일',
+				 },
+ 	 events: getEvent()
+   });
+   calendar.render();
+ });
 
 </script>
 </html>

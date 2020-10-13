@@ -46,7 +46,11 @@
 		<result column="BCONTENT" property="bcontent"/>
 		<result column="MREAD" property="mread"/>
 		<result column="CREATE_DATE" property="createDate"/>
-		
+	</resultMap>
+	
+	<resultMap type="Caleander" id="worktimeResult">
+		<result column="WORKTIME" property="start"/>
+		<result column="WORK_TYPE" property="title"/>
 	</resultMap>
 	
 	<select id="NoticeForm" resultMap="noticeResult">
@@ -190,4 +194,8 @@
 			#{comment}
 		)
 	</insert>
+	
+	<select id="workData" resultMap="worktimeResult">
+		SELECT WORKIN_DATE WORKTIME, WORK_TYPE FROM TB_WORKINOUT WHERE ENO = #{eno}
+	</select>
 </mapper>
