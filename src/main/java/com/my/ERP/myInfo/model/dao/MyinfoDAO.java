@@ -8,6 +8,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.my.ERP.Human.model.vo.Human;
+import com.my.ERP.myInfo.model.vo.Message;
 import com.my.ERP.Human.model.vo.Vacation;
 import com.my.ERP.Stock.model.vo.Supply;
 import com.my.ERP.common.vo.PageInfo;
@@ -42,6 +44,46 @@ public class MyinfoDAO {
 		return sqlSession.update("noticeMapper.NoticeDelete", no);
 	}
 
+	public ArrayList<Human> MsgFindMember(SqlSessionTemplate sqlSession, String mem) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.MsgFindMember", mem);
+	}
+
+	public int MsgSend(SqlSessionTemplate sqlSession, HashMap<String, String> hs) {
+		return sqlSession.insert("noticeMapper.MsgSend", hs);
+	}
+
+	public ArrayList<Message> RecieverMsg(SqlSessionTemplate sqlSession, String user) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.RecieverMsg", user);
+	}
+
+	public ArrayList<Message> SendMsg(SqlSessionTemplate sqlSession, String user) {
+		return (ArrayList)sqlSession.selectList("noticeMapper.SendMsg", user);
+	}
+
+	public Message recieverDetail(SqlSessionTemplate sqlSession, String mno) {
+		return sqlSession.selectOne("noticeMapper.recieverDetail", mno);
+	}
+
+	public int NoReadMsg(SqlSessionTemplate sqlSession, String user) {
+		return sqlSession.selectOne("noticeMapper.NoReadMsg", user);
+	}
+
+	public Message sendDetail(SqlSessionTemplate sqlSession, String mno) {
+		return sqlSession.selectOne("noticeMapper.sendDetail", mno);
+	}
+
+	public void recieverReadChk(SqlSessionTemplate sqlSession, String mno) {
+		sqlSession.update("noticeMapper.recieverReadChk", mno);
+	}
+
+	public Message sendResend(SqlSessionTemplate sqlSession, String mno) {
+		return sqlSession.selectOne("noticeMapper.sendResend", mno);
+	}
+
+	public int sendResendMsg(SqlSessionTemplate sqlSession, Message msg) {
+		return sqlSession.insert("noticeMapper.sendResendMsg",msg);
+	}
+	
 	public int insertFile(SqlSessionTemplate sqlSession, HashMap<String, Object> fileHs) {
 		return sqlSession.insert("noticeMapper.insertFile", fileHs);
 	}
