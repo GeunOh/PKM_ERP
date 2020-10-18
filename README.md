@@ -15,9 +15,10 @@
  ### API 리스트
   - 날씨 : OpenWeathermap
   - 차트 : toast ui
+  - 달력 : fullCalendar
  ### 개발환경
   - language : JAVA1.8
   - framework : Spring, Spring Security
   - DB : OracleDB
   - UI : JSP, CSS, JS, JQUERY
-  - etc : Mybatis
+  - etc : Mybatis, tomcat
