@@ -34,7 +34,7 @@
 				</div>
 				<div id="userMenu">
 					<p id="myInfoModify">내 정보 변경</p>
-					<p>몰랑</p>
+					<p>내 업무</p>
 				</div>
 			</div>
 			
@@ -89,6 +89,7 @@
 			<!-- 쪽지 -->
 			<div id="messaeBox" class="content_Box">
 				<h2>쪽지</h2>
+				<p>도착한 쪽지가 존재하지 않습니다.</p>
 			</div>
 		</div>
 		<div id="rightBox">

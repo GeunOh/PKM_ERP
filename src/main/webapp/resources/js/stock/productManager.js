@@ -35,6 +35,7 @@ function dblclick() {
 function hoverCss() {
 	for(var i=0; i<trs.length; i++){
 		trs[i].style.backgroundColor = '#fff';
+		trs[i].style.cursor = 'pointer';
 	}
 	this.style.backgroundColor = '#f6f6f6';
 }

@@ -1,3 +1,13 @@
+//팝업창 버튼들 작동
+$('#addBtn').on('click',function(){
+	$('#product-InOut-add').fadeIn();	// 추가 팝업창
+})
+$('h2 .fa-times').on('click',function(){
+	$('.popup-form').fadeOut();
+})
+$('.add-btn-form button:first-child').on('click',function(){
+	$('.popup-form').fadeOut();
+})
 $(function(){
 	// 검색창 제품 목록
 	$.ajax({
@@ -62,4 +72,77 @@ $(document).on('click', '.link-select', function(){
 $('.selectBox ul').mouseleave(function(){
 	$(this).siblings('.fa-angle-down').removeClass('rotate-angle');
 	$(this).hide();
+})
+
+// 제품코드 중복확인
+function pcodeChk() {
+	var pcode = $("input[name=pcode]").val();
+	var chk;
+	$.ajax({
+		async: false,
+		url: "/Stock/pcodeChk",
+		data: {pcode:pcode},
+		success: function(data){
+			chk = data;
+		}
+	})
+	if(chk == true){
+		$("input[name=pcode] + label").text("사용가능");
+	} else {
+		$("input[name=pcode] + label").text("");
+	}
+}
+// 거래처 존재확인
+function ccodeChk(){
+	var ccode = $("input[name=ccode]").val();
+	var chk;
+	$.ajax({
+		async: false,
+		url: "/Stock/ccodeChk",
+		data: {ccode:ccode},
+		success: function(data){
+			chk = data;
+		}
+	})
+	if(chk == 'exist'){
+		$("input[name=ccode] + label").text("사용가능");
+	} else {
+		$("input[name=ccode] + label").text("");
+	}
+}
+function dataChk(){
+	
+	var pcode = $("input[name=pcode]").val();
+	var ccode = $("input[name=ccode]").val();
+	var count = $("input[name=count]").val();
+	
+	if($("input[name=ccode] + label").text() != "사용가능") {
+		alert("존재하지않는 거래처입니다.");
+		return false;
+	}
+	if($("input[name=pcode] + label").text() != "사용가능") {
+		alert("존재하지않는 제품입니다.");
+		return false;
+	}
+	if(ccode == '') {
+		alert("사업자등록번호를 입력해주세요.");
+		return false;
+	}
+	if(pcode == '') {
+		alert("제품코드를 입력해주세요.");
+		return false;
+	}
+	if(count == '' || count <= 0) {
+		alert("수량을 입력해주세요.");
+		return false;
+	}
+	$("#product-InOut-add").submit();
+}
+// 조건 클릭 시
+$(document).on('click', '.link-select', function(){
+	var value = $(this).attr('value');
+	var text = $(this).text();
+	// 속성 및 텍스트 변경
+	$(this).parents('ul').siblings('.link-selected').text(text);
+	$(this).parents('ul').siblings('input').attr('value', value);
 })

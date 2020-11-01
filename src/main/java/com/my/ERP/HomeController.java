@@ -123,34 +123,38 @@ public class HomeController {
 	@ResponseBody
 	public String pwdFind(@RequestParam("id") String id, @RequestParam("ename") String ename,
 						  @RequestParam("phone") String phone) throws Exception {
-
+		// UI단에서 받아온 입력값을 HashMap 객체에 저장
 		HashMap<String, String> hs = new HashMap<String, String>();
 		hs.put("ename", ename);
 		hs.put("id", id);
 		hs.put("phone", phone);
-
+		
+		// 실제 존재하는 사용자인지 확인
 		Human findHuman = hService.pwdFind(hs);
-		System.out.println(findHuman);
-		if(findHuman == null) {
+		if(findHuman == null) {	// 존재하지 않는다면 "fail" 문자열 반환
 			return "fail";
 		} else {
+			// 임시비밀번호로 초기화하기 위해 휴대전화번호를 가져옴
 			String getPhone = findHuman.getPhone();
+			// 가져온 휴대전화 끝 4자리를 추출
 			String lastPhone = getPhone.substring(getPhone.length()-4, getPhone.length());
-			
-			System.out.println(lastPhone);
+			// 사원번호 + 휴대전화 끝 4자리로 임시비밀번호 완성
 			String tempPwd = findHuman.getEno() + lastPhone;
-			// 임시비밀번호 문자열 인코딩
+			// 임시비밀번호 문자열 인코딩 후 HashMap 객체에 추가
 			String encTempPwd = passwordEncoder.encode(tempPwd);
 			hs.put("encTempPwd", encTempPwd);
 
 			// 비밀번호 임시비밀번호로 변경
 			int result = hService.tempPwd(hs);
-
+			
+			// 수신자의 이메일과 제목, 내용을 지정 후 발송
 			String receiver = findHuman.getEmail();
+			// 이메일 객체에 값을 지정
 			email.setReceiver(receiver);
 			email.setSubject("[WORKSPACE] " + ename + "님의 비밀번호입니다.");
 			email.setContent("[WORKSPACE] " + ename + "님의 임시비밀번호는 [" + tempPwd  + "] 입니다.\n"
 							 + "로그인 후 비밀번호를 재설정 해주세요.");
+			// 이메일을 전송해주는 역할을 하는 객체의 메서드 호출
 			emailSender.SendEmail(email);
 			return "success";
 		}

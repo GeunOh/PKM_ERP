@@ -107,7 +107,6 @@ public class StockController {
 	@ResponseBody
 	public boolean pcodeChk(@RequestParam("pcode") String pcode) {
 		Product product = sService.showProduct(pcode);
-		System.out.println(product);
 		if(product != null)  {
 			return true;	 // 중복(사용불가능)이면 true
 		} else{
@@ -119,7 +118,6 @@ public class StockController {
 	@ResponseBody
 	public String ccodeChk(@RequestParam("ccode") String ccode) {
 		Client client = sService.showClient(ccode);
-		System.out.println(client);
 		if(client != null)  {
 			return "exist";	 // 존재
 		} else{

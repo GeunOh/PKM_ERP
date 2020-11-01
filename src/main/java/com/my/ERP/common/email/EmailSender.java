@@ -17,8 +17,7 @@ public class EmailSender {
 	public void SendEmail(Email email) throws Exception {
         
         MimeMessage msg = mailSender.createMimeMessage();
-        MimeMessageHelper messageHelper = new MimeMessageHelper(msg,
-				true, "UTF-8");
+        MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
         
         try {
         	messageHelper.setFrom("sanghoo96@naver.com");	// 네이버는 지정해줘야함

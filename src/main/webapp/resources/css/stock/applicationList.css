@@ -188,6 +188,7 @@ h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}
 }
 .buttons { position: absolute;}
 .buttons button {
+	cursor: pointer;
 	font-family: NotoSans-Regular;
     width: 100px;
     height: 50px;
@@ -196,9 +197,9 @@ h2 { margin: 2% 0 1% 0; font-family: NotoSans-Regular;}
     border-radius: 10px;
 }
 .buttons button:first-child {
-	
 	margin-right: 10px;
 }
+input[type=checkbox] { cursor: pointer;}
 /* 페이징버튼 */
 #pagingForm{text-align: center; margin-top: 2%; font-family: NotoSans-Regular; font-weight: bold;}
 .pg_current {

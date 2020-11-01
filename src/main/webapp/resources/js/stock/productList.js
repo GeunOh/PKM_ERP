@@ -93,7 +93,7 @@ $("#saveBtn").on("click", function() {
 			return false;
 		} 
 		// 거래처가 없으면 등록 불가능
-		if($("input[name=ccode]").text() != "" && ccodeChk() == 'notExist'){
+		if($("input[name=ccode]").val() != "" && ccodeChk() == 'notExist'){
 			alert("거래처가 존재하지 않습니다.");
 			$("input[name=ccode]").focus();
 			return false;
@@ -115,7 +115,7 @@ $("#saveBtn").on("click", function() {
 			}
 		}
 		// 존재하지 않는 거래처라면
-		if($("input[name=ccode]").text() != '' && ccodeChk() != 'exist'){
+		if($("input[name=ccode]").val() != '' && ccodeChk() != 'exist'){
 			alert("거래처가 존재하지 않습니다.");
 			$("input[name=ccode]").focus();
 			return false;
@@ -170,12 +170,12 @@ function pcodeChk() {
 			chk = data;
 		}
 	})
-	
-	$("input[name=pcode] + label").text("ㅇ");
+	return chk;
 }
 // 거래처 존재확인
 function ccodeChk(){
 	var ccode = $("input[name=ccode]").val();
+	console.log(ccode);
 	var chk;
 	$.ajax({
 		async: false,

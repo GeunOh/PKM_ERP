@@ -56,8 +56,8 @@
 		<!-- // 검색 영역 -->
 		<!-- 추가 외 버튼 -->
 		<div id="btnForm">
-			<label id="addBtn">추가</label>
 			<label id="downBtn" onclick="location.href='/Human/excelDown'"><i class="fas fa-download"></i>다운로드</label>
+			<span>변경하실 행을 더블클릭 시 수정 또는 삭제하실수 있습니다</span>
 		</div>
 		<!-- 테이블 -->
 		<table id="productManagerTable">

@@ -157,7 +157,7 @@
 	
 	<!-- 직급 목록 -->
 	<select id="positionList" resultMap="rankResult">
-		SELECT * FROM TB_RANK
+		SELECT * FROM TB_RANK ORDER BY RCODE ASC
 	</select>
 	
 	<!-- 직급 등록 -->
@@ -469,9 +469,9 @@
 		<where>
 			<if test="so.dateAll != null"></if>
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
-			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
+			<if test="selectDept != ''">AND DNAME = # {selectDept}</if>
 			<if test="eno != ''">AND ENO LIKE '%' || #{eno} || '%'</if>
-			<if test="name != ''">AND ENAME LIKE '%' || #{ename} || '%'</if>
+			<if test="name != ''">AND ENAME LIKE '%' || #{name} || '%'</if>
 		</where>
 	</select>
 	
@@ -483,7 +483,7 @@
 			<if test="so.dateSelect != null">AND INDATE BETWEEN #{date} AND #{date2}</if>
 			<if test="selectDept != ''">AND DNAME = #{selectDept}</if>
 			<if test="eno != ''">AND ENO LIKE '%' || #{eno} || '%'</if>
-			<if test="name != ''">AND ENAME LIKE '%' || #{ename} || '%'</if>
+			<if test="name != ''">AND ENAME LIKE '%' || #{name} || '%'</if>
 		</where>
 	</select>
 	

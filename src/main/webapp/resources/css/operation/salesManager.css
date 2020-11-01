@@ -20,9 +20,9 @@ input:-webkit-autofill:active {
      -webkit-text-fill-color: #000 !important;
 }
 
-#stock { display: block; }
-#productList { color: red; }
-#productList:before { background-color: red; }
+#operation { display: block; }
+#salesManager { color: red; }
+#salesManager:before { background-color: red; }
 
 h1{margin-bottom: 2%;}
 h2{margin-bottom: 1%;}

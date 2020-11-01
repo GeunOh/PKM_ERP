@@ -122,28 +122,28 @@ if(Imsg == 'false') {
 	}, 3000);
 }
 if(Mmsg == 'true') {
-	$("#alertBox p").text("공지사항을 추가했습니다.");
+	$("#alertBox p").text("공지사항을 수정했습니다.");
 	$("#alertBox").fadeIn();
 	setTimeout(function(){
 		$("#alertBox").fadeOut();
 	}, 3000);
 }
 if(Mmsg == 'false') {
-	$("#alertBox p").text("공지사항 추가 실패했습니다.");
+	$("#alertBox p").text("공지사항 수정 실패했습니다.");
 	$("#alertBox").fadeIn();
 	setTimeout(function(){
 		$("#alertBox").fadeOut();
 	}, 3000);
 }
 if(Dmsg == 'true') {
-	$("#alertBox p").text("공지사항을 추가했습니다.");
+	$("#alertBox p").text("공지사항을 삭제했습니다.");
 	$("#alertBox").fadeIn();
 	setTimeout(function(){
 		$("#alertBox").fadeOut();
 	}, 3000);
 }
 if(Dmsg == 'false') {
-	$("#alertBox p").text("공지사항 추가 실패했습니다.");
+	$("#alertBox p").text("공지사항 삭제 실패했습니다.");
 	$("#alertBox").fadeIn();
 	setTimeout(function(){
 		$("#alertBox").fadeOut();

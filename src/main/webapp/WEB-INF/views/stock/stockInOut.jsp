@@ -158,6 +158,57 @@
 			</tbody>
 		</table>
 		<!-- 테이블 -->
+		<!-- 제품 입출고 등록 팝업창 -->
+		<form action="/MyInfo/addProductInOut" class="popup-form" id="product-InOut-add">
+			<div class="popupContent">
+				<h2>제품 입출고 등록
+				<i class="fas fa-times" aria-hidden="true"></i>
+				</h2>
+				<div class="content-form">
+					<span>제품 입출고 정보</span>
+					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">* 필수 정보 입력란입니다.</span>
+					<div class="add-form">
+						<span class="add-title">구분</span>
+						<div class="selectBox" style="height: 19px; line-height: 19px; vertical-align: middle; border-radius: 3px;">
+							<input type="hidden" name="status" value="">
+							<a href="#none" class="link-selected" style="line-height: 0;">선택</a>
+							<ul style="max-height: 120px; overflow-y: scroll;">
+								<li><a href="#" class="link-select" value="IN">입고</a></li>
+								<li><a href="#" class="link-select" value="OUT">출고</a></li>
+							</ul>
+							<i class="fas fa-angle-down searchAngle" aria-hidden="true"></i>
+						</div>
+					</div>
+					<div class="add-form">
+						<span class="add-title">사업자등록번호</span>
+						<input type="text" class="txtBox" name="ccode" onkeyup="ccodeChk();" required style="border-radius: 3px;">
+						<label id="ccodeChk"></label>
+					</div>
+					<div class="add-form">
+						<span class="add-title">제품코드</span>
+						<input type="text" class="txtBox" name="pcode" onkeyup="pcodeChk();" required style="border-radius: 3px;">
+						<label id="pcodeChk"></label>
+					</div>
+					<div class="add-form">
+						<span class="add-title">수량</span>
+						<input type="number" class="txtBox" name="count" required style="border-radius: 3px;">
+					</div>
+					<div class="add-form">
+						<span class="add-title">비고</span>
+						<input type="text" class="txtBox" name="comment" style="border-radius: 3px;">
+					</div>
+				</div>
+				<div class="content-form add-btn-form">
+					<button type="button">
+						<i class="fas fa-times" aria-hidden="true"></i> 취소
+					</button>
+					<button type="button" onclick="dataChk()">
+						<i class="fas fa-check" aria-hidden="true"></i> 등록
+					</button>
+				</div>
+			</div>
+			<div class="popupLayer"></div>
+		</form>
 		<!-- 페이징 폼 -->
 		<div id="pagingForm">
 			<!-- 첫 페이지로 -->

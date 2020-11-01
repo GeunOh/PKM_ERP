@@ -62,7 +62,7 @@ h1{margin-bottom: 3%;}
     background: #767c81;
 }
 /* 버튼 */
-.buttons { margin-top: 20px; }
+.buttons { margin-top: 20px; text-align: center;}
 .buttons button {
     width: 100px;
     height: 35px;

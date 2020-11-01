@@ -61,18 +61,18 @@ $("#modifyDept .deptList td:last-child").on("click", function() {
 // 부서 등록 서비스
 $(".addBtn").on("click", function() {
 	
-	if($("#addDept input[name='dname']").val() == ''){
-		alert("부서명을 입력해주세요.");
-		$("#addDept input[name='dname']").focus();
-		return;
-	}
 	if($("#addDept input[name='dcode']").val() == ''){
 		alert("부서코드를 입력해주세요.");
 		$("#addDept input[name='dcode']").focus();
 		return;
 	}
+	if($("#addDept input[name='dname']").val() == ''){
+		alert("부서명을 입력해주세요.");
+		$("#addDept input[name='dname']").focus();
+		return;
+	}
 	
-	if($("#addDept .dcodeChk").text() == "이미 존재하는 부서코드"){
+	if($("#addDept .dcodeChk").text() == "사용 불가능"){
 		alert("이미 존재하는 부서코드입니다.");
 		$("input[name='dcode']").focus();
 		return;
@@ -85,6 +85,14 @@ $(".addBtn").on("click", function() {
 })
 // 부서 삭제 서비스
 $("#deleteBtn").on("click", function() {
+	var dcodeChk = document.getElementsByName("dname");
+	
+	// 체크박스가 1개도 체크가 안되어있다면
+	if(checkboxOne(dcodeChk)<1){
+		alert("삭제하실 부서를 선택해주세요.");
+		return;
+	}
+	
 	if(confirm("정말로 삭제하시겠습니까?")){
 		var delFrm = document.delFrm;
 		delFrm.action = "/Human/delDept";
@@ -231,7 +239,14 @@ function modifyDeptInfo(deptName) {
 		}
 	})
 }
-
+//체크박스 1개이상 체크확인 메서드
+function checkboxOne(chkList){
+	var count = 0;
+	for(var i=0; i<chkList.length; i++){
+		if(chkList[i].checked) count++;
+	}
+	return count;
+}
 // 부서코드 중복 체크
 function dcodeDupChk(e) {
 	var dcode = e.target.value;

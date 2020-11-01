@@ -105,7 +105,7 @@
 		</div>
 		<!-- // 사원목록 -->
 		<!-- 직급수정 팝업창 -->
-		<form name="modifyForm" class="popup-form">
+		<form name="modifyForm" class="modify-popup-form">
 			<div class="popupContent">
 				<h2>직급 수정
 				<i class="fas fa-times" aria-hidden="true"></i>

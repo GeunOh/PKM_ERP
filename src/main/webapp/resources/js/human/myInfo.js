@@ -415,7 +415,7 @@ var changeHour = function(value) {
 var workChangeDate = function(value){
 	var dt = new Date(value);
 	
-	return ((dt.getMonth() < 10) ? "0" + (dt.getMonth()+1) : (dt.getMonth()+1))  + "." + dt.getDate() + "("+day(dt)+")";
+	return ((dt.getMonth()+1 < 10) ? "0" + (dt.getMonth()+1) : (dt.getMonth()+1))  + "." + dt.getDate() + "("+day(dt)+")";
 }
 
 //내 정보변경 팝업창

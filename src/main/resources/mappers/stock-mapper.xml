@@ -142,6 +142,7 @@
 		SELECT P.PCODE, PNAME, COST_PRICE, SELLING_PRICE, PCOUNT, P_COMMENT
 		FROM TB_PRODUCT P
 		JOIN TB_PRODUCT_STOCK PS ON(P.PCODE = PS.PCODE)
+		ORDER BY P.PCODE ASC
 	</select>
 	
 	<select id="showSupply" resultMap="supplyResult">
@@ -264,7 +265,7 @@
 		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
 	</select>
 	<select id="stockInOutList" resultType="hashmap">
-		SELECT * FROM PRODUCT_INOUT_VIEW
+		SELECT * FROM PRODUCT_INOUT_VIEW ORDER BY INOUT_DATE DESC
 	</select>
 	<select id="searchStockInOutCount" resultType="_int">
 		SELECT COUNT(*) FROM PRODUCT_INOUT_VIEW
@@ -291,5 +292,6 @@
 				<if test="date == '' and date2 != ''"><![CDATA[ AND INOUT_DATE <= #{date2} ]]></if>
 			</if>
 		</where>
+		ORDER BY INOUT_DATE DESC
 	</select>
 </mapper>

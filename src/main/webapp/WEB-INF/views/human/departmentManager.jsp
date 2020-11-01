@@ -56,11 +56,11 @@
 					</tr>
 					<tr>
 						<th>회사코드</th>
-						<td class="dcode">C123123123</td>
+						<td class="dcode">C000</td>
 					</tr>
 					<tr>
 						<th>회사대표</th>
-						<td class="dboss">쿠크다스</td>
+						<td class="dboss">문상후</td>
 					</tr>
 					<tr>
 						<th>시작일</th>
@@ -102,11 +102,11 @@
 					<span style="top: -23px; right: 0; font-size: 12px; text-align: right;">선택 사항입니다.</span>
 					<div class="add-textform">
 						<span class="add-title add-title2">부서장</span>
-						<input type="text" class="txtBox add-text" name="eno">
+						<input type="text" class="txtBox add-text" name="ename">
 					</div>
 					<div class="add-textform">
 						<span class="add-title add-title2">부서설명</span>
-						<input type="text" class="txtBox add-text" name="eno">
+						<input type="text" class="txtBox add-text" name="dcomment">
 					</div>
 				</div>
 				<div class="btn-form">
@@ -114,7 +114,7 @@
 						<i class="fas fa-times" aria-hidden="true"></i> 취소
 					</button>
 					<button type="button" class="addBtn" onclick="dataChk()">
-						<i class="fas fa-check" aria-hidden="true"></i> 신청
+						<i class="fas fa-check" aria-hidden="true"></i> 추가
 					</button>
 				</div>
 			</div>

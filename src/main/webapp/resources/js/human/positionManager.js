@@ -120,7 +120,7 @@ function modifyPosition() {
 		return;
 	}
 	
-	$(".popup-form").fadeIn();
+	$(".modify-popup-form").fadeIn();
 	
 	// 체크된 체크박스의 value 가져오기
 	var rcode;
@@ -152,7 +152,13 @@ $('.modify-btn-form button:last').on('click',function(){
 	
 	var modifyForm = document.modifyForm;
 	var $rcode = $("input[name='modify-rcode']");
-
+	
+	if(beforeRcode == $rcode.val()){
+		modifyForm.action = "/Human/modifyPositon";
+		modifyForm.submit();
+		return;
+	}
+	
 	if(rcodeDupChk($rcode.val())){
 		alert("이미 사용중인 부서코드입니다.");
 		$rcode.focus();
@@ -166,10 +172,10 @@ $('.modify-btn-form button:last').on('click',function(){
 })
 
 $('h2 .fa-times').on('click',function(){
-	$('.popup-form').fadeOut();
+	$('.modify-popup-form').fadeOut();
 })
 $('.modify-btn-form button:first-child').on('click',function(){
-	$('.popup-form').fadeOut();
+	$('.modify-popup-form').fadeOut();
 })
 
 // 직급 클릭 시 사원 목록 조회

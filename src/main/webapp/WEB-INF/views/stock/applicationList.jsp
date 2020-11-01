@@ -64,7 +64,7 @@
 						<input type="date" id="date2" name="date2" class="date rightDate" disabled>
 					</div>
 					<button id="searchBtn">검색</button>
-					<button type="button" id="resetBtn" onclick="location.href='/Human/vacationManager'">초기화</button>
+					<button type="button" id="resetBtn" onclick="location.href='/Stock/applicationList'">초기화</button>
 				</form>
 			</div>
 		</div>

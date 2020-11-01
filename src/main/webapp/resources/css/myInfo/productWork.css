@@ -73,6 +73,7 @@ ul, li{list-style: none;}
 	width: 120px; max-height: 438px;
 	font-size: 13px;
 	z-index:99;
+    overflow-y: auto;
 }
 .selectBox ul li{padding: 5px 5px;}
 .link-selected{ display:inline-block; width: 100px;}

@@ -216,7 +216,7 @@ ul, li{list-style: none;}
 #humanList table { width: 100%; min-height: 700px; }
 
 /* 직급 수정 팝업창 */
-.popup-form {
+.modify-popup-form {
     position: fixed;
     top: 0;
     left: 0;
